@@ -15,15 +15,30 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('index');
 });
 
 
-Route::get('lan/{locale}', function ($locale) {
-    app()->setLocale($locale);
-    session()->put('locale', $locale);
 
-    return redirect()->back();
+
+
+Route::get('lan/{locale}', function ($locale) {
+
+    if ($locale == 'ar') {
+        app()->setLocale($locale);
+        session()->put('locale', $locale);
+
+        return redirect()->back();
+    }elseif($locale == 'en'){
+        app()->setLocale($locale);
+        session()->put('locale', $locale);
+
+        return redirect()->back();
+    }else{
+        return redirect()->back();
+    }
+
+
 });
 
 Auth::routes();

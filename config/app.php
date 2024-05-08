@@ -82,6 +82,25 @@ return [
 
     'locale' => 'en',
 
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | Available locales
+    |--------------------------------------------------------------------------
+    |
+    | List all locales that your application works with
+    |
+    */
+
+
+    'available_locales' => [
+        'English' => 'en',
+        'Arabic'  => 'ar',
+        ],
+
+
+
     /*
     |--------------------------------------------------------------------------
     | Application Fallback Locale

@@ -18,6 +18,14 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
+Route::get('lan/{locale}', function ($locale) {
+    app()->setLocale($locale);
+    session()->put('locale', $locale);
+
+    return redirect()->back();
+});
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

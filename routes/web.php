@@ -15,15 +15,25 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('index');
+    return view('welcome');
+});
+
+
+Route::get('test', function(){
+    Auth::user()->syncRoles('member');
+    // Auth::user()->syncRoles('student');
+    // Auth::user()->syncRoles('teacher');
+    // Auth::user()->syncRoles('teacher-admin');
+    // Auth::user()->syncRoles('admin');
+
+    return back();
+
 });
 
 
 
 
-
 Route::get('lan/{locale}', function ($locale) {
-
     if ($locale == 'ar') {
         app()->setLocale($locale);
         session()->put('locale', $locale);
@@ -37,9 +47,7 @@ Route::get('lan/{locale}', function ($locale) {
     }else{
         return redirect()->back();
     }
-
-
-});
+})->name('lan');
 
 Auth::routes();
 

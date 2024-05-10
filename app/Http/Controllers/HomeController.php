@@ -29,11 +29,11 @@ class HomeController extends Controller
         // return $user->getRoleNames();
 
         if ($user->hasRole('member')) {
-            return view('layouts.Student');
+            return view('student.home');
         }elseif($user->hasRole('student')){
-            return 'this is student';
+            return view('student.home');
         }elseif($user->hasRole('teacher')){
-            return 'this is teacher';
+            return view('teacher.home');
         }elseif($user->hasRole('teacher-admin')){
             return 'this is teacher-admin';
         }elseif($user->hasRole('admin')){

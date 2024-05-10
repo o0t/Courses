@@ -30,6 +30,15 @@ Route::get('test', function(){
 
 });
 
+Route::get('role', function(){
+
+    $user = Auth::user();
+    $roles = $user->getRoleNames(); // Returns a collection
+
+    return $roles;
+
+});
+
 
 
 

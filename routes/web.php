@@ -20,9 +20,9 @@ Route::get('/', function () {
 
 
 Route::get('test', function(){
-    Auth::user()->syncRoles('member');
+    // Auth::user()->syncRoles('member');
     // Auth::user()->syncRoles('student');
-    // Auth::user()->syncRoles('teacher');
+    Auth::user()->syncRoles('teacher');
     // Auth::user()->syncRoles('teacher-admin');
     // Auth::user()->syncRoles('admin');
 

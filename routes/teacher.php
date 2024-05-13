@@ -1,0 +1,21 @@
+<?php
+
+use App\Http\Controllers\TeacherContentController;
+use Illuminate\Support\Facades\Route;
+
+/*
+|--------------------------------------------------------------------------
+| Teacher Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register web routes for your application. These
+| routes are loaded by the RouteServiceProvider within a group which
+| contains the "web" middleware group. Now create something great!
+|
+*/
+
+
+Route::group(['middleware' => ['role:teacher|teacher-admin']], function () {
+    Route::get('content_management', [TeacherContentController::class , 'index'])->name('content_management');
+ });
+

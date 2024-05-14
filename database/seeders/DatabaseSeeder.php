@@ -54,14 +54,18 @@ class DatabaseSeeder extends Seeder
             // Videos:
             ['name' => 'view-video', 'guard_name' => 'web'],
             ['name' => 'upload-video', 'guard_name' => 'web'],
-            ['name' => 'delete-video', 'guard_name' => 'web'],
             ['name' => 'edit-video', 'guard_name' => 'web'],
+            ['name' => 'delete-video', 'guard_name' => 'web'],
+            ['name' => 'open-video', 'guard_name' => 'web'],
+            ['name' => 'close-video', 'guard_name' => 'web'],
+
 
             // Comments:
             ['name' => 'view-comments', 'guard_name' => 'web'],
             ['name' => 'create-comments', 'guard_name' => 'web'],
-            ['name' => 'delete-comments', 'guard_name' => 'web'],
             ['name' => 'edit-comments', 'guard_name' => 'web'],
+            ['name' => 'delete-comments', 'guard_name' => 'web'],
+            ['name' => 'open-comments', 'guard_name' => 'web'],
             ['name' => 'close-comments', 'guard_name' => 'web'],
 
             // Accounts:
@@ -69,6 +73,7 @@ class DatabaseSeeder extends Seeder
             ['name' => 'create-accounts', 'guard_name' => 'web'],
             ['name' => 'edit-accounts', 'guard_name' => 'web'],
             ['name' => 'delete-accounts', 'guard_name' => 'web'],
+            ['name' => 'open-accounts', 'guard_name' => 'web'],
             ['name' => 'close-accounts', 'guard_name' => 'web'],
 
         ];
@@ -78,11 +83,28 @@ class DatabaseSeeder extends Seeder
 
         }
 
+        // admin
         $role = Role::findByName('admin');
         $permissionNames = array_column($permissions, 'name');
 
         $role->syncPermissions($permissionNames);
         $user->assignRole($role);
+
+        // teacher
+
+        $RoleTeacher = Role::findByName('teacher');
+        $RoleTeacher->givePermissionTo([
+            'view-course',
+            'create-course',
+            'edit-course',
+            'delete-course',
+            'view-video',
+            'upload-video',
+            'edit-video',
+            'delete-video',
+            'open-video',
+            'close-video',
+        ]);
 
     }
 

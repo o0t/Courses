@@ -39,7 +39,17 @@ Route::get('role', function(){
 
 });
 
+Route::get('p', function(){
 
+    $user = Auth::user();
+
+    // $user->revokePermissionTo('create-course');
+    // $user->syncPermissions('create-course');
+    $p = $user->getAllPermissions();
+
+    return $p;
+
+});
 
 
 Route::get('lan/{locale}', function ($locale) {

@@ -35,9 +35,12 @@ class HomeController extends Controller
         }elseif($user->hasRole('teacher')){
             return view('teacher.home');
         }elseif($user->hasRole('teacher-admin')){
-            return 'this is teacher-admin';
+            return view('teacher.home');
+
         }elseif($user->hasRole('admin')){
-            return 'this is admin';
+            // return 'this is admin';
+            return view('teacher.home');
+
         }else{
             return 'no';
         }

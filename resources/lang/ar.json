@@ -24,5 +24,17 @@
     "Settings":"إعدادات",
     "Create a Course":"إنشاء دورة",
     "Edit":"تعديل",
-    "Preview":"معاينة"
+    "Preview":"معاينة",
+    "Course Name":"اسم الدورة التدريبية",
+    "The name of your course":"اسم الدورة الخاصة بك",
+    "Course level":"مستوى الدورة",
+    "Beginner":"مبتدئ",
+    "Intermediate":"متوسط",
+    "Professional":"احترافي",
+    "all levels":" جميع المستويات",
+    "Your course link":"رابط الدورة الخاصة بك",
+    "Course link":"رابط الدورة",
+    "All levels":"كل المستويات",
+    "Create new course":"إنشاء دورة جديدة",
+    "Cancel":"إلغاء"
 }

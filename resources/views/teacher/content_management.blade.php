@@ -105,4 +105,110 @@
         </div>
       </div>
     {{-- content / End --}}
+    {{-- Model --}}
+
+    <div class="modal modal-blur fade" id="modal-report" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">{{ __('Create a Course') }}</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="{{ route('course.create') }}" method="POST">
+                    @csrf
+
+                    <div class="mb-3">
+                        <label class="form-label">{{ __('Course Name') }}</label>
+                        <input type="text" class="form-control" value="{{ old('course-name') }}" name="course-name" placeholder="{{ __('The name of your course') }}">
+                        @error('course-name')
+                            <div class="form-text text-danger">{{ $errors->first('course-name') }}</div>
+                        @enderror
+                    </div>
+                    <label class="form-label">{{ __('Course level') }}</label>
+                    <div class="form-selectgroup-boxes row mb-3">
+                        <div class="col-lg-3">
+                        <label class="form-selectgroup-item">
+                            <input type="radio" name="report-type" value="1" class="form-selectgroup-input" checked>
+                            <span class="form-selectgroup-label d-flex align-items-center p-3">
+                            <span class="me-3">
+                                <span class="form-selectgroup-check"></span>
+                            </span>
+                            <span class="form-selectgroup-label-content">
+                                <span class="form-selectgroup-title strong mb-1">{{ __('Beginner') }}</span>
+                            </span>
+                            </span>
+                        </label>
+                        </div>
+                        <div class="col-lg-3">
+                            <label class="form-selectgroup-item">
+                            <input type="radio" name="report-type" value="1" class="form-selectgroup-input">
+                            <span class="form-selectgroup-label d-flex align-items-center p-3">
+                                <span class="me-3">
+                                <span class="form-selectgroup-check"></span>
+                                </span>
+                                <span class="form-selectgroup-label-content">
+                                <span class="form-selectgroup-title strong mb-1">{{ __('Intermediate') }}</span>
+                                </span>
+                            </span>
+                            </label>
+                        </div>
+                        <div class="col-lg-3">
+                        <label class="form-selectgroup-item">
+                            <input type="radio" name="report-type" value="1" class="form-selectgroup-input">
+                            <span class="form-selectgroup-label d-flex align-items-center p-3">
+                            <span class="me-3">
+                                <span class="form-selectgroup-check"></span>
+                            </span>
+                            <span class="form-selectgroup-label-content">
+                                <span class="form-selectgroup-title strong mb-1">{{ __('Professional') }}</span>
+                            </span>
+                            </span>
+                        </label>
+                        </div>
+                        <div class="col-lg-3">
+                            <label class="form-selectgroup-item">
+                            <input type="radio" name="report-type" value="1" class="form-selectgroup-input">
+                            <span class="form-selectgroup-label d-flex align-items-center p-3">
+                                <span class="me-3">
+                                <span class="form-selectgroup-check"></span>
+                                </span>
+                                <span class="form-selectgroup-label-content">
+                                <span class="form-selectgroup-title strong mb-1">{{ __('All levels') }}</span>
+                                </span>
+                            </span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                        <div class="mb-3">
+                            <label class="form-label">{{ __('Course link') }}</label>
+                            <div class="input-group input-group-flat">
+                            <span class="input-group-text">
+                                https://raqeeb.online/course/
+                            </span>
+                            <input type="text" class="form-control ps-0" name="course-url"  placeholder="{{ __('Your course link') }}" autocomplete="off">
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">
+                            <!-- Download SVG icon from http://tabler-icons.io/i/plus -->
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 5l0 14" /><path d="M5 12l14 0" /></svg>
+                            {{ __('Create new course') }}
+                          </button>
+                        <a href="#" class="btn btn-link link-secondary ms-auto" data-bs-dismiss="modal">
+                            {{ __('Cancel') }}
+                        </a>
+                    </div>
+                </form>
+            </div>
+
+
+          </div>
+        </div>
+    </div>
+    {{-- Model / End --}}
 @endsection

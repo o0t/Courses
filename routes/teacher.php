@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\TeacherContentController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,8 +15,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('content_management', [TeacherContentController::class , 'index'])->name('content_management');
+
 
 Route::group(['middleware' => ['role:teacher|teacher-admin']], function () {
-    Route::get('content_management', [TeacherContentController::class , 'index'])->name('content_management');
- });
+
+
+
+
+    Route::post('course/create',[TeacherContentController::class , 'CreateCourse'])->name('course.create');
+});
 

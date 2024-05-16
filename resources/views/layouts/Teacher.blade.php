@@ -42,6 +42,8 @@
   <body >
     <script src="{{ asset('assets/js/demo-theme.min.js?1684106062')}}"></script>
     <div class="page">
+        @include('sweetalert::alert')
+
       <!-- Sidebar -->
       <aside class="navbar navbar-vertical navbar-expand-lg" data-bs-theme="dark">
         <div class="container-fluid">
@@ -481,6 +483,9 @@
     <!-- Tabler Core -->
     <script src="{{ asset('assets/js/tabler.min.js?1684106062')}}" defer></script>
     <script src="{{ asset('assets/js/demo.min.js?1684106062')}}" defer></script>
+
+    @include('sweetalert::alert', ['cdn' => "https://cdn.jsdelivr.net/npm/sweetalert2@9"])
+
     <script>
       // @formatter:off
       document.addEventListener("DOMContentLoaded", function () {

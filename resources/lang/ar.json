@@ -36,5 +36,14 @@
     "Course link":"رابط الدورة",
     "All levels":"كل المستويات",
     "Create new course":"إنشاء دورة جديدة",
-    "Cancel":"إلغاء"
+    "Cancel":"إلغاء",
+    "The course-name field is required.":"حقل اسم الدورة مطلوب.",
+    "The course-url field is required.":"حقل عنوان URL للدورة مطلوب.",
+    "The course-url must be a valid URL.":"يجب أن يكون عنوان URL للدورة التدريبية عنوان URL صالحًا",
+    "The course-name must be at least 3 characters.":"يجب أن يتكون اسم الدورة من 3 أحرف على الأقل.",
+    "The course-name must not be greater than 50 characters.":"يجب ألا يزيد اسم الدورة عن 50 حرفًا.",
+    "Data entry error":"خطأ في إدخال البيانات",
+    "The course was created successfully":"تم إنشاء الدورة بنجاح"
+
+
 }

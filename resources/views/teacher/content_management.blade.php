@@ -129,7 +129,7 @@
                     <div class="form-selectgroup-boxes row mb-3">
                         <div class="col-lg-3">
                         <label class="form-selectgroup-item">
-                            <input type="radio" name="report-type" value="1" class="form-selectgroup-input" checked>
+                            <input type="radio" name="level" value="beginner" class="form-selectgroup-input">
                             <span class="form-selectgroup-label d-flex align-items-center p-3">
                             <span class="me-3">
                                 <span class="form-selectgroup-check"></span>
@@ -142,7 +142,7 @@
                         </div>
                         <div class="col-lg-3">
                             <label class="form-selectgroup-item">
-                            <input type="radio" name="report-type" value="1" class="form-selectgroup-input">
+                            <input type="radio" name="level" value="intermediate" class="form-selectgroup-input">
                             <span class="form-selectgroup-label d-flex align-items-center p-3">
                                 <span class="me-3">
                                 <span class="form-selectgroup-check"></span>
@@ -155,7 +155,7 @@
                         </div>
                         <div class="col-lg-3">
                         <label class="form-selectgroup-item">
-                            <input type="radio" name="report-type" value="1" class="form-selectgroup-input">
+                            <input type="radio" name="level" value="professional" class="form-selectgroup-input">
                             <span class="form-selectgroup-label d-flex align-items-center p-3">
                             <span class="me-3">
                                 <span class="form-selectgroup-check"></span>
@@ -168,7 +168,7 @@
                         </div>
                         <div class="col-lg-3">
                             <label class="form-selectgroup-item">
-                            <input type="radio" name="report-type" value="1" class="form-selectgroup-input">
+                            <input type="radio" name="level" value="all" class="form-selectgroup-input">
                             <span class="form-selectgroup-label d-flex align-items-center p-3">
                                 <span class="me-3">
                                 <span class="form-selectgroup-check"></span>
@@ -184,12 +184,30 @@
                         <div class="col-lg-12">
                         <div class="mb-3">
                             <label class="form-label">{{ __('Course link') }}</label>
-                            <div class="input-group input-group-flat">
-                            <span class="input-group-text">
-                                https://raqeeb.online/course/
-                            </span>
-                            <input type="text" class="form-control ps-0" name="course-url"  placeholder="{{ __('Your course link') }}" autocomplete="off">
-                            </div>
+                            @if (app()->getLocale() == 'en')
+                                <div class="input-group input-group-flat">
+                                <span class="input-group-text">
+                                    https://raqeeb.online/course/
+                                </span>
+                                    <input type="text" class="form-control ps-0" name="course-url"  placeholder="{{ __('Your course link') }}" autocomplete="off">
+                                </div>
+                                @error('course-url')
+                                    <div class="form-text text-danger">{{ $errors->first('course-url') }}</div>
+                                @enderror
+                            @elseif (app()->getLocale() == 'ar')
+                                <div class="input-group input-group-flat" dir="ltr">
+                                <span class="input-group-text">
+                                    https://raqeeb.online/course/
+                                </span>
+                                    <input type="text" class="form-control ps-0" name="course-url"  placeholder="{{ __('Your course link') }}" autocomplete="off">
+                                </div>
+                                @error('course-url')
+                                    <div class="form-text text-danger">{{ $errors->first('course-url') }}</div>
+                                @enderror
+                            @endif
+
+
+
                         </div>
                         </div>
                     </div>

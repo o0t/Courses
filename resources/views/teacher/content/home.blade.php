@@ -1,6 +1,6 @@
 @extends('layouts.Teacher')
 @section('title', __('Content Management'))
-@section('active.content_management','active')
+@section('active.content.home','active')
 @section('content')
  {{-- content --}}
 
@@ -39,68 +39,49 @@
     </div>
     <!-- Page body -->
 
-    <div class="page-body">
-        <div class="container-xl">
-          <div class="row row-deck row-cards">
+    <br><br>
+    <div class="container col-12">
+        <div class="card">
+          <div class="table-responsive">
+            <table class="table table-hover table-vcenter card-table table-striped">
+              <thead>
+                <tr>
+                  <th>{{ __('Course Name') }}</th>
+                  <th>{{ __('Course link') }}</th>
+                  <th>{{ __('Course status') }}</th>
+                  <th>{{ __('Date created') }}</th>
+                </tr>
+              </thead>
+              <tbody>
 
+                @foreach ($Courses as $Course)
+                    <tr>
+                        <td><a href="#">{{ $Course->name }}</a></td>
+                        <td class="text-secondary">
+                            {{ 'https://raqeeb.online/course'.$Course->url }}
+                        </td>
+                        <td class="text-secondary">
+                            @if ($Course->status == 'waiting')
+                                <span class="badge bg-yellow text-yellow-fg" data-bs-toggle="tooltip" data-bs-placement="top" title="{{ __('Waiting for supervisor approval') }}">{{ __('waiting') }}</span>
+                            @elseif ($Course->status == 'private')
+                                <span class="badge bg-azure text-azure-fg" data-bs-toggle="tooltip" data-bs-placement="top" title="{{ __('Invisible to anyone') }}">{{ __('private') }}</span>
+                            @elseif ($Course->status == 'general')
+                                <span class="badge bg-teal text-teal-fg" data-bs-toggle="tooltip" data-bs-placement="top" title="{{ __('Visible to everyone') }}">{{ __('general') }}</span>
+                            @elseif ($Course->status == 'customized')
+                                <span class="badge bg-orange text-orange-fg" data-bs-toggle="tooltip" data-bs-placement="top" title="{{ __('Visible to specific people') }}">{{ __('customized') }}</span>
+                            @elseif ($Course->status == 'closed')
+                                <span class="badge bg-red text-red-fg" data-bs-toggle="tooltip" data-bs-placement="top" title="{{ __('Closed by admin') }}">{{ __('closed') }}</span>
+                            @endif
+                        </td>
+                        <td class="text-secondary">
+                            {{ $Course->created_at->diffForHumans() }}
+                        </td>
 
+                    </tr>
+                @endforeach
 
-            <div class="col-sm-6 col-lg-4">
-                <div class="card card-link card-link-pop">
-                    <!-- Photo -->
-                    <div class="img-responsive img-responsive-21x9 card-img-top" style="background-image: url(https://incoserin.com/wp-content/uploads/2014/03/img.gif)"></div>
-                    <div class="card-body">
-                      <h3 class="card-title">Card with top image</h3>
-                      <p class="text-secondary">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam deleniti fugit incidunt, iste, itaque minima
-                        neque pariatur perferendis sed suscipit velit vitae voluptatem.</p>
-                    </div>
-                    <div class="card-footer">
-                        <div class="d-flex">
-                            <a href="#" class="btn btn-primary">{{ __('Edit') }}</a>
-                            <a href="#" class="btn btn-primary ms-auto">{{ __('Preview') }}</a>
-                        </div>
-                      </div>
-                  </div>
-            </div>
-
-            <div class="col-sm-6 col-lg-4">
-                <div class="card card-link card-link-pop">
-                    <!-- Photo -->
-                    <div class="img-responsive img-responsive-21x9 card-img-top" style="background-image: url(https://incoserin.com/wp-content/uploads/2014/03/img.gif)"></div>
-                    <div class="card-body">
-                      <h3 class="card-title">Card with top image</h3>
-                      <p class="text-secondary">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam deleniti fugit incidunt, iste, itaque minima
-                        neque pariatur perferendis sed suscipit velit vitae voluptatem.</p>
-                    </div>
-                    <div class="card-footer">
-                        <div class="d-flex">
-                            <a href="#" class="btn btn-primary">{{ __('Edit') }}</a>
-                            <a href="#" class="btn btn-primary ms-auto">{{ __('Preview') }}</a>
-                        </div>
-                      </div>
-                  </div>
-            </div>
-
-            <div class="col-sm-6 col-lg-4">
-                <div class="card card-link card-link-pop">
-                    <!-- Photo -->
-                    <div class="img-responsive img-responsive-21x9 card-img-top" style="background-image: url(https://incoserin.com/wp-content/uploads/2014/03/img.gif)"></div>
-                    <div class="card-body">
-                      <h3 class="card-title">Card with top image</h3>
-                      <p class="text-secondary">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam deleniti fugit incidunt, iste, itaque minima
-                        neque pariatur perferendis sed suscipit velit vitae voluptatem.</p>
-                    </div>
-                    <div class="card-footer">
-                        <div class="d-flex">
-                            <a href="#" class="btn btn-primary">{{ __('Edit') }}</a>
-                            <a href="#" class="btn btn-primary ms-auto">{{ __('Preview') }}</a>
-                        </div>
-                      </div>
-                  </div>
-            </div>
-
-
-
+              </tbody>
+            </table>
           </div>
         </div>
       </div>
@@ -121,6 +102,7 @@
                     <div class="mb-3">
                         <label class="form-label">{{ __('Course Name') }}</label>
                         <input type="text" class="form-control" value="{{ old('course-name') }}" name="course-name" placeholder="{{ __('The name of your course') }}">
+                        <div class="form-text">{{ __('The name will be visible only to you') }}</div>
                         @error('course-name')
                             <div class="form-text text-danger">{{ $errors->first('course-name') }}</div>
                         @enderror
@@ -182,33 +164,34 @@
                     </div>
                     <div class="row">
                         <div class="col-lg-12">
-                        <div class="mb-3">
-                            <label class="form-label">{{ __('Course link') }}</label>
-                            @if (app()->getLocale() == 'en')
-                                <div class="input-group input-group-flat">
-                                <span class="input-group-text">
-                                    https://raqeeb.online/course/
-                                </span>
-                                    <input type="text" class="form-control ps-0" name="course-url"  placeholder="{{ __('Your course link') }}" autocomplete="off">
-                                </div>
-                                @error('course-url')
-                                    <div class="form-text text-danger">{{ $errors->first('course-url') }}</div>
-                                @enderror
-                            @elseif (app()->getLocale() == 'ar')
-                                <div class="input-group input-group-flat" dir="ltr">
-                                <span class="input-group-text">
-                                    https://raqeeb.online/course/
-                                </span>
-                                    <input type="text" class="form-control ps-0" name="course-url"  placeholder="{{ __('Your course link') }}" autocomplete="off">
-                                </div>
-                                @error('course-url')
-                                    <div class="form-text text-danger">{{ $errors->first('course-url') }}</div>
-                                @enderror
-                            @endif
+                            <div class="mb-3">
+                                <label class="form-label">{{ __('Course link') }}</label>
+                                @if (app()->getLocale() == 'en')
+                                    <div class="input-group input-group-flat">
+                                    <span class="input-group-text">
+                                        https://raqeeb.online/course/
+                                    </span>
+                                        <input type="text" class="form-control ps-0" name="course-url"  placeholder="{{ __('Your course link') }}" autocomplete="off">
+                                    </div>
+                                    @error('course-url')
+                                        <div class="form-text text-danger">{{ $errors->first('course-url') }}</div>
+                                    @enderror
+                                @elseif (app()->getLocale() == 'ar')
 
+                                    <div class="mb-3">
+                                        <div class="input-group input-group-flat">
+                                        <input type="text" class="form-control text-end pe-0" name="course-url" placeholder="{{ __('Your course link') }}" autocomplete="off">
+                                        <span class="input-group-text">
+                                            /https://raqeeb.online/course
+                                        </span>
+                                        </div>
+                                    </div>
 
-
-                        </div>
+                                    @error('course-url')
+                                        <div class="form-text text-danger">{{ $errors->first('course-url') }}</div>
+                                    @enderror
+                                @endif
+                            </div>
                         </div>
                     </div>
                     <div class="modal-footer">

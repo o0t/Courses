@@ -20,8 +20,11 @@ class TeacherContentController extends Controller
     }
 
     public function index(){
+
         $this->authorize('ViewCourse', Auth::user());
-        return view('teacher.content_management');
+
+        $Courses = Courses::where('user_id',Auth::user()->id)->get();
+        return view('teacher.content.home',compact('Courses'));
     }
 
 
@@ -33,14 +36,16 @@ class TeacherContentController extends Controller
         $validator = Validator::make($request->all(), [
             'course-name' => 'required|string|max:50|min:3',
             'level'       => 'in:beginner,intermediate,professional,all',
-            'course-url' => 'required|url|max:255',
+            'course-url' =>  'required|string|regex:/^[^\s]+$/|max:255|unique:courses,url',
         ], $customMessages = [
-            'course-name.required'      => __('The course-name field is required.'),
-            'course-name.min'           => __('The course-name must be at least 3 characters.'),
-            'course-name.max'           => __('The course-name must not be greater than 50 characters.'),
-            'course-url.required'       => __('The course-url field is required.'),
-            'course-url.url'            => __('The course-url must be a valid URL.'),
-            'course-url.max'            => __('The course-url must not be greater than 255 characters.'),
+            'course-name.required'        => __('The course-name field is required.'),
+            'course-name.min'             => __('The course-name must be at least 3 characters.'),
+            'course-name.max'             => __('The course-name must not be greater than 50 characters.'),
+            'course-url.required'         => __('The course-url field is required.'),
+            'course-url.url'              => __('The course-url must be a valid URL.'),
+            'course-url.max'              => __('The course-url must not be greater than 255 characters.'),
+            'course-url.regex'            => __('The course-url format is invalid.'),
+            'course-url.unique'           => __('The course-url has already been taken.'),
         ]);
 
         if ($validator->fails()) {

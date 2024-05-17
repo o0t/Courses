@@ -19,8 +19,9 @@ class CreateCoursesTable extends Migration
             $table->string('title')->nullable();
             $table->string('name');
             $table->string('url');
+            $table->string('photo')->default('course.png');
             $table->longText('about_course')->nullable();
-            $table->enum('status', [0,1])->default(0);
+            $table->enum('status', ['waiting','private','general','customized','closed'])->default('private');
             $table->enum('level', ['beginner','intermediate','professional','all'])->nullable();
             $table->integer('count_Videos')->nullable();
             $table->integer('count_Time_Videos')->nullable();

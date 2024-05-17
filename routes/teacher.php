@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('content_management', [TeacherContentController::class , 'index'])->name('content_management');
+Route::get('content/home', [TeacherContentController::class , 'index'])->name('content.home');
 
 // Route::group(['middleware' => ['permission:publish articles|edit articles']], function () { ... });
 Route::group(['middleware' => ['role:teacher|teacher-admin']], function () {

@@ -43,7 +43,22 @@
     "The course-name must be at least 3 characters.":"يجب أن يتكون اسم الدورة من 3 أحرف على الأقل.",
     "The course-name must not be greater than 50 characters.":"يجب ألا يزيد اسم الدورة عن 50 حرفًا.",
     "Data entry error":"خطأ في إدخال البيانات",
-    "The course was created successfully":"تم إنشاء الدورة بنجاح"
+    "The course was created successfully":"تم إنشاء الدورة بنجاح",
+    "The course-url format is invalid.":"تنسيق عنوان URL للدورة التدريبية غير صالح.",
+    "The course-url has already been taken.":"لقد تم بالفعل أخذ عنوان URL للدورة التدريبية.",
+    "The name will be visible only to you":"سيكون الاسم مرئيًا لك فقط",
+    "Waiting for supervisor approval":"في انتظار موافقة المشرف",
+    "Invisible to anyone":"غير مرئية لأحد",
+    "Visible to everyone":"مرئية للجميع",
+    "Visible to specific people":"مرئية لأشخاص محددين",
+    "Closed by admin":"مغلق من قبل المشرف",
+    "waiting":"معلقة",
+    "private":"خاصة",
+    "general":"عامة",
+    "customized":"مخصصة",
+    "closed":"مغلقة",
+    "Course status":"حالة الدورة",
+    "Date created":"تاريخ الإنشاء"
 
 
 }

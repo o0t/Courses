@@ -15,14 +15,22 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('content/home', [TeacherContentController::class , 'index'])->name('content.home');
-
-// Route::group(['middleware' => ['permission:publish articles|edit articles']], function () { ... });
-Route::group(['middleware' => ['role:teacher|teacher-admin']], function () {
 
 
 
-
-    Route::post('course/create',[TeacherContentController::class , 'CreateCourse'])->name('course.create');
+Route::group(['middleware' => ['permission:create-course|view-course'], 'prefix' => 'teacher'], function () {
+    Route::get('content/home', [TeacherContentController::class , 'index'])->name('teacher.content.home');
 });
 
+
+
+ Route::group(['middleware' => ['permission:create-course|view-course|edit-course|delete-course'], 'prefix' => 'teacher'], function () {
+    Route::post('course/create',[TeacherContentController::class , 'CreateCourse'])->name('teacher.course.create');
+    Route::get('course/{url}/details',[TeacherContentController::class , 'CourseDetails'])->name('teacher.course.details');
+    Route::post('course/{url}/sections',[TeacherContentController::class , 'CreateSection'])->name('teacher.course.create.section');
+ });
+
+
+//  Route::post('course/{url}/sections', [TeacherContentController::class, 'CreateSection'])->name('teacher.course.create.section');
+
+//  Route::post('course/{course}/section', 'Teacher\CourseController@createSection')->name('course.create.section');

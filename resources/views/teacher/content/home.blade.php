@@ -56,9 +56,9 @@
 
                 @foreach ($Courses as $Course)
                     <tr>
-                        <td><a href="#">{{ $Course->name }}</a></td>
+                        <td><a href="{{ route('teacher.course.details',$Course->url) }}">{{ $Course->name }}</a></td>
                         <td class="text-secondary">
-                            {{ 'https://raqeeb.online/course'.$Course->url }}
+                            {{ 'https://raqeeb.online/course/'.$Course->url }}
                         </td>
                         <td class="text-secondary">
                             @if ($Course->status == 'waiting')
@@ -96,7 +96,7 @@
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form action="{{ route('course.create') }}" method="POST">
+                <form action="{{ route('teacher.course.create') }}" method="POST">
                     @csrf
 
                     <div class="mb-3">

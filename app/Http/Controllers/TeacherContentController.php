@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Policies\UserPermissions;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 
 class TeacherContentController extends Controller
@@ -64,6 +65,32 @@ class TeacherContentController extends Controller
         ]);
 
         return back();
+
+    }
+
+
+    public function CourseDetails($url){
+
+        $CourseDetails = Courses::where('url',$url)->first();
+
+        if (!$CourseDetails) {
+            return back();
+        }
+
+        return view('teacher.content.course.details',compact('CourseDetails'));
+    }
+
+
+    public function CreateSection(Request $request , $url){
+
+        return $request;
+
+
+
+
+
+
+
 
     }
 

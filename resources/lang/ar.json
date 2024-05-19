@@ -58,7 +58,16 @@
     "customized":"مخصصة",
     "closed":"مغلقة",
     "Course status":"حالة الدورة",
-    "Date created":"تاريخ الإنشاء"
+    "Date created":"تاريخ الإنشاء",
+    "Course details":"تفاصيل الدورة",
+    "Course content":"محتوى الدورة",
+    "Course settings":"إعدادات الدورة",
+    "Presentation":"المحتوى التدريجي",
+    "Pricing":"التسعير",
+    "Student interaction":"تفاعل الطلاب",
+    "Publishing":"النشر",
+    "Content display settings":"إعدادات عرض المحتوى",
+    "Add section":"إضافة قسم"
 
 
 }

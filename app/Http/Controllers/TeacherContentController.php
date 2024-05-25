@@ -85,13 +85,6 @@ class TeacherContentController extends Controller
 
         return $request;
 
-
-
-
-
-
-
-
     }
 
 }

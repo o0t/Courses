@@ -56,7 +56,7 @@
 
                 @foreach ($Courses as $Course)
                     <tr>
-                        <td><a href="{{ route('teacher.course.details',$Course->url) }}">{{ $Course->name }}</a></td>
+                        <td><a href="{{ route('teacher.course.home',$Course->url) }}">{{ $Course->name }}</a></td>
                         <td class="text-secondary">
                             {{ 'https://raqeeb.online/course/'.$Course->url }}
                         </td>

@@ -15,8 +15,9 @@ class CreateVideosTable extends Migration
     {
         Schema::create('videos', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBiginteger('courses_id');
-            $table->string('name');
+            $table->unsignedBiginteger('content_id');
+            $table->string('video_name');
+            $table->string('file_name');
             $table->longText('description');
             $table->integer('likes')->default(0);
             $table->integer('comments')->default(0);
@@ -25,7 +26,7 @@ class CreateVideosTable extends Migration
             $table->enum('status', [0,1])->default(0);
             $table->enum('shearing_guests', [0,1])->default(0);
             $table->time('time')->default('00:00:00');
-            $table->foreign('courses_id')->references('id')->on('courses')->onDelete('cascade');
+            $table->foreign('content_id')->references('id')->on('contents')->onDelete('cascade');
             $table->timestamps();
         });
     }

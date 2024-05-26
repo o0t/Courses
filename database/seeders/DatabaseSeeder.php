@@ -51,6 +51,19 @@ class DatabaseSeeder extends Seeder
             ['name' => 'edit-course', 'guard_name' => 'web'],
             ['name' => 'delete-course', 'guard_name' => 'web'],
 
+            //  sections
+            ['name' => 'view-section', 'guard_name' => 'web'],
+            ['name' => 'create-section', 'guard_name' => 'web'],
+            ['name' => 'edit-section', 'guard_name' => 'web'],
+            ['name' => 'delete-section', 'guard_name' => 'web'],
+
+
+            //  Contents
+            ['name' => 'view-content', 'guard_name' => 'web'],
+            ['name' => 'create-content', 'guard_name' => 'web'],
+            ['name' => 'edit-content', 'guard_name' => 'web'],
+            ['name' => 'delete-content', 'guard_name' => 'web'],
+
             // Videos:
             ['name' => 'view-video', 'guard_name' => 'web'],
             ['name' => 'upload-video', 'guard_name' => 'web'],
@@ -104,6 +117,14 @@ class DatabaseSeeder extends Seeder
             'delete-video',
             'open-video',
             'close-video',
+            'view-section',
+            'create-section',
+            'edit-section',
+            'delete-section',
+            'view-content',
+            'create-content',
+            'edit-content',
+            'delete-content',
         ]);
 
     }

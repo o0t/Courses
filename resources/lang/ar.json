@@ -63,11 +63,26 @@
     "Course content":"محتوى الدورة",
     "Course settings":"إعدادات الدورة",
     "Presentation":"المحتوى التدريجي",
+    "Course sections":"أقسام الدورة",
     "Pricing":"التسعير",
     "Student interaction":"تفاعل الطلاب",
     "Publishing":"النشر",
     "Content display settings":"إعدادات عرض المحتوى",
-    "Add section":"إضافة قسم"
+    "Add section":"إضافة قسم",
+    "Sections":"الأقسام",
+    "Create a section":"إنشاء قسم",
+    "Section Name":"اسم القسم",
+    "Number of videos":"عدد الفيديوهات",
+    "Number of text files":"عدد الملفات النصية",
+    "Number of PDF files":"عدد ملفات PDF",
+    "Number of tests":"عدد الاختبارات",
+    "Updated on":"تحديث في",
+    "Follows the previous section":"يتبع القسم السابق",
+    "No video has been uploaded":"لم يتم رفع أي فيديو",
+    "No text file was uploaded":"لم يتم رفع أي ملف نصي",
+    "No PDF file was uploaded":"لم يتم رفع اي ملف PDF",
+    "No test has been uploaded":"لم يتم رفع أي اختبار"
+
 
 
 }

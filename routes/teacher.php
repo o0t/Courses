@@ -24,13 +24,15 @@ Route::group(['middleware' => ['permission:create-course|view-course'], 'prefix'
 
 
 
- Route::group(['middleware' => ['permission:create-course|view-course|edit-course|delete-course'], 'prefix' => 'teacher'], function () {
+Route::group(['middleware' => ['permission:create-course|view-course|edit-course|delete-course'], 'prefix' => 'teacher'], function () {
     Route::post('course/create',[TeacherContentController::class , 'CreateCourse'])->name('teacher.course.create');
-    Route::get('course/{url}/details',[TeacherContentController::class , 'CourseDetails'])->name('teacher.course.details');
-    Route::post('course/{url}/sections',[TeacherContentController::class , 'CreateSection'])->name('teacher.course.create.section');
- });
+    Route::get('course/{url}/home',[TeacherContentController::class , 'CourseHome'])->name('teacher.course.home');
+
+});
 
 
-//  Route::post('course/{url}/sections', [TeacherContentController::class, 'CreateSection'])->name('teacher.course.create.section');
+Route::group(['middleware' => ['permission:view-section|create-section|edit-section|delete-section'], 'prefix' => 'teacher'], function () {
+    Route::get('course/{url}/sections',[TeacherContentController::class , 'Sections'])->name('teacher.course.sections');
 
-//  Route::post('course/{course}/section', 'Teacher\CourseController@createSection')->name('course.create.section');
+});
+

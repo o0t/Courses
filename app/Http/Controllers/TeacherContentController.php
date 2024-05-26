@@ -69,21 +69,31 @@ class TeacherContentController extends Controller
     }
 
 
-    public function CourseDetails($url){
+    public function CourseHome($url){
 
-        $CourseDetails = Courses::where('url',$url)->first();
+        $CourseDetails = Courses::where('url',$url)->where('user_id',Auth::user()->id)->first();
 
         if (!$CourseDetails) {
             return back();
         }
 
-        return view('teacher.content.course.details',compact('CourseDetails'));
+        return view('teacher.content.course.course_info',compact('CourseDetails'));
     }
 
 
-    public function CreateSection(Request $request , $url){
+    public function Sections($url){
 
-        return $request;
+        $CourseDetails = Courses::where('url',$url)->where('user_id',Auth::user()->id)->first();
+
+        if (!$CourseDetails) {
+            return back();
+        }
+
+
+        $Sections = $CourseDetails->Section;
+
+
+        return view('teacher.content.course.sections',compact('CourseDetails','Sections'));
 
     }
 

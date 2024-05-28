@@ -41,6 +41,54 @@ class UserPermissions
         return $user->hasPermissionTo('delete-course');
     }
 
+
+
+
+    // ! sections
+    public function ViewSection(User $user )
+    {
+        return $user->hasPermissionTo('view-section');
+    }
+
+    public function CreateSection(User $user )
+    {
+        return $user->hasPermissionTo('create-section');
+    }
+
+    public function EditSection(User $user )
+    {
+        return $user->hasPermissionTo('edit-section');
+    }
+
+    public function DeleteSection(User $user )
+    {
+        return $user->hasPermissionTo('delete-section');
+    }
+
+
+    // ! Contents
+    public function ViewContent(User $user )
+    {
+        return $user->hasPermissionTo('view-content');
+    }
+
+    public function CreateContent(User $user )
+    {
+        return $user->hasPermissionTo('create-content');
+    }
+
+    public function EditContent(User $user )
+    {
+        return $user->hasPermissionTo('edit-content');
+    }
+
+    public function DeleteContent(User $user )
+    {
+        return $user->hasPermissionTo('delete-content');
+    }
+
+
+
     // ! video
 
     public function ViewVideo(User $user )

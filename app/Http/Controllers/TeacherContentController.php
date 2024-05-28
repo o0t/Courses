@@ -4,12 +4,15 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\FormStartCreateCourse;
 use App\Models\Courses;
+use App\Models\Section;
 use App\Models\User;
 use App\Policies\UserPermissions;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
+
+use function Symfony\Component\String\b;
 
 class TeacherContentController extends Controller
 {
@@ -71,6 +74,8 @@ class TeacherContentController extends Controller
 
     public function CourseHome($url){
 
+        $this->authorize('ViewSection',Auth::user());
+
         $CourseDetails = Courses::where('url',$url)->where('user_id',Auth::user()->id)->first();
 
         if (!$CourseDetails) {
@@ -81,7 +86,11 @@ class TeacherContentController extends Controller
     }
 
 
+
+    // View Sections
     public function Sections($url){
+
+        $this->authorize('ViewSection',Auth::user());
 
         $CourseDetails = Courses::where('url',$url)->where('user_id',Auth::user()->id)->first();
 
@@ -89,12 +98,40 @@ class TeacherContentController extends Controller
             return back();
         }
 
-
-        $Sections = $CourseDetails->Section;
-
+        $Sections = $CourseDetails->Section()->paginate(15);
 
         return view('teacher.content.course.sections',compact('CourseDetails','Sections'));
+    }
+
+
+    public function CreateSections(Request $request , $url){
+
+        $this->authorize('CreateSection',Auth::user());
+
+
+        $CourseDetails = Courses::where('url',$url)->where('user_id',Auth::user()->id)->first();
+
+        if (!$CourseDetails) {
+            return back();
+        }
+
+        $CreateSection = Section::create([
+            'courses_id'      => $CourseDetails->id,
+            'name'            => $request->input('section-name'),
+            'token'           => $request->_token
+
+        ]);
+
+        if ($CreateSection) {
+            toast(__('The Section been created successfully'),'success');
+        }else{
+            toast(__('There is a problem, please try again later'),'error');
+        }
+
+        return back();
 
     }
+
+
 
 }

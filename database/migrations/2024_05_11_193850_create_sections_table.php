@@ -22,6 +22,7 @@ class CreateSectionsTable extends Migration
             $table->bigInteger('pdf')->nullable();
             $table->bigInteger('test')->nullable();
             $table->foreign('courses_id')->references('id')->on('courses')->onDelete('cascade');
+            $table->string('token');
             $table->timestamps();
         });
     }

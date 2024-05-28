@@ -81,7 +81,12 @@
     "No video has been uploaded":"لم يتم رفع أي فيديو",
     "No text file was uploaded":"لم يتم رفع أي ملف نصي",
     "No PDF file was uploaded":"لم يتم رفع اي ملف PDF",
-    "No test has been uploaded":"لم يتم رفع أي اختبار"
+    "No test has been uploaded":"لم يتم رفع أي اختبار",
+    "The name of the content section":"اسم قسم المحتوى",
+    "When left blank, the name does not appear and belongs to the previous section":"عند تركه فارغا، لا يظهر الاسم وينتمي إلى القسم السابق",
+    "Create a new section":"إنشاء قسم جديد",
+    "There is a problem, please try again later":"هناك مشكلة، يرجى المحاولة مرة أخرى في وقت لاحق",
+    "The Section been created successfully":"تم إنشاء القسم بنجاح"
 
 
 

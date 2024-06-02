@@ -86,8 +86,16 @@
     "When left blank, the name does not appear and belongs to the previous section":"عند تركه فارغا، لا يظهر الاسم وينتمي إلى القسم السابق",
     "Create a new section":"إنشاء قسم جديد",
     "There is a problem, please try again later":"هناك مشكلة، يرجى المحاولة مرة أخرى في وقت لاحق",
-    "The Section been created successfully":"تم إنشاء القسم بنجاح"
-
+    "The Section been created successfully":"تم إنشاء القسم بنجاح",
+    "Edit section":"تعديل القسم",
+    "Back":"رجوع",
+    "View section":"عرض القسم",
+    "section information":"معلومات القسم",
+    "Course title":"عنوان الدورة",
+    "Course image":"صورة الدورة",
+    "Allowed to upload: text file, PDF file, video":"المسموح بتحميل: ملف نصي، ملف PDF، فيديو",
+    "Name":"الاسم",
+    "title":"العنوان"
 
 
 }

@@ -1,5 +1,5 @@
 @extends('layouts.Teacher')
-@section('title','Course sections')
+@section('title',__('Course sections'))
 @section('active.content.home','active')
 @section('content')
  {{-- content --}}
@@ -152,9 +152,9 @@
                                     @endif
                                 </td>
                                 <td>
-                                <a href="#" class="btn btn-icon btn-primary">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" style="fill: rgb(255, 255, 255);transform: ;msFilter:;"><path d="M10.061 19.061 17.121 12l-7.06-7.061-2.122 2.122L12.879 12l-4.94 4.939z"></path></svg>
-                                </a>
+                                    <a href="{{ route('teacher.course.section.view',$Section->id) }}" class="btn btn-icon btn-primary">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" style="fill: rgb(255, 255, 255);transform: ;msFilter:;"><path d="M10.061 19.061 17.121 12l-7.06-7.061-2.122 2.122L12.879 12l-4.94 4.939z"></path></svg>
+                                    </a>
                                 </td>
                             </tr>
                         @endforeach

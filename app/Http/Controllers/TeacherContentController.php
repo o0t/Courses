@@ -132,6 +132,20 @@ class TeacherContentController extends Controller
 
     }
 
+    // view Section
+    public function ViewSection ($id){
+
+        $Section = Section::find($id);
+
+        return view('teacher.content.course.view_section',compact('Section'));
+    }
+
+    // Uplode File in Section
+    public function CreateFileSection ($id){
+
+        return 'CreateFileSection' . $id;
+    }
+
 
 
 }

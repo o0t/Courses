@@ -1,5 +1,5 @@
 @extends('layouts.Teacher')
-@section('title','Course details')
+@section('title',__('Course details'))
 @section('active.content.home','active')
 @section('content')
  {{-- content --}}

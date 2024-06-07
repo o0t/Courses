@@ -138,18 +138,19 @@ class TeacherContentController extends Controller
 
         $Section = Section::find($id);
 
+        return $Section->Content()->with('videos','Txt','pdf','test')->get();
         return view('teacher.content.course.view_section',compact('Section'));
     }
-    
+
     // Uplode File in Section
     public function CreateFileSection ($id){
 
-    
-        // Storage::disk('minio')->put('file.txt', 'Hello, Minio!');
-        
-        return Storage::disk('minio')->get('car.png');
-        
-        
+
+
+
+        // return Storage::disk('minio')->get('car.png');
+
+
         // return 'CreateFileSection' . $id;
     }
 

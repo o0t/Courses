@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Pdf extends Model
 {
     use HasFactory;
+
+
+    public function Content()
+    {
+        return $this->belongsTo(Content::class, 'id', 'content_id');
+    }
 }

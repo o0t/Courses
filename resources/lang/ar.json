@@ -95,7 +95,9 @@
     "Course image":"صورة الدورة",
     "Allowed to upload: text file, PDF file, video":"المسموح بتحميل: ملف نصي، ملف PDF، فيديو",
     "Name":"الاسم",
-    "title":"العنوان"
+    "title":"العنوان",
+    "Section content":"محتوى القسم",
+    "Upload content":"رفع محتوى"
 
 
 }

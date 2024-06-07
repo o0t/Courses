@@ -12,7 +12,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 
-use function Symfony\Component\String\b;
+use Illuminate\Support\Facades\Storage;
+
 
 class TeacherContentController extends Controller
 {
@@ -139,11 +140,17 @@ class TeacherContentController extends Controller
 
         return view('teacher.content.course.view_section',compact('Section'));
     }
-
+    
     // Uplode File in Section
     public function CreateFileSection ($id){
 
-        return 'CreateFileSection' . $id;
+    
+        // Storage::disk('minio')->put('file.txt', 'Hello, Minio!');
+        
+        return Storage::disk('minio')->get('car.png');
+        
+        
+        // return 'CreateFileSection' . $id;
     }
 
 

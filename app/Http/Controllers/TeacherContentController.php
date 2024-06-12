@@ -136,14 +136,23 @@ class TeacherContentController extends Controller
     // view Section
     public function ViewSection ($id){
 
-        $Section = Section::find($id);
+        $this->authorize('ViewContent',Auth::user());
 
-        return $Section->Content()->with('videos','Txt','pdf','test')->get();
-        return view('teacher.content.course.view_section',compact('Section'));
+
+        $section = Section::findOrFail($id);
+        $contents = $section->Content()
+                            ->with(['videos', 'Txt', 'pdf', 'test'])
+                            ->orderByDesc('created_at')
+                            ->first();
+
+        // return $contents;
+
+        return view('teacher.content.course.view_section',compact('section','contents'));
     }
 
     // Uplode File in Section
     public function CreateFileSection ($id){
+
 
 
 

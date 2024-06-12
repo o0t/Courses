@@ -16,9 +16,7 @@ class CreateContentsTable extends Migration
         Schema::create('contents', function (Blueprint $table) {
             $table->id();
             $table->unsignedBiginteger('section_id');
-            $table->enum('type', ['video','txt','pdf','test'])->nullable();
             $table->foreign('section_id')->references('id')->on('sections')->onDelete('cascade');
-
             $table->timestamps();
         });
     }

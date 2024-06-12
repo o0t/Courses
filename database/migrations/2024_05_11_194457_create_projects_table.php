@@ -25,7 +25,11 @@ class CreateProjectsTable extends Migration
             $table->string('image3')->nullable();
             $table->string('image4')->nullable();
             $table->string('link');
-            $table->enum('status', ['0', '1'])->default('0');
+            $table->integer('likes')->default(0);
+            $table->integer('comments')->default(0);
+            $table->integer('views')->default(0);
+            $table->integer('favorite')->default(0);
+            $table->enum('status', ['waiting','private','general','customized','closed'])->default('private');
             $table->foreign('courses_id')->references('id')->on('courses')->onDelete('cascade');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();

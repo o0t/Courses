@@ -19,16 +19,29 @@ class DatabaseSeeder extends Seeder
         // \App\Models\User::factory(10)->create();
 
         $user = User::create([
-            'first_name' => 'Test',
+            'first_name' => 'admin',
+            'last_name' => 'Developer',
+            'username' => 'admin',
+            'email' => 'admin@admin.com',
+            'phone' => 123456789,
+            'about' => 'I am a web developer.',
+            'email_verified_at' => null,
+            'password' => bcrypt('admin@admin.com'),
+            'remember_token' => null,
+        ]);
+
+        $user2 = User::create([
+            'first_name' => 'test',
             'last_name' => 'Developer',
             'username' => 'test',
             'email' => 'test@test.com',
             'phone' => 123456789,
-            'about' => 'I am a web developer.',
+            'about' => 'This is for Testing.',
             'email_verified_at' => null,
             'password' => bcrypt('test@test.com'),
             'remember_token' => null,
         ]);
+
 
 
         $Roles = [
@@ -127,6 +140,8 @@ class DatabaseSeeder extends Seeder
             'delete-content',
         ]);
 
+
+        $user2->assignRole($RoleTeacher);
     }
 
 }

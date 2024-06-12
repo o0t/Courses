@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class section_content extends Model
 {
     use HasFactory;
-
+    protected $guarded = [];
     public function Section()
     {
         return $this->belongsTo(Section::class, 'section_id', 'id');

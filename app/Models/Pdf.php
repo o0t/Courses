@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Pdf extends Model
 {
     use HasFactory;
-
+    protected $guarded = [];
 
     public function Content()
     {

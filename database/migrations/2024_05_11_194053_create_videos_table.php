@@ -23,8 +23,8 @@ class CreateVideosTable extends Migration
             $table->integer('comments')->default(0);
             $table->integer('views')->default(0);
             $table->integer('favorite')->default(0);
-            $table->enum('status', [0,1])->default(0);
-            $table->enum('shearing_guests', [0,1])->default(0);
+            $table->enum('status', ['waiting','private','general','customized','closed'])->default('private');
+            $table->enum('shearing_guests', ['general','private'])->default('private');
             $table->time('time')->default('00:00:00');
             $table->foreign('content_id')->references('id')->on('contents')->onDelete('cascade');
             $table->timestamps();

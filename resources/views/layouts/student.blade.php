@@ -39,6 +39,8 @@
       	font-feature-settings: "cv03", "cv04", "cv11";
       }
     </style>
+
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
   </head>
   <body >
     <script src="{{ asset('assets/js/demo-theme.min.js?1684106062')}}"></script>
@@ -389,7 +391,7 @@
     <script src="{{ asset('assets/js/demo.min.js?1684106062')}}" defer></script>
 
     @include('sweetalert::alert', ['cdn' => "https://cdn.jsdelivr.net/npm/sweetalert2@9"])
-
+    <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
     <script>
         // @formatter:off
         document.addEventListener("DOMContentLoaded", function () {

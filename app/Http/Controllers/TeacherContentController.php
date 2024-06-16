@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\FormStartCreateCourse;
+use App\Models\Content;
 use App\Models\Courses;
 use App\Models\Section;
+use App\Models\section_content;
 use App\Models\User;
 use App\Policies\UserPermissions;
 use Illuminate\Support\Facades\Validator;
@@ -116,6 +118,24 @@ class TeacherContentController extends Controller
             return back();
         }
 
+        if (!Section::where('courses_id',$CourseDetails->id)->first()) {
+
+            $validator = Validator::make($request->all(), [
+                'section-name' => 'required|string|max:50|min:3',
+            ], $customMessages = [
+                'section-name' => __('You do not have any previous sections. You must write the name of the section'),
+            ]);
+
+            if ($validator->fails()) {
+                toast(__('Data entry error'),'error');
+                return back()->withErrors($validator)->withInput();
+            }else{
+                toast(__('The course was created successfully'),'success');
+            }
+
+
+        }
+
         $CreateSection = Section::create([
             'courses_id'      => $CourseDetails->id,
             'name'            => $request->input('section-name'),
@@ -123,7 +143,17 @@ class TeacherContentController extends Controller
 
         ]);
 
+        $Content = Content::create([
+            'section_id'    => $CreateSection->id
+        ]);
+
         if ($CreateSection) {
+
+            section_content::create([
+                'section_id'      => $CreateSection->id,
+                'content_id'      => $Content->id,
+            ]);
+
             toast(__('The Section been created successfully'),'success');
         }else{
             toast(__('There is a problem, please try again later'),'error');

@@ -39,6 +39,9 @@
                                 <div class="row align-items-center">
                                 <div class="col">
                                     <h2 class="h3">{{ __('Video content') }}</h2>
+                                    <div class="markdown text-secondary">
+                                        {{ __("You don't have a video, you can upload a video now and upload it to your own course") }}
+                                    </div>
                                 </div>
                                 <div class="col-auto">
                                     <a href="#" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modal-report">
@@ -194,20 +197,24 @@
 
                     <div class="col-12">
                             <div class="card card-md">
-                            <div class="card-body">
-                                <div class="row align-items-center">
-                                <div class="col">
-                                    <h2 class="h3">{{ __('Textual content') }}</h2>
+                                <div class="card-body">
+                                    <div class="row align-items-center">
+                                        <div class="col">
+                                            <h2 class="h3">{{ __('Textual content') }}</h2>
+                                            <div class="markdown text-secondary">
+                                                {{ __("You don't have a published text, you can create a text file now and upload it in your own course") }}
+                                            </div>
+                                        </div>
+
+                                        <div class="col-auto">
+                                            <a href="#" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modal-report">
+                                                <!-- Download SVG icon from http://tabler-icons.io/i/plus -->
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(218, 223, 229, 1);transform: ;msFilter:;"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zM9.998 14.768H8.895v3.274h-.917v-3.274H6.893V14h3.105v.768zm2.725 3.274-.365-.731c-.15-.282-.246-.492-.359-.726h-.013c-.083.233-.185.443-.312.726l-.335.731h-1.045l1.171-2.045L10.336 14h1.05l.354.738c.121.245.21.443.306.671h.013c.096-.258.174-.438.276-.671l.341-.738h1.043l-1.139 1.973 1.198 2.069h-1.055zm4.384-3.274h-1.104v3.274h-.917v-3.274h-1.085V14h3.105v.768zM14 9h-1V4l5 5h-4z"></path></svg>
+                                                {{ __('Upload text') }}
+                                            </a>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="col-auto">
-                                    <a href="#" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modal-report">
-                                        <!-- Download SVG icon from http://tabler-icons.io/i/plus -->
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(218, 223, 229, 1);transform: ;msFilter:;"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zM9.998 14.768H8.895v3.274h-.917v-3.274H6.893V14h3.105v.768zm2.725 3.274-.365-.731c-.15-.282-.246-.492-.359-.726h-.013c-.083.233-.185.443-.312.726l-.335.731h-1.045l1.171-2.045L10.336 14h1.05l.354.738c.121.245.21.443.306.671h.013c.096-.258.174-.438.276-.671l.341-.738h1.043l-1.139 1.973 1.198 2.069h-1.055zm4.384-3.274h-1.104v3.274h-.917v-3.274h-1.085V14h3.105v.768zM14 9h-1V4l5 5h-4z"></path></svg>
-                                        {{ __('Upload text') }}
-                                    </a>
-                                </div>
-                                </div>
-                            </div>
                             </div>
                     </div>
                     <div class="hr-text">
@@ -352,12 +359,15 @@
                                 <div class="row align-items-center">
                                 <div class="col">
                                     <h2 class="h3">{{ __('PDF content') }}</h2>
+                                    <div class="markdown text-secondary">
+                                        {{ __("You don't have a PDF, you can upload the PDF now and upload it to your own course") }}
+                                    </div>
                                 </div>
                                 <div class="col-auto">
                                     <a href="#" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modal-report">
                                         <!-- Download SVG icon from http://tabler-icons.io/i/plus -->
                                         <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(218, 223, 229, 1);transform: ;msFilter:;"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zM9.998 14.768H8.895v3.274h-.917v-3.274H6.893V14h3.105v.768zm2.725 3.274-.365-.731c-.15-.282-.246-.492-.359-.726h-.013c-.083.233-.185.443-.312.726l-.335.731h-1.045l1.171-2.045L10.336 14h1.05l.354.738c.121.245.21.443.306.671h.013c.096-.258.174-.438.276-.671l.341-.738h1.043l-1.139 1.973 1.198 2.069h-1.055zm4.384-3.274h-1.104v3.274h-.917v-3.274h-1.085V14h3.105v.768zM14 9h-1V4l5 5h-4z"></path></svg>
-                                        {{ __('Upload text') }}
+                                        {{ __('Upload PDF') }}
                                     </a>
                                 </div>
                                 </div>
@@ -507,6 +517,9 @@
                                 <div class="row align-items-center">
                                 <div class="col">
                                     <h2 class="h3">{{ __('Test content') }}</h2>
+                                    <div class="markdown text-secondary">
+                                        {{ __("You don't have quizzes, you can create a quiz now and upload it to your own course") }}
+                                    </div>
                                 </div>
                                 <div class="col-auto">
                                     <a href="#" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modal-report">

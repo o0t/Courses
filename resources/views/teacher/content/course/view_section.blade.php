@@ -44,7 +44,7 @@
                                     </div>
                                 </div>
                                 <div class="col-auto">
-                                    <a href="#" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modal-report">
+                                    <a href="#" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modal-video">
                                         <!-- Download SVG icon from http://tabler-icons.io/i/plus -->
                                         <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(255, 255, 255, 1);transform: ;msFilter:;"><path d="M11 8H9v3H6v2h3v3h2v-3h3v-2h-3z"></path><path d="M18 7c0-1.103-.897-2-2-2H4c-1.103 0-2 .897-2 2v10c0 1.103.897 2 2 2h12c1.103 0 2-.897 2-2v-3.333L22 17V7l-4 3.333V7zm-1.999 10H4V7h12v5l.001 5z"></path></svg>
                                         {{ __('Upload a video') }}
@@ -71,7 +71,7 @@
                                         <h2 class="h3">{{ __('Video content') }}</h2>
                                     </div>
                                     <div class="col-auto">
-                                        <a href="#" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modal-report">
+                                        <a href="#" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modal-video">
                                             <!-- Download SVG icon from http://tabler-icons.io/i/plus -->
                                             <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(255, 255, 255, 1);transform: ;msFilter:;"><path d="M11 8H9v3H6v2h3v3h2v-3h3v-2h-3z"></path><path d="M18 7c0-1.103-.897-2-2-2H4c-1.103 0-2 .897-2 2v10c0 1.103.897 2 2 2h12c1.103 0 2-.897 2-2v-3.333L22 17V7l-4 3.333V7zm-1.999 10H4V7h12v5l.001 5z"></path></svg>
                                             {{ __('Upload a video') }}
@@ -665,55 +665,94 @@
         </div>
       </div>
 
-    {{-- Model --}}
-        <div class="modal modal-blur fade" id="modal-report" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="modal-dialog modal-lg" role="document">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title">{{ __('Create a Course') }}</h5>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        {{-- Model video --}}
+            <div class="modal modal-blur fade" id="modal-video" tabindex="-1" role="dialog" aria-hidden="true">
+                <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                        <h5 class="modal-title">{{ __('Upload a video') }}</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form action="#" method="POST">
+                                @csrf
+
+                                <div class="mb-3">
+                                    <label class="form-label">{{ __('Video Title') }}</label>
+                                    <input type="text" class="form-control" value="{{ old('title') }}" name="title" placeholder="{{ __('Type a title name for your video') }}">
+                                    {{-- <div class="form-text">{{ __('The name will be visible only to you') }}</div> --}}
+                                    @error('title')
+                                        <div class="form-text text-danger">{{ $errors->first('title') }}</div>
+                                    @enderror
+                                </div>
+
+
+                                <div class="row">
+                                    <div class="mb-3">
+                                        <input type="file" name="file" class="form-control">
+                                        <div class="form-text">{{ __('Allowed to upload') }} mp4,mov</div>
+                                        @error('file')
+                                            <div class="form-text text-danger">{{ $errors->first('file') }}</div>
+                                        @enderror
+                                    </div>
+                                </div>
+
+
+
+
+                                <div class="mb-3">
+                                    <div class="form-label">{{ __('Publication status') }}</div>
+                                    <select class="form-select">
+                                      <option value="private">{{ __('private') }}</option>
+                                      <option value="general">{{ __('general') }}</option>
+                                    </select>
+                                </div>
+
+                                <div class="mb-3">
+                                    <div class="form-label"> {{ __('Special for') }} </div>
+                                    <select class="form-select">
+                                      <option value="private">{{ __('For subscribers') }}</option>
+                                      <option value="general">{{ __('For everyone') }}</option>
+                                    </select>
+                                </div>
+
+
+                                <br>
+                                <div class="mb-3">
+                                    <div class="divide-y">
+                                      <div>
+                                        <label class="row">
+                                          <span class="col">{{ __('Allow comments') }}</span>
+                                          <span class="col-auto">
+                                            <label class="form-check form-check-single form-switch">
+                                              <input class="form-check-input" type="checkbox" checked="">
+                                            </label>
+                                          </span>
+                                        </label>
+                                      </div>
+                                    </div>
+                                </div>
+
+                                <br>
+
+                                <div class="modal-footer">
+                                    <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">
+                                        <!-- Download SVG icon from http://tabler-icons.io/i/plus -->
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 5l0 14" /><path d="M5 12l14 0" /></svg>
+                                        {{ __('Upload a video') }}
+                                    </button>
+                                    <a href="#" class="btn btn-link link-secondary ms-auto" data-bs-dismiss="modal">
+                                        {{ __('Cancel') }}
+                                    </a>
+                                </div>
+                            </form>
+                        </div>
+
+
+                    </div>
                 </div>
-                <div class="modal-body">
-                    <form action="{{ route('teacher.course.section.create.file',$section->id) }}" method="POST">
-                        @csrf
-
-                        <div class="mb-3">
-                            <label class="form-label">{{ __('title') }}</label>
-                            <input type="text" class="form-control" value="{{ old('title') }}" name="title" placeholder="{{ __('The name of your course') }}">
-                            <div class="form-text">{{ __('The name will be visible only to you') }}</div>
-                            @error('title')
-                                <div class="form-text text-danger">{{ $errors->first('title') }}</div>
-                            @enderror
-                        </div>
-
-
-                        <div class="row">
-                            <div class="mb-3">
-                                <input type="file" name="file" class="form-control">
-                                <div class="form-text">{{ __('Allowed to upload: text file, PDF file, video') }}</div>
-                                @error('file')
-                                    <div class="form-text text-danger">{{ $errors->first('file') }}</div>
-                                @enderror
-                              </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">
-                                <!-- Download SVG icon from http://tabler-icons.io/i/plus -->
-                                <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 5l0 14" /><path d="M5 12l14 0" /></svg>
-                                {{ __('Create new course') }}
-                              </button>
-                            <a href="#" class="btn btn-link link-secondary ms-auto" data-bs-dismiss="modal">
-                                {{ __('Cancel') }}
-                            </a>
-                        </div>
-                    </form>
-                </div>
-
-
-              </div>
             </div>
-        </div>
-    {{-- Model / End --}}
+        {{-- Model video / End --}}
     {{-- content / End --}}
 
 @endsection

@@ -94,6 +94,7 @@
     "Course title":"عنوان الدورة",
     "Course image":"صورة الدورة",
     "Allowed to upload: text file, PDF file, video":"المسموح بتحميل: ملف نصي، ملف PDF، فيديو",
+    "Allowed to upload":"مسموح بالتحميل",
     "Name":"الاسم",
     "title":"العنوان",
     "Section content":"محتوى القسم",
@@ -127,5 +128,8 @@
     "You don't have a published text, you can create a text file now and upload it in your own course":"ليس لديك نص منشور، يمكنك إنشاء ملف نصي الآن وتحميله في الدورة التدريبية الخاصة بك",
     "You don't have a video, you can upload a video now and upload it to your own course":"ليس لديك فديو ، يمكنك رفع فديو الآن وتحميله في مقررك الدراسي الخاص",
     "You don't have a PDF, you can upload the PDF now and upload it to your own course":"ليس لديك ملف بي دي اف ، يمكنك رفع ملف بي دي اف الآن وتحميله في مقررك الدراسي الخاص",
-    "You don't have quizzes, you can create a quiz now and upload it to your own course":"ليس لديك اختبارات ، يمكنك انشاء اختبار الآن وتحميله في مقررك الدراسي الخاص"
+    "You don't have quizzes, you can create a quiz now and upload it to your own course":"ليس لديك اختبارات ، يمكنك انشاء اختبار الآن وتحميله في مقررك الدراسي الخاص",
+    "Video Title":"عنوان الفديو",
+    "Type a title name for your video":"اكتب اسم عنوان للفيديو الخاص بك",
+    "Allow comments":"السماح ب التعليقات"
 }

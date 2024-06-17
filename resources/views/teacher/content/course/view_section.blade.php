@@ -364,7 +364,7 @@
                                     </div>
                                 </div>
                                 <div class="col-auto">
-                                    <a href="#" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modal-report">
+                                    <a href="#" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modal-pdf">
                                         <!-- Download SVG icon from http://tabler-icons.io/i/plus -->
                                         <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(218, 223, 229, 1);transform: ;msFilter:;"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zM9.998 14.768H8.895v3.274h-.917v-3.274H6.893V14h3.105v.768zm2.725 3.274-.365-.731c-.15-.282-.246-.492-.359-.726h-.013c-.083.233-.185.443-.312.726l-.335.731h-1.045l1.171-2.045L10.336 14h1.05l.354.738c.121.245.21.443.306.671h.013c.096-.258.174-.438.276-.671l.341-.738h1.043l-1.139 1.973 1.198 2.069h-1.055zm4.384-3.274h-1.104v3.274h-.917v-3.274h-1.085V14h3.105v.768zM14 9h-1V4l5 5h-4z"></path></svg>
                                         {{ __('Upload PDF') }}
@@ -391,10 +391,10 @@
                                         <h2 class="h3">{{ __('PDF content') }}</h2>
                                     </div>
                                     <div class="col-auto">
-                                        <a href="#" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modal-report">
+                                        <a href="#" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modal-pdf">
                                             <!-- Download SVG icon from http://tabler-icons.io/i/plus -->
                                             <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(218, 223, 229, 1);transform: ;msFilter:;"><path d="M8.267 14.68c-.184 0-.308.018-.372.036v1.178c.076.018.171.023.302.023.479 0 .774-.242.774-.651 0-.366-.254-.586-.704-.586zm3.487.012c-.2 0-.33.018-.407.036v2.61c.077.018.201.018.313.018.817.006 1.349-.444 1.349-1.396.006-.83-.479-1.268-1.255-1.268z"></path><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zM9.498 16.19c-.309.29-.765.42-1.296.42a2.23 2.23 0 0 1-.308-.018v1.426H7v-3.936A7.558 7.558 0 0 1 8.219 14c.557 0 .953.106 1.22.319.254.202.426.533.426.923-.001.392-.131.723-.367.948zm3.807 1.355c-.42.349-1.059.515-1.84.515-.468 0-.799-.03-1.024-.06v-3.917A7.947 7.947 0 0 1 11.66 14c.757 0 1.249.136 1.633.426.415.308.675.799.675 1.504 0 .763-.279 1.29-.663 1.615zM17 14.77h-1.532v.911H16.9v.734h-1.432v1.604h-.906V14.03H17v.74zM14 9h-1V4l5 5h-4z"></path></svg>
-                                            {{ __('Upload a PDF') }}
+                                            {{ __('Upload PDF') }}
                                         </a>
                                     </div>
                                     </div>
@@ -772,7 +772,7 @@
 
                                 <div class="mb-3">
                                     <label class="form-label">{{ __('Text Title') }}</label>
-                                    <input type="text" class="form-control" value="{{ old('title') }}" name="title" placeholder="{{ __('Type a title name for your video') }}">
+                                    <input type="text" class="form-control" value="{{ old('title') }}" name="title" placeholder="{{ __('Type a title name for your text') }}">
                                     {{-- <div class="form-text">{{ __('The name will be visible only to you') }}</div> --}}
                                     @error('title')
                                         <div class="form-text text-danger">{{ $errors->first('title') }}</div>
@@ -875,6 +875,95 @@
         {{-- txt Model  / End --}}
 
 
+
+        {{--  pdf Model --}}
+            <div class="modal modal-blur fade" id="modal-pdf" tabindex="-1" role="dialog" aria-hidden="true">
+                <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                        <h5 class="modal-title">{{ __('Upload PDF') }}</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form action="#" method="POST">
+                                @csrf
+
+                                <div class="mb-3">
+                                    <label class="form-label">{{ __('Title') }}</label>
+                                    <input type="text" class="form-control" value="{{ old('title') }}" name="title" placeholder="{{ __('Type a title name for your pdf') }}">
+                                    {{-- <div class="form-text">{{ __('The name will be visible only to you') }}</div> --}}
+                                    @error('title')
+                                        <div class="form-text text-danger">{{ $errors->first('title') }}</div>
+                                    @enderror
+                                </div>
+
+
+                                <div class="row">
+                                    <div class="mb-3">
+                                        <input type="file" name="file" class="form-control">
+                                        <div class="form-text">{{ __('Allowed to upload') }} PDF,DOC,DOCX</div>
+                                        @error('file')
+                                            <div class="form-text text-danger">{{ $errors->first('file') }}</div>
+                                        @enderror
+                                    </div>
+                                </div>
+
+
+
+
+                                <div class="mb-3">
+                                    <div class="form-label">{{ __('Publication status') }}</div>
+                                    <select class="form-select">
+                                      <option value="private">{{ __('private') }}</option>
+                                      <option value="general">{{ __('general') }}</option>
+                                    </select>
+                                </div>
+
+                                <div class="mb-3">
+                                    <div class="form-label"> {{ __('Special for') }} </div>
+                                    <select class="form-select">
+                                      <option value="private">{{ __('For subscribers') }}</option>
+                                      <option value="general">{{ __('For everyone') }}</option>
+                                    </select>
+                                </div>
+
+
+                                <br>
+                                <div class="mb-3">
+                                    <div class="divide-y">
+                                      <div>
+                                        <label class="row">
+                                          <span class="col">{{ __('Allow comments') }}</span>
+                                          <span class="col-auto">
+                                            <label class="form-check form-check-single form-switch">
+                                              <input class="form-check-input" type="checkbox" checked="">
+                                            </label>
+                                          </span>
+                                        </label>
+                                      </div>
+                                    </div>
+                                </div>
+
+                                <br>
+
+                                <div class="modal-footer">
+                                    <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">
+                                        <!-- Download SVG icon from http://tabler-icons.io/i/plus -->
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 5l0 14" /><path d="M5 12l14 0" /></svg>
+                                        {{ __('Upload PDF') }}
+                                    </button>
+                                    <a href="#" class="btn btn-link link-secondary ms-auto" data-bs-dismiss="modal">
+                                        {{ __('Cancel') }}
+                                    </a>
+                                </div>
+                            </form>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        {{-- pdf Model  / End --}}
 
 
     {{-- content / End --}}

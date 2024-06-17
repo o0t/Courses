@@ -132,5 +132,8 @@
     "Video Title":"عنوان الفديو",
     "Type a title name for your video":"اكتب اسم عنوان للفيديو الخاص بك",
     "Allow comments":"السماح ب التعليقات",
-    "Text Title":"عنوان النص"
+    "Text Title":"عنوان النص",
+    "Title":"عنوان",
+    "Type a title name for your text":"اكتب اسم عنوان للنص الخاص بك",
+    "Type a title name for your pdf":"اكتب اسم عنوان لملف pdf الخاص بك"
 }

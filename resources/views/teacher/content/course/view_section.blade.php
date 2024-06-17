@@ -207,7 +207,7 @@
                                         </div>
 
                                         <div class="col-auto">
-                                            <a href="#" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modal-report">
+                                            <a href="#" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modal-txt">
                                                 <!-- Download SVG icon from http://tabler-icons.io/i/plus -->
                                                 <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(218, 223, 229, 1);transform: ;msFilter:;"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zM9.998 14.768H8.895v3.274h-.917v-3.274H6.893V14h3.105v.768zm2.725 3.274-.365-.731c-.15-.282-.246-.492-.359-.726h-.013c-.083.233-.185.443-.312.726l-.335.731h-1.045l1.171-2.045L10.336 14h1.05l.354.738c.121.245.21.443.306.671h.013c.096-.258.174-.438.276-.671l.341-.738h1.043l-1.139 1.973 1.198 2.069h-1.055zm4.384-3.274h-1.104v3.274h-.917v-3.274h-1.085V14h3.105v.768zM14 9h-1V4l5 5h-4z"></path></svg>
                                                 {{ __('Upload text') }}
@@ -234,7 +234,7 @@
                                         <h2 class="h3">{{ __('Textual content') }}</h2>
                                     </div>
                                     <div class="col-auto">
-                                        <a href="#" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modal-report">
+                                        <a href="#" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modal-txt">
                                             <!-- Download SVG icon from http://tabler-icons.io/i/plus -->
                                             <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(218, 223, 229, 1);transform: ;msFilter:;"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zM9.998 14.768H8.895v3.274h-.917v-3.274H6.893V14h3.105v.768zm2.725 3.274-.365-.731c-.15-.282-.246-.492-.359-.726h-.013c-.083.233-.185.443-.312.726l-.335.731h-1.045l1.171-2.045L10.336 14h1.05l.354.738c.121.245.21.443.306.671h.013c.096-.258.174-.438.276-.671l.341-.738h1.043l-1.139 1.973 1.198 2.069h-1.055zm4.384-3.274h-1.104v3.274h-.917v-3.274h-1.085V14h3.105v.768zM14 9h-1V4l5 5h-4z"></path></svg>
                                             {{ __('Upload text') }}
@@ -665,7 +665,7 @@
         </div>
       </div>
 
-        {{-- Model video --}}
+        {{--  video Model --}}
             <div class="modal modal-blur fade" id="modal-video" tabindex="-1" role="dialog" aria-hidden="true">
                 <div class="modal-dialog modal-lg" role="document">
                     <div class="modal-content">
@@ -752,7 +752,131 @@
                     </div>
                 </div>
             </div>
-        {{-- Model video / End --}}
+        {{-- video Model  / End --}}
+
+
+
+
+
+        {{-- txt Model --}}
+            <div class="modal modal-blur fade" id="modal-txt" tabindex="-1" role="dialog" aria-hidden="true">
+                <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                        <h5 class="modal-title">{{ __('Upload text') }}</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form action="#" method="POST">
+                                @csrf
+
+                                <div class="mb-3">
+                                    <label class="form-label">{{ __('Text Title') }}</label>
+                                    <input type="text" class="form-control" value="{{ old('title') }}" name="title" placeholder="{{ __('Type a title name for your video') }}">
+                                    {{-- <div class="form-text">{{ __('The name will be visible only to you') }}</div> --}}
+                                    @error('title')
+                                        <div class="form-text text-danger">{{ $errors->first('title') }}</div>
+                                    @enderror
+                                </div>
+
+
+                                <br>
+
+
+                                <form method="post">
+                                    <textarea id="tinymce-default" name="txt"></textarea>
+                                  </form>
+
+
+                                  <script>
+                                    document.addEventListener("DOMContentLoaded", function() {
+                                      let options = {
+                                        selector: '#tinymce-default',
+                                        height: 300,
+                                        menubar: false,
+                                        statusbar: false,
+                                        plugins: [
+                                          'advlist autolink lists link image charmap print preview anchor',
+                                          'searchreplace visualblocks code fullscreen',
+                                          'insertdatetime media table paste code help wordcount'
+                                        ],
+                                        toolbar: 'undo redo | formatselect | ' +
+                                          'bold italic backcolor | alignleft aligncenter ' +
+                                          'alignright alignjustify | bullist numlist outdent indent | ' +
+                                          'removeformat',
+                                        content_style: 'body { font-family: -apple-system, BlinkMacSystemFont, San Francisco, Segoe UI, Roboto, Helvetica Neue, sans-serif; font-size: 14px; -webkit-font-smoothing: antialiased; }'
+                                      }
+                                      if (localStorage.getItem("tablerTheme") === 'dark') {
+                                        options.skin = 'oxide-dark';
+                                        options.content_css = 'dark';
+                                      }
+                                      tinyMCE.init(options);
+                                    })
+                                  </script>
+
+
+
+                                <br>
+                                <div class="mb-3">
+                                    <div class="form-label">{{ __('Publication status') }}</div>
+                                    <select class="form-select">
+                                    <option value="private">{{ __('private') }}</option>
+                                    <option value="general">{{ __('general') }}</option>
+                                    </select>
+                                </div>
+
+                                <div class="mb-3">
+                                    <div class="form-label"> {{ __('Special for') }} </div>
+                                    <select class="form-select">
+                                    <option value="private">{{ __('For subscribers') }}</option>
+                                    <option value="general">{{ __('For everyone') }}</option>
+                                    </select>
+                                </div>
+
+
+
+                                <br>
+                                <div class="mb-3">
+                                    <div class="divide-y">
+                                      <div>
+                                        <label class="row">
+                                          <span class="col">{{ __('Allow comments') }}</span>
+                                          <span class="col-auto">
+                                            <label class="form-check form-check-single form-switch">
+                                              <input class="form-check-input" type="checkbox" checked="">
+                                            </label>
+                                          </span>
+                                        </label>
+                                      </div>
+                                    </div>
+                                </div>
+
+                                <br>
+
+
+
+                                <div class="modal-footer">
+                                    <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">
+                                        <!-- Download SVG icon from http://tabler-icons.io/i/plus -->
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 5l0 14" /><path d="M5 12l14 0" /></svg>
+                                        {{ __('Upload text') }}
+                                    </button>
+                                    <a href="#" class="btn btn-link link-secondary ms-auto" data-bs-dismiss="modal">
+                                        {{ __('Cancel') }}
+                                    </a>
+                                </div>
+                            </form>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        {{-- txt Model  / End --}}
+
+
+
+
     {{-- content / End --}}
 
 @endsection

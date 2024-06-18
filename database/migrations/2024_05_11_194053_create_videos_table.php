@@ -23,6 +23,7 @@ class CreateVideosTable extends Migration
             $table->integer('comments')->default(0);
             $table->integer('views')->default(0);
             $table->integer('favorite')->default(0);
+            $table->string('extension')->default();
             $table->enum('status', ['waiting','private','general','customized','closed'])->default('private');
             $table->enum('shearing_guests', ['general','private'])->default('private');
             $table->time('time')->default('00:00:00');

@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Teacher;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\FormStartCreateCourse;
 use App\Models\Content;
 use App\Models\Courses;
@@ -17,9 +18,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 
-class TeacherContentController extends Controller
+class CourseManagementController extends Controller
 {
-
     public function __construct()
     {
         // // $this->middleware(['role:teacher|teacher-admin']);

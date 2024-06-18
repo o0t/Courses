@@ -1,6 +1,7 @@
 <?php
 
-use App\Http\Controllers\TeacherContentController;
+use App\Http\Controllers\Teacher\CourseManagementController;
+use App\Http\Controllers\Teacher\UploadContentController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -19,28 +20,38 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::group(['middleware' => ['permission:create-course|view-course'], 'prefix' => 'teacher'], function () {
-    Route::get('content/home', [TeacherContentController::class , 'index'])->name('teacher.content.home');
+    Route::get('content/home', [CourseManagementController::class , 'index'])->name('teacher.content.home');
 });
 
 
 
 Route::group(['middleware' => ['permission:create-course|view-course|edit-course|delete-course'], 'prefix' => 'teacher'], function () {
-    Route::post('course/create',[TeacherContentController::class , 'CreateCourse'])->name('teacher.course.create');
-    Route::get('course/{url}/home',[TeacherContentController::class , 'CourseHome'])->name('teacher.course.home');
+    Route::post('course/create',[CourseManagementController::class , 'CreateCourse'])->name('teacher.course.create');
+    Route::get('course/{url}/home',[CourseManagementController::class , 'CourseHome'])->name('teacher.course.home');
 
 });
 
 
 Route::group(['middleware' => ['permission:view-section|create-section|edit-section|delete-section'], 'prefix' => 'teacher'], function () {
     // View
-    Route::get('course/{url}/sections',[TeacherContentController::class , 'Sections'])->name('teacher.course.sections');
+    Route::get('course/{url}/sections',[CourseManagementController::class , 'Sections'])->name('teacher.course.sections');
     // Create
-    Route::post('course/{url}/sections/create',[TeacherContentController::class , 'CreateSections'])->name('teacher.course.sections.create');
+    Route::post('course/{url}/sections/create',[CourseManagementController::class , 'CreateSections'])->name('teacher.course.sections.create');
 
 
     // single section
-    Route::get('course/{id}/section/view',[TeacherContentController::class , 'ViewSection'])->name('teacher.course.section.view');
-    Route::post('course/{id}/section/create/file',[TeacherContentController::class , 'CreateFileSection'])->name('teacher.course.section.create.file');
+    Route::get('course/{id}/section/view',[CourseManagementController::class , 'ViewSection'])->name('teacher.course.section.view');
+    Route::post('course/{id}/section/create/file',[CourseManagementController::class , 'CreateFileSection'])->name('teacher.course.section.create.file');
+
+
+
+    // Uplode Video , pdf , txt
+    Route::post('section/{id}/upload/video',[UploadContentController::class , 'upload_video'])->name('teacher.course.section.Upload.video');
+    Route::post('section/{id}/upload/txt',[UploadContentController::class , 'CreateFileSection'])->name('teacher.course.section.Upload.txt');
+    Route::post('section/{id}/upload/pdf',[UploadContentController::class , 'CreateFileSection'])->name('teacher.course.section.Upload.pdf');
+
+    // Create test
+
 
 });
 

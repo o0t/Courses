@@ -176,23 +176,7 @@ class CourseManagementController extends Controller
                             ->first();
 
         // return $contents;
-
         return view('teacher.content.course.view_section',compact('section','contents'));
     }
-
-    // Uplode File in Section
-    public function CreateFileSection ($id){
-
-
-
-
-
-        // return Storage::disk('minio')->get('car.png');
-
-
-        // return 'CreateFileSection' . $id;
-    }
-
-
 
 }

@@ -665,8 +665,8 @@
         </div>
       </div>
 
-        {{--  video Model --}}
-            <div class="modal modal-blur fade" id="modal-video" tabindex="-1" role="dialog" aria-hidden="true">
+             {{--  video Model --}}
+             <div class="modal modal-blur fade" id="modal-video" tabindex="-1" role="dialog" aria-hidden="true">
                 <div class="modal-dialog modal-lg" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -674,11 +674,11 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <form action="{{ route('teacher.course.section.Upload.video',$section->id) }}" method="POST" enctype="multipart/form-data">
+                            <form action="{{ route('teacher.course.section.Upload.video', ['section_id' => $section->id, 'content_id' => $contents->id] )}}" method="POST" enctype="multipart/form-data">
                                 @csrf
 
                                 <div class="mb-3">
-                                    <label class="form-label">{{ __('Video Title') }}</label>
+                                    <label class="form-label">{{ __('Video Title') }} </label>
                                     <input type="text" class="form-control" value="{{ old('title') }}" name="title" placeholder="{{ __('Type a title name for your video') }}">
                                     {{-- <div class="form-text">{{ __('The name will be visible only to you') }}</div> --}}
                                     @error('title')
@@ -689,10 +689,10 @@
 
                                 <div class="row">
                                     <div class="mb-3">
-                                        <input type="file" name="file" class="form-control">
+                                        <input type="file" name="file-video" class="form-control">
                                         <div class="form-text">{{ __('Allowed to upload') }} mp4,mov</div>
-                                        @error('file')
-                                            <div class="form-text text-danger">{{ $errors->first('file') }}</div>
+                                        @error('file-video')
+                                            <div class="form-text text-danger">{{ $errors->first('file-video') }}</div>
                                         @enderror
                                     </div>
                                 </div>
@@ -716,6 +716,41 @@
                                 </div>
 
 
+
+                                <br>
+                                 <textarea id="tinymce-default" name="description"></textarea>
+                                    @error('description')
+                                        <div class="form-text text-danger">{{ $errors->first('description') }}</div>
+                                    @enderror
+
+                                  <script>
+                                    document.addEventListener("DOMContentLoaded", function() {
+                                      let options = {
+                                        selector: '#tinymce-default',
+                                        height: 300,
+                                        menubar: false,
+                                        statusbar: false,
+                                        plugins: [
+                                          'advlist autolink lists link image charmap print preview anchor',
+                                          'searchreplace visualblocks code fullscreen',
+                                          'insertdatetime media table paste code help wordcount'
+                                        ],
+                                        toolbar: 'undo redo | formatselect | ' +
+                                          'bold italic backcolor | alignleft aligncenter ' +
+                                          'alignright alignjustify | bullist numlist outdent indent | ' +
+                                          'removeformat',
+                                        content_style: 'body { font-family: -apple-system, BlinkMacSystemFont, San Francisco, Segoe UI, Roboto, Helvetica Neue, sans-serif; font-size: 14px; -webkit-font-smoothing: antialiased; }'
+                                      }
+                                      if (localStorage.getItem("tablerTheme") === 'dark') {
+                                        options.skin = 'oxide-dark';
+                                        options.content_css = 'dark';
+                                      }
+                                      tinyMCE.init(options);
+                                    })
+                                  </script>
+
+
+
                                 <br>
                                 <div class="mb-3">
                                     <div class="divide-y">
@@ -724,7 +759,7 @@
                                           <span class="col">{{ __('Allow comments') }}</span>
                                           <span class="col-auto">
                                             <label class="form-check form-check-single form-switch">
-                                              <input class="form-check-input" name="allow_comments" type="checkbox" checked="">
+                                              <input class="form-check-input" name="allow_comments" value="allow" type="checkbox" checked="">
                                             </label>
                                           </span>
                                         </label>

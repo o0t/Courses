@@ -3,10 +3,13 @@
 namespace App\Http\Controllers\Teacher;
 
 use App\Http\Controllers\Controller;
+use App\Models\Videos;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Validator;
 
 
 class UploadContentController extends Controller
@@ -17,32 +20,59 @@ class UploadContentController extends Controller
     }
 
 
-    public function upload_video (Request $request){
+    public function upload_video (Request $request,$section_id ,$content_id){
 
-
-
-
-
-        $request->validate([
-            'video' => 'required|mimes:mp4,mov|max:202400',
+        $validator = Validator::make($request->all(), [
+            'title' => 'required|string|min:2|max:100',
+            'file-video' => 'required|mimes:mp4,mov|max:202400',
+            'description' => 'max:255',
         ]);
 
-        if ($request->hasFile('file')) {
 
-            $file = $request->file('file');
-
-            $filename = Str::uuid() . '-'.Auth::user()->id .'.' . $file->getClientOriginalExtension();
-
+        if ($validator->fails()) {
+            toast(__('Data entry error'), 'error');
+            return back()->withErrors($validator)->withInput();
         } else {
-            return 'no file';
+
+
+            // Get the file from the request
+            $file = $request->file('file-video');
+
+            // Generate a unique filename
+            $filename = Str::uuid() . '-'.Auth::user()->id .'.' . $file->getClientOriginalExtension();
+            // $filename = time() . '_' . $file->getClientOriginalName();
+
+
+            // Upload the file to the Minio bucket
+            $filePath = Storage::disk('minio')->putFileAs('videos', $file, $filename);
+
+            // Get the public URL of the uploaded file
+            $fileUrl = Storage::disk('minio')->url($filePath);
+
+
+            $shearing_guests = $request->special_for == 'private' ? 'private' : 'general';
+            $status = $request->publication_status == 'private' ? 'private' : 'general';
+
+            $validatedData = $validator->validated();
+
+            $Videos = Videos::create([
+                'content_id'         => $content_id,
+                'video_name'         => $validatedData['title'],
+                'file_name'           => $filename,
+                'url_video'          => $fileUrl,
+                'description'        => $validatedData['description'],
+                'status'             => $request->publication_status,
+                'shearing_guests'    => $shearing_guests,
+            ]);
+
+
+
+            toast(__('The video has been uploaded successfully'), 'success');
+            // return back()->with('file_url', $fileUrl);
+            return back();
+
         }
 
-
-
-
-        Storage::disk('minio')->put('raqeeb/video'.$filename);
-
-        return $request ;
     }
 
 }

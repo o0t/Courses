@@ -801,7 +801,7 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <form action="#" method="POST">
+                            <form action="{{ route('teacher.course.section.Upload.txt',['section_id' => $section->id, 'content_id' => $contents->id]) }}" method="POST">
                                 @csrf
 
                                 <div class="mb-3">
@@ -817,9 +817,8 @@
                                 <br>
 
 
-                                <form method="post">
-                                    <textarea id="tinymce-default" name="txt"></textarea>
-                                  </form>
+
+                                <textarea id="tinymce-default" name="txt"></textarea>
 
 
                                   <script>
@@ -853,7 +852,7 @@
                                 <br>
                                 <div class="mb-3">
                                     <div class="form-label">{{ __('Publication status') }}</div>
-                                    <select class="form-select">
+                                    <select class="form-select" name="publication_status">
                                     <option value="private">{{ __('private') }}</option>
                                     <option value="general">{{ __('general') }}</option>
                                     </select>
@@ -861,7 +860,7 @@
 
                                 <div class="mb-3">
                                     <div class="form-label"> {{ __('Special for') }} </div>
-                                    <select class="form-select">
+                                    <select class="form-select" name="special_for">
                                     <option value="private">{{ __('For subscribers') }}</option>
                                     <option value="general">{{ __('For everyone') }}</option>
                                     </select>
@@ -877,7 +876,7 @@
                                           <span class="col">{{ __('Allow comments') }}</span>
                                           <span class="col-auto">
                                             <label class="form-check form-check-single form-switch">
-                                              <input class="form-check-input" type="checkbox" checked="">
+                                              <input class="form-check-input" name="allow_comments" type="checkbox" checked="">
                                             </label>
                                           </span>
                                         </label>

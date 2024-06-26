@@ -15,9 +15,9 @@ class CreateTxtsTable extends Migration
     {
         Schema::create('txts', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBiginteger('content_id');
-            $table->string('name')->nullable();
-            $table->string('file')->nullable();
+            $table->unsignedBigInteger('content_id');
+            $table->string('title')->nullable();
+            $table->longText('content')->nullable();
             $table->integer('likes')->default(0);
             $table->integer('comments')->default(0);
             $table->integer('views')->default(0);

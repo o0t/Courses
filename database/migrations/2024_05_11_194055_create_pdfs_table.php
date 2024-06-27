@@ -16,8 +16,9 @@ class CreatePdfsTable extends Migration
         Schema::create('pdfs', function (Blueprint $table) {
             $table->id();
             $table->unsignedBiginteger('content_id');
-            $table->string('name')->nullable();
-            $table->string('file')->nullable();
+            $table->string('title')->nullable();
+            $table->string('file_name')->nullable();
+            $table->string('url_file')->nullable();
             $table->integer('likes')->default(0);
             $table->integer('comments')->default(0);
             $table->integer('views')->default(0);

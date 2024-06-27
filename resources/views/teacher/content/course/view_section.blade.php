@@ -679,10 +679,10 @@
 
                                 <div class="mb-3">
                                     <label class="form-label">{{ __('Video Title') }} </label>
-                                    <input type="text" class="form-control" value="{{ old('title') }}" name="title" placeholder="{{ __('Type a title name for your video') }}">
+                                    <input type="text" class="form-control" value="{{ old('title-video') }}" name="title-video" placeholder="{{ __('Type a title name for your video') }}">
                                     {{-- <div class="form-text">{{ __('The name will be visible only to you') }}</div> --}}
-                                    @error('title')
-                                        <div class="form-text text-danger">{{ $errors->first('title') }}</div>
+                                    @error('title-video')
+                                        <div class="form-text text-danger">{{ $errors->first('title-video') }}</div>
                                     @enderror
                                 </div>
 
@@ -806,10 +806,10 @@
 
                                 <div class="mb-3">
                                     <label class="form-label">{{ __('Text Title') }}</label>
-                                    <input type="text" class="form-control" value="{{ old('title') }}" name="title" placeholder="{{ __('Type a title name for your text') }}">
+                                    <input type="text" class="form-control" value="{{ old('title-txt') }}" name="title-txt" placeholder="{{ __('Type a title name for your text') }}">
                                     {{-- <div class="form-text">{{ __('The name will be visible only to you') }}</div> --}}
-                                    @error('title')
-                                        <div class="form-text text-danger">{{ $errors->first('title') }}</div>
+                                    @error('title-txt')
+                                        <div class="form-text text-danger">{{ $errors->first('title-txt') }}</div>
                                     @enderror
                                 </div>
 
@@ -846,7 +846,9 @@
                                       tinyMCE.init(options);
                                     })
                                   </script>
-
+                                    @error('txt')
+                                        <div class="form-text text-danger">{{ $errors->first('txt') }}</div>
+                                    @enderror
 
 
                                 <br>
@@ -918,15 +920,15 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <form action="#" method="POST">
+                            <form action="{{ route('teacher.course.section.Upload.pdf',['section_id' => $section->id, 'content_id' => $contents->id]) }}" method="POST" enctype="multipart/form-data">
                                 @csrf
 
                                 <div class="mb-3">
                                     <label class="form-label">{{ __('Title') }}</label>
-                                    <input type="text" class="form-control" value="{{ old('title') }}" name="title" placeholder="{{ __('Type a title name for your pdf') }}">
+                                    <input type="text" class="form-control" value="{{ old('title-pdf') }}" name="title-pdf" placeholder="{{ __('Type a title name for your pdf') }}">
                                     {{-- <div class="form-text">{{ __('The name will be visible only to you') }}</div> --}}
-                                    @error('title')
-                                        <div class="form-text text-danger">{{ $errors->first('title') }}</div>
+                                    @error('title-pdf')
+                                        <div class="form-text text-danger">{{ $errors->first('title-pdf') }}</div>
                                     @enderror
                                 </div>
 
@@ -946,7 +948,7 @@
 
                                 <div class="mb-3">
                                     <div class="form-label">{{ __('Publication status') }}</div>
-                                    <select class="form-select">
+                                    <select class="form-select" name="publication_status">
                                       <option value="private">{{ __('private') }}</option>
                                       <option value="general">{{ __('general') }}</option>
                                     </select>
@@ -954,7 +956,7 @@
 
                                 <div class="mb-3">
                                     <div class="form-label"> {{ __('Special for') }} </div>
-                                    <select class="form-select">
+                                    <select class="form-select" name="special_for">
                                       <option value="private">{{ __('For subscribers') }}</option>
                                       <option value="general">{{ __('For everyone') }}</option>
                                     </select>
@@ -969,7 +971,7 @@
                                           <span class="col">{{ __('Allow comments') }}</span>
                                           <span class="col-auto">
                                             <label class="form-check form-check-single form-switch">
-                                              <input class="form-check-input" type="checkbox" checked="">
+                                              <input class="form-check-input" name="allow_comments" type="checkbox" checked="">
                                             </label>
                                           </span>
                                         </label>

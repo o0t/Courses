@@ -48,7 +48,7 @@ Route::group(['middleware' => ['permission:view-section|create-section|edit-sect
     // Uplode Video , pdf , txt
     Route::post('section/{section_id}/content/{content_id}/upload/video',[UploadContentController::class , 'upload_video'])->name('teacher.course.section.Upload.video');
     Route::post('section/{section_id}/content/{content_id}/upload/txt',[UploadContentController::class , 'upload_txt'])->name('teacher.course.section.Upload.txt');
-    Route::post('section/{section_id}/content/{content_id}/upload/pdf',[UploadContentController::class , 'CreateFileSection'])->name('teacher.course.section.Upload.pdf');
+    Route::post('section/{section_id}/content/{content_id}/upload/pdf',[UploadContentController::class , 'upload_pdf'])->name('teacher.course.section.Upload.pdf');
 
     // Create test
 

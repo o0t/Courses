@@ -136,5 +136,7 @@
     "Title":"عنوان",
     "Type a title name for your text":"اكتب اسم عنوان للنص الخاص بك",
     "Type a title name for your pdf":"اكتب اسم عنوان لملف pdf الخاص بك",
-    "The video has been uploaded successfully":"تم رفع الفيديو بنجاح"
+    "The video has been uploaded successfully":"تم رفع الفيديو بنجاح",
+    "The text has been uploaded successfully":"تم رفع النص بنجاح",
+    "The PDF file has been uploaded successfully":"تم رفع ملف PDF بنجاح"
 }

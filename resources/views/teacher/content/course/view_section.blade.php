@@ -166,9 +166,9 @@
                                                     <a href="#" class="btn ">
                                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);transform: ;msFilter:;"><path d="M20 3H4c-1.103 0-2 .897-2 2v10c0 1.103.897 2 2 2h7v3H8v2h8v-2h-3v-3h7c1.103 0 2-.897 2-2V5c0-1.103-.897-2-2-2zM4 15V5h16l.001 10H4z"></path><path d="m10 13 5-3-5-3z"></path></svg>
                                                     </a>
-                                                    <a href="#" class="btn btn-danger">
+                                                    <button type="button" class="btn btn-danger delete-video" data-id="{{ $video->id }}">
                                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(255, 255, 255, 1);transform: ;msFilter:;"><path d="M5 20a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8h2V6h-4V4a2 2 0 0 0-2-2H9a2 2 0 0 0-2 2v2H3v2h2zM9 4h6v2H9zM8 8h9v12H7V8z"></path><path d="M9 10h2v8H9zm4 0h2v8h-2z"></path></svg>
-                                                    </a>
+                                                    </button>
                                                     </div>
                                                     </div>
                                                 </td>
@@ -180,6 +180,64 @@
                                 </div>
                             </div>
 
+                            {{-- delete-video --}}
+
+                            @if (app()->getLocale() == 'en')
+
+                                <script>
+                                    document.querySelectorAll('.delete-video').forEach(function(button) {
+                                        button.addEventListener('click', function() {
+                                            var videoId = this.getAttribute('data-id');
+                                            var deleteUrl = "{{ route('teacher.course.video.delete', ':id') }}".replace(':id', videoId);
+
+                                            Swal.fire({
+                                                title: "Are you sure you want to delete the video?",
+                                                text: "You won't be able to revert this!",
+                                                icon: 'warning',
+                                                showCancelButton: true,
+                                                confirmButtonColor: '#3085d6',
+                                                cancelButtonColor: '#d33',
+                                                confirmButtonText: 'Yes, delete it!',
+                                            }).then((result) => {
+                                                if (result.isConfirmed) {
+                                                    window.location.href = deleteUrl;
+                                                }
+                                            });
+                                        });
+                                    });
+                                </script>
+
+                            @elseif (app()->getLocale() == 'ar')
+
+                                <script>
+                                    document.querySelectorAll('.delete-video').forEach(function(button) {
+                                        button.addEventListener('click', function() {
+                                            var videoId = this.getAttribute('data-id');
+                                            var deleteUrl = "{{ route('teacher.course.video.delete', ':id') }}".replace(':id', videoId);
+
+                                            Swal.fire({
+                                                title: "هل أنت متأكد من أنك تريد حذف الفيديو؟",
+                                                text: "لن تتمكن من التراجع عن هذا!",
+                                                icon: 'warning',
+                                                showCancelButton: true,
+                                                confirmButtonColor: '#3085d6',
+                                                cancelButtonColor: '#d33',
+                                                confirmButtonText: "نعم ، احذفه!",
+                                                cancelButtonText: 'إلغاء'
+                                            }).then((result) => {
+                                                if (result.isConfirmed) {
+                                                    window.location.href = deleteUrl;
+                                                }
+                                            });
+                                        });
+                                    });
+                                </script>
+
+                            @endif
+
+
+
+                            {{-- delete-video / End  --}}
 
                         <div class="hr-text">
                             <i class='bx bxs-videos'  style='color:#dadfe5;font-size: 25px' ></i>
@@ -323,9 +381,9 @@
                                                     <a href="#" class="btn ">
                                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);transform: ;msFilter:;"><path d="M2.165 19.551c.186.28.499.449.835.449h15c.4 0 .762-.238.919-.606l3-7A.998.998 0 0 0 21 11h-1V7c0-1.103-.897-2-2-2h-6.1L9.616 3.213A.997.997 0 0 0 9 3H4c-1.103 0-2 .897-2 2v14h.007a1 1 0 0 0 .158.551zM17.341 18H4.517l2.143-5h12.824l-2.143 5zM18 7v4H6c-.4 0-.762.238-.919.606L4 14.129V7h14z"></path></svg>
                                                     </a>
-                                                    <a href="#" class="btn btn-danger">
+                                                    <button type="button" class="btn btn-danger delete-txt" data-id="{{ $txt->id }}">
                                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(255, 255, 255, 1);transform: ;msFilter:;"><path d="M5 20a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8h2V6h-4V4a2 2 0 0 0-2-2H9a2 2 0 0 0-2 2v2H3v2h2zM9 4h6v2H9zM8 8h9v12H7V8z"></path><path d="M9 10h2v8H9zm4 0h2v8h-2z"></path></svg>
-                                                    </a>
+                                                    </button>
                                                     </div>
                                                     </div>
                                                 </td>
@@ -336,6 +394,64 @@
                                 </div>
                                 </div>
                             </div>
+
+
+                            {{-- delete-txt --}}
+
+                            @if (app()->getLocale() == 'en')
+
+                                <script>
+                                    document.querySelectorAll('.delete-txt').forEach(function(button) {
+                                        button.addEventListener('click', function() {
+                                            var videoId = this.getAttribute('data-id');
+                                            var deleteUrl = "{{ route('teacher.course.txt.delete', ':id') }}".replace(':id', videoId);
+
+                                            Swal.fire({
+                                                title: "Are you sure you want to delete the text?",
+                                                text: "You won't be able to revert this!",
+                                                icon: 'warning',
+                                                showCancelButton: true,
+                                                confirmButtonColor: '#3085d6',
+                                                cancelButtonColor: '#d33',
+                                                confirmButtonText: 'Yes, delete it!',
+                                            }).then((result) => {
+                                                if (result.isConfirmed) {
+                                                    window.location.href = deleteUrl;
+                                                }
+                                            });
+                                        });
+                                    });
+                                </script>
+
+                            @elseif (app()->getLocale() == 'ar')
+
+                                <script>
+                                    document.querySelectorAll('.delete-txt').forEach(function(button) {
+                                        button.addEventListener('click', function() {
+                                            var videoId = this.getAttribute('data-id');
+                                            var deleteUrl = "{{ route('teacher.course.txt.delete', ':id') }}".replace(':id', videoId);
+
+                                            Swal.fire({
+                                                title: "هل أنت متأكد من أنك تريد حذف النص؟",
+                                                text: "لن تتمكن من التراجع عن هذا!",
+                                                icon: 'warning',
+                                                showCancelButton: true,
+                                                confirmButtonColor: '#3085d6',
+                                                cancelButtonColor: '#d33',
+                                                confirmButtonText: "نعم ، احذفه!",
+                                                cancelButtonText: 'إلغاء'
+                                            }).then((result) => {
+                                                if (result.isConfirmed) {
+                                                    window.location.href = deleteUrl;
+                                                }
+                                            });
+                                        });
+                                    });
+                                </script>
+
+                            @endif
+
+                            {{-- delete-txt / End  --}}
 
 
                     <div class="hr-text">
@@ -413,6 +529,7 @@
                                     <thead>
                                         <tr>
                                         <th>{{ __('Name') }}</th>
+                                        <th>{{ __('Title') }}</th>
                                         <th>{{ __('By the user') }}</th>
                                         <th>{{ __('Views') }}</th>
                                         <th>{{ __('Likes') }}</th>
@@ -436,6 +553,9 @@
 
                                                     </div>
                                                     </div>
+                                                </td>
+                                                <td class="text-secondary" data-label="Role">
+                                                    {{$pdf->title}}
                                                 </td>
                                                 <td class="text-secondary" data-label="Role">
                                                     --
@@ -480,7 +600,7 @@
                                                     <a href="#" class="btn ">
                                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);transform: ;msFilter:;"><path d="M2.165 19.551c.186.28.499.449.835.449h15c.4 0 .762-.238.919-.606l3-7A.998.998 0 0 0 21 11h-1V7c0-1.103-.897-2-2-2h-6.1L9.616 3.213A.997.997 0 0 0 9 3H4c-1.103 0-2 .897-2 2v14h.007a1 1 0 0 0 .158.551zM17.341 18H4.517l2.143-5h12.824l-2.143 5zM18 7v4H6c-.4 0-.762.238-.919.606L4 14.129V7h14z"></path></svg>
                                                     </a>
-                                                    <a href="#" class="btn btn-danger">
+                                                    <a href="#" class="btn btn-danger delete-pdf" data-id="{{ $pdf->id }}">
                                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(255, 255, 255, 1);transform: ;msFilter:;"><path d="M5 20a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8h2V6h-4V4a2 2 0 0 0-2-2H9a2 2 0 0 0-2 2v2H3v2h2zM9 4h6v2H9zM8 8h9v12H7V8z"></path><path d="M9 10h2v8H9zm4 0h2v8h-2z"></path></svg>
                                                     </a>
                                                     </div>
@@ -493,6 +613,66 @@
                                 </div>
                                 </div>
                             </div>
+
+
+
+                            {{-- delete-pdf --}}
+
+                            @if (app()->getLocale() == 'en')
+
+                                <script>
+                                    document.querySelectorAll('.delete-pdf').forEach(function(button) {
+                                        button.addEventListener('click', function() {
+                                            var videoId = this.getAttribute('data-id');
+                                            var deleteUrl = "{{ route('teacher.course.pdf.delete', ':id') }}".replace(':id', videoId);
+
+                                            Swal.fire({
+                                                title: "Are you sure you want to delete the pdf file?",
+                                                text: "You won't be able to revert this!",
+                                                icon: 'warning',
+                                                showCancelButton: true,
+                                                confirmButtonColor: '#3085d6',
+                                                cancelButtonColor: '#d33',
+                                                confirmButtonText: 'Yes, delete it!',
+                                            }).then((result) => {
+                                                if (result.isConfirmed) {
+                                                    window.location.href = deleteUrl;
+                                                }
+                                            });
+                                        });
+                                    });
+                                </script>
+
+                            @elseif (app()->getLocale() == 'ar')
+
+                                <script>
+                                    document.querySelectorAll('.delete-pdf').forEach(function(button) {
+                                        button.addEventListener('click', function() {
+                                            var videoId = this.getAttribute('data-id');
+                                            var deleteUrl = "{{ route('teacher.course.pdf.delete', ':id') }}".replace(':id', videoId);
+
+                                            Swal.fire({
+                                                title: "هل أنت متأكد أنك تريد حذف ملف pdf؟",
+                                                text: "لن تتمكن من التراجع عن هذا!",
+                                                icon: 'warning',
+                                                showCancelButton: true,
+                                                confirmButtonColor: '#3085d6',
+                                                cancelButtonColor: '#d33',
+                                                confirmButtonText: "نعم ، احذفه!",
+                                                cancelButtonText: 'إلغاء'
+                                            }).then((result) => {
+                                                if (result.isConfirmed) {
+                                                    window.location.href = deleteUrl;
+                                                }
+                                            });
+                                        });
+                                    });
+                                </script>
+
+                            @endif
+
+                            {{-- delete-pdf / End  --}}
+
 
 
                             <div class="hr-text">

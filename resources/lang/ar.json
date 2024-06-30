@@ -138,5 +138,11 @@
     "Type a title name for your pdf":"اكتب اسم عنوان لملف pdf الخاص بك",
     "The video has been uploaded successfully":"تم رفع الفيديو بنجاح",
     "The text has been uploaded successfully":"تم رفع النص بنجاح",
-    "The PDF file has been uploaded successfully":"تم رفع ملف PDF بنجاح"
+    "The PDF file has been uploaded successfully":"تم رفع ملف PDF بنجاح",
+    "Video has been deleted successfully":"تم حذف الفيديو بنجاح",
+    "Are you sure you want to delete the video?":"هل أنت متأكد من أنك تريد حذف الفيديو؟",
+    "You won't be able to revert this!":"لن تتمكن من التراجع عن هذا!",
+    "Yes, delete it!":"نعم ، احذفه!",
+    "The text has been successfully deleted":"تم حذف النص بنجاح",
+    "The pdf file has been successfully deleted":"لقد تم حذف ملف pdf بنجاح"
 }

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Teacher\CourseManagementController;
 use App\Http\Controllers\Teacher\UploadContentController;
+use App\Http\Controllers\Teacher\ManagerContentController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -51,6 +52,12 @@ Route::group(['middleware' => ['permission:view-section|create-section|edit-sect
     Route::post('section/{section_id}/content/{content_id}/upload/pdf',[UploadContentController::class , 'upload_pdf'])->name('teacher.course.section.Upload.pdf');
 
     // Create test
+
+
+    // Delete
+    Route::get('video/{id}/delete',[ManagerContentController::class , 'DeleteVideo'])->name('teacher.course.video.delete');
+    Route::get('txt/{id}/delete',[ManagerContentController::class , 'DeleteTxt'])->name('teacher.course.txt.delete');
+    Route::get('pdf/{id}/delete',[ManagerContentController::class , 'DeletePdf'])->name('teacher.course.pdf.delete');
 
 
 });

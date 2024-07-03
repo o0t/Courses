@@ -1,6 +1,7 @@
 @extends('layouts.Teacher')
 @section('title',__('Course sections'))
 @section('active.content.home','active')
+@section('active.course.sections','active')
 @section('content')
  {{-- content --}}
 
@@ -20,11 +21,11 @@
                             <!-- Page pre-title -->
                                 <div class="page-pretitle">
                                     @if (app()->getLocale() == 'en')
-                                        <a href="{{ URL::previous() }}" class="btn btn-icon btn-danger">
+                                        <a href="{{ route('teacher.content.home') }}" class="btn btn-icon btn-danger">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(236, 236, 236, 1);transform: ;msFilter:;"><path d="M21 11H6.414l5.293-5.293-1.414-1.414L2.586 12l7.707 7.707 1.414-1.414L6.414 13H21z"></path></svg>
                                         </a>
                                     @elseif (app()->getLocale() == 'ar')
-                                        <a href="{{ URL::previous() }}" class="btn btn-icon btn-danger">
+                                        <a href="{{ route('teacher.content.home') }}" class="btn btn-icon btn-danger">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(236, 236, 236, 1);transform: rotate(180deg);msFilter:progid:DXImageTransform.Microsoft.BasicImage(rotation=2);"><path d="M21 11H6.414l5.293-5.293-1.414-1.414L2.586 12l7.707 7.707 1.414-1.414L6.414 13H21z"></path></svg>
                                         </a>
                                     @endif
@@ -43,34 +44,11 @@
             </div>
         </div>
         <!-- Page body -->
-
         <br><br>
         <div class="container col-12">
-            <div class="card">
-                <div class="card-body d-flex justify-content-center">
-                <div class="btn-list">
-                    <a href="{{ route('teacher.course.sections',$CourseDetails->url) }}" class="btn active">
-                        {{ __('Course sections') }}
-                        </a>
-                    <a href="#" class="btn @yield('active.course.settings')" data-bs-toggle="modal" data-bs-target="#modal-large">
-                    {{ __('Course settings') }}
-                    </a>
-                    <a href="#" class="btn @yield('active.course.display.sections')" data-bs-toggle="modal" data-bs-target="#modal-small">
-                    {{ __('Content display settings') }}
-                    </a>
-                    <a href="#" class="btn @yield('active.course.pricing')" data-bs-toggle="modal" data-bs-target="#modal-full-width">
-                    {{ __('Pricing') }}
-                    </a>
-                    <a href="#" class="btn @yield('active.course.student.interaction')" data-bs-toggle="modal" data-bs-target="#modal-scrollable">
-                    {{ __('Student interaction') }}
-                    </a>
-                    <a href="#" class="btn @yield('active.course.publishing')" data-bs-toggle="modal" data-bs-target="#modal-report">
-                    {{ __('Publishing') }}
-                    </a>
-                </div>
-                </div>
-            </div>
-
+            {{-- Nav --}}
+                @include('teacher.content.course._nav-course')
+            {{-- Nav / End --}}
             <br>
             <a href="#" class="btn btn-primary d-none d-sm-inline-block" data-bs-toggle="modal" data-bs-target="#modal-report">
                 <!-- Download SVG icon from http://tabler-icons.io/i/plus -->
@@ -181,7 +159,7 @@
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form action="{{ route('teacher.course.sections.create',$CourseDetails->url) }}" method="POST">
+                <form action="{{ route('teacher.course.sections.create',$Course->url) }}" method="POST">
                     @csrf
 
                     <div class="mb-3">

@@ -26,6 +26,13 @@ class CourseManagementController extends Controller
         // $this->middleware(['can:create-course']);
     }
 
+
+    /*
+        =============================================================================================
+                                                Course
+        =============================================================================================
+    */
+
     public function index(){
 
         $this->authorize('ViewCourse', Auth::user());
@@ -79,15 +86,86 @@ class CourseManagementController extends Controller
 
         $this->authorize('ViewSection',Auth::user());
 
-        $CourseDetails = Courses::where('url',$url)->where('user_id',Auth::user()->id)->first();
+        $Course = Courses::where('url',$url)->where('user_id',Auth::user()->id)->first();
 
-        if (!$CourseDetails) {
+        if (!$Course) {
             return back();
         }
 
-        return view('teacher.content.course.course_info',compact('CourseDetails'));
+        return view('teacher.content.course.course_info',compact('Course'));
     }
 
+
+
+    public function CourseSettings($url){
+
+        $Course = Courses::where('url',$url)->where('user_id',Auth::user()->id)->first();
+
+        if (!$Course) {
+            return back();
+        }
+
+        $categories = [
+            'Literature', 'History', 'Philosophy', 'Religion', 'Visual/Performing Arts', 'Business & Management', 'Accounting',
+            'Finance', 'Marketing', 'Entrepreneurship', 'Operations Management', 'Science & Technology', 'Biology',
+            'Computer Science', 'Engineering', 'Mathematics', 'Physics', 'Social Sciences', 'Psychology', 'Sociology',
+            'Political Science', 'Economics', 'Anthropology', 'Health & Medicine', 'Nursing', 'Public Health', 'Nutrition',
+            'Kinesiology', 'Education & Human Development', 'Teaching', 'Counseling', 'Early Childhood Education',
+            'Environment & Sustainability', 'Environmental Science', 'Renewable Energy', 'Conservation', 'Language & Culture',
+            'Foreign Languages', 'Linguistics', 'Cultural Studies'
+        ];
+
+
+        return view('teacher.content.course._course-settings',compact('Course','categories'));
+
+    }
+
+    public function CourseSettingsUpdate(Request $request,$url){
+        return $request;
+        // $course = Courses::where('url', $url)->first();
+
+        // // Create a copy of the request input
+        // $originalInput = $request->all();
+
+        // // Update the $request object with the current model values
+        // foreach ($course->toArray() as $key => $value) {
+        //     $request->merge([$key => $value]);
+        // }
+
+        // // Determine which input fields have changed
+        // $changedFields = [];
+        // foreach ($originalInput as $key => $value) {
+        //     if ($request->input($key) != $value) {
+        //         $changedFields[] = $key;
+        //     }
+        // }
+
+        // // Perform validation on the changed fields
+        // $validatedData = $request->validate([
+        //     'title' => 'required|string|max:150',
+        //     'name' => 'required|string|max:50',
+        //     'course-url' => 'required|string|max:255',
+        //     // 'level' => 'required|string|in:beginner,intermediate,advanced',
+        //     'subscribers_status' => 'required|string|in:paid,free',
+        //     'image' => 'nullable|image|max:2048',
+        // ]);
+
+        // if (!empty($changedFields)) {
+        //     // The input has changed and passed validation
+        //     return response()->json(['message' => 'update', 'changed_fields' => $changedFields]);
+        // } else {
+        //     // The input has not changed
+        //     return response()->json(['message' => 'no update']);
+        // }
+    }
+
+
+
+    /*
+        =============================================================================================
+                                            Sections
+        =============================================================================================
+    */
 
 
     // View Sections
@@ -95,15 +173,15 @@ class CourseManagementController extends Controller
 
         $this->authorize('ViewSection',Auth::user());
 
-        $CourseDetails = Courses::where('url',$url)->where('user_id',Auth::user()->id)->first();
+        $Course = Courses::where('url',$url)->where('user_id',Auth::user()->id)->first();
 
-        if (!$CourseDetails) {
+        if (!$Course) {
             return back();
         }
 
-        $Sections = $CourseDetails->Section()->paginate(15);
+        $Sections = $Course->Section()->paginate(15);
 
-        return view('teacher.content.course.sections',compact('CourseDetails','Sections'));
+        return view('teacher.content.course.sections',compact('Course','Sections'));
     }
 
 
@@ -112,13 +190,13 @@ class CourseManagementController extends Controller
         $this->authorize('CreateSection',Auth::user());
 
 
-        $CourseDetails = Courses::where('url',$url)->where('user_id',Auth::user()->id)->first();
+        $Course = Courses::where('url',$url)->where('user_id',Auth::user()->id)->first();
 
-        if (!$CourseDetails) {
+        if (!$Course) {
             return back();
         }
 
-        if (!Section::where('courses_id',$CourseDetails->id)->first()) {
+        if (!Section::where('courses_id',$Course->id)->first()) {
 
             $validator = Validator::make($request->all(), [
                 'section-name' => 'required|string|max:50|min:3',
@@ -137,7 +215,7 @@ class CourseManagementController extends Controller
         }
 
         $CreateSection = Section::create([
-            'courses_id'      => $CourseDetails->id,
+            'courses_id'      => $Course->id,
             'name'            => $request->input('section-name'),
             'token'           => $request->_token
 

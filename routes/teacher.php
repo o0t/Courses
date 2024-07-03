@@ -27,17 +27,25 @@ Route::group(['middleware' => ['permission:create-course|view-course'], 'prefix'
 
 
 Route::group(['middleware' => ['permission:create-course|view-course|edit-course|delete-course'], 'prefix' => 'teacher'], function () {
+
     Route::post('course/create',[CourseManagementController::class , 'CreateCourse'])->name('teacher.course.create');
     Route::get('course/{url}/home',[CourseManagementController::class , 'CourseHome'])->name('teacher.course.home');
+
+    // Course Settings
+    Route::get('course/{url}/settings', [CourseManagementController::class , 'CourseSettings'])->name('teacher.course.settings');
+    Route::post('course/{url}/settings', [CourseManagementController::class , 'CourseSettingsUpdate'])->name('teacher.course.settings.update');
 
 });
 
 
 Route::group(['middleware' => ['permission:view-section|create-section|edit-section|delete-section'], 'prefix' => 'teacher'], function () {
+
     // View
     Route::get('course/{url}/sections',[CourseManagementController::class , 'Sections'])->name('teacher.course.sections');
     // Create
     Route::post('course/{url}/sections/create',[CourseManagementController::class , 'CreateSections'])->name('teacher.course.sections.create');
+
+
 
 
     // single section

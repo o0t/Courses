@@ -9,7 +9,7 @@
             <a href="{{ route('teacher.course.settings',$Course->url) }}" class="btn @yield('active.course.settings')" >
             {{ __('Course settings') }}
             </a>
-            <a href="#" class="btn @yield('active.course.display.sections')" >
+            <a href="{{ route('teacher.course.content.display.settings',$Course->url) }}" class="btn @yield('active.course.display.sections')" >
             {{ __('Content display settings') }}
             </a>
             <a href="#" class="btn @yield('active.course.pricing')" >

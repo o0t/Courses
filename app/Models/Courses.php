@@ -22,4 +22,8 @@ class Courses extends Model
         return $this->hasMany(Section::class, 'courses_id', 'id');
     }
 
+    public function AboutCourse(){
+        return $this->hasOne(AboutCourse::class , 'course_id','id');
+    }
+
 }

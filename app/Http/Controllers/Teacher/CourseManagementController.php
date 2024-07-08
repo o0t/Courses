@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Teacher;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\FormStartCreateCourse;
+use App\Models\AboutCourse;
 use App\Models\Content;
 use App\Models\Courses;
 use App\Models\Section;
@@ -77,6 +78,10 @@ class CourseManagementController extends Controller
             'token'     => $request->_token
         ]);
 
+        AboutCourse::create([
+            'course_id'     => $CreateCourse->id
+        ]);
+
         return back();
 
     }
@@ -122,44 +127,93 @@ class CourseManagementController extends Controller
 
     public function CourseSettingsUpdate(Request $request,$url){
         return $request;
-        // $course = Courses::where('url', $url)->first();
+        // "title": "Corrupti id obcaeca",
+        // "name": "Brennan Haley",
+        // "course-url": "Ea illo cupiditate n",
+        // "level": "professional",
+        // "subscribers_status": "free",
+        // "course_category": "Foreign Languages",
+        // "image": {}
 
-        // // Create a copy of the request input
-        // $originalInput = $request->all();
-
-        // // Update the $request object with the current model values
-        // foreach ($course->toArray() as $key => $value) {
-        //     $request->merge([$key => $value]);
-        // }
-
-        // // Determine which input fields have changed
-        // $changedFields = [];
-        // foreach ($originalInput as $key => $value) {
-        //     if ($request->input($key) != $value) {
-        //         $changedFields[] = $key;
-        //     }
-        // }
-
-        // // Perform validation on the changed fields
-        // $validatedData = $request->validate([
-        //     'title' => 'required|string|max:150',
-        //     'name' => 'required|string|max:50',
-        //     'course-url' => 'required|string|max:255',
-        //     // 'level' => 'required|string|in:beginner,intermediate,advanced',
-        //     'subscribers_status' => 'required|string|in:paid,free',
-        //     'image' => 'nullable|image|max:2048',
+        // $validator = Validator::make($request->all(), [
+        //     'title'                 =>  'required|max:50|min:3',
+        //     'name'                  =>  'max:100|min:3',
+        //     // 'course-url'            =>  'required|string|regex:/^[^\s]+$/|max:255|unique:courses,url',
+        //     'level'                 =>  'in:beginner,intermediate,professional,all',
+        //     'subscribers_status'    =>  'in:paid,free',
+        //     'course_category'       =>  'nullable|exists:courses,course_category',
         // ]);
 
-        // if (!empty($changedFields)) {
-        //     // The input has changed and passed validation
-        //     return response()->json(['message' => 'update', 'changed_fields' => $changedFields]);
-        // } else {
-        //     // The input has not changed
-        //     return response()->json(['message' => 'no update']);
+        // // 'level'       => 'in:beginner,intermediate,professional,all',
+        // // 'course-url' =>  'required|string|regex:/^[^\s]+$/|max:255|unique:courses,url',
+        // if ($validator->fails()) {
+        //     toast(__('Data entry error'),'error');
+        //     return back()->withErrors($validator)->withInput();
+        // }else{
+        //     toast(__('Data updated successfully'),'success');
         // }
+
+
+        // if ($validator->fails()) {
+        //     $errors = $validator->errors();
+        //     if ($errors->has('course_category')) {
+        //         $course_category = $request->input('course_category');
+        //         if (!is_null($course_category) && !DB::table('courses')->where('course_category', $course_category)->exists()) {
+        //             $validator->errors()->add('course_category', 'The selected course category does not exist.');
+        //         }
+        //     }
+
+        //     // Handle other validation errors
+        // }
+
     }
 
+    /*
+        =============================================================================================
+                                        Content display settings
+        =============================================================================================
+    */
 
+        public function ContentDisplaySettings($url){
+
+
+            $Course = Courses::where('url',$url)->where('user_id',Auth::user()->id)->first();
+
+            if (!$Course) {
+                return back();
+            }
+
+
+            return view('teacher.content.course._content-display-settings',compact('Course'));
+
+        }
+
+        public function ContentDisplaySettingsUpdate(Request $request ,$id){
+
+            $validator = Validator::make($request->all(), [
+                'course_information'        =>  'max:5000',
+                'recommended_course'        =>  'max:5000',
+                'learn_course'              =>  'max:5000',
+                'benefits_course'            =>  'max:5000',
+            ]);
+
+
+            if ($validator->fails()) {
+                toast(__('Data entry error'),'error');
+                return back()->withErrors($validator)->withInput();
+            }else{
+                toast(__('Data updated successfully'),'success');
+            }
+
+            $AboutCourse = AboutCourse::findOrFail($id);
+
+
+            $AboutCourse->update($request->all());
+
+
+            return back();
+
+        }
 
     /*
         =============================================================================================

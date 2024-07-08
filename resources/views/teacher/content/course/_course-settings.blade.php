@@ -1,5 +1,5 @@
 @extends('layouts.Teacher')
-@section('title',__('Course details'))
+@section('title',__('Course settings'))
 @section('active.content.home','active')
 @section('active.course.settings','active')
 @section('content')
@@ -165,6 +165,9 @@
                             <label class="form-label">{{ __('Course category') }}</label>
 
                             <select class="form-select" name="course_category">
+                                @if ($Course->course_category == NULL)
+                                    <option value="" selected >{{ __('No category') }}</option>
+                                @endif
                                 @foreach($categories as $category)
                                     <option value="{{ $category }}" @if($Course->course_category == $category) selected @endif>{{ __($category) }}</option>
                                 @endforeach

@@ -207,9 +207,7 @@ class CourseManagementController extends Controller
 
             $AboutCourse = AboutCourse::findOrFail($id);
 
-
             $AboutCourse->update($request->all());
-
 
             return back();
 
@@ -310,5 +308,26 @@ class CourseManagementController extends Controller
         // return $contents;
         return view('teacher.content.course.view_section',compact('section','contents'));
     }
+
+
+
+    /*
+        =============================================================================================
+                                            Pricing
+        =============================================================================================
+    */
+
+        public function pricing($url){
+
+            $Course = Courses::where('url',$url)->where('user_id',Auth::user()->id)->first();
+
+            if (!$Course) {
+                return back();
+            }
+
+            return view('teacher.content.course._pricing',compact('Course'));
+        }
+
+
 
 }

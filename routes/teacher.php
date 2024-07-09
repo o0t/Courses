@@ -39,6 +39,10 @@ Route::group(['middleware' => ['permission:create-course|view-course|edit-course
     Route::get('course/{url}/content/settings', [CourseManagementController::class , 'ContentDisplaySettings'])->name('teacher.course.content.display.settings');
     Route::post('course/{id}/content/settings', [CourseManagementController::class , 'ContentDisplaySettingsUpdate'])->name('teacher.course.content.display.settings.update');
 
+    // Pricing
+    Route::get('course/{url}/pricing',[CourseManagementController::class , 'pricing'])->name('teacher.course.pricing');
+
+
 });
 
 

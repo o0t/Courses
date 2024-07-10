@@ -164,7 +164,7 @@
                 </div>
               </a>
               <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                <a href="#" class="dropdown-item">{{ __('Profile settings') }}</a>
+                <a href="{{ route('account.settings') }}" class="dropdown-item">{{ __('Profile settings') }}</a>
                 <a href="#" class="dropdown-item">{{ __('My courses') }}</a>
                 <a href="#" class="dropdown-item">{{ __('My comments') }}</a>
                 <a href="./profile.html" class="dropdown-item">{{ __('My favourite') }}</a>

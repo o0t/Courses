@@ -202,6 +202,16 @@
     "Who benefits from this course":"من يستفيد من هذه الدورة",
     "Count Time Videos":"عدد مقاطع الفيديو الزمنية",
     "Data updated successfully":"تم تحديث البيانات بنجاح",
-    "No category":"لا توجد فئة"
+    "No category":"لا توجد فئة",
+    "Account Settings":"إعدادت الحساب",
+    "My Account":"حسابي",
+    "Profile Details":"تفاصيل الملف الشخصي",
+    "First Name":"الاسم الأول",
+    "Last Name":"اسم العائلة",
+    "username":"اسم المستخدم",
+    "Email":"بريد إلكتروني",
+    "Phone":"هاتف",
+    "About Me":"عني",
+    "update":"تحديث"
 
 }

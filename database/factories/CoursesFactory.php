@@ -2,7 +2,9 @@
 
 namespace Database\Factories;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
+
 
 class CoursesFactory extends Factory
 {
@@ -14,7 +16,13 @@ class CoursesFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'user_id'               => User::all()->random()->id,
+            'title'                 => $this->faker->jobTitle(),
+            'name'                  => $this->faker->name(),
+            'url'                   => $this->faker->url(),
+            'token'                 => '$2y$10$hSg8pTgooDYawQEoRXddmengrJjz6nysryVe4bLEEaY5/YRsGX822'
         ];
     }
 }
+
+

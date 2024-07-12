@@ -1,0 +1,22 @@
+[90m= [39m[34;4mApp\Models\Courses[39;24m {#5292
+    [34mid[39m: [35m2[39m,
+    [34muser_id[39m: [35m20[39m,
+    [34mtitle[39m: "[32mNursery Worker[39m",
+    [34mname[39m: "[32mCandida Sporer[39m",
+    [34murl[39m: "[32mhttps://bechtelar.com/qui-enim-voluptatem-reprehenderit-qui-ut-aut.html[39m",
+    [34mphoto[39m: "[32mcourse.png[39m",
+    [34mstatus[39m: "[32mprivate[39m",
+    [34mlevel[39m: "[32mall[39m",
+    [34mcount_Videos[39m: [35m0[39m,
+    [34mcount_Time_Videos[39m: "[32m00:00:00[39m",
+    [34mcount_lessons[39m: [35m0[39m,
+    [34mcount_tests[39m: [35m0[39m,
+    [34mrating[39m: [36mnull[39m,
+    [34msubscribers_status[39m: "[32mfree[39m",
+    [34msubscribers[39m: [35m0[39m,
+    [34mcourse_category[39m: [36mnull[39m,
+    [34mtoken[39m: "[32m$2y$10$hSg8pTgooDYawQEoRXddmengrJjz6nysryVe4bLEEaY5/YRsGX822[39m",
+    [34mcreated_at[39m: "[32m2024-07-12 11:46:58[39m",
+    [34mupdated_at[39m: "[32m2024-07-12 11:46:58[39m",
+  }
+

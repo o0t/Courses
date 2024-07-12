@@ -24,6 +24,9 @@ class CreateUsersTable extends Migration
             $table->longText('about')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->enum('public_profile', ['on','off'])->default('off');
+            $table->enum('lan', ['en','ar'])->default('en');
+            $table->enum('theme', ['dark','light'])->default('light');
             $table->rememberToken();
             $table->timestamps();
         });

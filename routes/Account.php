@@ -19,7 +19,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::group(['middleware' => ['auth'], 'prefix' => 'account'], function () {
 
+    // Profile
     Route::get('/settings',[Settings::class , 'MyAccount'])->name('account.settings');
+    Route::put('/settings',[Settings::class , 'UpdateAccount'])->name('account.settings.update');
 
 
 

@@ -31,4 +31,8 @@ class Courses extends Model
         return $this->hasMany(Subscribers::class, 'course_id', 'id');
     }
 
+    public function Categories()
+    {
+        return $this->belongsToMany(Categories::class, 'courses_categories', 'course_id', 'category_id');
+    }
 }

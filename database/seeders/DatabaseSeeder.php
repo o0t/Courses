@@ -2,8 +2,11 @@
 
 namespace Database\Seeders;
 
+use App\Models\Categories;
+use App\Models\Courses;
 use App\Models\User;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\App;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 
@@ -17,6 +20,11 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         // \App\Models\User::factory(10)->create();
+
+         \App\Models\Categories::factory(12)->create();
+
+
+
 
         $user = User::create([
             'first_name' => 'admin',
@@ -142,6 +150,9 @@ class DatabaseSeeder extends Seeder
 
 
         $user2->assignRole($RoleTeacher);
+
+        \App\Models\Courses::factory(1)->create();
+
     }
 
 }

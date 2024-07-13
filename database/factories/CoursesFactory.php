@@ -16,7 +16,8 @@ class CoursesFactory extends Factory
     public function definition()
     {
         return [
-            'user_id'               => User::all()->random()->id,
+            // 'user_id'               => User::all()->random()->id,
+            'user_id'               => 2,
             'title'                 => $this->faker->jobTitle(),
             'name'                  => $this->faker->name(),
             'url'                   => $this->faker->url(),

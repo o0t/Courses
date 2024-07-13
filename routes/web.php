@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Courses\ViewCoursesController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -50,6 +51,13 @@ Route::get('p', function(){
     return $p;
 
 });
+
+
+/*
+|--------------------------------------------------------------------------
+|
+|--------------------------------------------------------------------------
+*/
 
 
 Route::get('lan/{locale}', function ($locale) {

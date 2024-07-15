@@ -36,8 +36,6 @@ class CourseManagementController extends Controller
 
     public function index(){
 
-        $this->authorize('ViewCourse', Auth::user());
-
         $Courses = Courses::where('user_id',Auth::user()->id)->get();
         return view('teacher.content.home',compact('Courses'));
     }
@@ -88,8 +86,6 @@ class CourseManagementController extends Controller
 
 
     public function CourseHome($url){
-
-        $this->authorize('ViewSection',Auth::user());
 
         $Course = Courses::where('url',$url)->where('user_id',Auth::user()->id)->first();
 
@@ -223,8 +219,6 @@ class CourseManagementController extends Controller
     // View Sections
     public function Sections($url){
 
-        $this->authorize('ViewSection',Auth::user());
-
         $Course = Courses::where('url',$url)->where('user_id',Auth::user()->id)->first();
 
         if (!$Course) {
@@ -238,9 +232,6 @@ class CourseManagementController extends Controller
 
 
     public function CreateSections(Request $request , $url){
-
-        $this->authorize('CreateSection',Auth::user());
-
 
         $Course = Courses::where('url',$url)->where('user_id',Auth::user()->id)->first();
 
@@ -295,9 +286,6 @@ class CourseManagementController extends Controller
 
     // view Section
     public function ViewSection ($id){
-
-        $this->authorize('ViewContent',Auth::user());
-
 
         $section = Section::findOrFail($id);
         $contents = $section->Content()

@@ -20,7 +20,7 @@ class CoursesFactory extends Factory
             'user_id'               => 2,
             'title'                 => $this->faker->jobTitle(),
             'name'                  => $this->faker->name(),
-            'url'                   => $this->faker->url(),
+            'url'                   => $this->faker->word,
             'token'                 => '$2y$10$hSg8pTgooDYawQEoRXddmengrJjz6nysryVe4bLEEaY5/YRsGX822'
         ];
     }

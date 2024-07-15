@@ -152,6 +152,7 @@ class DatabaseSeeder extends Seeder
         $user2->assignRole($RoleTeacher);
 
         \App\Models\Courses::factory(1)->create();
+        \App\Models\AboutCourse::factory(1)->create();
 
     }
 

@@ -218,6 +218,14 @@
     "You're currently visible":"أنت مرئي حاليًا",
     "You're currently invisible":"أنت غير مرئي حاليا",
     "Sign in":"تسجيل الدخول",
-    "Register":"التسجيل"
+    "Register":"التسجيل",
+    "what do you want to learn ?":"ماذا تريد أن تتعلم ؟",
+    "course":"كورس",
+    "student":"طالب",
+    "Lesson":"درس",
+    "Educational hour":"ساعة تعليمية",
+    "Special courses":"كورسات مميزة",
+    "Course Categories":"فئات الدورة",
+    "Search for the course":"ابحث عن الدورة"
 
 }

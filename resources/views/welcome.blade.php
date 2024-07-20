@@ -35,6 +35,19 @@
       body {
       	font-feature-settings: "cv03", "cv04", "cv11";
       }
+/*
+      .navbar-overlap:after {
+          content: "";
+          height: 0rem;
+          position: absolute;
+          top: 100%;
+          left: 0;
+          right: 0;
+          background: inherit;
+          z-index: -1;
+          box-shadow: inherit;
+      } */
+
     </style>
 
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
@@ -61,8 +74,20 @@
             @auth
                 <div class="navbar-nav flex-row order-md-last">
 
-
+                    <div class="me-3 mt-2 d-none d-md-block">
+                        <div class="input-icon">
+                          <input type="text" class="form-control" placeholder="{{ __('Search for the course') }}">
+                          <span class="input-icon-addon">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                              <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                              <path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0"></path>
+                              <path d="M21 21l-6 -6"></path>
+                            </svg>
+                          </span>
+                        </div>
+                    </div>
                     <div class="d-none d-md-flex">
+
                     <a href="?theme=dark" class="nav-link px-0 hide-theme-dark" data-bs-toggle="tooltip" data-bs-placement="bottom" aria-label="Enable dark mode" data-bs-original-title="Enable dark mode">
                         <!-- Download SVG icon from http://tabler-icons.io/i/moon -->
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z"></path></svg>
@@ -169,23 +194,44 @@
                         <a href="./profile.html" class="dropdown-item">Profile</a>
                         <a href="#" class="dropdown-item">Feedback</a>
                         <div class="dropdown-divider"></div>
-                        <a href="./settings.html" class="dropdown-item">Settings</a>
-                        <a href="./sign-in.html" class="dropdown-item">Logout</a>
+                        @if (app()->getLocale() == 'ar')
+                            <a href="{{ route('lan','en') }}" class="dropdown-item">EN</a>
+                        @elseif(app()->getLocale() == 'en')
+                            <a href="{{ route('lan','ar') }}" class="dropdown-item">AR</a>
+                        @endif
+                        <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                            {{ __('Logout') }}
+                        </a>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                            @csrf
+                        </form>
                     </div>
                     </div>
                 </div>
             @else
                 <div class="navbar-nav flex-row order-md-last">
 
-                    <div class="nav-item d-md-flex me-3">
-                    <div class="btn-list">
-                        <a href="{{ route('login') }}" class="btn"  rel="noreferrer">
-                            {{ __('Sign in') }}
-                        </a>
-                        <a href="{{ route('register') }}" class="btn" rel="noreferrer">
-                            {{ __('Register') }}
-                        </a>
+                    <div class="me-3 mt-2 d-none d-md-block">
+                        <div class="input-icon">
+                          <input type="text" class="form-control" placeholder="{{ __('Search for the course') }}">
+                          <span class="input-icon-addon">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                              <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                              <path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0"></path>
+                              <path d="M21 21l-6 -6"></path>
+                            </svg>
+                          </span>
+                        </div>
                     </div>
+                    <div class="nav-item d-md-flex me-3">
+                        <div class="btn-list">
+                            <a href="{{ route('login') }}" class="btn"  rel="noreferrer">
+                                {{ __('Sign in') }}
+                            </a>
+                            <a href="{{ route('register') }}" class="btn" rel="noreferrer">
+                                {{ __('Register') }}
+                            </a>
+                        </div>
                     </div>
                     <div class="d-none d-md-flex">
                     <a href="?theme=dark" class="nav-link px-0 hide-theme-dark" data-bs-toggle="tooltip" data-bs-placement="bottom" aria-label="Enable dark mode" data-bs-original-title="Enable dark mode">
@@ -196,6 +242,17 @@
                         <!-- Download SVG icon from http://tabler-icons.io/i/sun -->
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M12 12m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0"></path><path d="M3 12h1m8 -9v1m8 8h1m-9 8v1m-6.4 -15.4l.7 .7m12.1 -.7l-.7 .7m0 11.4l.7 .7m-12.1 -.7l-.7 .7"></path></svg>
                     </a>
+                    @if (app()->getLocale() == 'ar')
+                        <a href="{{ route('lan','en') }}" class="nav-link">
+                    @elseif(app()->getLocale() == 'en')
+                        <a href="{{ route('lan','ar') }}" class="nav-link">
+                    @endif
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-translate" viewBox="0 0 16 16">
+                            <path d="M4.545 6.714 4.11 8H3l1.862-5h1.284L8 8H6.833l-.435-1.286zm1.634-.736L5.5 3.956h-.049l-.679 2.022z"/>
+                            <path d="M0 2a2 2 0 0 1 2-2h7a2 2 0 0 1 2 2v3h3a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-3H2a2 2 0 0 1-2-2zm2-1a1 1 0 0 0-1 1v7a1 1 0 0 0 1 1h7a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1zm7.138 9.995q.289.451.63.846c-.748.575-1.673 1.001-2.768 1.292.178.217.451.635.555.867 1.125-.359 2.08-.844 2.886-1.494.777.665 1.739 1.165 2.93 1.472.133-.254.414-.673.629-.89-1.125-.253-2.057-.694-2.82-1.284.681-.747 1.222-1.651 1.621-2.757H14V8h-3v1.047h.765c-.318.844-.74 1.546-1.272 2.13a6 6 0 0 1-.415-.492 2 2 0 0 1-.94.31"/>
+                        </svg>
+                    </a>
+
                     {{-- <div class="nav-item dropdown d-none d-md-flex me-3">
                         <a href="#" class="nav-link px-0" data-bs-toggle="dropdown" tabindex="-1" aria-label="Show notifications">
                         <!-- Download SVG icon from http://tabler-icons.io/i/bell -->
@@ -388,6 +445,202 @@
           </div>
         </header>
 
+
+
+        <div class="container text-light mt-6">
+            <h1 style="text-align: center">{{ __('what do you want to learn ?') }}</h1>
+        </div>
+
+
+        <br><br><br><br>
+        <div class="container">
+            <div class="col-12">
+                <div class="row row-cards">
+                  <div class="col-sm-6 col-lg-3">
+                    <div class="card card-sm">
+                      <div class="card-body">
+                        <div class="row align-items-center">
+                          <div class="col-auto">
+                            <img src="{{ asset('assets/img/webinar.png') }}" width="64" height="64"  alt="">
+                          </div>
+                          <div class="col">
+                            <div class="font-weight-medium">
+                              132 {{ __('course') }}
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-6 col-lg-3">
+                    <div class="card card-sm">
+                      <div class="card-body">
+                        <div class="row align-items-center">
+                          <div class="col-auto">
+                            <img src="{{ asset('assets/img/people.png') }}" width="64" height="64"  alt="">
+                          </div>
+                          <div class="col">
+                            <div class="font-weight-medium">
+                              78 {{ __('student') }}
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-6 col-lg-3">
+                    <div class="card card-sm">
+                      <div class="card-body">
+                        <div class="row align-items-center">
+                          <div class="col-auto">
+                            <img src="{{ asset('assets/img/montage.png') }}" width="64" height="64"  alt="">
+                          </div>
+                          <div class="col">
+                            <div class="font-weight-medium">
+                              623 {{ __('Lesson') }}
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-6 col-lg-3">
+                    <div class="card card-sm">
+                      <div class="card-body">
+                        <div class="row align-items-center">
+                          <div class="col-auto">
+                            <img src="{{ asset('assets/img/clock.png') }}" width="64" height="64"  alt="">
+                          </div>
+                          <div class="col">
+                            <div class="font-weight-medium">
+                              132 {{ __('Educational hour') }}
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+        </div>
+
+        <br><br>
+
+
+        <div class="container text-dark mt-6">
+            <h1 style="text-align: center">
+                {{ __('Course Categories') }}
+            </h1>
+            <div class="hr-text"></div>
+
+        </div>
+
+        {{-- Cards --}}
+        <br><br>
+        <div class="container col-12 ">
+            <div class="card ">
+              <div class="card-body ">
+                <div class="row row-cards">
+                  <div class="col-md">
+                    <div class="card card-link card-link-pop">
+                      <div class="card-status-top"></div>
+                      <div class="card-body p-0">
+                        <img src="https://promoidea.ba/wp-content/uploads/2014/03/img.gif" class="w-100" preserveAspectRatio="none" width="400" height="200" alt="">
+                      </div>
+                      <div class="card-footer" style="text-align: center">
+                        <span class="h1">test</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md">
+                    <div class="card">
+                      <div class="card-status-top bg-green"></div>
+                      <div class="card-header">
+                        <h3 class="card-title">Second card</h3>
+                      </div>
+                      <div class="card-body p-0">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-100" preserveAspectRatio="none" width="400" height="200" viewBox="0 0 400 200" fill="transparent" stroke="var(--tblr-border-color, #b8cef1)">
+                          <line x1="0" y1="0" x2="400" y2="200"></line>
+                          <line x1="0" y1="200" x2="400" y2="0"></line>
+                        </svg>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md">
+                    <div class="card">
+                      <div class="card-status-top bg-blue"></div>
+                      <div class="card-header">
+                        <h3 class="card-title">Third card</h3>
+                      </div>
+                      <div class="card-body p-0">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-100" preserveAspectRatio="none" width="400" height="200" viewBox="0 0 400 200" fill="transparent" stroke="var(--tblr-border-color, #b8cef1)">
+                          <line x1="0" y1="0" x2="400" y2="200"></line>
+                          <line x1="0" y1="200" x2="400" y2="0"></line>
+                        </svg>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <br>
+                <div class="row row-cards">
+                    <div class="col-md">
+                      <div class="card">
+                        <div class="card-status-top bg-red"></div>
+                        <div class="card-header">
+                          <h3 class="card-title">First card</h3>
+                        </div>
+                        <div class="card-body p-0">
+                          <svg xmlns="http://www.w3.org/2000/svg" class="w-100" preserveAspectRatio="none" width="400" height="200" viewBox="0 0 400 200" fill="transparent" stroke="var(--tblr-border-color, #b8cef1)">
+                            <line x1="0" y1="0" x2="400" y2="200"></line>
+                            <line x1="0" y1="200" x2="400" y2="0"></line>
+                          </svg>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md">
+                      <div class="card">
+                        <div class="card-status-top bg-green"></div>
+                        <div class="card-header">
+                          <h3 class="card-title">Second card</h3>
+                        </div>
+                        <div class="card-body p-0">
+                          <svg xmlns="http://www.w3.org/2000/svg" class="w-100" preserveAspectRatio="none" width="400" height="200" viewBox="0 0 400 200" fill="transparent" stroke="var(--tblr-border-color, #b8cef1)">
+                            <line x1="0" y1="0" x2="400" y2="200"></line>
+                            <line x1="0" y1="200" x2="400" y2="0"></line>
+                          </svg>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md">
+                      <div class="card">
+                        <div class="card-status-top bg-blue"></div>
+                        <div class="card-header">
+                          <h3 class="card-title">Third card</h3>
+                        </div>
+                        <div class="card-body p-0">
+                          <svg xmlns="http://www.w3.org/2000/svg" class="w-100" preserveAspectRatio="none" width="400" height="200" viewBox="0 0 400 200" fill="transparent" stroke="var(--tblr-border-color, #b8cef1)">
+                            <line x1="0" y1="0" x2="400" y2="200"></line>
+                            <line x1="0" y1="200" x2="400" y2="0"></line>
+                          </svg>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+              </div>
+            </div>
+        </div>
+
+        {{-- Cards /End --}}
+
+        <div class="container text-dark mt-6">
+            <h1 style="text-align: center">
+                {{ __('Special courses') }}
+            </h1>
+            <div class="hr-text"></div>
+        </div>
+
+
+        <br><br>
 
     </div>
 

@@ -361,60 +361,23 @@
             <div class="collapse navbar-collapse" id="navbar-menu">
               <div class="d-flex flex-column flex-md-row flex-fill align-items-stretch align-items-md-center">
                 <ul class="navbar-nav">
-                  <li class="nav-item active dropdown">
+                  <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#navbar-layout" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false">
                       <span class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/layout-2 -->
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M4 4m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v1a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z"></path><path d="M4 13m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v3a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z"></path><path d="M14 4m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v3a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z"></path><path d="M14 15m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v1a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z"></path></svg>
                       </span>
                       <span class="nav-link-title">
-                        {{ __('Courses') }}
+                        {{ __('Categories') }}
                       </span>
                     </a>
                     <div class="dropdown-menu">
                       <div class="dropdown-menu-columns">
                         <div class="dropdown-menu-column">
-                          <a class="dropdown-item" href="./layout-horizontal.html">
-                            Horizontal
-                          </a>
-                          <a class="dropdown-item" href="./layout-boxed.html">
-                            Boxed
-                            <span class="badge badge-sm bg-green-lt text-uppercase ms-auto">New</span>
-                          </a>
-                          <a class="dropdown-item" href="./layout-vertical.html">
-                            Vertical
-                          </a>
-                          <a class="dropdown-item" href="./layout-vertical-transparent.html">
-                            Vertical transparent
-                          </a>
-                          <a class="dropdown-item" href="./layout-vertical-right.html">
-                            Right vertical
-                          </a>
-                          <a class="dropdown-item" href="./layout-condensed.html">
-                            Condensed
-                          </a>
-                          <a class="dropdown-item" href="./layout-combo.html">
-                            Combined
-                          </a>
-                        </div>
-                        <div class="dropdown-menu-column">
-                          <a class="dropdown-item" href="./layout-navbar-dark.html">
-                            Navbar dark
-                          </a>
-                          <a class="dropdown-item" href="./layout-navbar-sticky.html">
-                            Navbar sticky
-                          </a>
-                          <a class="dropdown-item active" href="./layout-navbar-overlap.html">
-                            Navbar overlap
-                          </a>
-                          <a class="dropdown-item" href="./layout-rtl.html">
-                            RTL mode
-                          </a>
-                          <a class="dropdown-item" href="./layout-fluid.html">
-                            Fluid
-                          </a>
-                          <a class="dropdown-item" href="./layout-fluid-vertical.html">
-                            Fluid vertical
-                          </a>
+                          @foreach ($categories as $category)
+                            <a class="dropdown-item" href="#">
+                                {{ __($category->name) }}
+                            </a>
+                          @endforeach
                         </div>
                       </div>
                     </div>
@@ -540,91 +503,20 @@
         <div class="container col-12 ">
             <div class="card ">
               <div class="card-body ">
-                <div class="row row-cards">
-                  <div class="col-md">
-                    <div class="card card-link card-link-pop">
-                      <div class="card-status-top"></div>
-                      <div class="card-body p-0">
-                        <img src="https://promoidea.ba/wp-content/uploads/2014/03/img.gif" class="w-100" preserveAspectRatio="none" width="400" height="200" alt="">
-                      </div>
-                      <div class="card-footer" style="text-align: center">
-                        <span class="h1">test</span>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-md">
-                    <div class="card">
-                      <div class="card-status-top bg-green"></div>
-                      <div class="card-header">
-                        <h3 class="card-title">Second card</h3>
-                      </div>
-                      <div class="card-body p-0">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="w-100" preserveAspectRatio="none" width="400" height="200" viewBox="0 0 400 200" fill="transparent" stroke="var(--tblr-border-color, #b8cef1)">
-                          <line x1="0" y1="0" x2="400" y2="200"></line>
-                          <line x1="0" y1="200" x2="400" y2="0"></line>
-                        </svg>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-md">
-                    <div class="card">
-                      <div class="card-status-top bg-blue"></div>
-                      <div class="card-header">
-                        <h3 class="card-title">Third card</h3>
-                      </div>
-                      <div class="card-body p-0">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="w-100" preserveAspectRatio="none" width="400" height="200" viewBox="0 0 400 200" fill="transparent" stroke="var(--tblr-border-color, #b8cef1)">
-                          <line x1="0" y1="0" x2="400" y2="200"></line>
-                          <line x1="0" y1="200" x2="400" y2="0"></line>
-                        </svg>
-                      </div>
-                    </div>
-                  </div>
-                </div>
                 <br>
                 <div class="row row-cards">
-                    <div class="col-md">
-                      <div class="card">
-                        <div class="card-status-top bg-red"></div>
-                        <div class="card-header">
-                          <h3 class="card-title">First card</h3>
+                    @foreach ($categories as $category)
+                        <div class="col-sm-6 col-lg-3">
+                            <a href="#" class="link-offset-2 link-underline link-underline-opacity-0">
+                                <div class="card card-link-pop">
+                                    <img src="{{ asset('categories/'.$category->img) }}" width="180" height="200" class="rounded mx-auto d-block" alt="{{ __($category->name) }}">
+                                    <div class="card-footer" style="text-align: center">
+                                        <span class="h1">{{ __($category->name) }}</span>
+                                    </div>
+                                </div>
+                            </a>
                         </div>
-                        <div class="card-body p-0">
-                          <svg xmlns="http://www.w3.org/2000/svg" class="w-100" preserveAspectRatio="none" width="400" height="200" viewBox="0 0 400 200" fill="transparent" stroke="var(--tblr-border-color, #b8cef1)">
-                            <line x1="0" y1="0" x2="400" y2="200"></line>
-                            <line x1="0" y1="200" x2="400" y2="0"></line>
-                          </svg>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-md">
-                      <div class="card">
-                        <div class="card-status-top bg-green"></div>
-                        <div class="card-header">
-                          <h3 class="card-title">Second card</h3>
-                        </div>
-                        <div class="card-body p-0">
-                          <svg xmlns="http://www.w3.org/2000/svg" class="w-100" preserveAspectRatio="none" width="400" height="200" viewBox="0 0 400 200" fill="transparent" stroke="var(--tblr-border-color, #b8cef1)">
-                            <line x1="0" y1="0" x2="400" y2="200"></line>
-                            <line x1="0" y1="200" x2="400" y2="0"></line>
-                          </svg>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-md">
-                      <div class="card">
-                        <div class="card-status-top bg-blue"></div>
-                        <div class="card-header">
-                          <h3 class="card-title">Third card</h3>
-                        </div>
-                        <div class="card-body p-0">
-                          <svg xmlns="http://www.w3.org/2000/svg" class="w-100" preserveAspectRatio="none" width="400" height="200" viewBox="0 0 400 200" fill="transparent" stroke="var(--tblr-border-color, #b8cef1)">
-                            <line x1="0" y1="0" x2="400" y2="200"></line>
-                            <line x1="0" y1="200" x2="400" y2="0"></line>
-                          </svg>
-                        </div>
-                      </div>
-                    </div>
+                    @endforeach
                   </div>
               </div>
             </div>

@@ -226,6 +226,24 @@
     "Educational hour":"ساعة تعليمية",
     "Special courses":"كورسات مميزة",
     "Course Categories":"فئات الدورة",
-    "Search for the course":"ابحث عن الدورة"
+    "Search for the course":"ابحث عن الدورة",
+    "Categories":"التصنيفات",
+    "Databases":"قواعد بيانات",
+    "Science":"علوم",
+    "Self-Development":"تطوير الذات",
+    "Management and Economics":"الإدارة والاقتصاد",
+    "Computer Networks":"شبكات الحاسب",
+    "Languages":"اللغات",
+    "Operating Systems":"أنظمة التشغيل",
+    "Web Development":"تطوير المواقع الإلكترونية",
+    "Information Security":"أمن المعلومات",
+    "Software":"برمجيات",
+    "Programming languages":"لغات البرمجة",
+    "Web development":"تطوير ويب",
+    "Mobile app development":"تطوير تطبيقات الهاتف",
+    "Data science":"علم البيانات",
+    "Cybersecurity":"الأمن السيبراني",
+    "Computer network":"شبكة الكمبيوتر",
+    "DevOps":"ديف أوبس"
 
 }

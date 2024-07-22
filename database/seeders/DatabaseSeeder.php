@@ -21,7 +21,7 @@ class DatabaseSeeder extends Seeder
     {
         // \App\Models\User::factory(10)->create();
 
-         \App\Models\Categories::factory(12)->create();
+        //  \App\Models\Categories::factory(12)->create();
 
 
 
@@ -153,6 +153,34 @@ class DatabaseSeeder extends Seeder
 
         \App\Models\Courses::factory(1)->create();
         \App\Models\AboutCourse::factory(1)->create();
+
+
+        // Categories::create(['name' => 'Programming languages',  'img' => 'programming-languages.jpg']);
+        // Categories::create(['name' => 'Web development',        'img' => 'web-development.jpg']);
+        // Categories::create(['name' => 'Mobile app development' ,'img' => 'mobile-development.jpg']);
+        // Categories::create(['name' => 'Data science' ,          'img' =>'data-science.jpg']);
+        // Categories::create(['name' => 'Cybersecurity' ,         'img' => 'cybersecurity.jpg']);
+        // Categories::create(['name' => 'Operating Systems' ,     'img' => 'operating-systems.jpg']);
+        // Categories::create(['name' => 'Computer network' ,      'img' => 'operating-systems.jpg']);
+        // Categories::create(['name' => 'DevOps' ,                'img' => 'DevOps.jpg']);
+
+
+
+
+        $categories = [
+            ['name' => 'Programming languages',     'img' => 'programming-languages.png'],
+            ['name' => 'Web development',           'img' => 'web-development.png'],
+            ['name' => 'Mobile app development',    'img' => 'mobile-development.png'],
+            ['name' => 'Data science',              'img' => 'data-science.png'],
+            ['name' => 'Cybersecurity',             'img' => 'cybersecurity.png'],
+            ['name' => 'Operating Systems',         'img' => 'operating-systems.png'],
+            ['name' => 'Computer network',          'img' => 'computer-network.png'],
+            ['name' => 'DevOps',                    'img' => 'DevOps.png'],
+        ];
+
+        foreach ($categories as $category) {
+            Categories::create($category);
+        }
 
     }
 

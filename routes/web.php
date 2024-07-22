@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Courses\ViewCoursesController;
+use App\Http\Controllers\General\PagesController;
 use Illuminate\Routing\ViewController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -16,9 +17,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [PagesController::class , 'index'])->name('index');
 
 
 Route::get('test', function(){

@@ -167,6 +167,7 @@ class DatabaseSeeder extends Seeder
             ['name' => 'Operating Systems',         'img' => 'operating-systems.png'],
             ['name' => 'Computer network',          'img' => 'computer-network.png'],
             ['name' => 'DevOps',                    'img' => 'DevOps.png'],
+            ['name' => 'Other Categories',          'img' => 'other.png'],
         ];
 
         foreach ($Main_categories as $main_category) {
@@ -235,6 +236,10 @@ class DatabaseSeeder extends Seeder
 
             ['name' => 'Linux', 'img' => 'linux.png', 'main_category_id' => 6],
             ['name' => 'Mac Os', 'img' => 'mac-os.png', 'main_category_id' => 6],
+            ['name' => 'Embedded Systems Programming' , 'img' => 'embedded-systems', 'main_category_id' => 6],
+
+            ['name' => 'Network Management', 'img' => 'network-management.png', 'main_category_id' => 7],
+            ['name' => 'switch and Firewall', 'img' => 'switch-firewall.png', 'main_category_id' => 7],
 
 
             ['name' => 'Plan', 'img' => 'plan.png', 'main_category_id' => 8],

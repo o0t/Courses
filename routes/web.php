@@ -20,6 +20,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [PagesController::class , 'index'])->name('index');
 
 
+Route::get('category/{category}', [PagesController::class , 'category'])->name('category');
+
+
 Route::get('test', function(){
     // Auth::user()->syncRoles('member');
     // Auth::user()->syncRoles('student');

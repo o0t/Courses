@@ -15,4 +15,9 @@ class Categories extends Model
         return $this->belongsToMany(Courses::class, 'courses_categories', 'category_id', 'course_id');
     }
 
+
+    public function main_category()
+    {
+        return $this->belongsTo(Main_categories::class, 'main_category_id');
+    }
 }

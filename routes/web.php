@@ -22,6 +22,9 @@ Route::get('/', [PagesController::class , 'index'])->name('index');
 
 Route::get('category/{category}', [PagesController::class , 'category'])->name('category');
 
+Route::get('category/{category}/courses', [PagesController::class , 'CategoryCourses'])->name('category.courses');
+
+
 
 Route::get('test', function(){
     // Auth::user()->syncRoles('member');

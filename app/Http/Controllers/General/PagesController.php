@@ -32,7 +32,18 @@ class PagesController extends Controller
 
         return view('category',compact('Main_category','category','categories'));
 
-
     }
 
+
+
+    public function CategoryCourses($category){
+
+        $c = Categories::where('name',$category)->first();
+        // return $c;
+        return $c->Courses;
+
+        $categories = Main_categories::all();
+
+        return view('category-courses', compact('categories'));
+    }
 }

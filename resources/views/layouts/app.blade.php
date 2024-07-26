@@ -374,7 +374,7 @@
                       <div class="dropdown-menu-columns">
                         <div class="dropdown-menu-column">
                           @foreach ($categories as $category)
-                            <a class="dropdown-item" href="#">
+                            <a class="dropdown-item" href="{{ route('category',$category->name) }}">
                                 {{ __($category->name) }}
                             </a>
                           @endforeach

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\General;
 use App\Http\Controllers\Controller;
 use App\Models\Categories;
 use App\Models\Main_categories;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class PagesController extends Controller
@@ -38,12 +39,14 @@ class PagesController extends Controller
 
     public function CategoryCourses($category){
 
-        $c = Categories::where('name',$category)->first();
-        // return $c;
-        return $c->Courses;
+        $Categories = Categories::where('name',$category)->first();
+        if ($Categories) {
+            $Courses = $Categories->Courses;
+            $categories = Main_categories::all();
+        }else{
+            return back();
+        }
 
-        $categories = Main_categories::all();
-
-        return view('category-courses', compact('categories'));
+        return view('category-courses', compact('categories','Categories','Courses'));
     }
 }

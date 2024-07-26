@@ -22,60 +22,18 @@ class CreateCoursesTable extends Migration
             $table->string('photo')->default('course.png');
             $table->enum('status', ['waiting','private','general','customized','closed'])->default('private');
             $table->enum('level', ['beginner','intermediate','professional','all'])->default('all');
-            $table->integer('count_Videos')->default(0);
-            $table->time('count_Time_Videos')->default('00:00:00');
+            $table->integer('count_videos')->default(0);
+            $table->time('count_time_videos')->default('00:00:00');
             $table->integer('count_lessons')->default(0);
             $table->integer('count_tests')->default(0);
             $table->float('rating')->nullable();
             $table->enum('subscribers_status', ['paid','free'])->default('free');
             $table->integer('subscribers')->default(0);
 
-            $table->enum('course_category', [
-                'Literature',
-                'History',
-                'Philosophy',
-                'Religion',
-                'Visual/Performing Arts',
-                'Business & Management',
-                'Accounting',
-                'Finance',
-                'Marketing',
-                'Entrepreneurship',
-                'Operations Management',
-                'Science & Technology',
-                'Biology',
-                'Computer Science',
-                'Engineering',
-                'Mathematics',
-                'Physics',
-                'Social Sciences',
-                'Psychology',
-                'Sociology',
-                'Political Science',
-                'Economics',
-                'Anthropology',
-                'Health & Medicine',
-                'Nursing',
-                'Public Health',
-                'Nutrition',
-                'Kinesiology',
-                'Education & Human Development',
-                'Teaching',
-                'Counseling',
-                'Early Childhood Education',
-                'Environment & Sustainability',
-                'Environmental Science',
-                'Renewable Energy',
-                'Conservation',
-                'Language & Culture',
-                'Foreign Languages',
-                'Linguistics',
-                'Cultural Studies'
-            ])->nullable();
+            $table->integer('views')->default(0);
+            $table->integer('likes')->default(0);
 
             $table->string('token');
-
-
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();

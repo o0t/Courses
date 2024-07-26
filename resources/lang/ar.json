@@ -244,6 +244,9 @@
     "Data science":"علم البيانات",
     "Cybersecurity":"الأمن السيبراني",
     "Computer network":"شبكة الكمبيوتر",
-    "DevOps":"ديف أوبس"
+    "DevOps":"ديف أوبس",
+    "Latest":"الأحدث",
+    "Oldest":"الأقدم",
+    "Top Rated":"الأعلى تقييماً"
 
 }

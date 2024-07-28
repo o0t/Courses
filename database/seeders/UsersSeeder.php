@@ -150,5 +150,7 @@ class UsersSeeder extends Seeder
 
 
 
+        User::factory(50)->create();
+
     }
 }

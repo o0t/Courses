@@ -47,6 +47,12 @@ class PagesController extends Controller
             return back();
         }
 
+        // if ($Courses->isEmpty()) {
+        //     return 'True';
+        // }else{
+        //     return 'False';
+        // }
+
         return view('category-courses', compact('categories','Categories','Courses'));
     }
 }

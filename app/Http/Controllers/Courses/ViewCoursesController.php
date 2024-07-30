@@ -5,27 +5,24 @@ namespace App\Http\Controllers\Courses;
 use App\Http\Controllers\Controller;
 use App\Models\Categories;
 use App\Models\Courses;
+use App\Models\Main_categories;
 use Illuminate\Http\Request;
 
 class ViewCoursesController extends Controller
 {
 
 
+    public function index($name){
 
-    public function index(){
+        $course = Courses::where('name',$name)->first();
 
-            // Attach a category to a course
-            $course = Courses::find(1);
-            $category = Categories::find(1);
-            $course->categories()->attach($category->id);
+        if (!$course) {
+            return back();
+        }
 
-            // Retrieve the categories for the course
-            $categories = $course->categories;
+        $categories = Main_categories::all();
 
-            // Retrieve the courses for the category
-            $courses = $category->courses;
-
-            return $courses;
+        return view('course.home',compact('categories','course'));
 
     }
 }

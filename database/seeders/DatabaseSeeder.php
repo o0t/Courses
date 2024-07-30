@@ -2,10 +2,12 @@
 
 namespace Database\Seeders;
 
+use App\Models\AboutCourse;
 use App\Models\Categories;
 use App\Models\Courses;
 use App\Models\Main_categories;
 use App\Models\User;
+use Database\Factories\AboutCourseFactory;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\App;
 use Spatie\Permission\Models\Permission;
@@ -32,6 +34,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
 
+        AboutCourse::factory(7)->create();
 
 
 

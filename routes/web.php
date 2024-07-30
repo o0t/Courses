@@ -24,6 +24,18 @@ Route::get('category/{category}', [PagesController::class , 'category'])->name('
 
 Route::get('category/{category}/courses', [PagesController::class , 'CategoryCourses'])->name('category.courses');
 
+Route::get('course/{name}' , [ViewCoursesController::class , 'index'])->name('course.view');
+
+
+
+
+
+
+
+
+
+
+
 
 
 Route::get('test', function(){

@@ -6,7 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Models\Categories;
 use App\Models\Courses;
 use App\Models\Main_categories;
+use App\Models\Subscribers;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ViewCoursesController extends Controller
 {
@@ -22,7 +24,24 @@ class ViewCoursesController extends Controller
 
         $categories = Main_categories::all();
 
-        return view('course.home',compact('categories','course'));
+        if (Auth::check()) {
+
+            $check = Subscribers::where('user_id',Auth::user()->id)->where('courses_id',$course->id)->exists();
+
+            $btn_subscriber = $check;
+
+        }else{
+
+            $btn_subscriber = NULL;
+        }
+
+        return view('course.home',compact('categories','course','btn_subscriber'));
 
     }
+
+
+
+
+
+
 }

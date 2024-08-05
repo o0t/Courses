@@ -28,7 +28,7 @@ class Courses extends Model
 
     public function Subscribers()
     {
-        return $this->hasMany(Subscribers::class, 'course_id', 'id');
+        return $this->hasMany(Subscribers::class, 'id', 'course_id');
     }
 
     public function Categories()

@@ -11,7 +11,7 @@
               <div class="container-xl">
                 <div class="row g-2 align-items-center">
                   <div class="col">
-                    <h2 class="page-title">
+                    <h2 class="page-title text-light">
                       Tabler License
                     </h2>
                   </div>
@@ -76,16 +76,29 @@
 
 
                         <br><br>
-                        <a href="#" class="btn btn-outline-dark w-100">
-                          @if (app()->getLocale() == 'en')
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" class="icon icon-md" viewBox="0 0 24 24" style="fill: rgba(115, 127, 141, 1);transform: ;msFilter:;"><path d="m10.998 16 5-4-5-4v3h-9v2h9z"></path><path d="M12.999 2.999a8.938 8.938 0 0 0-6.364 2.637L8.049 7.05c1.322-1.322 3.08-2.051 4.95-2.051s3.628.729 4.95 2.051S20 10.13 20 12s-.729 3.628-2.051 4.95-3.08 2.051-4.95 2.051-3.628-.729-4.95-2.051l-1.414 1.414c1.699 1.7 3.959 2.637 6.364 2.637s4.665-.937 6.364-2.637C21.063 16.665 22 14.405 22 12s-.937-4.665-2.637-6.364a8.938 8.938 0 0 0-6.364-2.637z"></path></svg>
-                            {{ __('Join the course now') }}
-                          @elseif (app()->getLocale() == 'ar')
-                            {{ __('Join the course now') }}
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" class="icon icon-md ms-2" viewBox="0 0 24 24" style="fill: rgba(115, 127, 141, 1);transform: ;msFilter:;"><path d="m10.998 16 5-4-5-4v3h-9v2h9z"></path><path d="M12.999 2.999a8.938 8.938 0 0 0-6.364 2.637L8.049 7.05c1.322-1.322 3.08-2.051 4.95-2.051s3.628.729 4.95 2.051S20 10.13 20 12s-.729 3.628-2.051 4.95-3.08 2.051-4.95 2.051-3.628-.729-4.95-2.051l-1.414 1.414c1.699 1.7 3.959 2.637 6.364 2.637s4.665-.937 6.364-2.637C21.063 16.665 22 14.405 22 12s-.937-4.665-2.637-6.364a8.938 8.938 0 0 0-6.364-2.637z"></path></svg>
-                          @endif
+                        @if ($btn_subscriber == '1')
+                            <a href="{{ route('course.content',$course->name) }}" class="btn btn-outline-dark w-100">
+                                @if (app()->getLocale() == 'en')
+                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-md" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(115, 127, 141, 1);transform: ;msFilter:;"><path d="M7 6v12l10-6z"></path></svg>
+                                {{ __('Watch the course') }}
+                                @elseif (app()->getLocale() == 'ar')
+                                {{ __('Watch the course') }}
+                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-md ms-2" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(115, 127, 141, 1);transform: ;msFilter:;"><path d="M7 6v12l10-6z"></path></svg>
+                                {{-- <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" class="icon icon-md ms-2" viewBox="0 0 24 24" style="fill: rgba(115, 127, 141, 1);transform: ;msFilter:;"><path d="m10.998 16 5-4-5-4v3h-9v2h9z"></path><path d="M12.999 2.999a8.938 8.938 0 0 0-6.364 2.637L8.049 7.05c1.322-1.322 3.08-2.051 4.95-2.051s3.628.729 4.95 2.051S20 10.13 20 12s-.729 3.628-2.051 4.95-3.08 2.051-4.95 2.051-3.628-.729-4.95-2.051l-1.414 1.414c1.699 1.7 3.959 2.637 6.364 2.637s4.665-.937 6.364-2.637C21.063 16.665 22 14.405 22 12s-.937-4.665-2.637-6.364a8.938 8.938 0 0 0-6.364-2.637z"></path></svg> --}}
+                                @endif
+                            </a>
+                        @else
+                            <a href="{{ route('course.subscribe',$course->name) }}" class="btn btn-outline-dark w-100">
+                                @if (app()->getLocale() == 'en')
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" class="icon icon-md" viewBox="0 0 24 24" style="fill: rgba(115, 127, 141, 1);transform: ;msFilter:;"><path d="m10.998 16 5-4-5-4v3h-9v2h9z"></path><path d="M12.999 2.999a8.938 8.938 0 0 0-6.364 2.637L8.049 7.05c1.322-1.322 3.08-2.051 4.95-2.051s3.628.729 4.95 2.051S20 10.13 20 12s-.729 3.628-2.051 4.95-3.08 2.051-4.95 2.051-3.628-.729-4.95-2.051l-1.414 1.414c1.699 1.7 3.959 2.637 6.364 2.637s4.665-.937 6.364-2.637C21.063 16.665 22 14.405 22 12s-.937-4.665-2.637-6.364a8.938 8.938 0 0 0-6.364-2.637z"></path></svg>
+                                {{ __('Join the course now') }}
+                                @elseif (app()->getLocale() == 'ar')
+                                {{ __('Join the course now') }}
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" class="icon icon-md ms-2" viewBox="0 0 24 24" style="fill: rgba(115, 127, 141, 1);transform: ;msFilter:;"><path d="m10.998 16 5-4-5-4v3h-9v2h9z"></path><path d="M12.999 2.999a8.938 8.938 0 0 0-6.364 2.637L8.049 7.05c1.322-1.322 3.08-2.051 4.95-2.051s3.628.729 4.95 2.051S20 10.13 20 12s-.729 3.628-2.051 4.95-3.08 2.051-4.95 2.051-3.628-.729-4.95-2.051l-1.414 1.414c1.699 1.7 3.959 2.637 6.364 2.637s4.665-.937 6.364-2.637C21.063 16.665 22 14.405 22 12s-.937-4.665-2.637-6.364a8.938 8.938 0 0 0-6.364-2.637z"></path></svg>
+                                @endif
+                            </a>
+                        @endif
 
-                        </a>
                         <br>
                         <br>
                         <h4>{{ __('Course information') }}</h4>

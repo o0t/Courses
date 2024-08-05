@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\Courses\SubscribeController;
 use App\Http\Controllers\Courses\ViewCoursesController;
 use App\Http\Controllers\General\PagesController;
+use App\Models\Subscribers;
 use Illuminate\Routing\ViewController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -25,6 +27,9 @@ Route::get('category/{category}', [PagesController::class , 'category'])->name('
 Route::get('category/{category}/courses', [PagesController::class , 'CategoryCourses'])->name('category.courses');
 
 Route::get('course/{name}' , [ViewCoursesController::class , 'index'])->name('course.view');
+
+Route::get('course/{name}/subscribe' , [SubscribeController::class , 'subscribe'])->name('course.subscribe');
+
 
 
 

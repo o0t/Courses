@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Courses\ViewContentController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -15,6 +16,5 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::get('student',function (){
-    return 'this is from route student';
-});
+Route::get('course/{name}/content' , [ViewContentController::class , 'index'])->name('course.content');
+

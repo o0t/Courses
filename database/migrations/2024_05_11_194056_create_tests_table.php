@@ -15,14 +15,14 @@ class CreateTestsTable extends Migration
     {
         Schema::create('tests', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBiginteger('content_id');
+            // $table->unsignedBiginteger('content_id');
             $table->string('test_name')->nullable();
             $table->integer('full_mark')->nullable();
             $table->integer('degree_success')->nullable();
             $table->integer('number_of_questions')->nullable();
             $table->enum('shearing_guests', ['general','private'])->default('private');
             $table->enum('status', ['waiting','private','general','customized','closed'])->default('private');
-            $table->foreign('content_id')->references('id')->on('contents')->onDelete('cascade');
+            // $table->foreign('content_id')->references('id')->on('contents')->onDelete('cascade');
             $table->timestamps();
         });
     }

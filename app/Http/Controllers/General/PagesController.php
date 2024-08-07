@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\Categories;
 use App\Models\Main_categories;
 use App\Models\User;
+use App\Models\Courses;
+use App\Models\Content;
 use Illuminate\Http\Request;
 
 class PagesController extends Controller

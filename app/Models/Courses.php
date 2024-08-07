@@ -17,9 +17,9 @@ class Courses extends Model
 
 
 
-    public function Section()
+    public function content()
     {
-        return $this->hasMany(Section::class, 'courses_id', 'id');
+        return $this->belongsToMany(Content::class, 'courses_contents');
     }
 
     public function AboutCourse(){

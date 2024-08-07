@@ -8,32 +8,28 @@ use Illuminate\Database\Eloquent\Model;
 class Content extends Model
 {
     use HasFactory;
+
     protected $guarded = [];
 
-    public function Section()
+    public function courses()
     {
-        return $this->belongsTo(Section::class, 'section_id', 'id');
+        return $this->belongsToMany(Courses::class, 'courses_contents');
+    }
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($content) {
+            $content->serial = static::generateUniqueSerial();
+        });
+    }
+
+    protected static function generateUniqueSerial()
+    {
+        $maxSerial = static::max('serial') ?: 0;
+        return $maxSerial + 1;
     }
 
 
-    public function Videos()
-    {
-        return $this->hasMany(Videos::class, 'content_id', 'id');
-    }
-
-
-    public function Txt()
-    {
-        return $this->hasMany(Txt::class, 'content_id', 'id');
-    }
-
-    public function Pdf()
-    {
-        return $this->hasMany(Pdf::class, 'content_id', 'id');
-    }
-
-    public function test()
-    {
-        return $this->hasMany(test::class, 'content_id', 'id');
-    }
 }

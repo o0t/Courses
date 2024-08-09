@@ -3,8 +3,8 @@
 <div class="card">
     <div class="card-body d-flex justify-content-center">
         <div class="btn-list">
-            <a href="{{ route('teacher.course.sections',$Course->url) }}" class="btn @yield('active.course.sections')">
-                {{ __('Course sections') }}
+            <a href="{{ route('teacher.course.contents',$Course->url) }}" class="btn @yield('active.course.contents')">
+                {{ __('Course Content') }}
                 </a>
             <a href="{{ route('teacher.course.settings',$Course->url) }}" class="btn @yield('active.course.settings')" >
             {{ __('Course settings') }}

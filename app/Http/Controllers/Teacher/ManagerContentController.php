@@ -3,42 +3,56 @@
 namespace App\Http\Controllers\Teacher;
 
 use App\Http\Controllers\Controller;
+use App\Models\Courses;
 use Illuminate\Http\Request;
 use App\Models\Videos;
 use App\Models\Txt;
 use App\Models\Pdf;
+use Illuminate\Support\Facades\Auth;
 
 class ManagerContentController extends Controller
 {
 
 
 
-    public function DeleteVideo($id){
+    /*
+        =============================================================================================
+                                            Course Content
+        =============================================================================================
+    */
 
-        $Video = Videos::findOrFail($id);
-        $Video->delete();
 
-        toast(__('Video has been deleted successfully'), 'success');
-        return redirect()->back();
+    // View Course Content
+    public function Contents($url){
+
+        $Course = Courses::where('url', $url)->where('user_id', Auth::user()->id)->with('Content')->first();
+
+        if (!$Course) {
+            return back();
+        }
+
+        if ($Course->Content->isEmpty()) {
+            $Contents = NULL;
+        }else{
+            $Contents = $Course->Content()->paginate(15);
+
+        }
+
+
+        return view('teacher.content.course._course-content',compact('Course','Contents'));
     }
 
 
-    public function DeleteTxt($id){
+    public function CreateContent(Request $request , $url){
 
-        $txt = Txt::findOrFail($id);
-        $txt->delete();
+        return $request;
 
-        toast(__('The text has been successfully deleted'), 'success');
-        return redirect()->back();
     }
 
 
-    public function DeletePdf($id){
+    public function ViewContent ($id){
 
-        $pdf = Pdf::findOrFail($id);
-        $pdf->delete();
-
-        toast(__('The pdf file has been successfully deleted'), 'success');
-        return redirect()->back();
     }
+
+
 }

@@ -7,8 +7,6 @@ use App\Http\Requests\FormStartCreateCourse;
 use App\Models\AboutCourse;
 use App\Models\Content;
 use App\Models\Courses;
-use App\Models\Section;
-use App\Models\section_content;
 use App\Models\User;
 use App\Policies\UserPermissions;
 use Illuminate\Support\Facades\Validator;
@@ -208,95 +206,6 @@ class CourseManagementController extends Controller
             return back();
 
         }
-
-    /*
-        =============================================================================================
-                                            Sections
-        =============================================================================================
-    */
-
-
-    // View Sections
-    public function Sections($url){
-
-        $Course = Courses::where('url',$url)->where('user_id',Auth::user()->id)->first();
-
-        if (!$Course) {
-            return back();
-        }
-
-        $Sections = $Course->Section()->paginate(15);
-
-        return view('teacher.content.course.sections',compact('Course','Sections'));
-    }
-
-
-    public function CreateSections(Request $request , $url){
-
-        $Course = Courses::where('url',$url)->where('user_id',Auth::user()->id)->first();
-
-        if (!$Course) {
-            return back();
-        }
-
-        if (!Section::where('courses_id',$Course->id)->first()) {
-
-            $validator = Validator::make($request->all(), [
-                'section-name' => 'required|string|max:50|min:3',
-            ], $customMessages = [
-                'section-name' => __('You do not have any previous sections. You must write the name of the section'),
-            ]);
-
-            if ($validator->fails()) {
-                toast(__('Data entry error'),'error');
-                return back()->withErrors($validator)->withInput();
-            }else{
-                toast(__('The course was created successfully'),'success');
-            }
-
-
-        }
-
-        $CreateSection = Section::create([
-            'courses_id'      => $Course->id,
-            'name'            => $request->input('section-name'),
-            'token'           => $request->_token
-
-        ]);
-
-        $Content = Content::create([
-            'section_id'    => $CreateSection->id
-        ]);
-
-        if ($CreateSection) {
-
-            section_content::create([
-                'section_id'      => $CreateSection->id,
-                'content_id'      => $Content->id,
-            ]);
-
-            toast(__('The Section been created successfully'),'success');
-        }else{
-            toast(__('There is a problem, please try again later'),'error');
-        }
-
-        return back();
-
-    }
-
-    // view Section
-    public function ViewSection ($id){
-
-        $section = Section::findOrFail($id);
-        $contents = $section->Content()
-                            ->with(['videos', 'Txt', 'pdf', 'test'])
-                            ->orderByDesc('created_at')
-                            ->first();
-
-        // return $contents;
-        return view('teacher.content.course.view_section',compact('section','contents'));
-    }
-
 
 
     /*

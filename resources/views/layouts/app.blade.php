@@ -432,6 +432,10 @@
         @include('sweetalert::alert', ['cdn' => "https://cdn.jsdelivr.net/npm/sweetalert2@9"])
 
 
+          <script src="{{ asset('assets/libs/plyr/dist/plyr.min.js?1692870487')}}" defer></script>
+          <!-- Tabler Core -->
+          {{-- <script src="{{ asset('assets/js/tabler.min.js?1692870487')}}" defer></script> --}}
+          <script src="{{ asset('assets/js/demo.min.js?1692870487')}}" defer></script>
 
     </body>
     </html>

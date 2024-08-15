@@ -61,7 +61,7 @@
             <br><br><br>
 
             {{-- Table --}}
-            <div class="card">
+            {{-- <div class="card">
                 <div class="table-responsive">
                   <table class="table table-vcenter card-table table-hover">
                     <thead>
@@ -87,7 +87,7 @@
                   {{ $Contents->links('vendor.pagination.bootstrap-4') }}
 
                 </div>
-              </div>
+              </div> --}}
             {{-- Table / End --}}
 
 
@@ -152,13 +152,16 @@
                           <div class="modal-body">
                             <div class="mb-3">
                               <label class="form-label">{{ __('title') }}</label>
-                              <input type="text" class="form-control" name="title" placeholder="{{ __('Content Title') }}">
+                              <input type="text" class="form-control" name="title" value="{{ old('title') }}" placeholder="{{ __('Content Title') }}">
+                              @error('title')
+                                <div class="form-text text-danger">{{ $errors->first('title') }}</div>
+                              @enderror
                             </div>
                             <label class="form-label">{{ __('Content Type') }}</label>
                             <div class="form-selectgroup-boxes row mb-3">
                               <div class="col-lg-6">
                                 <label class="form-selectgroup-item">
-                                  <input type="radio" name="content-type" value="1" class="form-selectgroup-input report-type-radio" checked="">
+                                  <input type="radio" name="content_type" value="1" class="form-selectgroup-input report-type-radio" checked="">
                                   <span class="form-selectgroup-label d-flex align-items-center p-3">
                                     <span class="me-3">
                                       <span class="form-selectgroup-check"></span>
@@ -172,7 +175,7 @@
                               </div>
                               <div class="col-lg-6">
                                 <label class="form-selectgroup-item">
-                                  <input type="radio" name="content-type" value="2" class="form-selectgroup-input report-type-radio">
+                                  <input type="radio" name="content_type" value="2" class="form-selectgroup-input report-type-radio">
                                   <span class="form-selectgroup-label d-flex align-items-center p-3">
                                     <span class="me-3">
                                       <span class="form-selectgroup-check"></span>
@@ -195,9 +198,9 @@
                                     </div>
 
                                     <label class="form-label">{{ __('Text content') }}</label>
-                                    <textarea id="tinymce-default" name="txt-content"></textarea>
+                                    <textarea id="tinymce-default" value="{{ old('txt-content') }}" name="txt-content"></textarea>
                                     @error('txt-content')
-                                        <div class="form-text text-danger">errors</div>
+                                        <div class="form-text text-danger">{{ $errors->first('txt-content') }}</div>
                                     @enderror
                                 </div>
 
@@ -234,7 +237,7 @@
                                     <span class="col">{{ __('Allow comments') }}</span>
                                     <span class="col-auto">
                                         <label class="form-check form-check-single form-switch">
-                                        <input class="form-check-input" name="allow-comments" type="checkbox" checked="">
+                                        <input class="form-check-input" name="allow_comments" type="checkbox" checked="">
                                         </label>
                                     </span>
                                     </label>
@@ -247,12 +250,12 @@
                                 Cancel
                                 </a>
                                 <button type="submit" class="btn btn-primary">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon">
-                                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                    <path d="M12 5l0 14"></path>
-                                    <path d="M5 12l14 0"></path>
-                                </svg>
-                                {{ __('Create Content') }}
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon">
+                                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                        <path d="M12 5l0 14"></path>
+                                        <path d="M5 12l14 0"></path>
+                                    </svg>
+                                    {{ __('Create Content') }}
                                 </button>
                             </div>
                         </div>

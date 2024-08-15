@@ -17,11 +17,11 @@ class CreateContentsTable extends Migration
             $table->id();
 
             $table->unsignedBiginteger('courses_id');
-            $table->string('title')->unique();
+            $table->string('title')->nullable();
             $table->string('url')->nullable();
-            $table->string('content')->nullable();
+            $table->longText('content')->nullable();
             $table->string('file_name')->nullable();
-            $table->string('description')->nullable();
+            $table->longText('description')->nullable();
             $table->enum('type', ['video','txt'])->nullable();
             $table->bigInteger('likes')->default(0);
             $table->bigInteger('comments')->default(0);

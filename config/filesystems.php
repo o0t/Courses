@@ -53,20 +53,20 @@ return [
         //     'use_path_style_endpoint' => env('AWS_USE_PATH_STYLE_ENDPOINT', false),
         // ],
 
-      
+
         'minio' => [
             'driver' => 's3',
-            'key' => 'hKdi7SALdCzTPGcVau8B',
-            'secret' => '5OfYdq0v2heLL964CBhEHVSAX1yS5D8eVP0uwT8k',
+            'key' => 'm8wvYGGvFzHCnwvqwXQd',
+            'secret' => 'fkcasTJvcRRiZYESGC2HCQjCRZ2VViMAq7vx4zyw',
             'region' => 'us-east-1',
             'bucket' => 'raqeeb',
             'endpoint' => 'http://143.42.49.97:9000',
             'use_path_style_endpoint' => true,
             'version' => 'latest',
         ],
- 
+
     ],
- 
+
     /*
     |--------------------------------------------------------------------------
     | Symbolic Links

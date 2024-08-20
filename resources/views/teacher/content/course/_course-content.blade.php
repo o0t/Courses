@@ -142,7 +142,7 @@
 
                 <div class="modal modal-blur fade" id="modal-report" tabindex="-1" style="display: none;" aria-hidden="true">
                     <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
-                      <form action="{{ route('teacher.course.contents.create',$Course->url) }}" method="POST">
+                      <form action="{{ route('teacher.course.contents.create',$Course->url) }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="modal-content">
                           <div class="modal-header">
@@ -210,6 +210,9 @@
                                 <div class="mb-12">
                                     <div class="form-label">{{ __('upload a file') }}</div>
                                     <input type="file" name="file" class="form-control">
+                                    @error('file')
+                                        <div class="form-text text-danger">{{ $errors->first('file') }}</div>
+                                    @enderror
                                 </div>
 
 
@@ -219,9 +222,9 @@
                                         </div>
 
                                         <label class="form-label">{{ __('Description') }}</label>
-                                        <textarea id="tinymce-default" name="description"></textarea>
+                                        <textarea id="tinymce-default" value="{{ old('description') }}" name="description"></textarea>
                                         @error('description')
-                                            <div class="form-text text-danger">description</div>
+                                            <div class="form-text text-danger">{{ $errors->first('description') }}</div>
                                         @enderror
                                     </div>
                             </div>

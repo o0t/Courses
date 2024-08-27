@@ -33,6 +33,8 @@ class HomeController extends Controller
         }elseif($user->hasRole('student')){
             return view('student.home');
         }elseif($user->hasRole('teacher')){
+
+            // return view('home');
             return view('teacher.home');
         }elseif($user->hasRole('teacher-admin')){
             return view('teacher.home');

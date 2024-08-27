@@ -191,7 +191,7 @@
                             </a>
                             <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
                             <a href="{{ route('account.settings') }}" class="dropdown-item">{{ __('Profile settings') }}</a>
-                            <a href="#" class="dropdown-item">{{ __('My courses') }}</a>
+                            <a href="{{ route('home') }}" class="dropdown-item">{{ __('Dashboard') }}</a>
                             <div class="dropdown-divider"></div>
 
                             @if (app()->getLocale() == 'ar')

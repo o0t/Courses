@@ -35,6 +35,7 @@ class ViewCoursesController extends Controller
             $btn_subscriber = NULL;
         }
 
+
         return view('course.home',compact('categories','course','btn_subscriber'));
 
     }

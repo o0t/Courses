@@ -1,4 +1,4 @@
-@extends('layouts.Teacher')
+@extends('layouts.app')
 @section('title',__('Content display settings'))
 @section('active.content.home','active')
 @section('active.course.display.sections','active')

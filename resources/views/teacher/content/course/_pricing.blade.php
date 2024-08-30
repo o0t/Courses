@@ -1,4 +1,4 @@
-@extends('layouts.Teacher')
+@extends('layouts.app')
 @section('title',__('Pricing'))
 @section('active.content.home','active')
 @section('active.course.pricing','active')

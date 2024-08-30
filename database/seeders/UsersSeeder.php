@@ -53,7 +53,6 @@ class UsersSeeder extends Seeder
             ['name' => 'member', 'guard_name' => 'web'],
             ['name' => 'student', 'guard_name' => 'web'],
             ['name' => 'teacher', 'guard_name' => 'web'],
-            ['name' => 'teacher-admin', 'guard_name' => 'web'],
             ['name' => 'admin', 'guard_name' => 'web'],
         ];
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Main_categories;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -24,28 +25,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $user = Auth::user();
-
-        // return $user->getRoleNames();
-
-        if ($user->hasRole('member')) {
-            return view('student.home');
-        }elseif($user->hasRole('student')){
-            return view('student.home');
-        }elseif($user->hasRole('teacher')){
-
-            // return view('home');
-            return view('teacher.home');
-        }elseif($user->hasRole('teacher-admin')){
-            return view('teacher.home');
-
-        }elseif($user->hasRole('admin')){
-            // return 'this is admin';
-            return view('teacher.home');
-
-        }else{
-            return 'no';
-        }
-
+        $categories = Main_categories::all();
+        return view('welcome',compact('categories'));
     }
 }

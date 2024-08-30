@@ -76,6 +76,7 @@ class RegisterController extends Controller
         ]);
 
         $user->syncRoles('member');
+        // $user->syncRoles('student');
 
         return $user;
     }

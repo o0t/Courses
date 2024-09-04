@@ -25,23 +25,22 @@ class SubscribeController extends Controller
             return back();
         }
 
-
         $check = Subscribers::where('user_id',Auth::user()->id)->where('courses_id',$course->id)->exists();
 
         if ($check) {
             return back();
         }
 
-            $Subscriber = Subscribers::create([
-                'user_id'       => Auth::user()->id,
-                'courses_id'    => $course->id,
-            ]);
+        $Subscriber = Subscribers::create([
+            'user_id'       => Auth::user()->id,
+            'courses_id'    => $course->id,
+        ]);
 
-            if ($Subscriber) {
-                toast(__('Subscribed successfully'),'success');
-            }
+        if ($Subscriber) {
+            toast(__('Subscribed successfully'),'success');
+        }
 
-            return redirect()->route('course.content',$name);
+        return redirect()->route('course.content',$name);
 
     }
 

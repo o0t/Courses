@@ -38,11 +38,6 @@ Route::get('course/{name}/subscribe' , [SubscribeController::class , 'subscribe'
 
 
 
-
-
-
-
-
 Route::get('test', function(){
     // Auth::user()->syncRoles('member');
     // Auth::user()->syncRoles('student');

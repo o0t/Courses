@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Account;
 
 use App\Http\Controllers\Controller;
+use App\Models\Main_categories;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -14,7 +15,8 @@ class Settings extends Controller
 
 
     public function MyAccount(){
-        return view('account._my_account');
+        $categories = Main_categories::all();
+        return view('account._my_account',compact('categories'));
     }
 
     public function UpdateAccount(Request $request){

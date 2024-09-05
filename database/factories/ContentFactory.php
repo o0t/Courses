@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Models\Courses;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class ContentFactory extends Factory
@@ -13,8 +15,13 @@ class ContentFactory extends Factory
      */
     public function definition()
     {
+        // 'url' => b2764071-6c2a-4f95-91bc-d7f2ed2a473c-1725536065.mp4
         return [
-            //
+            'courses_id' => Courses::all()->random()->id,
+            'title' =>  $this->faker->jobTitle(),
+            'content' => $this->faker->text(200),
+            'updated_at' => $this->faker->time,
+            'created_at' => $this->faker->time,
         ];
     }
 }

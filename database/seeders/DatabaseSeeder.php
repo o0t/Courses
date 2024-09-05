@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\AboutCourse;
 use App\Models\Categories;
+use App\Models\Content;
 use App\Models\Courses;
 use App\Models\Main_categories;
 use App\Models\User;
@@ -36,7 +37,12 @@ class DatabaseSeeder extends Seeder
 
         AboutCourse::factory(7)->create();
 
+        $course = Courses::factory()
+        ->create();
 
+        $course->content()->createMany(
+            Content::factory()->count(2)->make()->toArray()
+        );
 
     }
 

@@ -16,14 +16,13 @@ class CoursesFactory extends Factory
     public function definition()
     {
         return [
-            // 'user_id'               => User::all()->random()->id,
-            'user_id'               => 2,
+            'user_id'               => User::all()->random()->id,
             'title'                 => $this->faker->jobTitle(),
             'name'                  => $this->faker->name(),
             'url'                   => $this->faker->word,
+            'photo'                 => 'test.png',
             'token'                 => '$2y$10$hSg8pTgooDYawQEoRXddmengrJjz6nysryVe4bLEEaY5/YRsGX822'
         ];
     }
 }
-
 

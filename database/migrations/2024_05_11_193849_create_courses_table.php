@@ -17,7 +17,7 @@ class CreateCoursesTable extends Migration
             $table->id();
             $table->unsignedBiginteger('user_id');
             $table->string('title')->nullable();
-            $table->string('name');
+            $table->string('name')->nullable();
             $table->string('url');
             $table->string('photo')->default('course.png');
             $table->enum('status', ['waiting','private','general','customized','closed'])->default('private');

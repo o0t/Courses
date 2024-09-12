@@ -15,6 +15,13 @@ class CreateUserActivitiesTable extends Migration
     {
         Schema::create('user_activities', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBiginteger('user_id');
+            $table->unsignedBiginteger('courses_id');
+            $table->integer('serial')->default(1);
+
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('courses_id')->references('id')->on('courses')->onDelete('cascade');
+
             $table->timestamps();
         });
     }

@@ -19,9 +19,13 @@ class ContentFactory extends Factory
         return [
             'courses_id' => Courses::all()->random()->id,
             'title' =>  $this->faker->jobTitle(),
-            'content' => $this->faker->text(200),
+            // 'content' => $this->faker->text(200),
+            // 'type' => 'txt',
+            'type' => 'video',
+            'file_name' => 'd195194e-d9fe-44d9-b4f6-7a83c438d41a-1725947301.mp4',
             'updated_at' => $this->faker->time,
             'created_at' => $this->faker->time,
+            'token' => $this->faker->uuid(),
         ];
     }
 }

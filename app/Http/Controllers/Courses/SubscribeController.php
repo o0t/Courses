@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Courses;
 use App\Http\Controllers\Controller;
 use App\Models\Courses;
 use App\Models\Subscribers;
+use App\Models\user_activities;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -36,7 +37,12 @@ class SubscribeController extends Controller
             'courses_id'    => $course->id,
         ]);
 
-        if ($Subscriber) {
+        $user_activities = user_activities::create([
+            'user_id'       => Auth::user()->id,
+            'courses_id'    => $course->id,
+        ]);
+
+        if ($Subscriber && $user_activities) {
             toast(__('Subscribed successfully'),'success');
         }
 

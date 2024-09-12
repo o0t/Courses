@@ -16,5 +16,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::get('course/{name}/content' , [ViewContentController::class , 'index'])->name('course.content');
+Route::get('course/{title}/content' , [ViewContentController::class , 'index'])->name('course.content');
+
+Route::get('course/{title}/content/{token}', [ViewContentController::class , 'GetContentPage'])->name('course.content.get');
+
+Route::get('file_name/{name}' , [ViewContentController::class , 'GetContentJquery'])->name('file.get');
+
 

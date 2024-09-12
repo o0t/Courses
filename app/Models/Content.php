@@ -16,18 +16,19 @@ class Content extends Model
         return $this->belongsToMany(Courses::class, 'courses_contents');
     }
 
+
     protected static function boot()
     {
         parent::boot();
 
         static::creating(function ($content) {
-            $content->serial = static::generateUniqueSerial();
+            $content->serial = static::generateUniqueSerial($content->courses_id);
         });
     }
 
-    protected static function generateUniqueSerial()
+    protected static function generateUniqueSerial($courseId)
     {
-        $maxSerial = static::max('serial') ?: 0;
+        $maxSerial = static::where('courses_id', $courseId)->max('serial') ?: 0;
         return $maxSerial + 1;
     }
 

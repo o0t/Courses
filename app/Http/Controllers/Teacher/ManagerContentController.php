@@ -73,6 +73,7 @@ class ManagerContentController extends Controller
                 'content' => $request->input('txt-content'),
                 'type' => 'txt',
                 'allow_comments' => $allow_comments,
+                'token' => $request->_token
             ]);
 
             toast(__('Content created successfully'),'success');
@@ -99,7 +100,7 @@ class ManagerContentController extends Controller
                 try {
                     $file = $request->file('file');
                     $filename = Str::uuid().'-'.time().'.'.$file->getClientOriginalExtension();
-                    $filePath = Storage::disk('minio')->putFileAs('videos', $file, $filename);
+                    $filePath = Storage::disk('minio')->putFileAs('/', $file, $filename);
 
                     $content = $Course->content()->create([
                         'courses_id' => $Course->id,
@@ -108,6 +109,7 @@ class ManagerContentController extends Controller
                         'type' => 'video',
                         'file_name'  => $filename,
                         'allow_comments' => $allow_comments,
+                        'token' => $request->_token
                     ]);
 
                     toast(__('Content created successfully'),'success');
@@ -123,7 +125,7 @@ class ManagerContentController extends Controller
                 try {
                     $file = $request->file('file');
                     $filename = Str::uuid().'-'.time().'.'.$file->getClientOriginalExtension();
-                    $filePath = Storage::disk('minio')->putFileAs('files', $file, $filename);
+                    $filePath = Storage::disk('minio')->putFileAs('/',$file, $filename);
 
                     $content = $Course->content()->create([
                         'courses_id' => $Course->id,
@@ -132,6 +134,8 @@ class ManagerContentController extends Controller
                         'type' => 'file',
                         'file_name'  => $filename,
                         'allow_comments' => $allow_comments,
+                        'token' => $request->_token
+
                     ]);
 
                     toast(__('Content created successfully'),'success');

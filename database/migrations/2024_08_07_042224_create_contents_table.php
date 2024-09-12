@@ -33,7 +33,7 @@ class CreateContentsTable extends Migration
 
             $table->unsignedBigInteger('serial')->nullable();
 
-
+            $table->string('token');
 
             $table->timestamps();
         });

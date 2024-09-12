@@ -37,12 +37,16 @@ class DatabaseSeeder extends Seeder
 
         AboutCourse::factory(7)->create();
 
-        $course = Courses::factory()
-        ->create();
+        // $course = Courses::factory()
+        // ->create();
+        $course = Courses::find(1); // Replace $courseId with the actual ID
+
 
         $course->content()->createMany(
-            Content::factory()->count(2)->make()->toArray()
+            Content::factory()->count(50)->make()->toArray()
         );
+
+
 
     }
 

@@ -39,6 +39,8 @@
                             <h1>{{ $content->title }}</h1>
                             <br>
                             <div class="container">
+                                @if ($content->type == 'video')
+
                                     {{-- video --}}
                                     <div id="loading">
                                         <div class="card placeholder-glow">
@@ -97,6 +99,20 @@
                                         });
                                     </script>
                                     {{-- video / End --}}
+                                    {{-- Description --}}
+                                    <br>
+                                    <div class="hr-text">{{__('Description')}}</div>
+                                    <div class="container card">
+                                        <div class="card-body">
+                                            {{$content->description}}
+                                        </div>
+                                    </div>
+                                    {{-- Description / End --}}
+                                @elseif ($content->type == 'txt')
+                                    <h1>this is txt </h1>
+                                @elseif ($content->type == 'file')
+                                    <h1> this is file </h1>
+                                @endif
                             </div>
 
 

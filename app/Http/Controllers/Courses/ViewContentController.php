@@ -77,8 +77,6 @@ class ViewContentController extends Controller
 
         $categories = Main_categories::all();
 
-
-        // $contents = $course->content->isEmpty() ? null : $course->content;
         $contents = Content::where('courses_id',$course->id)->get();
 
         $user_activities = user_activities::where('user_id',Auth::user()->id)->where('courses_id',$course->id)->get()->last();
@@ -91,11 +89,62 @@ class ViewContentController extends Controller
     }
 
 
+    public function Get_Content_From_Token($title ,$token){
 
-    public function GetContentPage($token){
+        $course = Courses::where('title',$title)->first();
 
-        return 'this is Token ' . $token;
+        $content = Content::where('token',$token)->first();
+
+        $CreateActivities = user_activities::create([
+            'user_id'       => Auth::user()->id,
+            'courses_id'    => $course->id,
+            'serial'        => $content->serial
+        ]);
+
+        return redirect()->route('course.content',compact('title'));
     }
+
+
+    public function NextPage($title , $token){
+
+        $course = Courses::where('title',$title)->first();
+
+        $user_activities = user_activities::where('user_id',Auth::user()->id)->where('courses_id',$course->id)->get()->last();
+
+        $content = Content::where('token',$token)->first();
+
+        $NextPage = $user_activities->serial + 1;
+
+        $CreateActivities = user_activities::create([
+            'user_id'       => Auth::user()->id,
+            'courses_id'    => $course->id,
+            'serial'        => $NextPage
+        ]);
+
+        return redirect()->route('course.content',compact('title'));
+
+    }
+
+    public function PreviousPage($title , $token){
+
+        $course = Courses::where('title',$title)->first();
+
+        $user_activities = user_activities::where('user_id',Auth::user()->id)->where('courses_id',$course->id)->get()->last();
+
+        $content = Content::where('token',$token)->first();
+
+        $PreviousPage = $user_activities->serial - 1;
+
+        $CreateActivities = user_activities::create([
+            'user_id'       => Auth::user()->id,
+            'courses_id'    => $course->id,
+            'serial'        => $PreviousPage
+        ]);
+
+        return redirect()->route('course.content',compact('title'));
+
+    }
+
 
 
 }

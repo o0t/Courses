@@ -18,7 +18,11 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('course/{title}/content' , [ViewContentController::class , 'index'])->name('course.content');
 
-Route::get('course/{title}/content/{token}', [ViewContentController::class , 'GetContentPage'])->name('course.content.get');
+Route::get('course/{title}/content/{token}', [ViewContentController::class , 'Get_Content_From_Token'])->name('course.content.get');
+
+Route::get('course/{title}/content/{token}/next', [ViewContentController::class , 'NextPage'])->name('course.content.next');
+Route::get('course/{title}/content/{token}/previous', [ViewContentController::class , 'PreviousPage'])->name('course.content.previous');
+
 
 Route::get('file_name/{name}' , [ViewContentController::class , 'GetContentJquery'])->name('file.get');
 

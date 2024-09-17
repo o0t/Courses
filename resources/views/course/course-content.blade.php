@@ -100,7 +100,7 @@
                                     {{-- video / End --}}
                                 @elseif ($content->type == 'txt')
                                     {{-- txt --}}
-                                <br>
+                                    <br>
                                     <div class="container">
                                         {!! $content->content !!}
                                     </div>
@@ -118,7 +118,7 @@
                                                 <a href="#" tabindex="-1" class="btn btn-primary disabled placeholder col-4" aria-hidden="true"></a>
                                               </div>
                                             </div>
-                                          </div>
+                                        </div>
                                     </div>
 
                                     <div id="response"></div>
@@ -215,95 +215,73 @@
 
                             {{-- Comments --}}
                             @if ($content->allow_comments == 'yes')
-                              <div class="card">
-                                <div class="card-body">
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <div class="row">
-                                                <div class="list-group-item">
-                                                    <div class="row align-items-center">
-                                                    <div class="col-auto">
-                                                        <a href="#">
-                                                            <span class="avatar" style="background-image: url(./static/avatars/000m.jpg)"></span>
-                                                        </a>
-                                                    </div>
-                                                    <div class="col text-truncate">
-                                                        <a href="#" class="text-reset d-block">Paweł Kuna</a>
-                                                        <div class="d-block text-secondary text-truncate mt-n1">@username</div>
+                                @if ($content && $content->Comments)
+                                    @foreach ($content->Comments as $Comment)
+                                        @if ($Comment->user)
+                                            <br>
+                                            <div class="card">
+                                                <div class="card-body">
+                                                    <div class="row">
+                                                        <div class="list-group-item">
+                                                            <div class="row align-items-center">
+                                                            <div class="col-auto">
+                                                                <a href="#">
+                                                                    <span class="avatar" style="background-image: url(./static/avatars/000m.jpg)"></span>
+                                                                    <a href="#" class="text-reset d-block">{{ $Comment->user->username }}</a>
+                                                                </a>
+                                                            </div>
+                                                            <div class="col">
+                                                                <div class="container text-secondary ">
+                                                                    <span>
+                                                                        {!! $Comment->comment !!}
+                                                                    </span>
+                                                                </div>
 
-                                                    </div>
-                                                    <div class="col-auto">
-                                                        <a href="#" class="btn btn-icon">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" class="icon text-secondary" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(114, 126, 140, 1);transform: ;msFilter:;">
-                                                                <path d="M12 4.595a5.904 5.904 0 0 0-3.996-1.558 5.942 5.942 0 0 0-4.213 1.758c-2.353 2.363-2.352 6.059.002 8.412l7.332 7.332c.17.299.498.492.875.492a.99.99 0 0 0 .792-.409l7.415-7.415c2.354-2.354 2.354-6.049-.002-8.416a5.938 5.938 0 0 0-4.209-1.754A5.906 5.906 0 0 0 12 4.595zm6.791 1.61c1.563 1.571 1.564 4.025.002 5.588L12 18.586l-6.793-6.793c-1.562-1.563-1.561-4.017-.002-5.584.76-.756 1.754-1.172 2.799-1.172s2.035.416 2.789 1.17l.5.5a.999.999 0 0 0 1.414 0l.5-.5c1.512-1.509 4.074-1.505 5.584-.002z"></path>
-                                                            </svg>
-                                                        </a>
-                                                        <a href="#" class="btn btn-icon">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" class="icon text-secondary" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(114, 126, 140, 1);transform: ;msFilter:;">
-                                                                <path d="M10 11h6v7h2v-8a1 1 0 0 0-1-1h-7V6l-5 4 5 4v-3z"></path>
-                                                            </svg>
-                                                        </a>
-                                                    </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-
-                                    <br>
-
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <div class="row">
-                                                <div class="list-group-item">
-                                                    <div class="row align-items-center">
-                                                    <div class="col-auto">
-                                                        <a href="#">
-                                                            <span class="avatar" style="background-image: url(./static/avatars/000m.jpg)"></span>
-                                                        </a>
-                                                    </div>
-                                                    <div class="col text-truncate">
-                                                        <a href="#" class="text-reset d-block">Paweł Kuna</a>
-                                                        <div class="d-block text-secondary text-truncate mt-n1">@username</div>
-
-                                                    </div>
-                                                    <div class="col-auto">
-                                                        <a href="#" class="btn btn-icon">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" class="icon text-secondary" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(114, 126, 140, 1);transform: ;msFilter:;">
-                                                                <path d="M12 4.595a5.904 5.904 0 0 0-3.996-1.558 5.942 5.942 0 0 0-4.213 1.758c-2.353 2.363-2.352 6.059.002 8.412l7.332 7.332c.17.299.498.492.875.492a.99.99 0 0 0 .792-.409l7.415-7.415c2.354-2.354 2.354-6.049-.002-8.416a5.938 5.938 0 0 0-4.209-1.754A5.906 5.906 0 0 0 12 4.595zm6.791 1.61c1.563 1.571 1.564 4.025.002 5.588L12 18.586l-6.793-6.793c-1.562-1.563-1.561-4.017-.002-5.584.76-.756 1.754-1.172 2.799-1.172s2.035.416 2.789 1.17l.5.5a.999.999 0 0 0 1.414 0l.5-.5c1.512-1.509 4.074-1.505 5.584-.002z"></path>
-                                                            </svg>
-                                                        </a>
-                                                        <a href="#" class="btn btn-icon">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" class="icon text-secondary" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(114, 126, 140, 1);transform: ;msFilter:;">
-                                                                <path d="M10 11h6v7h2v-8a1 1 0 0 0-1-1h-7V6l-5 4 5 4v-3z"></path>
-                                                            </svg>
-                                                        </a>
-                                                    </div>
+                                                            </div>
+                                                            <div class="col-auto">
+                                                                <a href="#" class="btn btn-icon">
+                                                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon text-secondary" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(114, 126, 140, 1);transform: ;msFilter:;">
+                                                                        <path d="M12 4.595a5.904 5.904 0 0 0-3.996-1.558 5.942 5.942 0 0 0-4.213 1.758c-2.353 2.363-2.352 6.059.002 8.412l7.332 7.332c.17.299.498.492.875.492a.99.99 0 0 0 .792-.409l7.415-7.415c2.354-2.354 2.354-6.049-.002-8.416a5.938 5.938 0 0 0-4.209-1.754A5.906 5.906 0 0 0 12 4.595zm6.791 1.61c1.563 1.571 1.564 4.025.002 5.588L12 18.586l-6.793-6.793c-1.562-1.563-1.561-4.017-.002-5.584.76-.756 1.754-1.172 2.799-1.172s2.035.416 2.789 1.17l.5.5a.999.999 0 0 0 1.414 0l.5-.5c1.512-1.509 4.074-1.505 5.584-.002z"></path>
+                                                                    </svg>
+                                                                </a>
+                                                                <a href="#" class="btn btn-icon">
+                                                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon text-secondary" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(114, 126, 140, 1);transform: ;msFilter:;">
+                                                                        <path d="M10 11h6v7h2v-8a1 1 0 0 0-1-1h-7V6l-5 4 5 4v-3z"></path>
+                                                                    </svg>
+                                                                </a>
+                                                            </div>
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </div>
+                                                <div class="card-footer">
+                                                    {{ $Comment->created_at->diffForHumans() }}
+                                                </div>
                                             </div>
+                                        @else
+                                            <p>No user associated with this comment.</p>
+                                        @endif
+                                    @endforeach
+                                @endif
+                            <br><br>
+                                    {{-- Form Comment --}}
+                                    <form class="container" action="{{ route('course.comment.create',$content->token) }}" method="POST">
+                                        @csrf
+                                        <textarea id="tinymce-default" name="comment"></textarea>
+
+                                        @error('comment')
+                                            <div class="form-text text-danger"> {{ $errors->first('comment') }} </div>
+                                        @enderror
+
+                                        <br>
+                                        <div class="d-grid gap-2 col-6 mx-auto">
+                                            <button type="submit" class="btn btn-primary">{{ __('Send') }}</button>
                                         </div>
-                                    </div>
-                                </div>
+                                        <br>
 
+                                    </form>
+                                    {{-- Form Comment / End --}}
 
-
-                                <br><br>
-
-                                <div class="container">
-                                    <textarea id="tinymce-default" name="comment"> </textarea>
-
-                                    @error('benefits_course')
-                                        <div class="form-text text-danger"> Error </div>
-                                    @enderror
-
-                                    <br>
-                                    <div class="d-grid gap-2 col-6 mx-auto">
-                                        <button type="submit" class="btn btn-primary">Send</button>
-                                    </div>
-                                    <br>
-                                </div>
 
 
                                   <script>
@@ -331,8 +309,6 @@
                                       tinyMCE.init(options);
                                     })
                                   </script>
-
-                            </div>
                             @else
 
                             <br>

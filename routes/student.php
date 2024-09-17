@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Courses\ViewContentController;
+use App\Http\Controllers\Student\CommentsController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -22,6 +23,10 @@ Route::get('course/{title}/content/{token}', [ViewContentController::class , 'Ge
 
 Route::get('course/{title}/content/{token}/next', [ViewContentController::class , 'NextPage'])->name('course.content.next');
 Route::get('course/{title}/content/{token}/previous', [ViewContentController::class , 'PreviousPage'])->name('course.content.previous');
+
+
+// Comment
+Route::post('content/{token}/comment/create', [CommentsController::class,'CreateComment'])->name('course.comment.create');
 
 
 Route::get('file_name/{name}' , [ViewContentController::class , 'GetContentJquery'])->name('file.get');

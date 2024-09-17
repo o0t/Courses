@@ -30,6 +30,8 @@ class CreateCoursesTable extends Migration
             $table->enum('subscribers_status', ['paid','free'])->default('free');
             $table->integer('subscribers')->default(0);
 
+            $table->string('introductory_video')->nullable();
+
             $table->integer('views')->default(0);
             $table->integer('likes')->default(0);
 

@@ -16,6 +16,9 @@ class Content extends Model
         return $this->belongsToMany(Courses::class, 'courses_contents');
     }
 
+    public function Comments(){
+        return $this->hasMany(Comments::class,'content_id','id');
+    }
 
     protected static function boot()
     {

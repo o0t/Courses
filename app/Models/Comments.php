@@ -9,4 +9,21 @@ class Comments extends Model
 {
     use HasFactory;
     protected $guarded = [];
+
+
+
+
+    public function User()
+    {
+        // return $this->belongsTo(User::class, 'user_id', 'id');
+        return $this->belongsTo(User::class);
+    }
+
+
+
+    public function content()
+    {
+        return $this->belongsTo(Content::class, 'content_id' , 'id');
+    }
+
 }

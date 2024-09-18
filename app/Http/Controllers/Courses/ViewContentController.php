@@ -59,7 +59,7 @@ class ViewContentController extends Controller
             }
 
         } catch (\Throwable $th) {
-            return 'false robin';
+            return false;
         }
     }
 

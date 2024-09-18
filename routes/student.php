@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Courses\ViewContentController;
+use App\Http\Controllers\Courses\ViewCoursesController;
 use App\Http\Controllers\Student\CommentsController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -27,6 +28,10 @@ Route::get('course/{title}/content/{token}/previous', [ViewContentController::cl
 
 // Comment
 Route::post('content/{token}/comment/create', [CommentsController::class,'CreateComment'])->name('course.comment.create');
+
+
+// introductory_video
+Route::get('introductory_video/{name}' , [ViewCoursesController::class , 'Get_Introductory_Video'])->name('get.introductory_video');
 
 
 Route::get('file_name/{name}' , [ViewContentController::class , 'GetContentJquery'])->name('file.get');

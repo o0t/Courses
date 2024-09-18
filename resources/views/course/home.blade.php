@@ -2,7 +2,7 @@
 @section('title',__($course->title))
 @section('content')
 
-
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
         {{-- Content --}}
         <div class="page-wrapper">
@@ -89,13 +89,54 @@
 
                             </div>
                         <br>
-                        {{-- <video width="350" height="300" src="https://archive.org/download/Popeye_forPresident/Popeye_forPresident_512kb.mp4" controls>
-                            Sorry, your browser doesn't support HTML5 <code>video</code>, but you can download this video from the
-                            <a href="https://archive.org/details/Popeye_forPresident" target="_blank">Internet Archive</a>.
-                        </video> --}}
 
-                        <iframe width="350" height="300" src="https://www.youtube.com/embed/_W0bSen8Qjg?start=2" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
+                        @if ($course->introductory_video != NULL)
+                            {{-- Video --}}
+                            <div id="loading" style="display:none;">
+                                <div class="card placeholder-glow">
+                                    <div class="ratio ratio-21x9 card-img-top placeholder"></div>
+                                    <div class="card-body">
+                                        <div class="placeholder col-9 mb-3"></div>
+                                        <div class="placeholder placeholder-xs col-10"></div>
+                                        <div class="placeholder placeholder-xs col-11"></div>
+                                        <div class="mt-3">
+                                            <a href="#" tabindex="-1" class="btn btn-primary disabled placeholder col-4" aria-hidden="true"></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="response"></div>
+                            <script>
+                                $(document).ready(function() {
+                                    const videoName = '{{ $course->introductory_video }}';
+
+                                    $('#loading').show();
+
+                                    const url = '{{ route('get.introductory_video', ['name' => '__name__']) }}'.replace('__name__', encodeURIComponent(videoName));
+
+                                    $.get(url, function(data) {
+                                        $('#loading').hide();
+
+                                        if (data.status === 'success') {
+                                            $('#response').html(`
+                                                <video controls class="container" controlsList="nodownload">
+                                                    <source src="data:${data.mime_type};base64,${data.file_content}" type="${data.mime_type}">
+                                                    Your browser does not support the video tag.
+                                                </video>
+                                            `);
+                                        } else {
+                                            $('#response').html(`<p>${data.message}</p>`);
+                                        }
+                                    })
+                                    .fail(function(jqXHR, textStatus, errorThrown) {
+                                        $('#loading').hide();
+                                        $('#response').html('<p>Error fetching video: ' + errorThrown + '</p>');
+                                    });
+                                });
+                            </script>
+                            {{-- Video / End --}}
+                        @endif
 
                         <br><br>
                         @if ($btn_subscriber == '1')

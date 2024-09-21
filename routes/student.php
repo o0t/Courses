@@ -33,9 +33,11 @@ Route::post('content/{token}/comment/create', [CommentsController::class,'Create
 // Like
 Route::get('content/{token}/like', [StudentInteractions::class,'LikeContent'])->name('course.content.like');
 
-// ArchiveContent
+// Archive Content
 Route::get('content/{token}/archive', [StudentInteractions::class,'ArchiveContent'])->name('course.content.archive');
 
+// Note Content
+Route::post('content/{token}/note', [StudentInteractions::class,'NoteContent'])->name('course.content.note');
 
 // introductory_video
 Route::get('introductory_video/{name}' , [ViewCoursesController::class , 'Get_Introductory_Video'])->name('get.introductory_video');

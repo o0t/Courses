@@ -70,4 +70,19 @@ class User extends Authenticatable
     {
         return $this->Archive()->where('content_id', $contentId)->exists();
     }
+
+    public function Note(){
+        return $this->hasMany(Note::class,'user_id','id');
+    }
+
+    public function hasNote($contentId)
+    {
+        return $this->Note()->where('content_id', $contentId)->exists();
+    }
+
+    public function ShowNote($contentId)
+    {
+        return $this->Note()->where('content_id', $contentId)->first();
+    }
+
 }

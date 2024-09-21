@@ -68,9 +68,75 @@
                                             </a>
                                         @endif
 
-                                        <a href="#" class="btn btn-icon">
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="icon text-secondary" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(114, 126, 140, 1);transform: ;msFilter:;"><path d="M19 3H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h8a.996.996 0 0 0 .707-.293l7-7a.997.997 0 0 0 .196-.293c.014-.03.022-.061.033-.093a.991.991 0 0 0 .051-.259c.002-.021.013-.041.013-.062V5c0-1.103-.897-2-2-2zM5 5h14v7h-6a1 1 0 0 0-1 1v6H5V5zm9 12.586V14h3.586L14 17.586z"></path></svg>
-                                        </a>
+                                        {{-- Note --}}
+                                        <div class="modal modal-blur fade" id="modal-team" tabindex="-1" style="display: none;" aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                              <div class="modal-content">
+                                                <div class="modal-header">
+                                                  <h5 class="modal-title">{{__('My notes')}}</h5>
+                                                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                  <div>
+                                                <form action="{{route('course.content.note',$content->token)}}" method="POST">
+                                                    @csrf
+                                                        <textarea id="tinymce-default" value="{{ old('note') }}" name="note"></textarea>
+                                                        @error('note')
+                                                            <div class="form-text text-danger">{{ $errors->first('note') }}</div>
+                                                        @enderror
+                                                        {{-- Txt Content --}}
+                                                        <script>
+                                                            document.addEventListener("DOMContentLoaded", function() {
+                                                            let options = {
+                                                                selector: '#tinymce-default',
+                                                                height: 250,
+                                                                menubar: false,
+                                                                statusbar: false,
+                                                                plugins: [
+                                                                'advlist autolink lists link image charmap print preview anchor',
+                                                                'searchreplace visualblocks code fullscreen',
+                                                                'insertdatetime media table paste code help wordcount'
+                                                                ],
+                                                                toolbar: 'undo redo | formatselect | ' +
+                                                                'bold italic backcolor | alignleft aligncenter ' +
+                                                                'alignright alignjustify | bullist numlist outdent indent | ' +
+                                                                'removeformat',
+                                                                content_style: 'body { font-family: -apple-system, BlinkMacSystemFont, San Francisco, Segoe UI, Roboto, Helvetica Neue, sans-serif; font-size: 14px; -webkit-font-smoothing: antialiased; }'
+                                                            }
+                                                            if (localStorage.getItem("tablerTheme") === 'dark') {
+                                                                options.skin = 'oxide-dark';
+                                                                options.content_css = 'dark';
+                                                            }
+                                                            tinyMCE.init(options);
+                                                            })
+                                                        </script>
+                                                        {{-- Txt Content --}}
+                                                    </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        @if (app()->getLocale() == 'en')
+                                                            <button type="button" class="btn me-auto" data-bs-dismiss="modal">{{__('close')}}</button>
+                                                            <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">{{__('save')}}</button>
+                                                        @elseif (app()->getLocale() == 'ar')
+                                                            <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">{{__('save')}}</button>
+                                                            <button type="button" class="btn me-auto" data-bs-dismiss="modal">{{__('close')}}</button>
+                                                        @endif
+                                                    </div>
+                                                </form>
+                                              </div>
+                                            </div>
+                                          </div>
+                                          @if (Auth::user()->hasNote($content->id))
+                                            <a href="#" class="btn btn-icon" data-bs-toggle="modal" data-bs-target="#modal-team">
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="icon text-secondary" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(237, 220, 37, 1);transform: ;msFilter:;"><path d="M19 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h8l8-8V5a2 2 0 0 0-2-2zm-7 16v-7h7l-7 7z"></path></svg>
+                                            </a>
+                                          @else
+                                            <a href="#" class="btn btn-icon" data-bs-toggle="modal" data-bs-target="#modal-team">
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="icon text-secondary" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(114, 126, 140, 1);transform: ;msFilter:;"><path d="M19 3H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h8a.996.996 0 0 0 .707-.293l7-7a.997.997 0 0 0 .196-.293c.014-.03.022-.061.033-.093a.991.991 0 0 0 .051-.259c.002-.021.013-.041.013-.062V5c0-1.103-.897-2-2-2zM5 5h14v7h-6a1 1 0 0 0-1 1v6H5V5zm9 12.586V14h3.586L14 17.586z"></path></svg>
+                                            </a>
+                                          @endif
+                                        {{-- Note / End --}}
+
 
                                         @if (Auth::user()->hasArchive($content->id))
                                             <a href="{{ route('course.content.archive',$content->token) }}" class="btn btn-icon">

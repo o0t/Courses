@@ -25,6 +25,7 @@ class CoursesSeeder extends Seeder
             'name' => 'html',
             'url' => 'html',
             'photo' => 'html.png',
+            'introductory_video'    => '25224c89-ac83-46e4-8d53-4e4a40742a8b-1725792096.mp4',
             'token' => '$2y$10$7Kz/N5p7px7dd0rqPUmB4uhlfN1aXG/R2w86ciAD7oWWpKarZklZO'
         ]);
 
@@ -35,6 +36,7 @@ class CoursesSeeder extends Seeder
             'name' => 'Css',
             'url' => 'Css',
             'photo' => 'css.png',
+            'introductory_video'    => '25224c89-ac83-46e4-8d53-4e4a40742a8b-1725792096.mp4',
             'token' => '$2y$10$7Kz/N5p7px7dd0rqPUmB4uhlfN1aXG/R2w86ciAD7oWWpKarZklZO'
         ]);
 
@@ -45,6 +47,7 @@ class CoursesSeeder extends Seeder
             'name' => 'BootStrap',
             'url' => 'BootStrap',
             'photo' => 'BootStrap.png',
+            'introductory_video'    => '25224c89-ac83-46e4-8d53-4e4a40742a8b-1725792096.mp4',
             'token' => '$2y$10$7Kz/N5p7px7dd0rqPUmB4uhlfN1aXG/R2w86ciAD7oWWpKarZklZO'
         ]);
 
@@ -56,6 +59,7 @@ class CoursesSeeder extends Seeder
             'name' => 'Sass',
             'url' => 'Sass',
             'photo' => 'Sass.png',
+            'introductory_video'    => '25224c89-ac83-46e4-8d53-4e4a40742a8b-1725792096.mp4',
             'token' => '$2y$10$7Kz/N5p7px7dd0rqPUmB4uhlfN1aXG/R2w86ciAD7oWWpKarZklZO'
         ]);
 
@@ -68,6 +72,7 @@ class CoursesSeeder extends Seeder
             'name' => 'React.js',
             'url' => 'React.js',
             'photo' => 'react.png',
+            'introductory_video'    => '25224c89-ac83-46e4-8d53-4e4a40742a8b-1725792096.mp4',
             'token' => '$2y$10$7Kz/N5p7px7dd0rqPUmB4uhlfN1aXG/R2w86ciAD7oWWpKarZklZO'
         ]);
 
@@ -78,6 +83,7 @@ class CoursesSeeder extends Seeder
             'name' => 'JavaScript',
             'url' => 'JavaScript',
             'photo' => 'JavaScript.png',
+            'introductory_video'    => '25224c89-ac83-46e4-8d53-4e4a40742a8b-1725792096.mp4',
             'token' => '$2y$10$7Kz/N5p7px7dd0rqPUmB4uhlfN1aXG/R2w86ciAD7oWWpKarZklZO'
         ]);
 
@@ -88,6 +94,7 @@ class CoursesSeeder extends Seeder
             'name' => 'Tailwind CSS',
             'url' => 'Tailwind-CSS',
             'photo' => 'tailwind-css.png',
+            'introductory_video'    => '25224c89-ac83-46e4-8d53-4e4a40742a8b-1725792096.mp4',
             'token' => '$2y$10$7Kz/N5p7px7dd0rqPUmB4uhlfN1aXG/R2w86ciAD7oWWpKarZklZO'
         ]);
 

@@ -50,8 +50,7 @@ class CommentsController extends Controller
         ]);
 
 
-        return redirect()->route('course.content',compact('title'));
+            return redirect()->route('course.content',compact('title'));
 
-
-    }
+        }
 }

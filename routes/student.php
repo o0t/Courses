@@ -3,6 +3,7 @@
 use App\Http\Controllers\Courses\ViewContentController;
 use App\Http\Controllers\Courses\ViewCoursesController;
 use App\Http\Controllers\Student\CommentsController;
+use App\Http\Controllers\Student\StudentInteractions;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -28,6 +29,10 @@ Route::get('course/{title}/content/{token}/previous', [ViewContentController::cl
 
 // Comment
 Route::post('content/{token}/comment/create', [CommentsController::class,'CreateComment'])->name('course.comment.create');
+
+// Like
+Route::get('content/{token}/like', [StudentInteractions::class,'LikeContent'])->name('course.comment.like');
+
 
 
 // introductory_video

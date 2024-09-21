@@ -21,6 +21,7 @@ class CoursesFactory extends Factory
             'name'                  => $this->faker->name(),
             'url'                   => $this->faker->word,
             'photo'                 => 'test.png',
+            'introductory_video'    => 'd195194e-d9fe-44d9-b4f6-7a83c438d41a-1725947301.mp4',
             'token'                 => '$2y$10$hSg8pTgooDYawQEoRXddmengrJjz6nysryVe4bLEEaY5/YRsGX822'
         ];
     }

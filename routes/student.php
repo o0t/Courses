@@ -31,8 +31,10 @@ Route::get('course/{title}/content/{token}/previous', [ViewContentController::cl
 Route::post('content/{token}/comment/create', [CommentsController::class,'CreateComment'])->name('course.comment.create');
 
 // Like
-Route::get('content/{token}/like', [StudentInteractions::class,'LikeContent'])->name('course.comment.like');
+Route::get('content/{token}/like', [StudentInteractions::class,'LikeContent'])->name('course.content.like');
 
+// ArchiveContent
+Route::get('content/{token}/archive', [StudentInteractions::class,'ArchiveContent'])->name('course.content.archive');
 
 
 // introductory_video

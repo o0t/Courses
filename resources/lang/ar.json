@@ -275,7 +275,9 @@
     "Next Page":"الصفحة التالية",
     "Comment created successfully":"تم انشاء التعليق بنجاح",
     "The like has been removed successfully":"لقد تم إزالة الإعجاب بنجاح",
-    "You have been successfully liked":"لقد تم الإعجاب بك بنجاح"
+    "You have been successfully liked":"لقد تم الإعجاب بك بنجاح",
+    "Content has been archived successfully":"تم أرشفة المحتوى بنجاح",
+    "The content archive has been successfully deleted":"تم حذف أرشيف المحتوى بنجاح"
 
 
 }

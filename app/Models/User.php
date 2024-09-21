@@ -53,4 +53,21 @@ class User extends Authenticatable
         return $this->hasMany(Comments::class,'user_id','id');
     }
 
+    public function Likes(){
+        return $this->hasMany(Likes::class,'user_id','id');
+    }
+
+    public function hasLiked($contentId)
+    {
+        return $this->Likes()->where('content_id', $contentId)->exists();
+    }
+
+    public function Archive(){
+        return $this->hasMany(Archive::class,'user_id','id');
+    }
+
+    public function hasArchive($contentId)
+    {
+        return $this->Archive()->where('content_id', $contentId)->exists();
+    }
 }

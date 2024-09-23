@@ -79,8 +79,13 @@
                                                 <div class="modal-body">
                                                   <div>
                                                 <form action="{{route('course.content.note',$content->token)}}" method="POST">
+
                                                     @csrf
-                                                        <textarea id="tinymce-default" value="{{ old('note') }}" name="note"></textarea>
+                                                        <textarea id="tinymce-default" value="{{ old('note') }}" name="note">
+                                                            @if (Auth::user()->hasNote($content->id))
+                                                                {{ Auth::user()->ShowNote($content->id)->note }}
+                                                            @endif
+                                                        </textarea>
                                                         @error('note')
                                                             <div class="form-text text-danger">{{ $errors->first('note') }}</div>
                                                         @enderror
@@ -461,8 +466,7 @@
 
                       </div>
                       <div class="card-footer">
-                        This is not legal advice.
-                        <a href="#" target="_blank">Learn more about repository licenses.</a>
+                        =====
                       </div>
                     </div>
                   </div>

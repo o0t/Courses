@@ -29,7 +29,7 @@ Route::get('course/{title}/content/{token}/previous', [ViewContentController::cl
 
 // Comment
 Route::post('content/{token}/comment/create', [CommentsController::class,'CreateComment'])->name('course.comment.create');
-Route::post('content/{token}/comment/{token}/reply', [CommentsController::class,'ReplyComment'])->name('course.comment.reply');
+// Route::post('content/{token}/comment/{token}/reply', [CommentsController::class,'ReplyComment'])->name('course.comment.reply');
 
 // Like
 Route::get('content/{token}/like', [StudentInteractions::class,'LikeContent'])->name('course.content.like');

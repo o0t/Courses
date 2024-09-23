@@ -139,9 +139,9 @@ class StudentInteractions extends Controller
 
 
 
-    public function ReplyComment(Request $request , $content_token , $comment_token){
-        // return 'ReplyComment';
-    }
+    // public function ReplyComment(Request $request , $content_token , $comment_token){
+    //     // return 'ReplyComment';
+    // }
 
 
     public function LikeComment($content_token,$id){

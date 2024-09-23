@@ -4,8 +4,10 @@ namespace App\Http\Controllers\Student;
 
 use App\Http\Controllers\Controller;
 use App\Models\Archive;
+use App\Models\Comments;
 use App\Models\Content;
 use App\Models\Likes;
+use App\Models\Likes_comments;
 use App\Models\Note;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -135,4 +137,45 @@ class StudentInteractions extends Controller
 
     }
 
+
+
+    public function ReplyComment(Request $request , $content_token , $comment_token){
+        // return 'ReplyComment';
+    }
+
+
+    public function LikeComment($content_token,$id){
+
+        $content = Content::where('token',$content_token)->first();
+        $comment = Comments::find($id);
+
+        if (!$content || !$comment || !$content_token || !$id) {
+            return back();
+        }
+
+
+        $like = Likes_comments::where('user_id', Auth::user()->id)
+              ->where('content_id', $content->id)
+              ->where('comment_id', $comment->id)
+              ->first();
+
+        if ($like) {
+
+            $like->delete();
+            toast(__('The like has been removed successfully'), 'success');
+
+        }else{
+
+            Likes_comments::create([
+                'user_id'       => Auth::user()->id,
+                'content_id'    => $content->id,
+                'comment_id'    => $comment->id,
+            ]);
+
+            toast(__('You have been successfully liked'), 'success');
+        }
+
+        return back();
+
+    }
 }

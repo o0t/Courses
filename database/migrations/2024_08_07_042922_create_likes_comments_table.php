@@ -17,7 +17,9 @@ class CreateLikesCommentsTable extends Migration
             $table->id();
             $table->unsignedBiginteger('user_id');
             $table->unsignedBiginteger('comment_id');
-            $table->integer('count_likes')->nullable();
+            $table->unsignedBiginteger('content_id');
+
+            $table->foreign('content_id')->references('id')->on('contents')->onDelete('cascade');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('comment_id')->references('id')->on('comments')->onDelete('cascade');
             $table->timestamps();

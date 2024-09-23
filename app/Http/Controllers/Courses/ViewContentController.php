@@ -133,15 +133,20 @@ class ViewContentController extends Controller
 
         $content = Content::where('token',$token)->first();
 
-        $PreviousPage = $user_activities->serial - 1;
+        if ($user_activities->serial != 1) {
+            $PreviousPage = $user_activities->serial - 1;
 
-        $CreateActivities = user_activities::create([
-            'user_id'       => Auth::user()->id,
-            'courses_id'    => $course->id,
-            'serial'        => $PreviousPage
-        ]);
+            $CreateActivities = user_activities::create([
+                'user_id'       => Auth::user()->id,
+                'courses_id'    => $course->id,
+                'serial'        => $PreviousPage
+            ]);
 
-        return redirect()->route('course.content',compact('title'));
+            return redirect()->route('course.content',compact('title'));
+        }else{
+            return back();
+        }
+
 
     }
 

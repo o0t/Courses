@@ -91,8 +91,11 @@ class User extends Authenticatable
 
     public function hasLikes_comments($contentId , $commentId)
     {
-        // return $this->Likes_comments()->where('content_id', $contentId)->where('comment_id',$commentId)->exists();
         return $this->Likes_comments()->where('content_id', $contentId)->where('comment_id', $commentId)->exists();
+    }
+
+    public function Projects(){
+        return $this->hasMany(Projects::class,'user_id','id');
     }
 
 }

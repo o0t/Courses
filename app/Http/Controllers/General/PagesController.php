@@ -8,6 +8,7 @@ use App\Models\Main_categories;
 use App\Models\User;
 use App\Models\Courses;
 use App\Models\Content;
+use App\Models\Projects;
 use Illuminate\Http\Request;
 
 class PagesController extends Controller
@@ -51,4 +52,15 @@ class PagesController extends Controller
 
         return view('category-courses', compact('categories','Categories','Courses'));
     }
+
+
+    public function Projects(){
+        $categories = Main_categories::all();
+
+        $Projects = Projects::with('user')->orderBy('created_at', 'DESC')->paginate(15);
+
+
+        return view('projects.home',compact('categories','Projects'));
+    }
+
 }

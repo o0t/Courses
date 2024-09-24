@@ -7,6 +7,7 @@ use App\Models\Categories;
 use App\Models\Content;
 use App\Models\Courses;
 use App\Models\Main_categories;
+use App\Models\Projects;
 use App\Models\User;
 use Database\Factories\AboutCourseFactory;
 use Illuminate\Database\Seeder;
@@ -46,7 +47,7 @@ class DatabaseSeeder extends Seeder
             Content::factory()->count(50)->make()->toArray()
         );
 
-
+        Projects::factory(100)->create();
 
     }
 

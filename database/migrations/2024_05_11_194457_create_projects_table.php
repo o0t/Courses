@@ -17,19 +17,21 @@ class CreateProjectsTable extends Migration
             $table->id();
             $table->unsignedBiginteger('courses_id');
             $table->unsignedBiginteger('user_id');
+
             $table->string('name');
             $table->longText('description');
-            $table->longText('technologies')->nullable();
+            // $table->longText('technologies')->nullable();
+            $table->string('image_out')->nullable();
             $table->string('image1')->nullable();
             $table->string('image2')->nullable();
             $table->string('image3')->nullable();
             $table->string('image4')->nullable();
-            $table->string('link');
+            $table->string('link')->nullable();
+            $table->string('githup')->nullable();
             $table->integer('likes')->default(0);
-            $table->integer('comments')->default(0);
             $table->integer('views')->default(0);
-            $table->integer('favorite')->default(0);
-            $table->enum('status', ['waiting','private','general','customized','closed'])->default('private');
+            $table->enum('status', ['private','general'])->default('general');
+
             $table->foreign('courses_id')->references('id')->on('courses')->onDelete('cascade');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();

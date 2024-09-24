@@ -33,6 +33,7 @@ Route::get('course/{name}/subscribe' , [SubscribeController::class , 'subscribe'
 
 
 
+Route::get('projects' , [PagesController::class , 'Projects'])->name('projects.home');
 
 
 

@@ -27,7 +27,7 @@
                     </div>
                   </div>
                   @auth
-                    <a href="#" class="btn btn-primary">
+                    <a href="{{ route('project.create.get') }}" class="btn btn-primary">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M12 5l0 14"></path><path d="M5 12l14 0"></path></svg>
                         {{ __('Upload a project') }}
                     </a>
@@ -44,10 +44,12 @@
              @foreach ($Projects as $Project)
                 <div class="col-sm-6 col-lg-4">
                     <div class="card card-sm">
-                    <a href="#" class="d-block"><img src="{{ $Project->image_out }}" class="card-img-top"></a>
+
+                    {{-- <a href="{{ route('projects.details',['name' => $Project->name , 'username' => $Project->user->username]) }}" class="d-block"><img src="{{ asset('projects_img/'. $Project->image_out) }}" class="card-img-top"></a> --}}
+                    <a href="#" class="d-block"><img src="{{ asset('projects_img/'. $Project->image_out) }}" class="card-img-top"></a>
                     <div class="card-body">
                         <div class="d-flex align-items-center">
-                            <span class="avatar me-3 rounded" style="background-image: url({{ $Project->user->avatar }})"></span>
+                            <span class="avatar me-3 rounded" style="background-image: url({{ asset('user_avatar/'. $Project->user->avatar) }})"></span>
                         <div>
                             <div>{{ $Project->name }}</div>
                             <div class="text-secondary"> {{ $Project->created_at->diffForHumans() }} </div>
@@ -68,7 +70,7 @@
                 </div>
              @endforeach
 
-              <div class="col-sm-6 col-lg-4">
+              {{-- <div class="col-sm-6 col-lg-4">
                 <div class="card card-sm">
                   <a href="#" class="d-block"><img src="https://incoserin.com/wp-content/uploads/2014/03/img.gif" class="card-img-top"></a>
                   <div class="card-body">
@@ -93,7 +95,7 @@
                     </div>
                   </div>
                 </div>
-              </div>
+              </div> --}}
 
 
 

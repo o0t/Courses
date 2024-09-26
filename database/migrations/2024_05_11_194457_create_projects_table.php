@@ -26,8 +26,8 @@ class CreateProjectsTable extends Migration
             $table->string('image2')->nullable();
             $table->string('image3')->nullable();
             $table->string('image4')->nullable();
-            $table->string('link')->nullable();
-            $table->string('githup')->nullable();
+            $table->string('link1')->nullable();
+            $table->string('link2')->nullable();
             $table->integer('likes')->default(0);
             $table->integer('views')->default(0);
             $table->enum('status', ['private','general'])->default('general');

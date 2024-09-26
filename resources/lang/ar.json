@@ -283,7 +283,12 @@
     "save":"حفظ",
     "close":"اغلاق",
     "of":"من",
-    "Upload a project":"رفع مشروع"
+    "Upload a project":"رفع مشروع",
+    "Project Link 1":"رابط المشروع 1",
+    "Project Link 2":"رابط المشروع 2",
+    "Create a project":"إنشاء مشروع",
+    "Other":"آخر",
+    "The project has been created successfully":"تم إنشاء المشروع بنجاح"
 
 
 }

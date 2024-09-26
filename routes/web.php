@@ -3,6 +3,7 @@
 use App\Http\Controllers\Courses\SubscribeController;
 use App\Http\Controllers\Courses\ViewCoursesController;
 use App\Http\Controllers\General\PagesController;
+use App\Http\Controllers\Student\ProjectController;
 use App\Models\Subscribers;
 use Illuminate\Routing\ViewController;
 use Illuminate\Support\Facades\Auth;
@@ -34,6 +35,9 @@ Route::get('course/{name}/subscribe' , [SubscribeController::class , 'subscribe'
 
 
 Route::get('projects' , [PagesController::class , 'Projects'])->name('projects.home');
+
+// Route::get('projects/{name}/user/{username}/details' , [ProjectController::class , 'ProjectDetails'])->name('projects.details');
+
 
 
 

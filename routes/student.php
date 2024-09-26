@@ -3,6 +3,7 @@
 use App\Http\Controllers\Courses\ViewContentController;
 use App\Http\Controllers\Courses\ViewCoursesController;
 use App\Http\Controllers\Student\CommentsController;
+use App\Http\Controllers\Student\ProjectController;
 use App\Http\Controllers\Student\StudentInteractions;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -43,6 +44,12 @@ Route::post('content/{token}/note', [StudentInteractions::class,'NoteContent'])-
 
 // introductory_video
 Route::get('introductory_video/{name}' , [ViewCoursesController::class , 'Get_Introductory_Video'])->name('get.introductory_video');
+
+
+
+Route::get('project/create' , [ProjectController::class , 'CreateProjectPage'])->name('project.create.get');
+Route::post('project/create/' , [ProjectController::class , 'CreateProject'])->name('project.create.post');
+
 
 
 Route::get('file_name/{name}' , [ViewContentController::class , 'GetContentJquery'])->name('file.get');

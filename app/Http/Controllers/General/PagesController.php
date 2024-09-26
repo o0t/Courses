@@ -9,6 +9,7 @@ use App\Models\User;
 use App\Models\Courses;
 use App\Models\Content;
 use App\Models\Projects;
+use finfo;
 use Illuminate\Http\Request;
 
 class PagesController extends Controller
@@ -59,8 +60,10 @@ class PagesController extends Controller
 
         $Projects = Projects::with('user')->orderBy('created_at', 'DESC')->paginate(15);
 
-
         return view('projects.home',compact('categories','Projects'));
     }
+
+
+
 
 }

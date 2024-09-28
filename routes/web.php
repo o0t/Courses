@@ -36,6 +36,9 @@ Route::get('course/{name}/subscribe' , [SubscribeController::class , 'subscribe'
 
 Route::get('projects' , [PagesController::class , 'Projects'])->name('projects.home');
 
+Route::get('projects/images/{name}' , [PagesController::class , 'ProjectImages'])->name('projects.images');
+
+
 // Route::get('projects/{name}/user/{username}/details' , [ProjectController::class , 'ProjectDetails'])->name('projects.details');
 
 

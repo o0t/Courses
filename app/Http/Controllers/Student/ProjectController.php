@@ -20,21 +20,6 @@ class ProjectController extends Controller
     }
 
 
-
-
-    // public function ProjectDetails($name , $usename){
-
-    //     $categories = Main_categories::all();
-
-    //     $project = Projects::with('user')->where('name', $name)->whereHas('user', function ($query) use ($usename) {
-    //         $query->where('username', $usename);
-    //     })->first();
-
-
-    //     return view('projects.project-details', compact('categories','project'));
-    // }
-
-
     public function CreateProjectPage(){
 
         $categories = Main_categories::all();
@@ -92,6 +77,7 @@ class ProjectController extends Controller
             'image2'      => $uploadedFiles[3] ?? null,
             'image3'      => $uploadedFiles[4] ?? null,
             'image4'      => $uploadedFiles[5] ?? null,
+            'token'       => $request->_token,
         ]);
 
         toast(__('The project has been created successfully'), 'success');

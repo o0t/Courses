@@ -38,8 +38,7 @@ Route::get('projects' , [PagesController::class , 'Projects'])->name('projects.h
 
 Route::get('projects/images/{name}' , [PagesController::class , 'ProjectImages'])->name('projects.images');
 
-
-// Route::get('projects/{name}/user/{username}/details' , [ProjectController::class , 'ProjectDetails'])->name('projects.details');
+Route::get('projects/{token}/details' , [PagesController::class , 'ProjectDetails'])->name('projects.details');
 
 
 

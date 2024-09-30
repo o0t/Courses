@@ -112,7 +112,7 @@
                             loadingMessage.hide();
                             if (data.status === 'success') {
                                 $('#response-{{ $Project->id }}').html(`
-                                <a href="#">
+                                <a href="{{ route('projects.details',$Project->token) }}">
                                     <img src="data:${data.mime_type};base64,${data.file_content}" class="card-img-top" alt="" style="max-height: 289px;max-width: 384px;">
                                 </a>
                                 `);

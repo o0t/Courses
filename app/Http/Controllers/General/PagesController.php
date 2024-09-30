@@ -65,6 +65,17 @@ class PagesController extends Controller
     }
 
 
+
+    public function ProjectDetails($token){
+
+        $Project = Projects::where('token',$token)->first();
+
+        $categories = Main_categories::all();
+
+        return view('projects.project-details', compact('categories','Project'));
+
+    }
+
     public function ProjectImages($name){
 
         try {

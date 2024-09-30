@@ -31,7 +31,7 @@ class CreateProjectsTable extends Migration
             $table->integer('likes')->default(0);
             $table->integer('views')->default(0);
             $table->enum('status', ['private','general'])->default('general');
-
+            $table->string('token');
             $table->foreign('courses_id')->references('id')->on('courses')->onDelete('cascade');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();

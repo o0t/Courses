@@ -41,7 +41,9 @@ Route::get('projects/images/{name}' , [PagesController::class , 'ProjectImages']
 Route::get('projects/{token}/details' , [PagesController::class , 'ProjectDetails'])->name('projects.details');
 
 
+Route::get('articles' , [PagesController::class , 'Articles'])->name('articles.home');
 
+Route::get('articles/images/{name}' , [PagesController::class , 'ArticleImages'])->name('articles.images');
 
 
 

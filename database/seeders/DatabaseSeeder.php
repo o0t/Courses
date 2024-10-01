@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\AboutCourse;
+use App\Models\Articles;
 use App\Models\Categories;
 use App\Models\Content;
 use App\Models\Courses;
@@ -48,6 +49,7 @@ class DatabaseSeeder extends Seeder
         );
 
         Projects::factory(100)->create();
+        Articles::factory(100)->create();
 
     }
 

@@ -62,17 +62,6 @@
         <!-- Page body -->
         <div class="page-body">
           <div class="container-xl">
-            <ul class="nav nav-bordered mb-2 mt-6">
-                @foreach ($categories as $item)
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">{{ $item->name }}</a>
-                    </li>
-                @endforeach
-                {{-- <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href="#">View all</a>
-                </li>
-                --}}
-            </ul>
             <div class="row row-cards">
             {{-- Projects --}}
             @foreach ($Projects as $Project)

@@ -23,7 +23,7 @@ class ArticlesFactory extends Factory
             'name'          => $this->faker->domainName(),
             'description'   => $this->faker->text(50),
             'article'       => $this->faker->text(200),
-            'image_out'     => 'image0.06cca95a-4bdc-4163-83e1-1d38772978db-1727649826.png',
+            'image_out'     => 'articles.png',
             'url'           => $this->generateUniqueUrl(),
             'likes'         => $this->faker->numberBetween(1,300),
             'views'         => $this->faker->numberBetween(1,1000),

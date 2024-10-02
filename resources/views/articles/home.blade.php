@@ -49,9 +49,9 @@
 
                   </div>
                   @auth
-                    <a href="{{ route('Article.create.get') }}" class="btn btn-primary">
+                    <a href="#" class="btn btn-primary">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M12 5l0 14"></path><path d="M5 12l14 0"></path></svg>
-                        {{ __('Upload a Article') }}
+                        {{ __('Create an article') }}
                     </a>
                   @endauth
                 </div>
@@ -62,17 +62,6 @@
         <!-- Page body -->
         <div class="page-body">
           <div class="container-xl">
-            <ul class="nav nav-bordered mb-2 mt-6">
-                @foreach ($categories as $item)
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">{{ $item->name }}</a>
-                    </li>
-                @endforeach
-                {{-- <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href="#">View all</a>
-                </li>
-                --}}
-            </ul>
             <div class="row row-cards">
             {{-- Articles --}}
             @foreach ($Articles as $Article)

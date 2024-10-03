@@ -25,7 +25,11 @@ Route::get('/', [PagesController::class , 'index'])->name('index');
 
 Route::get('category/{category}', [PagesController::class , 'category'])->name('category');
 
-Route::get('category/{category}/courses', [PagesController::class , 'CategoryCourses'])->name('category.courses');
+
+Route::get('category/{category}/courses/latest', [PagesController::class , 'LatestCategoryCourses'])->name('category.courses.latest');
+Route::get('category/{category}/courses/oldest', [PagesController::class , 'OldestCategoryCourses'])->name('category.courses.oldest');
+// Route::get('category/{category}/courses/oldest', [PagesController::class , 'OldestCategoryCourses'])->name('category.courses.oldest');
+
 
 Route::get('course/{name}' , [ViewCoursesController::class , 'index'])->name('course.view');
 

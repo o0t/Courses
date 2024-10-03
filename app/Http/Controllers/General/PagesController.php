@@ -42,18 +42,38 @@ class PagesController extends Controller
 
 
 
-    public function CategoryCourses($category){
+    public function LatestCategoryCourses($category){
 
-        $Categories = Categories::where('name',$category)->first();
-        if ($Categories) {
-            $Courses = $Categories->Courses;
-            $categories = Main_categories::all();
-        }else{
+        $Categories = Categories::where('name', $category)->first();
+
+        if (!$Categories) {
             return back();
         }
 
-        return view('category-courses', compact('categories','Categories','Courses'));
+        $Courses = $Categories->courses()->latest()->paginate(10);
+        $categories = Main_categories::all();
+        $status = 'latest';
+
+        return view('category-courses', compact('categories','Categories','Courses','status','category'));
     }
+
+
+    public function OldestCategoryCourses($category){
+
+        $Categories = Categories::where('name', $category)->first();
+
+        if (!$Categories) {
+            return back();
+        }
+
+        $Courses = $Categories->courses()->oldest()->paginate(10);
+        $categories = Main_categories::all();
+        $status = 'oldest';
+
+        return view('category-courses', compact('categories','Categories','Courses','status','category'));
+
+    }
+
 
 
     public function Projects(){

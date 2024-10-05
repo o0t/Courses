@@ -95,6 +95,17 @@ class PagesController extends Controller
     }
 
 
+    public function ArticleDetails($token){
+
+        $categories = Main_categories::all();
+
+        $Article = Articles::with('user')->where('token',$token)->first();
+
+        return view('articles.article-details',compact('categories','Article'));
+
+    }
+
+
     public function ProjectDetails($token){
 
         $Project = Projects::where('token',$token)->first();

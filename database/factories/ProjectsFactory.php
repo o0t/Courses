@@ -22,6 +22,7 @@ class ProjectsFactory extends Factory
             'name'          => $this->faker->domainName,
             'description'   => $this->faker->text(50),
             'image_out'     => 'projects.png',
+            // 'image_out'     => $this->faker->imageUrl(100, 100),
             'image1'        => 'projects.png',
             'image2'        => 'projects.png',
             'image3'        => 'projects.png',

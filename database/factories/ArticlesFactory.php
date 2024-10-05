@@ -20,9 +20,9 @@ class ArticlesFactory extends Factory
         return [
             'courses_id'    => Courses::all()->random()->id,
             'user_id'       => User::all()->random()->id,
-            'name'          => $this->faker->domainName(),
-            'description'   => $this->faker->text(50),
-            'article'       => $this->faker->text(200),
+            'name'          => $this->faker->jobTitle(),
+            'title'         => $this->faker->text(40),
+            'article'       => $this->faker->paragraphs(50, true),
             'image_out'     => 'articles.png',
             'url'           => $this->generateUniqueUrl(),
             'likes'         => $this->faker->numberBetween(1,300),

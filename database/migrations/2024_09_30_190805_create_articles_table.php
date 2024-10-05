@@ -20,7 +20,8 @@ class CreateArticlesTable extends Migration
             $table->unsignedBiginteger('user_id');
 
             $table->string('name');
-            $table->longText('description')->nullable();
+            $table->string('title');
+
             $table->longText('article')->nullable();
             $table->string('image_out')->nullable();
             $table->integer('likes')->default(0);

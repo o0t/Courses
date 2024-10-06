@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Courses\ViewContentController;
 use App\Http\Controllers\Courses\ViewCoursesController;
+use App\Http\Controllers\Student\ArticleController;
 use App\Http\Controllers\Student\CommentsController;
 use App\Http\Controllers\Student\ProjectController;
 use App\Http\Controllers\Student\StudentInteractions;
@@ -49,6 +50,9 @@ Route::get('introductory_video/{name}' , [ViewCoursesController::class , 'Get_In
 
 Route::get('project/create' , [ProjectController::class , 'CreateProjectPage'])->name('project.create.get');
 Route::post('project/create/' , [ProjectController::class , 'CreateProject'])->name('project.create.post');
+
+Route::get('article/create' , [ArticleController::class,'CreateArticlePage'])->name('article.create.get');
+Route::post('article/create' , [ArticleController::class,'CreateArticle'])->name('article.create.post');
 
 
 

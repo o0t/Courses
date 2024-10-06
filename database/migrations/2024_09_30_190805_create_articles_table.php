@@ -23,7 +23,7 @@ class CreateArticlesTable extends Migration
             $table->string('title');
 
             $table->longText('article')->nullable();
-            $table->string('image_out')->nullable();
+            $table->string('image')->nullable();
             $table->integer('likes')->default(0);
             $table->integer('views')->default(0);
 

@@ -57,7 +57,7 @@
 
     <script>
         $(document).ready(function() {
-            const ImageName = '{{ $Article->image_out }}';
+            const ImageName = '{{ $Article->image }}';
             const url = '{{ route('articles.images', ['name' => '__name__']) }}'.replace('__name__', encodeURIComponent(ImageName));
             const loadingMessage = $('#loading');
             loadingMessage.show();

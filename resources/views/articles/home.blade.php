@@ -49,7 +49,7 @@
 
                   </div>
                   @auth
-                    <a href="#" class="btn btn-primary">
+                    <a href="{{ route('article.create.get') }}" class="btn btn-primary">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M12 5l0 14"></path><path d="M5 12l14 0"></path></svg>
                         {{ __('Create an article') }}
                     </a>
@@ -70,7 +70,8 @@
                     <div class="card card-sm">
                         <div class="card-body">
                             <div class="d-flex align-items-center">
-                                <span class="avatar me-3 rounded" style="background-image: url({{ asset('user_avatar/' . $Article->user->avatar) }})"></span>
+                                <span class="avatar me-3 rounded" data-bs-trigger="hover" data-bs-toggle="popover" data-bs-placement="top"
+                                data-bs-content="{{ '@'.$Article->user->username }}" style="background-image: url({{ asset('user_avatar/' . $Article->user->avatar) }})"></span>
                                 <div>
                                     <div>{{ $Article->name }}</div>
                                     <div class="text-secondary">{{ $Article->created_at->diffForHumans() }}</div>
@@ -113,7 +114,7 @@
 
                 <script>
                     $(document).ready(function() {
-                        const ImageName = '{{ $Article->image_out }}';
+                        const ImageName = '{{ $Article->image }}';
                         const url = '{{ route('articles.images', ['name' => '__name__']) }}'.replace('__name__', encodeURIComponent(ImageName));
                         const loadingMessage = $('#loading-{{ $Article->id }}');
                         loadingMessage.show();

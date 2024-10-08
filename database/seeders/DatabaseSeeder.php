@@ -7,6 +7,7 @@ use App\Models\Articles;
 use App\Models\Categories;
 use App\Models\Content;
 use App\Models\Courses;
+use App\Models\Information;
 use App\Models\Main_categories;
 use App\Models\Projects;
 use App\Models\User;
@@ -29,6 +30,13 @@ class DatabaseSeeder extends Seeder
 
         //  \App\Models\Categories::factory(12)->create();
 
+        // This is for testing only
+        Information::create([
+            'courses'   => 95,
+            'students'  => '599',
+            'teachers'  => '120',
+            'Lessons'  => '1530',
+        ]);
 
         $this->call([
             UsersSeeder::class,
@@ -50,6 +58,8 @@ class DatabaseSeeder extends Seeder
 
         Projects::factory(100)->create();
         Articles::factory(100)->create();
+
+
 
     }
 

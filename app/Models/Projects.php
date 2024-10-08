@@ -16,4 +16,10 @@ class Projects extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+
+    public function courses()
+    {
+        return $this->hasMany(Courses::class); // Adjust the relationship type and model name as needed
+    }
 }

@@ -26,7 +26,7 @@
             <div class="card">
               <div class="card-header">
                 <h3 class="card-title">
-                    ---
+                    <a href="{{ route('course.view',$Course->name) }}">{{ $Course->name }}</a>
                 </h3>
               </div>
               <br>

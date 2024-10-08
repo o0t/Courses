@@ -91,6 +91,7 @@ class PagesController extends Controller
 
         $Articles = Articles::with('user')->orderBy('created_at', 'DESC')->paginate(15);
 
+
         return view('articles.home',compact('categories','Articles'));
     }
 
@@ -112,7 +113,9 @@ class PagesController extends Controller
 
         $categories = Main_categories::all();
 
-        return view('projects.project-details', compact('categories','Project'));
+        $Course = Courses::find($Project->id);
+
+        return view('projects.project-details', compact('categories','Project','Course'));
 
     }
 

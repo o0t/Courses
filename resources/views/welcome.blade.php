@@ -20,7 +20,7 @@
                           </div>
                           <div class="col">
                             <div class="font-weight-medium">
-                              132 {{ __('course') }}
+                              132 {{ __('Courses') }}
                             </div>
                           </div>
                         </div>
@@ -36,7 +36,7 @@
                           </div>
                           <div class="col">
                             <div class="font-weight-medium">
-                              78 {{ __('student') }}
+                              78 {{ __('Students') }}
                             </div>
                           </div>
                         </div>
@@ -52,7 +52,7 @@
                           </div>
                           <div class="col">
                             <div class="font-weight-medium">
-                              623 {{ __('Lesson') }}
+                              623 {{ __('Lessons') }}
                             </div>
                           </div>
                         </div>
@@ -64,11 +64,11 @@
                       <div class="card-body">
                         <div class="row align-items-center">
                           <div class="col-auto">
-                            <img src="{{ asset('assets/img/clock.png') }}" width="64" height="64"  alt="">
+                            <img src="{{ asset('assets/img/Teachers.png') }}" width="64" height="64"  alt="">
                           </div>
                           <div class="col">
                             <div class="font-weight-medium">
-                              132 {{ __('Educational hour') }}
+                              132 {{ __('Teachers') }}
                             </div>
                           </div>
                         </div>

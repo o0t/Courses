@@ -22,14 +22,14 @@ class StudentInteractions extends Controller
     }
 
 
-    public function LikeContent($token){
 
-        $content = Content::where('token',$token)->first();
+    public function LikeContent($token) {
+        $content = Content::where('token', $token)->first();
 
-        if (!$content || !$token) {
-            return back();
+        // Check if content exists
+        if (!$content) {
+            return response()->json(['message' => 'Content not found.'], 404);
         }
-
 
         $like = Likes::where('user_id', Auth::user()->id)
               ->where('content_id', $content->id)
@@ -37,21 +37,27 @@ class StudentInteractions extends Controller
 
         if ($like) {
             $like->delete();
+            // toast(__('The like has been removed successfully'), 'success');
 
-            toast(__('The like has been removed successfully'), 'success');
-
-        }else{
+            return response()->json([
+                'message' => 'Like removed successfully.',
+                'status'  => 'delete like',
+            ]);
+        } else {
             Likes::create([
                 'user_id'       => Auth::user()->id,
                 'content_id'    => $content->id,
             ]);
 
-            toast(__('You have been successfully liked'), 'success');
+            // toast(__('You have been successfully liked'), 'success');
+
+            return response()->json([
+                'message' => 'Liked successfully.',
+                'status'  => 'create like',
+            ]);
         }
-
-        return back();
-
     }
+
 
 
 
@@ -71,7 +77,12 @@ class StudentInteractions extends Controller
         if ($Archive) {
             $Archive->delete();
 
-            toast(__('The content archive has been successfully deleted'), 'success');
+            // toast(__('The content archive has been successfully deleted'), 'success');
+
+            return response()->json([
+                'message' => 'Archive removed successfully.',
+                'status'  => 'delete Archive',
+            ]);
 
         }else{
             Archive::create([
@@ -79,10 +90,13 @@ class StudentInteractions extends Controller
                 'content_id'    => $content->id,
             ]);
 
-            toast(__('Content has been archived successfully'), 'success');
+            // toast(__('Content has been archived successfully'), 'success');
+            return response()->json([
+                'message' => 'Archive successfully.',
+                'status'  => 'create Archive',
+            ]);
         }
 
-        return back();
 
     }
 

@@ -101,57 +101,53 @@ class StudentInteractions extends Controller
     }
 
 
-    public function NoteContent(Request $request, $token){
 
-        $content = Content::where('token',$token)->first();
+    public function NoteContent(Request $request, $token)
+    {
+        // Find the content by token
+        $content = Content::where('token', $token)->first();
 
-        if (!$content || !$content) {
-            return back();
+        // Check if content exists
+        if (!$content) {
+            return response()->json(['message' => 'Content not found'], 404);
         }
 
-        $Note = Note::where('user_id', Auth::user()->id)
-        ->where('content_id', $content->id)
-        ->first();
-
+        // Validate the incoming request
         $validator = Validator::make($request->all(), [
-            'note'        =>  'required|max:5000'
+            'note' => 'required|max:5000',
         ]);
 
-
+        // Handle validation failure
         if ($validator->fails()) {
-            toast(__('Data entry error'),'error');
-            return back()->withErrors($validator)->withInput();
-        }else{
-            toast(__('Data updated successfully'),'success');
+            return response()->json([
+                'message' => __('Data entry error'),
+                'errors' => $validator->errors(),
+            ], 422);
         }
 
-        if ($Note) {
+        // Find the existing note for the user
+        $note = Note::where('user_id', Auth::user()->id)
+            ->where('content_id', $content->id)
+            ->first();
 
-            $Note->update([
-                'note'      => $request->note,
+        // If a note exists, update it; otherwise, create a new note
+        if ($note) {
+            $note->update(['note' => $request->note]);
+        } else {
+            $note = Note::create([
+                'user_id' => Auth::user()->id,
+                'content_id' => $content->id,
+                'note' => $request->note,
+                'token' => $request->_token,
             ]);
-
-            toast(__('Notes saved'), 'success');
-
-        }else{
-
-            Note::create([
-                'user_id'       => Auth::user()->id,
-                'content_id'    => $content->id,
-                'note'          => $request->note,
-                'token'         => $request->_token
-            ]);
-
-            toast(__('Notes saved'), 'success');
-
         }
 
-
-        return back();
-
+        // Return success response only if the note was saved/updated
+        return response()->json([
+            'message' => __('Notes saved'),
+            'note' => $note,
+        ]);
     }
-
-
 
     // public function ReplyComment(Request $request , $content_token , $comment_token){
     //     // return 'ReplyComment';

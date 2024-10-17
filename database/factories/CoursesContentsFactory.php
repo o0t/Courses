@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 
 class CoursesContentsFactory extends Factory
 {
+
     /**
      * Define the model's default state.
      *

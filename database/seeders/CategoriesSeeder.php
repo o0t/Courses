@@ -69,28 +69,29 @@ class CategoriesSeeder extends Seeder
 
 
 
-            ['name' => 'Kotlin',            'img' => 'kotlin.png','main_category_id' => 3],
+            // ['name' => 'Kotlin',            'img' => 'kotlin.png','main_category_id' => 3],
             ['name' => 'Android SDK',       'img' => 'Android-SDK.png','main_category_id' => 3],
-            ['name' => 'Flutter',           'img' => 'flutter.png','main_category_id' => 3],
+            // ['name' => 'Flutter',           'img' => 'flutter.png','main_category_id' => 3],
             ['name' => 'iOS SDK',           'img' => 'iOS-SDK.png','main_category_id' => 3],
-            ['name' => 'Swift',             'img' => 'swift.png','main_category_id' => 3],
-            ['name' => 'objective-c',       'img' => 'objective-c.png','main_category_id' => 3],
-            ['name' => 'React Native',      'img' => 'react.png','main_category_id' => 3],
+            ['name' => 'other',             'img' => 'other-mobile-app.png','main_category_id' => 3],
+            // ['name' => 'Swift',             'img' => 'swift.png','main_category_id' => 3],
+            // ['name' => 'objective-c',       'img' => 'objective-c.png','main_category_id' => 3],
+            // ['name' => 'React Native',      'img' => 'react.png','main_category_id' => 3],
 
 
-            ['name' => 'Data Analysis', 'img' => 'data-analysis.png', 'main_category_id' => 4],
-            ['name' => 'Machine Learning', 'img' => 'machine-learning.png', 'main_category_id' => 4],
-            ['name' => 'Modeling and Forecasting', 'img' => 'modeling-forecasting.png', 'main_category_id' => 4],
-            ['name' => 'Natural Language Processing', 'img' => 'natural-language-processing.png', 'main_category_id' => 4],
-            ['name' => 'Artificial Intelligence', 'img' => 'artificial-intelligence.png', 'main_category_id' => 4],
+            ['name' => 'Data Analysis',                 'img' => 'data-analysis.png', 'main_category_id' => 4],
+            ['name' => 'Machine Learning',              'img' => 'machine-learning.png', 'main_category_id' => 4],
+            ['name' => 'Modeling and Forecasting',      'img' => 'modeling-forecasting.png', 'main_category_id' => 4],
+            ['name' => 'Natural Language Processing',   'img' => 'natural-language-processing.png', 'main_category_id' => 4],
+            ['name' => 'Artificial Intelligence',        'img' => 'artificial-intelligence.png', 'main_category_id' => 4],
 
 
-            ['name' => 'Cyber Attacks and Defenses', 'img' => 'cyber-attacks-defenses.png', 'main_category_id' => 5],
+            ['name' => 'Cyber Attacks and Defenses',      'img' => 'cyber-attacks-defenses.png', 'main_category_id' => 5],
             ['name' => 'Information Security Management', 'img' => 'information-security-management.png', 'main_category_id' => 5],
-            ['name' => 'Network and System Security', 'img' => 'network-system-security.png', 'main_category_id' => 5],
-            ['name' => 'Application Security', 'img' => 'application-security.png', 'main_category_id' => 5],
-            ['name' => 'Cybercrime and Investigations', 'img' => 'cybercrime-investigations.png', 'main_category_id' => 5],
-            ['name' => 'Data Security and Privacy', 'img' => 'data-security-privacy.png', 'main_category_id' => 5],
+            ['name' => 'Network and System Security',     'img' => 'network-system-security.png', 'main_category_id' => 5],
+            ['name' => 'Application Security',            'img' => 'application-security.png', 'main_category_id' => 5],
+            ['name' => 'Cybercrime and Investigations',   'img' => 'cybercrime-investigations.png', 'main_category_id' => 5],
+            ['name' => 'Data Security and Privacy',       'img' => 'data-security-privacy.png', 'main_category_id' => 5],
 
 
 

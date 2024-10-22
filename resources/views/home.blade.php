@@ -40,6 +40,8 @@
     </style>
 
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
   </head>
   <body>
     <script src="{{ asset('assets/js/demo-theme.min.js?1684106062')}}"></script>
@@ -177,7 +179,7 @@
 
                         <div class="me-3 mt-2 d-none d-md-block">
                             <div class="input-icon">
-                            <input type="text" class="form-control" placeholder="{{ __('Search for the course') }}">
+                            <input type="text" class="form-control" placeholder="{{ __('Search for the course dd') }}">
                             <span class="input-icon-addon">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                 <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
@@ -287,18 +289,107 @@
 
                     <div class="navbar-nav flex-row order-md-last">
 
-                        <div class="me-3 mt-2 d-none d-md-block">
+                        {{-- Search --}}
+                        {{-- <div class="me-3 mt-2 d-none d-md-block">
+                            <form action="{{ route('course.search') }}" method="post">
+                                @csrf
+                                <div class="input-icon">
+                                <input type="text" class="form-control" name="search" placeholder="{{ __('Search for the course') }}">
+                                    <span class="input-icon-addon">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                        <path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0"></path>
+                                        <path d="M21 21l-6 -6"></path>
+                                        </svg>
+                                    </span>
+                                </div>
+                            </form>
+                        </div> --}}
+
+                        <div class="me-3 mt-2 d-none d-md-block position-relative">
                             <div class="input-icon">
-                            <input type="text" class="form-control" placeholder="{{ __('Search for the course') }}">
-                            <span class="input-icon-addon">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                <path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0"></path>
-                                <path d="M21 21l-6 -6"></path>
-                                </svg>
-                            </span>
+                                <input type="text" id="search" class="form-control" name="search" placeholder="{{ __('Search for the coursedddd') }}">
+                                <span class="input-icon-addon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                        <path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0"></path>
+                                        <path d="M21 21l-6 -6"></path>
+                                    </svg>
+                                </span>
                             </div>
+                            <div id="results" style="display: none; position: absolute; z-index: 1000; background: white; border: 1px solid #ccc; max-height: 200px; overflow-y: auto;"></div>
                         </div>
+
+                        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+                        <script>
+                            $(document).ready(function() {
+                                $('#search').on('input', function() {
+                                    var query = $(this).val();
+
+                                    // Send request immediately on input
+                                    $.ajax({
+                                        url: '{{ route("course.search") }}', // Your search route
+                                        type: 'POST',
+                                        data: {
+                                            _token: '{{ csrf_token() }}', // CSRF token
+                                            search: query
+                                        },
+                                        success: function(data) {
+                                            $('#results').empty().show(); // Clear previous results
+                                            if (data.length > 0) {
+                                                $.each(data, function(index, item) {
+                                                    $('#results').append('<div class="result-item" style="padding: 10px; cursor: pointer;">' + item.name + '</div>');
+                                                });
+                                            } else {
+                                                $('#results').append('<div class="result-item" style="padding: 10px;">No results found</div>');
+                                            }
+                                        },
+                                        error: function() {
+                                            $('#results').empty().show().append('<div class="result-item" style="padding: 10px;">Error retrieving data</div>');
+                                        }
+                                    });
+
+                                    // Hide results if input is empty
+                                    if (query.length === 0) {
+                                        $('#results').hide(); // Hide results when there's no input
+                                    }
+                                });
+
+                                // Handle click on result item
+                                $(document).on('click', '.result-item', function() {
+                                    $('#search').val($(this).text());
+                                    $('#results').hide(); // Hide results after selection
+                                });
+
+                                // Optional: Hide results when clicking outside
+                                $(document).on('click', function(event) {
+                                    if (!$(event.target).closest('#search').length) {
+                                        $('#results').hide();
+                                    }
+                                });
+                            });
+                        </script>
+
+                        <style>
+                            #results {
+                                display: none; /* Initially hidden */
+                                position: absolute; /* Position relative to the input */
+                                z-index: 1000; /* Ensure it's above other elements */
+                                background: white; /* White background for visibility */
+                                border: 1px solid #ccc; /* Border for distinction */
+                                max-height: 200px; /* Limit height */
+                                overflow-y: auto; /* Scroll if too many results */
+                            }
+                            .result-item {
+                                padding: 10px; /* Padding for items */
+                                cursor: pointer; /* Pointer cursor on hover */
+                            }
+                            .result-item:hover {
+                                background-color: #f0f0f0; /* Highlight on hover */
+                            }
+                        </style>
+                        {{-- Search / End --}}
+
                         <div class="d-none d-md-flex">
 
                         <a href="?theme=dark" class="nav-link px-0 hide-theme-dark me-2" data-bs-toggle="tooltip" data-bs-placement="bottom" aria-label="Enable dark mode" data-bs-original-title="Enable dark mode">

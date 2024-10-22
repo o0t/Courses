@@ -3,6 +3,7 @@
 use App\Http\Controllers\Courses\SubscribeController;
 use App\Http\Controllers\Courses\ViewCoursesController;
 use App\Http\Controllers\General\PagesController;
+use App\Http\Controllers\General\SearchController;
 use App\Http\Controllers\Student\ProjectController;
 use App\Models\Subscribers;
 use Illuminate\Routing\ViewController;
@@ -50,6 +51,9 @@ Route::get('articles' , [PagesController::class , 'Articles'])->name('articles.h
 Route::get('articles/{token}details' , [PagesController::class , 'ArticleDetails'])->name('articles.details');
 
 Route::get('articles/images/{name}' , [PagesController::class , 'ArticleImages'])->name('articles.images');
+
+
+Route::post('courses/search' , [PagesController::class , 'FormSearchCourses'])->name('course.search');
 
 
 

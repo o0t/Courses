@@ -12,6 +12,7 @@ use App\Models\Content;
 use App\Models\Projects;
 use finfo;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class PagesController extends Controller
 {
@@ -200,5 +201,21 @@ class PagesController extends Controller
     }
 
 
+    public function FormSearchCourses(Request $request){
+
+        $validator = Validator::make($request->all(), [
+            'search'    => 'required|string|max:200|min:2',
+        ]);
+
+        if ($validator->fails()) {
+            toast(__('Data entry error'), 'error');
+            return back()->withErrors($validator)->withInput();
+        }
+        $categories = Main_categories::all();
+
+        $course = Courses::where("title","like","%".$request->search."%")->with('Categories')->get();
+
+        return response()->json($course);
+    }
 
 }

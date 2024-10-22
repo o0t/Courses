@@ -40,6 +40,8 @@
     </style>
 
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
   </head>
   <body>
     <script src="{{ asset('assets/js/demo-theme.min.js?1684106062')}}"></script>
@@ -67,18 +69,9 @@
 
                         <div class="navbar-nav flex-row order-md-last">
 
-                            <div class="me-3 mt-2 d-none d-md-block">
-                                <div class="input-icon">
-                                <input type="text" class="form-control" placeholder="{{ __('Search for the course') }}">
-                                <span class="input-icon-addon">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                    <path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0"></path>
-                                    <path d="M21 21l-6 -6"></path>
-                                    </svg>
-                                </span>
-                                </div>
-                            </div>
+                            {{-- Search --}}
+                            @include('layouts.__search')
+                            {{-- Search / End --}}
                             <div class="d-none d-md-flex">
 
                             <a href="?theme=dark" class="nav-link px-0 hide-theme-dark me-2" data-bs-toggle="tooltip" data-bs-placement="bottom" aria-label="Enable dark mode" data-bs-original-title="Enable dark mode">
@@ -174,18 +167,9 @@
 
                         <div class="navbar-nav flex-row order-md-last">
 
-                            <div class="me-3 mt-2 d-none d-md-block">
-                                <div class="input-icon">
-                                <input type="text" class="form-control" placeholder="{{ __('Search for the course') }}">
-                                <span class="input-icon-addon">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                    <path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0"></path>
-                                    <path d="M21 21l-6 -6"></path>
-                                    </svg>
-                                </span>
-                                </div>
-                            </div>
+                            {{-- Search --}}
+                                @include('layouts.__search')
+                            {{-- Search / End --}}
                             <div class="d-none d-md-flex">
 
                             <a href="?theme=dark" class="nav-link px-0 hide-theme-dark me-2" data-bs-toggle="tooltip" data-bs-placement="bottom" aria-label="Enable dark mode" data-bs-original-title="Enable dark mode">
@@ -285,18 +269,9 @@
 
                         <div class="navbar-nav flex-row order-md-last">
 
-                            <div class="me-3 mt-2 d-none d-md-block">
-                                <div class="input-icon">
-                                <input type="text" class="form-control" placeholder="{{ __('Search for the course') }}">
-                                <span class="input-icon-addon">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                    <path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0"></path>
-                                    <path d="M21 21l-6 -6"></path>
-                                    </svg>
-                                </span>
-                                </div>
-                            </div>
+                            {{-- Search --}}
+                                @include('layouts.__search')
+                            {{-- Search / End --}}
                             <div class="d-none d-md-flex">
 
                             <a href="?theme=dark" class="nav-link px-0 hide-theme-dark me-2" data-bs-toggle="tooltip" data-bs-placement="bottom" aria-label="Enable dark mode" data-bs-original-title="Enable dark mode">
@@ -421,18 +396,10 @@
 
                     <div class="navbar-nav flex-row order-md-last">
 
-                        <div class="me-3 mt-2 d-none d-md-block">
-                            <div class="input-icon">
-                            <input type="text" class="form-control" placeholder="{{ __('Search for the course') }}">
-                            <span class="input-icon-addon">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                <path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0"></path>
-                                <path d="M21 21l-6 -6"></path>
-                                </svg>
-                            </span>
-                            </div>
-                        </div>
+
+                            {{-- Search --}}
+                            @include('layouts.__search')
+                            {{-- Search / End --}}
                         <div class="nav-item d-md-flex me-3">
                             <div class="btn-list">
                                 <a href="{{ route('login') }}" class="btn"  rel="noreferrer">

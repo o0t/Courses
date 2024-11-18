@@ -19,41 +19,56 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::group(['prefix'=>'course'], function(){
+
+    Route::get('{title}/content' , [ViewContentController::class , 'index'])->name('course.content');
+    Route::get('{title}/content/{token}', [ViewContentController::class , 'Get_Content_From_Token'])->name('course.content.get');
+
+    Route::get('{title}/content/{token}/next', [ViewContentController::class , 'NextPage'])->name('course.content.next');
+    Route::get('{title}/content/{token}/previous', [ViewContentController::class , 'PreviousPage'])->name('course.content.previous');
+
+});
 
 
-Route::get('course/{title}/content' , [ViewContentController::class , 'index'])->name('course.content');
+Route::group(['prefix'=>'content'], function(){
 
-Route::get('course/{title}/content/{token}', [ViewContentController::class , 'Get_Content_From_Token'])->name('course.content.get');
+    // Comment
+    Route::post('{token}/comment/create', [CommentsController::class,'CreateComment'])->name('course.comment.create');
+    // Route::post('content/{token}/comment/{token}/reply', [CommentsController::class,'ReplyComment'])->name('course.comment.reply');
+    // Like Comment
+    Route::get('{content_token}/comment/{id}/like', [StudentInteractions::class,'LikeComment'])->name('course.comment.like');
+    // Like
+    Route::get('{token}/like', [StudentInteractions::class,'LikeContent'])->name('course.content.like');
+    // Archive Content
+    Route::get('{token}/archive', [StudentInteractions::class,'ArchiveContent'])->name('course.content.archive');
+    // Note Content
+    Route::post('{token}/note', [StudentInteractions::class,'NoteContent'])->name('course.content.note');
 
-Route::get('course/{title}/content/{token}/next', [ViewContentController::class , 'NextPage'])->name('course.content.next');
-Route::get('course/{title}/content/{token}/previous', [ViewContentController::class , 'PreviousPage'])->name('course.content.previous');
+});
 
 
-// Comment
-Route::post('content/{token}/comment/create', [CommentsController::class,'CreateComment'])->name('course.comment.create');
-// Route::post('content/{token}/comment/{token}/reply', [CommentsController::class,'ReplyComment'])->name('course.comment.reply');
 
-// Like
-Route::get('content/{token}/like', [StudentInteractions::class,'LikeContent'])->name('course.content.like');
-Route::get('content/{content_token}/comment/{id}/like', [StudentInteractions::class,'LikeComment'])->name('course.comment.like');
+Route::group(['prefix'=>'project'], function(){
 
-// Archive Content
-Route::get('content/{token}/archive', [StudentInteractions::class,'ArchiveContent'])->name('course.content.archive');
+    Route::get('create' , [ProjectController::class , 'CreateProjectPage'])->name('project.create.get');
+    Route::post('create' , [ProjectController::class , 'CreateProject'])->name('project.create.post');
 
-// Note Content
-Route::post('content/{token}/note', [StudentInteractions::class,'NoteContent'])->name('course.content.note');
+});
+
+Route::group(['prefix'=>'article'], function(){
+
+    Route::get('create' , [ArticleController::class,'CreateArticlePage'])->name('article.create.get');
+    Route::post('create' , [ArticleController::class,'CreateArticle'])->name('article.create.post');
+
+});
+
+
+
+
+
 
 // introductory_video
 Route::get('introductory_video/{name}' , [ViewCoursesController::class , 'Get_Introductory_Video'])->name('get.introductory_video');
-
-
-
-Route::get('project/create' , [ProjectController::class , 'CreateProjectPage'])->name('project.create.get');
-Route::post('project/create/' , [ProjectController::class , 'CreateProject'])->name('project.create.post');
-
-Route::get('article/create' , [ArticleController::class,'CreateArticlePage'])->name('article.create.get');
-Route::post('article/create' , [ArticleController::class,'CreateArticle'])->name('article.create.post');
-
 
 
 Route::get('file_name/{name}' , [ViewContentController::class , 'GetContentJquery'])->name('file.get');

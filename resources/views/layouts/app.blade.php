@@ -95,13 +95,12 @@
                                     <a href="{{ route('account.settings') }}" class="dropdown-item">{{ __('Profile settings') }}</a>
                                     <a href="#" class="dropdown-item">{{ __('Notifications') }}</a>
                                     <div class="dropdown-divider"></div>
-
                                     @if (app()->getLocale() == 'ar')
                                         <a href="{{ route('lan','en') }}" class="dropdown-item">EN</a>
                                     @elseif(app()->getLocale() == 'en')
                                         <a href="{{ route('lan','ar') }}" class="dropdown-item">AR</a>
                                     @endif
-
+                                    <a href="{{ route('report') }}" class="dropdown-item">{{ __('Report') }}</a>
 
                                     <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}

@@ -42,7 +42,6 @@ Route::group(['middleware' => ['permission:create-course|view-course|edit-course
     // Pricing
     Route::get('course/{url}/pricing',[CourseManagementController::class , 'pricing'])->name('teacher.course.pricing');
 
-
 });
 
 
@@ -60,20 +59,6 @@ Route::group(['middleware' => ['permission:view-section|create-section|edit-sect
     // Route::get('course/{id}/section/view',[CourseManagementController::class , 'ViewSection'])->name('teacher.course.section.view');
     Route::post('course/{id}/section/create/file',[CourseManagementController::class , 'CreateFileSection'])->name('teacher.course.section.create.file');
 
-
-
-    // Uplode Video , pdf , txt
-    Route::post('section/{section_id}/content/{content_id}/upload/video',[UploadContentController::class , 'upload_video'])->name('teacher.course.section.Upload.video');
-    Route::post('section/{section_id}/content/{content_id}/upload/txt',[UploadContentController::class , 'upload_txt'])->name('teacher.course.section.Upload.txt');
-    Route::post('section/{section_id}/content/{content_id}/upload/pdf',[UploadContentController::class , 'upload_pdf'])->name('teacher.course.section.Upload.pdf');
-
-    // Create test
-
-
-    // Delete
-    Route::get('video/{id}/delete',[ManagerContentController::class , 'DeleteVideo'])->name('teacher.course.video.delete');
-    Route::get('txt/{id}/delete',[ManagerContentController::class , 'DeleteTxt'])->name('teacher.course.txt.delete');
-    Route::get('pdf/{id}/delete',[ManagerContentController::class , 'DeletePdf'])->name('teacher.course.pdf.delete');
 
 
 });

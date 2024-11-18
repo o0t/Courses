@@ -24,36 +24,40 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [PagesController::class , 'index'])->name('index');
 
 
-Route::get('category/{category}', [PagesController::class , 'category'])->name('category');
+Route::group(['prefix'=>'category'], function(){
+
+    Route::get('{category}', [PagesController::class , 'category'])->name('category');
+    Route::get('{category}/courses/latest', [PagesController::class , 'LatestCategoryCourses'])->name('category.courses.latest');
+    Route::get('{category}/courses/oldest', [PagesController::class , 'OldestCategoryCourses'])->name('category.courses.oldest');
+
+});
 
 
-Route::get('category/{category}/courses/latest', [PagesController::class , 'LatestCategoryCourses'])->name('category.courses.latest');
-Route::get('category/{category}/courses/oldest', [PagesController::class , 'OldestCategoryCourses'])->name('category.courses.oldest');
-// Route::get('category/{category}/courses/oldest', [PagesController::class , 'OldestCategoryCourses'])->name('category.courses.oldest');
+Route::group(['prefix'=>'course'], function(){
+
+    Route::get('{name}' , [ViewCoursesController::class , 'index'])->name('course.view');
+    Route::get('{name}/subscribe' , [SubscribeController::class , 'subscribe'])->name('course.subscribe');
+    Route::post('search' , [PagesController::class , 'FormSearchCourses'])->name('course.search');
+
+});
 
 
-Route::get('course/{name}' , [ViewCoursesController::class , 'index'])->name('course.view');
+Route::group(['prefix'=>'projects'], function(){
 
-Route::get('course/{name}/subscribe' , [SubscribeController::class , 'subscribe'])->name('course.subscribe');
+    Route::get('/' , [PagesController::class , 'Projects'])->name('projects.home');
+    Route::get('images/{name}' , [PagesController::class , 'ProjectImages'])->name('projects.images');
+    Route::get('{token}/details' , [PagesController::class , 'ProjectDetails'])->name('projects.details');
 
+});
 
+Route::group(['prefix'=>'articles'], function(){
 
+    Route::get('/' , [PagesController::class , 'Articles'])->name('articles.home');
+    Route::get('images/{name}' , [PagesController::class , 'ArticleImages'])->name('articles.images');
+    Route::get('{token}details' , [PagesController::class , 'ArticleDetails'])->name('articles.details');
 
-Route::get('projects' , [PagesController::class , 'Projects'])->name('projects.home');
+});
 
-Route::get('projects/images/{name}' , [PagesController::class , 'ProjectImages'])->name('projects.images');
-
-Route::get('projects/{token}/details' , [PagesController::class , 'ProjectDetails'])->name('projects.details');
-
-
-Route::get('articles' , [PagesController::class , 'Articles'])->name('articles.home');
-
-Route::get('articles/{token}details' , [PagesController::class , 'ArticleDetails'])->name('articles.details');
-
-Route::get('articles/images/{name}' , [PagesController::class , 'ArticleImages'])->name('articles.images');
-
-
-Route::post('courses/search' , [PagesController::class , 'FormSearchCourses'])->name('course.search');
 
 
 

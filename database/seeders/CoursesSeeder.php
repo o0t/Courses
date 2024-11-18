@@ -39,7 +39,7 @@ class CoursesSeeder extends Seeder
                 // Link course to category
                 courses_categories::create([
                     'course_id' => $course->id,
-                    'category_id' => 21,
+                    'category_id' => 1,
                 ]);
             }
 
@@ -66,7 +66,7 @@ class CoursesSeeder extends Seeder
                 // Link course to category
                 courses_categories::create([
                     'course_id' => $course->id,
-                    'category_id' => 22,
+                    'category_id' => 2,
                 ]);
             }
 
@@ -87,7 +87,7 @@ class CoursesSeeder extends Seeder
                 // Link course to category
                 courses_categories::create([
                     'course_id' => $course->id,
-                    'category_id' => 23,
+                    'category_id' => 3,
                 ]);
             }
 
@@ -105,7 +105,7 @@ class CoursesSeeder extends Seeder
                 // Link course to category
                 courses_categories::create([
                     'course_id' => $course->id,
-                    'category_id' => 24,
+                    'category_id' => 4,
                 ]);
             }
 
@@ -126,7 +126,7 @@ class CoursesSeeder extends Seeder
                 // Link course to category
                 courses_categories::create([
                     'course_id' => $course->id,
-                    'category_id' => 25,
+                    'category_id' => 5,
                 ]);
             }
 
@@ -148,17 +148,17 @@ class CoursesSeeder extends Seeder
                 // Link course to category
                 courses_categories::create([
                     'course_id' => $course->id,
-                    'category_id' => 26,
+                    'category_id' => 6,
                 ]);
             }
 
 
 
-            $coursesData_Mobile_app_ios= [
+            $coursesData_Mobile_app= [
                 ['title' => 'React Native','photo' => 'react.png'],
             ];
 
-            foreach ($coursesData_Mobile_app_ios as $data) {
+            foreach ($coursesData_Mobile_app as $data) {
                 $course = Courses::factory()->create([
                     'title' => $data['title'],
                     'name' => $data['title'],
@@ -169,7 +169,7 @@ class CoursesSeeder extends Seeder
                 // Link course to category
                 courses_categories::create([
                     'course_id' => $course->id,
-                    'category_id' => 27,
+                    'category_id' => 7,
                 ]);
             }
 

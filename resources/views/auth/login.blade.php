@@ -13,18 +13,18 @@
           <form method="POST" action="{{ route('login') }}">
             @csrf
 
-              {{-- Email --}}
+              {{-- email_username --}}
             <div class="mb-3">
-              <label class="form-label">{{ __('Email Address') }}</label>
-              <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+              <label class="form-label">{{ __('Email Address or UserName') }}</label>
+              <input id="txt" type="txt" class="form-control @error('email_username') is-invalid @enderror" name="email_username" value="{{ old('email_username') }}" required autocomplete="email_username" autofocus>
 
-              @error('email')
+              @error('email_username')
                 <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
                 </span>
               @enderror
             </div>
-              {{-- Email / End --}}
+              {{-- email_username / End --}}
 
 
               {{-- Password --}}

@@ -62,49 +62,21 @@ class UsersSeeder extends Seeder
 
 
         $permissions = [
-            // Course:
-            ['name' => 'view-course', 'guard_name' => 'web'],
-            ['name' => 'create-course', 'guard_name' => 'web'],
-            ['name' => 'edit-course', 'guard_name' => 'web'],
-            ['name' => 'delete-course', 'guard_name' => 'web'],
 
-            //  sections
-            ['name' => 'view-section', 'guard_name' => 'web'],
-            ['name' => 'create-section', 'guard_name' => 'web'],
-            ['name' => 'edit-section', 'guard_name' => 'web'],
-            ['name' => 'delete-section', 'guard_name' => 'web'],
+            // teacher:
+            ['name' => 'control-course', 'guard_name' => 'web'],
+            ['name' => 'control-content', 'guard_name' => 'web'],
+            ['name' => 'control-comments', 'guard_name' => 'web'],
+            ['name' => 'control-articles', 'guard_name' => 'web'],
+            ['name' => 'control-projects', 'guard_name' => 'web'],
 
-
-            //  Contents
-            ['name' => 'view-content', 'guard_name' => 'web'],
-            ['name' => 'create-content', 'guard_name' => 'web'],
-            ['name' => 'edit-content', 'guard_name' => 'web'],
-            ['name' => 'delete-content', 'guard_name' => 'web'],
-
-            // Videos:
-            ['name' => 'view-video', 'guard_name' => 'web'],
-            ['name' => 'upload-video', 'guard_name' => 'web'],
-            ['name' => 'edit-video', 'guard_name' => 'web'],
-            ['name' => 'delete-video', 'guard_name' => 'web'],
-            ['name' => 'open-video', 'guard_name' => 'web'],
-            ['name' => 'close-video', 'guard_name' => 'web'],
-
-
-            // Comments:
-            ['name' => 'view-comments', 'guard_name' => 'web'],
+            // student:
             ['name' => 'create-comments', 'guard_name' => 'web'],
-            ['name' => 'edit-comments', 'guard_name' => 'web'],
-            ['name' => 'delete-comments', 'guard_name' => 'web'],
-            ['name' => 'open-comments', 'guard_name' => 'web'],
-            ['name' => 'close-comments', 'guard_name' => 'web'],
+            ['name' => 'create-articles', 'guard_name' => 'web'],
+            ['name' => 'create-projects', 'guard_name' => 'web'],
 
-            // Accounts:
-            ['name' => 'view-accounts', 'guard_name' => 'web'],
-            ['name' => 'create-accounts', 'guard_name' => 'web'],
-            ['name' => 'edit-accounts', 'guard_name' => 'web'],
-            ['name' => 'delete-accounts', 'guard_name' => 'web'],
-            ['name' => 'open-accounts', 'guard_name' => 'web'],
-            ['name' => 'close-accounts', 'guard_name' => 'web'],
+            ['name' => 'control-users', 'guard_name' => 'web'],
+
 
         ];
 
@@ -124,24 +96,11 @@ class UsersSeeder extends Seeder
 
         $RoleTeacher = Role::findByName('teacher');
         $RoleTeacher->givePermissionTo([
-            'view-course',
-            'create-course',
-            'edit-course',
-            'delete-course',
-            'view-video',
-            'upload-video',
-            'edit-video',
-            'delete-video',
-            'open-video',
-            'close-video',
-            'view-section',
-            'create-section',
-            'edit-section',
-            'delete-section',
-            'view-content',
-            'create-content',
-            'edit-content',
-            'delete-content',
+            'control-course',
+            'control-content',
+            'control-comments',
+            'control-articles',
+            'control-projects',
         ]);
 
 

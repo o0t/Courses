@@ -5,6 +5,7 @@ use App\Http\Controllers\Courses\ViewCoursesController;
 use App\Http\Controllers\General\PagesController;
 use App\Http\Controllers\General\SearchController;
 use App\Http\Controllers\Student\ProjectController;
+use App\Http\Controllers\TestController;
 use App\Models\Subscribers;
 use Illuminate\Routing\ViewController;
 use Illuminate\Support\Facades\Auth;

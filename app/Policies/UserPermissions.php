@@ -19,171 +19,57 @@ class UserPermissions
 
     }
 
-    //  ! Course
 
-    public function ViewCourse(User $user )
+    //  Teacher
+    public function control_course(User $user )
     {
-        return $user->hasPermissionTo('view-course');
+        return $user->hasPermissionTo('control-course');
     }
 
-    public function CreateCourse(User $user )
+    public function control_content(User $user )
     {
-        return $user->hasPermissionTo('create-course');
+        return $user->hasPermissionTo('control-content');
     }
 
-    public function EditCourse(User $user )
+    public function control_comments(User $user )
     {
-        return $user->hasPermissionTo('edit-course');
+        return $user->hasPermissionTo('control-comments');
     }
 
-    public function DeleteCourse(User $user )
+    public function control_projects(User $user )
     {
-        return $user->hasPermissionTo('delete-course');
+        return $user->hasPermissionTo('control-projects');
     }
 
-
-
-
-    // ! sections
-    public function ViewSection(User $user )
+    public function control_articles(User $user )
     {
-        return $user->hasPermissionTo('view-section');
-    }
-
-    public function CreateSection(User $user )
-    {
-        return $user->hasPermissionTo('create-section');
-    }
-
-    public function EditSection(User $user )
-    {
-        return $user->hasPermissionTo('edit-section');
-    }
-
-    public function DeleteSection(User $user )
-    {
-        return $user->hasPermissionTo('delete-section');
-    }
-
-
-    // ! Contents
-    public function ViewContent(User $user )
-    {
-        return $user->hasPermissionTo('view-content');
-    }
-
-    public function CreateContent(User $user )
-    {
-        return $user->hasPermissionTo('create-content');
-    }
-
-    public function EditContent(User $user )
-    {
-        return $user->hasPermissionTo('edit-content');
-    }
-
-    public function DeleteContent(User $user )
-    {
-        return $user->hasPermissionTo('delete-content');
+        return $user->hasPermissionTo('control-articles');
     }
 
 
 
-    // ! video
 
-    public function ViewVideo(User $user )
-    {
-        return $user->hasPermissionTo('view-video');
-    }
-
-    public function UploadVideo(User $user )
-    {
-        return $user->hasPermissionTo('upload-video');
-    }
-
-    public function EditVideo(User $user )
-    {
-        return $user->hasPermissionTo('edit-video');
-    }
-
-    public function DeleteVideo(User $user )
-    {
-        return $user->hasPermissionTo('delete-video');
-    }
-
-    public function OpenVideo(User $user )
-    {
-        return $user->hasPermissionTo('open-video');
-    }
-
-    public function CloseVideo(User $user )
-    {
-        return $user->hasPermissionTo('close-video');
-    }
-
-
-    // ! Comments
-
-    public function ViewComments(User $user )
-    {
-        return $user->hasPermissionTo('view-comments');
-    }
-
-    public function CreateComments(User $user )
+    // Student
+    public function create_comments(User $user )
     {
         return $user->hasPermissionTo('create-comments');
     }
-
-    public function EditComments(User $user )
+    public function create_articles(User $user )
     {
-        return $user->hasPermissionTo('edit-comments');
+        return $user->hasPermissionTo('create-articles');
+    }
+    public function create_projects(User $user )
+    {
+        return $user->hasPermissionTo('create-projects');
     }
 
-    public function DeleteComments(User $user )
+
+    // Admin
+
+    public function control_users(User $user )
     {
-        return $user->hasPermissionTo('delete-comments');
+        return $user->hasPermissionTo('control-users');
     }
 
-    public function OpenComments(User $user )
-    {
-        return $user->hasPermissionTo('open-comments');
-    }
-
-    public function CloseComments(User $user )
-    {
-        return $user->hasPermissionTo('close-comments');
-    }
-
-    // ! Accounts
-
-    public function ViewAccounts(User $user )
-    {
-        return $user->hasPermissionTo('view-accounts');
-    }
-
-    public function CreateAccounts(User $user )
-    {
-        return $user->hasPermissionTo('create-accounts');
-    }
-
-    public function EditAccounts(User $user )
-    {
-        return $user->hasPermissionTo('edit-accounts');
-    }
-
-    public function DeleteAccounts(User $user )
-    {
-        return $user->hasPermissionTo('delete-accounts');
-    }
-
-    public function OpenAccounts(User $user )
-    {
-        return $user->hasPermissionTo('open-accounts');
-    }
-
-    public function CloseAccounts(User $user )
-    {
-        return $user->hasPermissionTo('close-accounts');
-    }
 
 }

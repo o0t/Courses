@@ -44,7 +44,7 @@ class ManagerContentController extends Controller
         }
 
 
-        return view('teacher.content.course._course-content',compact('Course','Contents'));
+        return view('teacher.course._course-content',compact('Course','Contents'));
     }
 
 

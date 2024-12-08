@@ -31,7 +31,7 @@ class CoursesSeeder extends Seeder
             foreach ($coursesData_FrontEnd as $data) {
                 $course = Courses::factory()->create([
                     'title' => $data['title'],
-                    'name' => $data['title'],
+
                     'url' => $data['title'],
                     'photo' => $data['photo'],
                 ]);
@@ -58,7 +58,7 @@ class CoursesSeeder extends Seeder
             foreach ($coursesData_BackEnd as $data) {
                 $course = Courses::factory()->create([
                     'title' => $data['title'],
-                    'name' => $data['title'],
+
                     'url' => $data['title'],
                     'photo' => $data['photo'],
                 ]);
@@ -78,7 +78,7 @@ class CoursesSeeder extends Seeder
             foreach ($coursesData_FullStack as $data) {
                 $course = Courses::factory()->create([
                     'title' => $data['title'],
-                    'name' => $data['title'],
+
                     'url' => $data['title'],
                     'photo' => $data['photo'],
                     'user_id' => User::all()->random()->id,
@@ -96,7 +96,7 @@ class CoursesSeeder extends Seeder
             foreach ($coursesData_BackEnd as $data) {
                 $course = Courses::factory()->create([
                     'title' => $data['title'],
-                    'name' => $data['title'],
+
                     'url' => $data['title'],
                     'photo' => $data['photo'],
                     'user_id' => User::all()->random()->id,
@@ -118,7 +118,7 @@ class CoursesSeeder extends Seeder
             foreach ($coursesData_Mobile_app_Android as $data) {
                 $course = Courses::factory()->create([
                     'title' => $data['title'],
-                    'name' => $data['title'],
+
                     'url' => $data['title'],
                     'photo' => $data['photo'],
                 ]);
@@ -140,7 +140,7 @@ class CoursesSeeder extends Seeder
             foreach ($coursesData_Mobile_app_ios as $data) {
                 $course = Courses::factory()->create([
                     'title' => $data['title'],
-                    'name' => $data['title'],
+
                     'url' => $data['title'],
                     'photo' => $data['photo'],
                 ]);
@@ -161,7 +161,7 @@ class CoursesSeeder extends Seeder
             foreach ($coursesData_Mobile_app as $data) {
                 $course = Courses::factory()->create([
                     'title' => $data['title'],
-                    'name' => $data['title'],
+
                     'url' => $data['title'],
                     'photo' => $data['photo'],
                 ]);

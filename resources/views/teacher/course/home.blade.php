@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', __('Content Management'))
+@section('title', __('Course management'))
 @section('active.content.home','active')
 @section('content')
  {{-- content --}}
@@ -46,7 +46,7 @@
             <table class="table table-hover table-vcenter card-table table-striped">
               <thead>
                 <tr>
-                  <th>{{ __('Course Name') }}</th>
+                  <th>{{ __('Course Title') }}</th>
                   <th>{{ __('Course link') }}</th>
                   <th>{{ __('Course status') }}</th>
                   <th>{{ __('Date created') }}</th>
@@ -56,7 +56,7 @@
 
                 @foreach ($Courses as $Course)
                     <tr>
-                        <td><a href="{{ route('teacher.course.home',$Course->url) }}">{{ $Course->name }}</a></td>
+                        <td><a href="{{ route('teacher.course.info',$Course->url) }}">{{ $Course->title }}</a></td>
                         <td class="text-secondary">
                             {{ 'https://raqeeb.online/course/'.$Course->url }}
                         </td>
@@ -86,6 +86,8 @@
         </div>
       </div>
     {{-- content / End --}}
+
+
     {{-- Model --}}
 
     <div class="modal modal-blur fade" id="modal-report" tabindex="-1" role="dialog" aria-hidden="true">
@@ -100,11 +102,11 @@
                     @csrf
 
                     <div class="mb-3">
-                        <label class="form-label">{{ __('Course Name') }}</label>
-                        <input type="text" class="form-control" value="{{ old('course-name') }}" name="course-name" placeholder="{{ __('The name of your course') }}">
-                        <div class="form-text">{{ __('The name will be visible only to you') }}</div>
-                        @error('course-name')
-                            <div class="form-text text-danger">{{ $errors->first('course-name') }}</div>
+                        <label class="form-label">{{ __('Course Title') }}</label>
+                        <input type="text" class="form-control" value="{{ old('course-title') }}" name="course-title" placeholder="{{ __('Your course title') }}">
+                        {{-- <div class="form-text">{{ __('The name will be visible only to you') }}</div> --}}
+                        @error('course-title')
+                            <div class="form-text text-danger">{{ $errors->first('course-title') }}</div>
                         @enderror
                     </div>
                     <label class="form-label">{{ __('Course level') }}</label>

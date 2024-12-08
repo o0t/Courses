@@ -15,11 +15,11 @@
                                 <!-- Page pre-title -->
                                     <div class="page-pretitle">
                                         @if (app()->getLocale() == 'en')
-                                            <a href="{{ route('teacher.content.home') }}" class="btn btn-icon btn-danger">
+                                            <a href="{{ URL::previous() }}" class="btn btn-icon btn-danger">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(236, 236, 236, 1);transform: ;msFilter:;"><path d="M21 11H6.414l5.293-5.293-1.414-1.414L2.586 12l7.707 7.707 1.414-1.414L6.414 13H21z"></path></svg>
                                             </a>
                                         @elseif (app()->getLocale() == 'ar')
-                                            <a href="{{ route('teacher.content.home') }}" class="btn btn-icon btn-danger">
+                                            <a href="{{ URL::previous() }}" class="btn btn-icon btn-danger">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(236, 236, 236, 1);transform: rotate(180deg);msFilter:progid:DXImageTransform.Microsoft.BasicImage(rotation=2);"><path d="M21 11H6.414l5.293-5.293-1.414-1.414L2.586 12l7.707 7.707 1.414-1.414L6.414 13H21z"></path></svg>
                                             </a>
                                         @endif
@@ -43,7 +43,7 @@
             <div class="container col-12">
 
                 {{-- Nav --}}
-                    @include('teacher.content.course._nav-course')
+                    @include('teacher.course._nav-course')
                 {{-- Nav / End --}}
 
                 <br>

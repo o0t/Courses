@@ -12,9 +12,6 @@
             <a href="{{ route('teacher.course.content.display.settings',$Course->url) }}" class="btn @yield('active.course.display.sections')" >
             {{ __('Content display settings') }}
             </a>
-            <a href="{{ route('teacher.course.pricing',$Course->url) }}" class="btn @yield('active.course.pricing')" >
-            {{ __('Pricing') }}
-            </a>
             <a href="#" class="btn @yield('active.course.student.interaction')" >
             {{ __('Student interaction') }}
             </a>

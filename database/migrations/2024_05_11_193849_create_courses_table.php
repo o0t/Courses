@@ -16,8 +16,8 @@ class CreateCoursesTable extends Migration
         Schema::create('courses', function (Blueprint $table) {
             $table->id();
             $table->unsignedBiginteger('user_id');
+            // $table->string('title')->unique()->nullable();
             $table->string('title')->nullable();
-            $table->string('name')->nullable();
             $table->string('url');
             $table->string('photo')->default('course.png');
             $table->enum('status', ['waiting','private','general','customized','closed'])->default('private');

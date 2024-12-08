@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Teacher;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\FormCreateCourse;
 use App\Http\Requests\FormStartCreateCourse;
 use App\Models\AboutCourse;
 use App\Models\Content;
@@ -21,54 +22,28 @@ class CourseManagementController extends Controller
 {
     public function __construct()
     {
-        // // $this->middleware(['role:teacher|teacher-admin']);
-        // $this->middleware(['can:create-course']);
+
     }
 
 
     /*
         =============================================================================================
-                                                Course
+                                        Course
         =============================================================================================
     */
 
     public function index(){
 
         $Courses = Courses::where('user_id',Auth::user()->id)->get();
-        return view('teacher.content.home',compact('Courses'));
+        return view('teacher.course.home',compact('Courses'));
     }
 
 
-    // Create Course
-    public function CreateCourse(Request $request){
-
-        $this->authorize('CreateCourse',Auth::user());
-
-        $validator = Validator::make($request->all(), [
-            'course-name' => 'required|string|max:50|min:3',
-            'level'       => 'in:beginner,intermediate,professional,all',
-            'course-url' =>  'required|string|regex:/^[^\s]+$/|max:255|unique:courses,url',
-        ], $customMessages = [
-            'course-name.required'        => __('The course-name field is required.'),
-            'course-name.min'             => __('The course-name must be at least 3 characters.'),
-            'course-name.max'             => __('The course-name must not be greater than 50 characters.'),
-            'course-url.required'         => __('The course-url field is required.'),
-            'course-url.url'              => __('The course-url must be a valid URL.'),
-            'course-url.max'              => __('The course-url must not be greater than 255 characters.'),
-            'course-url.regex'            => __('The course-url format is invalid.'),
-            'course-url.unique'           => __('The course-url has already been taken.'),
-        ]);
-
-        if ($validator->fails()) {
-            toast(__('Data entry error'),'error');
-            return back()->withErrors($validator)->withInput();
-        }else{
-            toast(__('The course was created successfully'),'success');
-        }
+    public function CreateCourse(FormCreateCourse $request){
 
         $CreateCourse = Courses::create([
             'user_id'   => Auth::user()->id,
-            'name'      => $request->input('course-name'),
+            'title'      => $request->input('course-title'),
             'level'     => $request->input('level'),
             'url'       => $request->input('course-url'),
             'token'     => $request->_token
@@ -78,12 +53,13 @@ class CourseManagementController extends Controller
             'course_id'     => $CreateCourse->id
         ]);
 
-        return back();
 
+        toast(__('The course was created successfully'),'success');
+        return back();
     }
 
 
-    public function CourseHome($url){
+    public function CourseInfoPage($url){
 
         $Course = Courses::where('url',$url)->where('user_id',Auth::user()->id)->first();
 
@@ -91,7 +67,7 @@ class CourseManagementController extends Controller
             return back();
         }
 
-        return view('teacher.content.course.course_info',compact('Course'));
+        return view('teacher.course.course_info',compact('Course'));
     }
 
 
@@ -115,51 +91,12 @@ class CourseManagementController extends Controller
         ];
 
 
-        return view('teacher.content.course._course-settings',compact('Course','categories'));
+        return view('teacher.course._course-settings',compact('Course','categories'));
 
     }
 
     public function CourseSettingsUpdate(Request $request,$url){
         return $request;
-        // "title": "Corrupti id obcaeca",
-        // "name": "Brennan Haley",
-        // "course-url": "Ea illo cupiditate n",
-        // "level": "professional",
-        // "subscribers_status": "free",
-        // "course_category": "Foreign Languages",
-        // "image": {}
-
-        // $validator = Validator::make($request->all(), [
-        //     'title'                 =>  'required|max:50|min:3',
-        //     'name'                  =>  'max:100|min:3',
-        //     // 'course-url'            =>  'required|string|regex:/^[^\s]+$/|max:255|unique:courses,url',
-        //     'level'                 =>  'in:beginner,intermediate,professional,all',
-        //     'subscribers_status'    =>  'in:paid,free',
-        //     'course_category'       =>  'nullable|exists:courses,course_category',
-        // ]);
-
-        // // 'level'       => 'in:beginner,intermediate,professional,all',
-        // // 'course-url' =>  'required|string|regex:/^[^\s]+$/|max:255|unique:courses,url',
-        // if ($validator->fails()) {
-        //     toast(__('Data entry error'),'error');
-        //     return back()->withErrors($validator)->withInput();
-        // }else{
-        //     toast(__('Data updated successfully'),'success');
-        // }
-
-
-        // if ($validator->fails()) {
-        //     $errors = $validator->errors();
-        //     if ($errors->has('course_category')) {
-        //         $course_category = $request->input('course_category');
-        //         if (!is_null($course_category) && !DB::table('courses')->where('course_category', $course_category)->exists()) {
-        //             $validator->errors()->add('course_category', 'The selected course category does not exist.');
-        //         }
-        //     }
-
-        //     // Handle other validation errors
-        // }
-
     }
 
     /*
@@ -170,15 +107,13 @@ class CourseManagementController extends Controller
 
         public function ContentDisplaySettings($url){
 
-
             $Course = Courses::where('url',$url)->where('user_id',Auth::user()->id)->first();
 
             if (!$Course) {
                 return back();
             }
 
-
-            return view('teacher.content.course._content-display-settings',compact('Course'));
+            return view('teacher.course._content-display-settings',compact('Course'));
 
         }
 
@@ -206,25 +141,6 @@ class CourseManagementController extends Controller
             return back();
 
         }
-
-
-    /*
-        =============================================================================================
-                                            Pricing
-        =============================================================================================
-    */
-
-        public function pricing($url){
-
-            $Course = Courses::where('url',$url)->where('user_id',Auth::user()->id)->first();
-
-            if (!$Course) {
-                return back();
-            }
-
-            return view('teacher.content.course._pricing',compact('Course'));
-        }
-
 
 
 }

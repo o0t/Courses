@@ -20,8 +20,7 @@ class CoursesFactory extends Factory
     {
         return [
             'user_id' => User::all()->random()->id,
-            'title' => $this->faker->word(),
-            'name' => $this->faker->word(),
+            'title' => $this->faker->unique()->word(),
             'url' => $this->faker->slug(),
             'photo' => $this->faker->imageUrl(640, 480, 'cats', true, 'Faker', true),
             'introductory_video' => '25224c89-ac83-46e4-8d53-4e4a40742a8b-1725792096.mp4',

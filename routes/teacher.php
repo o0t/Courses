@@ -3,6 +3,7 @@
 use App\Http\Controllers\Teacher\CourseManagementController;
 use App\Http\Controllers\Teacher\UploadContentController;
 use App\Http\Controllers\Teacher\ManagerContentController;
+use AWS\CRT\HTTP\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -17,33 +18,39 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('test',function(){
-    return view('teacher.home');
-});
+
+// Route::get('test',function(){
+//     return view('teacher.home');
+// });
 
 
 Route::group(['middleware' => ['role_or_permission:teacher'], 'prefix' => 'teacher'], function () {
 
     Route::get('courses/home', [CourseManagementController::class , 'index'])->name('teacher.courses.home');
 
-    Route::group(['prefix'=>'course'], function(){
+        Route::group(['prefix'=>'course'], function(){
 
-        Route::post('/create',[CourseManagementController::class , 'CreateCourse'])->name('teacher.course.create');
+            Route::post('/create',[CourseManagementController::class , 'CreateCourse'])->name('teacher.course.create');
+            Route::get('/{url}/home',[CourseManagementController::class , 'CourseInfoPage'])->name('teacher.course.info');
+            Route::get('/{url}/settings', [CourseManagementController::class , 'CourseSettings'])->name('teacher.course.settings');
+            Route::post('/{url}/settings', [CourseManagementController::class , 'CourseSettingsUpdate'])->name('teacher.course.settings.update');
+            Route::get('/{url}/content/settings', [CourseManagementController::class , 'ContentDisplaySettings'])->name('teacher.course.content.display.settings');
+            Route::post('/{id}/content/settings', [CourseManagementController::class , 'ContentDisplaySettingsUpdate'])->name('teacher.course.content.display.settings.update');
 
-        Route::get('/{url}/home',[CourseManagementController::class , 'CourseInfoPage'])->name('teacher.course.info');
 
-        Route::get('/{url}/contents',[ManagerContentController::class , 'Contents'])->name('teacher.course.contents');
 
-        Route::get('/{url}/settings', [CourseManagementController::class , 'CourseSettings'])->name('teacher.course.settings');
+            Route::group(['prefix'=>'contents'], function(){
 
-        Route::post('/{url}/settings', [CourseManagementController::class , 'CourseSettingsUpdate'])->name('teacher.course.settings.update');
+                Route::get('/{url}/content',[ManagerContentController::class , 'Contents'])->name('teacher.course.contents');
 
-        Route::get('/{url}/content/settings', [CourseManagementController::class , 'ContentDisplaySettings'])->name('teacher.course.content.display.settings');
+                Route::post('/{url}/content/create',[ManagerContentController::class , 'CreateContent'])->name('teacher.course.contents.create');
 
-        Route::post('/{id}/content/settings', [CourseManagementController::class , 'ContentDisplaySettingsUpdate'])->name('teacher.course.content.display.settings.update');
+            });
+
+
+
 
     });
-
 
 
 
@@ -57,7 +64,6 @@ Route::group(['middleware' => ['role_or_permission:teacher'], 'prefix' => 'teach
 
     // View Course Content
     // Create Content
-    Route::post('course/{url}/content/create',[ManagerContentController::class , 'CreateContent'])->name('teacher.course.contents.create');
 
 
     // single section

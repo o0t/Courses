@@ -5,10 +5,10 @@
 @section('content')
  {{-- content --}}
 
+ <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 
-
-
+ <script src="{{ asset('assets/js/content.js') }}"></script>
 
 
  <div class="page-wrapper">
@@ -50,25 +50,23 @@
             @include('teacher.course._nav-course')
             {{-- Nav / End --}}
             <br>
-            <a href="#" class="btn btn-primary d-none d-sm-inline-block" data-bs-toggle="modal" data-bs-target="#modal-report">
-                <!-- Download SVG icon from http://tabler-icons.io/i/plus -->
-                <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" style="fill: rgb(255, 255, 255);transform: ;msFilter:;"><path d="M19 11h-6V5h-2v6H5v2h6v6h2v-6h6z"></path></svg>
-                {{ __('Create content') }}
+            <a href="#" class="btn btn-primary btn-icon" data-bs-toggle="modal" data-bs-target="#modal-report">
 
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" style="fill: rgb(255, 255, 255);transform: ;msFilter:;"><path d="M19 11h-6V5h-2v6H5v2h6v6h2v-6h6z"></path></svg>
             </a>
 
 
             <br><br><br>
 
             {{-- Table --}}
-            {{-- <div class="card">
+            <div class="card">
                 <div class="table-responsive">
                   <table class="table table-vcenter card-table table-hover">
                     <thead>
                       <tr>
-                        <th>id</th>
-                        <th>{{ __('Section Name') }}</th>
-                        <th>{{ __('Number of videos') }}</th>
+                        <th> - </th>
+                        <th>{{ __('Title') }}</th>
+                        <th>{{ __('Type') }}</th>
                         <th>{{ __('Number of text files') }}</th>
                         <th>{{ __('Number of PDF files') }}</th>
                         <th>{{ __('Number of tests') }}</th>
@@ -78,85 +76,43 @@
                       </tr>
                     </thead>
                     <tbody>
-                        @foreach ($Contents as $Content)
-                            {{ $Content }}
-                        @endforeach
+                            <td>d</td>
+                            <td>d</td>
+                            <td>d</td>
+                            <td>d</td>
+                            <td>d</td>
+                            <td>d</td>
+                            <td>d</td>
+                            <td>d</td>
+                            <td>d</td>
                     </tbody>
                   </table>
                   <br>
-                  {{ $Contents->links('vendor.pagination.bootstrap-4') }}
+                  @if ($Contents != null)
+                    {{ $Contents->links('vendor.pagination.bootstrap-4') }}
+                  @else
+                    <h1>test</h1>
+                  @endif
 
                 </div>
-              </div> --}}
+              </div>
             {{-- Table / End --}}
 
 
 
 
-
-             {{-- Model --}}
-              {{-- Old Model --}}
-                {{-- <div class="modal modal-blur fade" id="modal-report" tabindex="-1" role="dialog" aria-hidden="true">
-                    <div class="modal-dialog modal-lg" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                        <h5 class="modal-title">{{ __('Create a section') }}</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <form action="{{ route('teacher.course.sections.create',$Course->url) }}" method="POST">
-                                @csrf
-
-                                <div class="mb-3">
-                                    <label class="form-label">{{ __('Section Name') }}</label>
-                                    <input type="text" class="form-control" value="{{ old('section-name') }}" name="section-name" placeholder="{{ __('The name of the content section') }}">
-                                    <div class="form-text">{{ __('When left blank, the name does not appear and belongs to the previous section') }}</div>
-                                    @error('section-nameCourseext text-danger">{{ $errors->first('section-name') }}</div>
-                                    @enderror
-                                </div>
-
-
-
-                                <div class="modal-footer">
-                                    <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">
-                                        <!-- Download SVG icon from http://tabler-icons.io/i/plus -->
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 5l0 14" /><path d="M5 12l14 0" /></svg>
-                                        {{ __('Create a new section') }}
-                                    </button>
-                                    <a href="#" class="btn btn-link link-secondary ms-auto" data-bs-dismiss="modal">
-                                        {{ __('Cancel') }}
-                                    </a>
-                                </div>
-                            </form>
-                        </div>
-
-
-                    </div>
-                    </div>
-                </div> --}}
-                {{-- Old Model / End --}}
-
-
-
-
-
+            {{-- Model --}}
                 <div class="modal modal-blur fade" id="modal-report" tabindex="-1" style="display: none;" aria-hidden="true">
                     <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
-                      <form action="{{ route('teacher.course.contents.create',$Course->url) }}" method="POST" enctype="multipart/form-data">
+                      <form id="myForm" action="{{ route('teacher.course.contents.create',$Course->url) }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="modal-content">
                           <div class="modal-header">
-                            <h5 class="modal-title">{{ __('Create content') }}</h5>
+                            <h5 class="modal-title content-title">{{ __('Create content') }}</h5>
+                            <h5 class="modal-title section-title" style="display: none;">{{ __('Create Section') }}</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                           </div>
                           <div class="modal-body">
-                            <div class="mb-3">
-                              <label class="form-label">{{ __('title') }}</label>
-                              <input type="text" class="form-control" name="title" value="{{ old('title') }}" placeholder="{{ __('Content Title') }}">
-                              @error('title')
-                                <div class="form-text text-danger">{{ $errors->first('title') }}</div>
-                              @enderror
-                            </div>
                             <label class="form-label">{{ __('Content Type') }}</label>
                             <div class="form-selectgroup-boxes row mb-3">
                               <div class="col-lg-6">
@@ -173,6 +129,7 @@
                                   </span>
                                 </label>
                               </div>
+
                               <div class="col-lg-6">
                                 <label class="form-selectgroup-item">
                                   <input type="radio" name="content_type" value="2" class="form-selectgroup-input report-type-radio">
@@ -187,11 +144,32 @@
                                   </span>
                                 </label>
                               </div>
+
+                              <div class="col-lg-6 mt-3">
+                                <label class="form-selectgroup-item">
+                                  <input type="radio" name="content_type" value="3" class="form-selectgroup-input report-type-radio" >
+                                  <span class="form-selectgroup-label d-flex align-items-center p-3">
+                                    <span class="me-3">
+                                      <span class="form-selectgroup-check"></span>
+                                    </span>
+                                    <span class="form-selectgroup-label-content">
+                                      <span class="form-selectgroup-title strong mb-1">{{ __('ss') }}</span>
+                                      <span class="d-block text-secondary">{{ __('To write text content only') }}</span>
+                                    </span>
+                                  </span>
+                                </label>
+                              </div>
+                            </div>
+
+                            <div class="mb-3 title-content">
+                                <label class="form-label">{{ __('title') }}</label>
+                                <input type="text" class="form-control" name="title" value="{{ old('title') }}" placeholder="{{ __('Content Title') }}">
+                                @error('title')
+                                  <div class="form-text text-danger">{{ $errors->first('title') }}</div>
+                                @enderror
                             </div>
 
                             <div class="col-sm-12 col-md-12 input-texts">
-
-
                                 <div class="mb-12">
                                     <div class="hr-text">
                                         <i class='bx bx-clipboard' ></i>
@@ -203,7 +181,6 @@
                                         <div class="form-text text-danger">{{ $errors->first('txt-content') }}</div>
                                     @enderror
                                 </div>
-
                             </div>
 
                             <div class="col-sm-12 col-md-12 additional-inputs" style="display: none;">
@@ -229,13 +206,22 @@
                                     </div>
                             </div>
 
+                            {{-- section --}}
+                            <div class="col-sm-12 col-md-12 input-section" style="display: none;">
 
+                                <div class="mb-3">
+                                    <label class="form-label">{{ __('Section Title') }}</label>
+                                    <input type="text" class="form-control" name="title_section" value="{{ old('title_section') }}" placeholder="{{ __('Section Title') }}">
+                                    @error('title_section')
+                                      <div class="form-text text-danger">{{ $errors->first('title_section') }}</div>
+                                    @enderror
+                                </div>
 
-
-
+                            </div>
+                            {{-- section --}}
 
                                 <br>
-                                <div>
+                                <div class="allow_comments">
                                     <label class="row">
                                     <span class="col">{{ __('Allow comments') }}</span>
                                     <span class="col-auto">
@@ -248,7 +234,7 @@
 
                                 <br>
 
-                            <div class="modal-footer">
+                            <div class="modal-footer create-content">
                                 <a href="#" class="btn btn-link link-secondary" data-bs-dismiss="modal">
                                 Cancel
                                 </a>
@@ -261,13 +247,27 @@
                                     {{ __('Create Content') }}
                                 </button>
                             </div>
+
+
+                            <div class="modal-footer create-section" style="display: none;">
+                                <a href="#" class="btn btn-link link-secondary" data-bs-dismiss="modal">
+                                Cancel
+                                </a>
+                                <button type="submit" class="btn btn-primary">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon">
+                                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                        <path d="M12 5l0 14"></path>
+                                        <path d="M5 12l14 0"></path>
+                                    </svg>
+                                    {{ __('Create Section') }}
+                                </button>
+                            </div>
                         </div>
                         </div>
                       </form>
                     </div>
                   </div>
                 </div>
-
             {{-- Model / End --}}
     {{-- content / End --}}
 
@@ -281,15 +281,62 @@
 
             <script>
             $(document).ready(function() {
+
+                // $('.report-type-radio').on('change', function() {
+                // if ($(this).val() === '2') {
+                //     $('.additional-inputs').show();
+                //     $('.input-texts').hide();
+                // } else {
+                //     $('.additional-inputs').hide();
+                //     $('.input-texts').show();
+                // }
+                // });
+
+
                 $('.report-type-radio').on('change', function() {
-                if ($(this).val() === '2') {
-                    $('.additional-inputs').show();
-                    $('.input-texts').hide();
-                } else {
-                    $('.additional-inputs').hide();
-                    $('.input-texts').show();
-                }
+                    if ($(this).val() === '2') {
+
+                        $('.input-section').hide();
+                        $('.create-section').hide();
+                        $('.section-title').hide();
+                        $('.input-texts').hide();
+
+                        $('.additional-inputs').show();
+                        $('.title-content').show();
+                        $('.allow_comments').show();
+                        $('.content-title').show();
+                        $('.create-content').show();
+
+                    } else if ($(this).val() === '1'){
+
+                        $('.additional-inputs').hide();
+                        $('.input-section').hide();
+                        $('.create-section').hide();
+                        $('.section-title').hide();
+
+                        $('.input-texts').show();
+                        $('.title-content').show();
+                        $('.allow_comments').show();
+                        $('.content-title').show();
+                        $('.create-content').show();
+
+                    }else {
+                        console.log('test');
+
+                        $('.additional-inputs').hide();
+                        $('.input-texts').hide();
+                        $('.title-content').hide();
+                        $('.create-content').hide();
+                        $('.allow_comments').hide();
+                        $('.content-title').hide();
+
+                        $('.input-section').show();
+                        $('.create-section').show();
+                        $('.section-title').show();
+
+                    }
                 });
+
             });
             </script>
         {{-- Model / End --}}

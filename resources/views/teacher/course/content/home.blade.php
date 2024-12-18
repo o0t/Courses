@@ -58,45 +58,94 @@
 
             <br><br><br>
 
-            {{-- Table --}}
-            <div class="card">
-                <div class="table-responsive">
-                  <table class="table table-vcenter card-table table-hover">
-                    <thead>
-                      <tr>
-                        <th> - </th>
-                        <th>{{ __('Title') }}</th>
-                        <th>{{ __('Type') }}</th>
-                        <th>{{ __('Number of text files') }}</th>
-                        <th>{{ __('Number of PDF files') }}</th>
-                        <th>{{ __('Number of tests') }}</th>
-                        <th>{{ __('Date created') }}</th>
-                        <th>{{ __('Updated on') }}</th>
-                        <th class="w-1"></th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                            <td>d</td>
-                            <td>d</td>
-                            <td>d</td>
-                            <td>d</td>
-                            <td>d</td>
-                            <td>d</td>
-                            <td>d</td>
-                            <td>d</td>
-                            <td>d</td>
-                    </tbody>
-                  </table>
-                  <br>
-                  @if ($Contents != null)
-                    {{ $Contents->links('vendor.pagination.bootstrap-4') }}
-                  @else
-                    <h1>test</h1>
-                  @endif
 
+            @if ($Course->content->isEmpty())
+                <div class="col-12">
+                    <div class="card card-md sticky-top">
+                    <div class="card-body">
+                        <div class="row align-items-center">
+                        <div class="col-12 text-center">
+                            <h3 class="h1">{{ __('You do not have content for your course') }}</h3>
+                            <div class="markdown text-secondary">
+                                {{ __('Create content and sections for your course now') }}
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                    </div>
                 </div>
-              </div>
-            {{-- Table / End --}}
+            @else
+                {{-- Table --}}
+                <div class="card">
+                    <div class="table-responsive">
+                    <table class="table table-vcenter card-table table-hover">
+                        <thead>
+                        <tr>
+                            <th> - serial - </th>
+                            <th>{{ __('Title') }}</th>
+                            <th>{{ __('Type') }}</th>
+                            <th>{{ __('description') }}</th>
+                            <th>{{ __('status') }}</th>
+                            <th>{{ __('created at') }}</th>
+                            <th>{{ __('updated at') }}</th>
+                            <th class="w-1"></th>
+                            <th class="w-1"></th>
+                            <th class="w-1"></th>
+                            <th class="w-1"></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                                @foreach ($Course->content as $content)
+                                <tr>
+                                    <td>{{ $content->serial }}</td>
+                                    <td>{{ $content->title }}</td>
+                                    <td>{{ $content->type }}</td>
+                                    <td>{{ $content->description }}</td>
+                                    <td>{{ $content->status }}</td>
+                                    <td>{{ $content->created_at->diffForHumans() }}</td>
+                                    <td>{{ $content->updated_at->diffForHumans() }}</td>
+                                    <td>
+                                        @if ($content->is_section == 'yes')
+                                            <td></td>
+                                            <td>
+                                                <a href="#" class="btn btn-dark w-100">
+                                                    <i class='bx bx-label' ></i>
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <a href="#" class="btn btn-danger w-100">
+                                                    <i class='bx bxs-trash'></i>
+                                                </a>
+                                            </td>
+                                        @else
+                                            <td>
+                                                <a href="#" class="btn btn-primary w-100">
+                                                    <i class='bx bx-show-alt'></i>
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <a href="#" class="btn btn-success w-100">
+                                                    <i class='bx bxs-edit'></i>
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <a href="#" class="btn btn-danger w-100">
+                                                    <i class='bx bxs-trash'></i>
+                                                </a>
+                                            </td>
+                                        @endif
+                                    </td>
+                                </tr>
+                                @endforeach
+                        </tbody>
+                    </table>
+                    <br>
+
+                    </div>
+                </div>
+                {{-- Table / End --}}
+            @endif
+
 
 
 
@@ -153,8 +202,8 @@
                                       <span class="form-selectgroup-check"></span>
                                     </span>
                                     <span class="form-selectgroup-label-content">
-                                      <span class="form-selectgroup-title strong mb-1">{{ __('ss') }}</span>
-                                      <span class="d-block text-secondary">{{ __('To write text content only') }}</span>
+                                      <span class="form-selectgroup-title strong mb-1">{{ __('Create a section') }}</span>
+                                      <span class="d-block text-secondary">{{ __('A special section is created for specific content of your course') }}</span>
                                     </span>
                                   </span>
                                 </label>
@@ -236,7 +285,7 @@
 
                             <div class="modal-footer create-content">
                                 <a href="#" class="btn btn-link link-secondary" data-bs-dismiss="modal">
-                                Cancel
+                                {{ __('Cancel') }}
                                 </a>
                                 <button type="submit" class="btn btn-primary">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon">
@@ -251,7 +300,7 @@
 
                             <div class="modal-footer create-section" style="display: none;">
                                 <a href="#" class="btn btn-link link-secondary" data-bs-dismiss="modal">
-                                Cancel
+                                {{ __('Cancel') }}
                                 </a>
                                 <button type="submit" class="btn btn-primary">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon">

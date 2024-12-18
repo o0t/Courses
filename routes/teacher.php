@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Teacher\Content\CreateController;
 use App\Http\Controllers\Teacher\CourseManagementController;
 use App\Http\Controllers\Teacher\UploadContentController;
 use App\Http\Controllers\Teacher\ManagerContentController;
@@ -39,11 +40,12 @@ Route::group(['middleware' => ['role_or_permission:teacher'], 'prefix' => 'teach
 
 
 
+            // Contents
             Route::group(['prefix'=>'contents'], function(){
 
-                Route::get('/{url}/content',[ManagerContentController::class , 'Contents'])->name('teacher.course.contents');
+                Route::get('/{url}/content',[CreateController::class , 'index'])->name('teacher.course.contents.home');
 
-                Route::post('/{url}/content/create',[ManagerContentController::class , 'CreateContent'])->name('teacher.course.contents.create');
+                Route::post('/{url}/content/create',[CreateController::class , 'CreateContent'])->name('teacher.course.contents.create');
 
             });
 

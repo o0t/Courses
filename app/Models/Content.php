@@ -20,6 +20,11 @@ class Content extends Model
         return $this->hasMany(Comments::class,'content_id','id');
     }
 
+    public function ContentSection()
+    {
+        return $this->hasMany(ContentSection::class, 'content_id', 'id');
+    }
+
     protected static function boot()
     {
         parent::boot();

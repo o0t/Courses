@@ -303,6 +303,9 @@
     "Course Title":"عنوان الدورة",
     "Your course title":"عنوان الدورة التدريبية الخاصة بك",
     "Section Title":"Section Title",
-    "Create Section":"إنشاء قسم"
+    "Create Section":"إنشاء قسم",
+    "A special section is created for specific content of your course":"يتم إنشاء قسم خاص لمحتوى محدد من الدورة التدريبية الخاصة بك.",
+    "You do not have content for your course":"ليس لديك محتوى لدورتك",
+    "Create content and sections for your course now":"قم بإنشاء المحتوى والأقسام الخاصة بدورتك الآن"
 
 }

@@ -59,34 +59,12 @@
                 @endif
 
 
-                <form action="{{ route('teacher.course.content.display.settings.update',$Course->id) }}" method="POST" class="card" enctype="multipart/form-data">
+                <form action="{{ route('teacher.course.display.update',$Course->id) }}" method="POST" class="card" enctype="multipart/form-data">
                     @csrf
                     <div class="card-body">
-                      <h3 class="card-title">{{ __('Content display settings') }}</h3>
-                      <hr>
-                      <div class="row row-cards">
-                        <div class="col-md-4">
-                          <div class="mb-3">
-                            <label class="form-label">{{ __('Number of lessons') }}</label>
-                                <input type="text" class="form-control" name="number_lessons" readonly disabled value="{{ $Course->count_lessons }}">
-                            </div>
-                        </div>
-                        <div class="col-sm-6 col-md-4">
-                            <div class="mb-4">
-                                <label class="form-label">{{ __('Count Time Videos') }}</label>
-                                <input type="text" class="form-control" name="number_video" readonly disabled value="{{ $Course->count_Time_Videos }}">
-                            </div>
-                        </div>
-                        <div class="col-sm-3 col-md-4">
-                            <div class="mb-4">
-                                <label class="form-label">{{ __('Number of tests') }}</label>
-                                <input type="text" class="form-control" name="number_tests" readonly disabled value="{{ $Course->count_tests }}">
-                            </div>
-                        </div>
+                      <h3 class="card-title">{{ __('Course display information') }}</h3>
 
-
-                        <br>
-                      <br><br>
+                      <br>
                       <label class="form-label">{{ __('Course information') }}</label>
                       <textarea id="tinymce-default" name="course_information">{{ $Course->AboutCourse->course_information }}</textarea>
                       @error('course_information')
@@ -156,6 +134,7 @@
 
                       </div>
                     </div>
+                    <br>
                     <div class="card-footer text-center">
                       <button type="submit" class="btn btn-primary">{{ __('Course update') }}</button>
                     </div>

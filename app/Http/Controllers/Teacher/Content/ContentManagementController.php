@@ -47,12 +47,12 @@ class ContentManagementController extends Controller
 
         if ($request->content_type == 1) {
 
-            return '1';
+
         }elseif ($request->content_type == 2){
 
             return 'Upload content 2';
         }elseif ($request->content_type == 3){
-            // this is for create Section
+
             $validator = Validator::make($request->all(), [
                 'title_section' => 'required|string|min:2|max:100',
             ]);

@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\S3\CreateContent;
 use App\Http\Controllers\Teacher\Content\ContentManagementController;
 use App\Http\Controllers\Teacher\Course\CourseInfoController;
 use App\Http\Controllers\Teacher\Course\CourseManagementController;
@@ -50,27 +49,15 @@ Route::group(['middleware' => ['role_or_permission:teacher'], 'prefix' => 'teach
 
                 Route::get('/{url}/content',[ContentManagementController::class , 'index'])->name('teacher.course.contents.home');
 
-
-                if (config('app.STORAGE_TYPE_DATA') == 'server') {
-
-                    Route::post('/{url}/content/create',[ContentManagementController::class , 'CreateContent'])->name('teacher.course.contents.create');
-
-                } else {
-
-                    Route::post('/{url}/content/create',[CreateContent::class , 'CreateCourseContent'])->name('teacher.course.contents.create');
-
-                }
-
-
+                Route::post('/{url}/content/create',[ContentManagementController::class , 'CreateContent'])->name('teacher.course.contents.create');
 
             });
 
 
             Route::get('/{url}/home',[CourseInfoController::class , 'CourseInfoPage'])->name('teacher.course.info');
 
+
     });
-
-
 
 
 

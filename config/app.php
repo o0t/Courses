@@ -15,6 +15,13 @@ return [
 
     'name' => env('APP_NAME', 'Laravel'),
 
+
+
+
+    # if server or s3 bucket [ server - s3 ]
+
+    'STORAGE_TYPE_DATA' => "server",
+
     /*
     |--------------------------------------------------------------------------
     | Application Environment

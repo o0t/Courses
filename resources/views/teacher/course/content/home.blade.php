@@ -81,7 +81,7 @@
                     <table class="table table-vcenter card-table table-hover">
                         <thead>
                         <tr>
-                            <th> - serial - </th>
+                            <th> - </th>
                             <th>{{ __('Title') }}</th>
                             <th>{{ __('Type') }}</th>
                             <th>{{ __('description') }}</th>
@@ -99,7 +99,7 @@
                                 <tr>
                                     <td>{{ $content->serial }}</td>
                                     <td>{{ $content->title }}</td>
-                                    <td>{{ $content->type }}</td>
+                                    <td>{{ $content->type ?? __('Section')}} </td>
                                     <td>{{ $content->description }}</td>
                                     <td>{{ $content->status }}</td>
                                     <td>{{ $content->created_at->diffForHumans() }}</td>
@@ -166,7 +166,7 @@
                             <div class="form-selectgroup-boxes row mb-3">
                               <div class="col-lg-6">
                                 <label class="form-selectgroup-item">
-                                  <input type="radio" name="content_type" value="1" class="form-selectgroup-input report-type-radio" checked="">
+                                  <input type="radio" name="content_type" value="writing" class="form-selectgroup-input report-type-radio" checked="">
                                   <span class="form-selectgroup-label d-flex align-items-center p-3">
                                     <span class="me-3">
                                       <span class="form-selectgroup-check"></span>
@@ -181,7 +181,7 @@
 
                               <div class="col-lg-6">
                                 <label class="form-selectgroup-item">
-                                  <input type="radio" name="content_type" value="2" class="form-selectgroup-input report-type-radio">
+                                  <input type="radio" name="content_type" value="upload" class="form-selectgroup-input report-type-radio">
                                   <span class="form-selectgroup-label d-flex align-items-center p-3">
                                     <span class="me-3">
                                       <span class="form-selectgroup-check"></span>
@@ -196,7 +196,7 @@
 
                               <div class="col-lg-6 mt-3">
                                 <label class="form-selectgroup-item">
-                                  <input type="radio" name="content_type" value="3" class="form-selectgroup-input report-type-radio" >
+                                  <input type="radio" name="content_type" value="section" class="form-selectgroup-input report-type-radio" >
                                   <span class="form-selectgroup-label d-flex align-items-center p-3">
                                     <span class="me-3">
                                       <span class="form-selectgroup-check"></span>
@@ -343,7 +343,7 @@
 
 
                 $('.report-type-radio').on('change', function() {
-                    if ($(this).val() === '2') {
+                    if ($(this).val() === 'upload') {
 
                         $('.input-section').hide();
                         $('.create-section').hide();
@@ -356,7 +356,7 @@
                         $('.content-title').show();
                         $('.create-content').show();
 
-                    } else if ($(this).val() === '1'){
+                    } else if ($(this).val() === 'writing'){
 
                         $('.additional-inputs').hide();
                         $('.input-section').hide();
@@ -370,7 +370,6 @@
                         $('.create-content').show();
 
                     }else {
-                        console.log('test');
 
                         $('.additional-inputs').hide();
                         $('.input-texts').hide();

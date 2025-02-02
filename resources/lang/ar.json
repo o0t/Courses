@@ -308,6 +308,12 @@
     "You do not have content for your course":"ليس لديك محتوى لدورتك",
     "Create content and sections for your course now":"قم بإنشاء المحتوى والأقسام الخاصة بدورتك الآن",
     "The section was created successfully":"تم إنشاء القسم بنجاح",
-    "Course display information":"معلومات عرض الدورة"
+    "Course display information":"معلومات عرض الدورة",
+    "Section":"قسم",
+    "Type":"نوع المحتوى",
+    "description":"الوصف",
+    "created at":"تم إنشاؤه في",
+    "updated at":"تم التحديث في"
+
 
 }

@@ -58,14 +58,13 @@
                 <a href="{{ route('index') }}" class="nav-link">
                     <img src="{{ asset('images/logo.png') }}" width="110" height="32" viewBox="0 0 232 68" class="navbar-brand-image">
                     <span class="ms-2">
-                        {{ __('Raqeeb') }} | {{ $UserRole }}
+                        {{ __('Raqeeb') }}
                     </span>
                 </a>
                 </div>
 
                 {{-- UserRole --}}
-
-                @if ($UserRole == 'member')
+                @can('member')
 
                     <div class="navbar-nav flex-row order-md-last">
 
@@ -172,8 +171,8 @@
                         </div>
                     </div>
 
-
-                @elseif ($UserRole == 'student')
+                @endcan
+                @can('student')
 
                     <div class="navbar-nav flex-row order-md-last">
 
@@ -283,9 +282,8 @@
                         </div>
                     </div>
 
-
-                @elseif ($UserRole == 'teacher')
-
+                @endcan
+                @can('teacher')
 
                     <div class="navbar-nav flex-row order-md-last">
 
@@ -510,7 +508,7 @@
                     </div>
 
 
-                @endif
+                @endcan
 
 
             </div>

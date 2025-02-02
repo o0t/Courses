@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\S3\CreateContent;
+use App\Http\Controllers\Content\Server\PostContentController;
 use App\Http\Controllers\Teacher\Content\ContentManagementController;
 use App\Http\Controllers\Teacher\Course\CourseInfoController;
 use App\Http\Controllers\Teacher\Course\CourseManagementController;
@@ -33,6 +33,8 @@ Route::group(['middleware' => ['role_or_permission:teacher'], 'prefix' => 'teach
 
         Route::group(['prefix'=>'course'], function(){
 
+
+
             Route::post('/create',[ManagementController::class , 'CreateCourse'])->name('teacher.course.create');
 
             Route::get('/{url}/settings', [ManagementController::class , 'CourseSettings'])->name('teacher.course.settings');
@@ -50,14 +52,17 @@ Route::group(['middleware' => ['role_or_permission:teacher'], 'prefix' => 'teach
 
                 Route::get('/{url}/content',[ContentManagementController::class , 'index'])->name('teacher.course.contents.home');
 
+                if (config('app.storage_type_data') == 'S3') {
 
-                if (config('app.STORAGE_TYPE_DATA') == 'server') {
 
-                    Route::post('/{url}/content/create',[ContentManagementController::class , 'CreateContent'])->name('teacher.course.contents.create');
+                    // Route::post('/{url}/content/create',[ContentManagementController::class , 'CreateContent'])->name('teacher.course.contents.create');
+
 
                 } else {
 
-                    Route::post('/{url}/content/create',[CreateContent::class , 'CreateCourseContent'])->name('teacher.course.contents.create');
+                    Route::post('/{url}/content/create',[PostContentController::class , 'CreateContent'])->name('teacher.course.contents.create');
+
+                    //  Route::post('/{url}/content/create',[CreateContent::class , 'CreateCourseContent'])->name('teacher.course.contents.create');
 
                 }
 

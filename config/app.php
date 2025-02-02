@@ -18,9 +18,9 @@ return [
 
 
 
-    # if server or s3 bucket [ server - s3 ]
+    # if server or s3 bucket [ SERVER - S3 ]
 
-    'STORAGE_TYPE_DATA' => "server",
+    'storage_type_data' => "SERVER",
 
     /*
     |--------------------------------------------------------------------------

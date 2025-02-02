@@ -12,6 +12,7 @@ use App\Models\Content;
 use App\Models\Projects;
 use finfo;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
 class PagesController extends Controller
@@ -20,7 +21,7 @@ class PagesController extends Controller
 
     public function index(){
         $categories = Main_categories::all();
-        return view('welcome' , compact('categories'));
+        return view('welcom' , compact('categories'));
     }
 
 

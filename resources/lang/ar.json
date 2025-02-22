@@ -313,7 +313,9 @@
     "Type":"نوع المحتوى",
     "description":"الوصف",
     "created at":"تم إنشاؤه في",
-    "updated at":"تم التحديث في"
+    "updated at":"تم التحديث في",
+    "Content uploaded successfully":"تم رفع المحتوى بنجاح",
+    "Text uploaded successfully":"تم رفع النص بنجاح"
 
 
 }

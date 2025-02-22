@@ -21,8 +21,9 @@ class CreateContentsTable extends Migration
             $table->string('url')->nullable();
             $table->longText('content')->nullable();
             $table->string('file_name')->nullable();
+            $table->string('extension')->nullable();
             $table->longText('description')->nullable();
-            $table->enum('type', ['video','txt','file'])->nullable();
+            $table->enum('type', ['video','file','txt'])->nullable();
             $table->bigInteger('likes')->default(0);
             $table->bigInteger('comments')->default(0);
             $table->bigInteger('views')->default(0);

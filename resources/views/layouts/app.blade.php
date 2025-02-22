@@ -525,6 +525,7 @@
       </div>
     </div>
 
+    <br>
     <!-- Libs JS -->
     <script src="{{ asset('assets/libs/apexcharts/dist/apexcharts.min.js?1684106062')}}" defer></script>
     <script src="{{ asset('assets/libs/jsvectormap/dist/js/jsvectormap.min.js?1684106062')}}" defer></script>

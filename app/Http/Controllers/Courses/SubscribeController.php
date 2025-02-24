@@ -18,9 +18,9 @@ class SubscribeController extends Controller
 
 
 
-    public function subscribe($name){
+    public function subscribe($title){
 
-        $course = Courses::where('name',$name)->first();
+        $course = Courses::where('title',$title)->first();
 
         if (!$course) {
             return back();
@@ -46,7 +46,7 @@ class SubscribeController extends Controller
             toast(__('Subscribed successfully'),'success');
         }
 
-        return redirect()->route('course.content',$name);
+        return redirect()->route('course.content',$title);
 
     }
 

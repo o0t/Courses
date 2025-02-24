@@ -124,14 +124,16 @@
                                                 </a>
                                             </td>
                                             <td>
-                                                <a href="#" class="btn btn-success w-100">
+                                                <a href="{{ route('teacher.course.contents.edit',$content->id) }}" class="btn btn-success w-100">
                                                     <i class='bx bxs-edit'></i>
                                                 </a>
                                             </td>
                                             <td>
-                                                <a href="#" class="btn btn-danger w-100">
+                                                <a href="{{ route('teacher.course.contents.delete', $content->id) }}"
+                                                    class="btn btn-danger w-100"
+                                                    onclick="return confirm('Are you sure you want to delete this post?');">
                                                     <i class='bx bxs-trash'></i>
-                                                </a>
+                                                 </a>
                                             </td>
                                         @endif
                                     </td>

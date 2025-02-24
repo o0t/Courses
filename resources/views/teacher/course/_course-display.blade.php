@@ -63,7 +63,11 @@
                     @csrf
                     <div class="card-body">
                       <h3 class="card-title">{{ __('Course display information') }}</h3>
-
+                      <br>
+                        <div class="mb-3">
+                            <div class="form-label">{{ __('Introductory video') }}</div>
+                            <input type="file" name="introductory_video" class="form-control">
+                        </div>
                       <br>
                       <label class="form-label">{{ __('Course information') }}</label>
                       <textarea id="tinymce-default" name="course_information">{{ $Course->AboutCourse->course_information }}</textarea>

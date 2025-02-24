@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Courses\Server\ViewCoursesController as ServerViewCoursesController;
 use App\Http\Controllers\Courses\SubscribeController;
 use App\Http\Controllers\Courses\ViewCoursesController;
 use App\Http\Controllers\General\PagesController;
@@ -38,9 +39,25 @@ Route::group(['prefix'=>'category'], function(){
 
 Route::group(['prefix'=>'course'], function(){
 
-    Route::get('{name}' , [ViewCoursesController::class , 'index'])->name('course.view');
-    Route::get('{name}/subscribe' , [SubscribeController::class , 'subscribe'])->name('course.subscribe');
-    Route::post('search' , [PagesController::class , 'FormSearchCourses'])->name('course.search');
+        Route::get('{title}' , [ViewCoursesController::class , 'index'])->name('course.view');
+        Route::get('{title}/subscribe' , [SubscribeController::class , 'subscribe'])->name('course.subscribe');
+        Route::post('search' , [PagesController::class , 'FormSearchCourses'])->name('course.search');
+
+
+
+        Route::get('introductory_video/{name}' , [ViewCoursesController::class , 'Get_Introductory_Video'])->name('get.introductory_video');
+
+
+    // if (config('app.storage_type_data') == 'S3') {
+    //     // introductory_video
+
+
+    // }else{
+
+    //     // Route::get('{name}/subscribe' , [SubscribeController::class , 'subscribe'])->name('course.subscribe');
+    //     // Route::post('search' , [PagesController::class , 'FormSearchCourses'])->name('course.search');
+    // }
+
 
 });
 

@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\Content\Server\PostContentController;
+use App\Http\Controllers\Content\Server\ServerContentController;
 use App\Http\Controllers\Teacher\Content\ContentManagementController;
 use App\Http\Controllers\Teacher\Course\CourseInfoController;
 use App\Http\Controllers\Teacher\Course\CourseManagementController;
@@ -60,7 +60,11 @@ Route::group(['middleware' => ['role_or_permission:teacher'], 'prefix' => 'teach
 
                 } else {
 
-                    Route::post('/{url}/content/create',[PostContentController::class , 'CreateContent'])->name('teacher.course.contents.create');
+                    Route::post('/{url}/content/create',[ServerContentController::class , 'CreateContent'])->name('teacher.course.contents.create');
+                    // edit
+                    Route::get('/{id}/content/edit',[ServerContentController::class , 'EditContent'])->name('teacher.course.contents.edit');
+                    // Delete
+                    Route::get('/{id}/content/delete',[ServerContentController::class , 'DeleteContent'])->name('teacher.course.contents.delete');
 
                     //  Route::post('/{url}/content/create',[CreateContent::class , 'CreateCourseContent'])->name('teacher.course.contents.create');
 

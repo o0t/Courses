@@ -98,12 +98,39 @@ class ManagementController extends Controller
 
     public function CourseDisplayInformationUpdate(Request $request ,$id){
 
+
         $validator = Validator::make($request->all(), [
-            'course_information'        =>  'max:5000',
-            'recommended_course'        =>  'max:5000',
-            'learn_course'              =>  'max:5000',
-            'benefits_course'            =>  'max:5000',
+            'introductory_video' => 'nullable|file|mimes:mp4,avi,mov,mkv|max:10240', // Max 10MB
+            'course_information' => 'max:5000',
+            'recommended_course' => 'max:5000',
+            'learn_course'       => 'max:5000',
+            'benefits_course'    => 'max:5000',
         ]);
+
+
+        if ($request->hasFile('introductory_video')) {
+            $file = $request->file('introductory_video');
+            $extension = $file->getClientOriginalExtension();
+
+
+            if (($extension === 'mp4' || $extension === 'avi' || $extension === 'mov' || $extension === 'mkv') ) {
+
+                // Store the video
+                $path = $file->store('', 'introductory_video');
+                $fileName = basename($path);
+
+            }else{
+                return back()->withErrors(__('Allowed upload format: mp4, avi, mov, mkv'))->withInput();
+            }
+
+            $course = Courses::find($id);
+
+            $course_update = $course->update([
+                'introductory_video'    => $fileName,
+            ]);
+
+            // introductory_video
+        }
 
 
         if ($validator->fails()) {
@@ -114,8 +141,7 @@ class ManagementController extends Controller
         }
 
         $AboutCourse = AboutCourse::findOrFail($id);
-
-        $AboutCourse->update($request->all());
+        $AboutCourse->update($request->except('introductory_video'));
 
         return back();
 

@@ -3,12 +3,15 @@
 namespace App\Http\Controllers\Content\Server;
 
 use App\Http\Controllers\Controller;
-use App\Models\Courses;
+use App\Models\Content;
 use Illuminate\Http\Request;
+use App\Models\Courses;
 use Illuminate\Support\Facades\Validator;
 
-class PostContentController extends Controller
+class ServerContentController extends Controller
 {
+
+
 
 
     public function CreateContent(Request $request){
@@ -139,6 +142,30 @@ class PostContentController extends Controller
 
 
             toast(__('The section was created successfully'),'success');
+            return back();
+        }
+
+
+    }
+
+
+
+
+    public function EditContent($id){
+        return $id ;
+    }
+
+
+    public function DeleteContent($id){
+
+        if ($content = Content::find($id)) {
+            $content->delete();
+            toast(__('Content deleted successfully.'),'success');
+            return back();
+
+
+        }else{
+            toast(__('Content not found.'), 'error');
             return back();
         }
 

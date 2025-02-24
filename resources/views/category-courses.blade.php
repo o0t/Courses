@@ -12,9 +12,6 @@
         </div>
 
 
-        <br><br><br>
-
-
 
         {{-- Cards --}}
         <div class="page-wrapper">
@@ -59,7 +56,7 @@
                                     <div class="card-header" style="display: block;text-align: center">
                                         <div>{{ $Course->title }}</div>
                                     </div>
-                                <a href="{{ route('course.view',$Course->name) }}" class="d-block"><img src="https://assets.codegrip.tech/wp-content/uploads/2019/10/04113325/1_Y07KF-_laqG2cJ1Squ0Bag.png" class="card-img-top"></a>
+                                <a href="{{ route('course.view',$Course->title) }}" class="d-block"><img src="https://assets.codegrip.tech/wp-content/uploads/2019/10/04113325/1_Y07KF-_laqG2cJ1Squ0Bag.png" class="card-img-top"></a>
                                 <div class="card-body">
                                     <div class="d-flex align-items-center">
                                             <div class="text-secondary">

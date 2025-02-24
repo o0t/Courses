@@ -31,6 +31,9 @@ class ContentManagementController extends Controller
         ->where('url', $url)
         ->where('user_id', Auth::user()->id)
         ->first();
+        // ->paginate(20);
+
+
 
         return view('teacher.course.content.home', compact('Course'));
     }

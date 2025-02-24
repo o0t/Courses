@@ -67,10 +67,6 @@ Route::group(['prefix'=>'article'], function(){
 
 
 
-// introductory_video
-Route::get('introductory_video/{name}' , [ViewCoursesController::class , 'Get_Introductory_Video'])->name('get.introductory_video');
-
-
 Route::get('file_name/{name}' , [ViewContentController::class , 'GetContentJquery'])->name('file.get');
 
 

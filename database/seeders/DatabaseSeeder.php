@@ -41,23 +41,23 @@ class DatabaseSeeder extends Seeder
         $this->call([
             UsersSeeder::class,
             CategoriesSeeder::class,
-            // CoursesSeeder::class
+            CoursesSeeder::class
         ]);
 
 
-        // AboutCourse::factory(7)->create();
+        AboutCourse::factory(7)->create();
 
-        // // $course = Courses::factory()
-        // // ->create();
-        // $course = Courses::find(1); // Replace $courseId with the actual ID
+        // $course = Courses::factory()
+        // ->create();
+        $course = Courses::find(1); // Replace $courseId with the actual ID
 
 
-        // $course->content()->createMany(
-        //     Content::factory()->count(50)->make()->toArray()
-        // );
+        $course->content()->createMany(
+            Content::factory()->count(50)->make()->toArray()
+        );
 
-        // Projects::factory(100)->create();
-        // Articles::factory(100)->create();
+        Projects::factory(100)->create();
+        Articles::factory(100)->create();
 
 
 

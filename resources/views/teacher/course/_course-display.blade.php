@@ -70,7 +70,7 @@
                         </div>
                       <br>
                       <label class="form-label">{{ __('Course information') }}</label>
-                      <textarea id="tinymce-default" name="course_information">{{ $Course->AboutCourse->course_information }}</textarea>
+                      <textarea id="tinymce-default" name="course_information">{{ $Course->AboutCourse->course_information ?? null}}</textarea>
                       @error('course_information')
                         <div class="form-text text-danger">{{ $errors->first('course_information') }}</div>
                       @enderror
@@ -78,7 +78,7 @@
                       <div class="hr-text"> <i class='bx bx-clipboard' ></i> </div>
                       <br><br>
                       <label class="form-label">{{ __('It is recommended to be familiar with these topics before starting the course') }}</label>
-                      <textarea id="tinymce-default" name="recommended_course">{{ $Course->AboutCourse->recommended_course }}</textarea>
+                      <textarea id="tinymce-default" name="recommended_course">{{ $Course->AboutCourse->recommended_course ?? null }}</textarea>
                         @error('recommended_course')
                             <div class="form-text text-danger">{{ $errors->first('recommended_course') }}</div>
                         @enderror
@@ -88,7 +88,7 @@
                         <div class="hr-text"> <i class='bx bx-clipboard' ></i> </div>
                         <br><br>
                         <label class="form-label">{{ __('You will learn in this course') }}</label>
-                        <textarea id="tinymce-default" name="learn_course">{{ $Course->AboutCourse->learn_course }}</textarea>
+                        <textarea id="tinymce-default" name="learn_course">{{ $Course->AboutCourse->learn_course ?? null }}</textarea>
                           @error('learn_course')
                               <div class="form-text text-danger">{{ $errors->first('learn_course') }}</div>
                           @enderror
@@ -101,7 +101,7 @@
                         <div class="hr-text"> <i class='bx bx-clipboard' ></i> </div>
                         <br><br>
                         <label class="form-label">{{ __('Who benefits from this course') }}</label>
-                        <textarea id="tinymce-default" name="benefits_course">{{ $Course->AboutCourse->benefits_course }}</textarea>
+                        <textarea id="tinymce-default" name="benefits_course">{{ $Course->AboutCourse->benefits_course ?? null}}</textarea>
                           @error('benefits_course')
                               <div class="form-text text-danger">{{ $errors->first('benefits_course') }}</div>
                           @enderror

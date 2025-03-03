@@ -111,6 +111,7 @@
                 </div>
 
                 <script>
+
                     $(document).ready(function() {
                         const ImageName = '{{ $Project->image_out }}';
                         const url = '{{ route('projects.images', ['name' => '__name__']) }}'.replace('__name__', encodeURIComponent(ImageName));
@@ -135,6 +136,7 @@
                         });
                     });
                 </script>
+
             @endforeach
 
             {{-- Projects / End --}}

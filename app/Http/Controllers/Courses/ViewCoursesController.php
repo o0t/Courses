@@ -10,6 +10,7 @@ use App\Models\Subscribers;
 use finfo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class ViewCoursesController extends Controller
 {
@@ -61,30 +62,28 @@ class ViewCoursesController extends Controller
             //     return response()->json(['message' => 'Failed to retrieve the file.', 'status' => 'error']);
             // }
 
-            $Course = Courses::where('introductory_video', $name)->first();
-
-            if ($Course) {
-                // Assuming the introductory_video contains the path to the file
-                $file = $Course->introductory_video;
-
-                // Check if the file exists
-                if (file_exists($file)) {
 
 
+            // if ($Course) {
+            //     // Assuming the introductory_video contains the path to the file
+            //     $file = $Course->introductory_video;
 
+            //     // Check if the file exists
+            //     if (Storage::disk('introductory_video')->exists($file)) {
 
-                    // return response()->json([
-                    //     'message' => 'File retrieved successfully.',
-                    //     'mime_type' => $extension,
-                    //     'status' => 'success',
-                    //     'file_content' => base64_encode($fileContent),
-                    // ]);
-                } else {
-                    return response()->json(['message' => 'File does not exist.', 'status' => 'error']);
-                }
-            } else {
-                return response()->json(['message' => 'Failed to retrieve the file.', 'status' => 'error']);
-            }
+            //         return response()->json([
+            //             'message' => 'File retrieved successfully.',
+            //             'mime_type' => $file->getClientOriginalExtension(),
+            //             'status' => 'success',
+            //             'file_content' => base64_encode($file),
+            //         ]);
+
+            //     } else {
+            //         return response()->json(['message' => 'File does not exist.', 'status' => 'error']);
+            //     }
+            // } else {
+            //     return response()->json(['message' => 'Failed to retrieve the file.', 'status' => 'error']);
+            // }
 
         }
 
@@ -112,8 +111,21 @@ class ViewCoursesController extends Controller
             $btn_subscriber = NULL;
         }
 
+        if ($course->introductory_video != null) {
+            // Assuming introductory_video is a string path in the database
+            $videoPath = 'public/introductory_video/' . $course->introductory_video;
 
-        return view('course.home',compact('categories','course','btn_subscriber'));
+            // Check if the file exists
+            if (Storage::exists($videoPath)) {
+                $extension = pathinfo($videoPath, PATHINFO_EXTENSION);
+            }else{
+                $extension = null;
+            }
+        }else{
+            $extension = null;
+        }
+
+        return view('course.home',compact('categories','course','btn_subscriber','extension'));
 
     }
 

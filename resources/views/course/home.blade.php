@@ -28,7 +28,7 @@
                         <div class="markdown">
                             <h4>{{ __('It is recommended to be familiar with these topics before starting the course') }}</h4>
                             <div class="text-secondary mb-3">
-                                {{ $course->AboutCourse->recommended_course }}
+                                {!! $course->AboutCourse->recommended_course !!}
                             </div>
 
                             <br><br>
@@ -92,50 +92,110 @@
 
 
                         @if ($course->introductory_video != NULL)
-                            {{-- Video --}}
-                            <div id="loading" style="display:none;">
-                                <div class="card placeholder-glow">
-                                    <div class="ratio ratio-21x9 card-img-top placeholder"></div>
-                                    <div class="card-body">
-                                        <div class="placeholder col-9 mb-3"></div>
-                                        <div class="placeholder placeholder-xs col-10"></div>
-                                        <div class="placeholder placeholder-xs col-11"></div>
-                                        <div class="mt-3">
-                                            <a href="#" tabindex="-1" class="btn btn-primary disabled placeholder col-4" aria-hidden="true"></a>
+                            @if (config('app.storage_type_data') == 'S3') {
+                                {{-- Video --}}
+                                <div id="loading" style="display:none;">
+                                    <div class="card placeholder-glow">
+                                        <div class="ratio ratio-21x9 card-img-top placeholder"></div>
+                                        <div class="card-body">
+                                            <div class="placeholder col-9 mb-3"></div>
+                                            <div class="placeholder placeholder-xs col-10"></div>
+                                            <div class="placeholder placeholder-xs col-11"></div>
+                                            <div class="mt-3">
+                                                <a href="#" tabindex="-1" class="btn btn-primary disabled placeholder col-4" aria-hidden="true"></a>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div id="response"></div>
-                            <script>
-                                $(document).ready(function() {
-                                    const videoName = '{{ $course->introductory_video }}';
+                                <div id="response"></div>
+                                <script>
+                                    $(document).ready(function() {
+                                        const videoName = '{{ $course->introductory_video }}';
 
-                                    $('#loading').show();
+                                        $('#loading').show();
 
-                                    const url = '{{ route('get.introductory_video', ['name' => '__name__']) }}'.replace('__name__', encodeURIComponent(videoName));
+                                        const url = '{{ route('get.introductory_video', ['name' => '__name__']) }}'.replace('__name__', encodeURIComponent(videoName));
 
-                                    $.get(url, function(data) {
-                                        $('#loading').hide();
+                                        $.get(url, function(data) {
+                                            $('#loading').hide();
 
-                                        if (data.status === 'success') {
-                                            $('#response').html(`
-                                                <video controls class="container" controlsList="nodownload">
-                                                    <source src="data:${data.mime_type};base64,${data.file_content}" type="${data.mime_type}">
-                                                    Your browser does not support the video tag.
-                                                </video>
-                                            `);
-                                        } else {
-                                            $('#response').html(`<p>${data.message}</p>`);
-                                        }
-                                    })
-                                    .fail(function(jqXHR, textStatus, errorThrown) {
-                                        $('#loading').hide();
-                                        $('#response').html('<p>Error fetching video: ' + errorThrown + '</p>');
+                                            if (data.status === 'success') {
+                                                $('#response').html(`
+                                                    <video controls class="container" controlsList="nodownload">
+                                                        <source src="data:${data.mime_type};base64,${data.file_content}" type="${data.mime_type}">
+                                                        Your browser does not support the video tag.
+                                                    </video>
+                                                `);
+                                            } else {
+                                                $('#response').html(`<p>${data.message}</p>`);
+                                            }
+                                        })
+                                        .fail(function(jqXHR, textStatus, errorThrown) {
+                                            $('#loading').hide();
+                                            $('#response').html('<p>Error fetching video: ' + errorThrown + '</p>');
+
+                                        });
                                     });
-                                });
-                            </script>
-                            {{-- Video / End --}}
+                                </script>
+                                {{-- Video / End --}}
+                            @else
+                                {{-- Video --}}
+                                {{-- <div id="loading" >
+                                    <div class="card placeholder-glow">
+                                        <div class="ratio ratio-21x9 card-img-top placeholder"></div>
+                                        <div class="card-body">
+                                            <div class="placeholder col-9 mb-3"></div>
+                                            <div class="placeholder placeholder-xs col-10"></div>
+                                            <div class="placeholder placeholder-xs col-11"></div>
+                                            <div class="mt-3">
+                                                <a href="#" tabindex="-1" class="btn btn-primary disabled placeholder col-4" aria-hidden="true"></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div> --}}
+
+
+
+                                <div id="response">
+                                    <video controls class="container" controlsList="nodownload">
+                                        <source src="{{ asset('storage/introductory_video/' . $course->introductory_video) }}" type="video/{{ $extension }}">
+                                        Your browser does not support the video tag.
+                                    </video>
+                                </div>
+
+
+{{--
+                                <script>
+                                    $(document).ready(function() {
+                                        const videoName = '{{ $course->introductory_video }}';
+
+                                        $('#loading').show();
+
+                                        const url = '{{ route('get.introductory_video', ['name' => '__name__']) }}'.replace('__name__', encodeURIComponent(videoName));
+
+                                        $.get(url, function(data) {
+                                            $('#loading').hide();
+
+                                            if (data.status === 'success') {
+                                                $('#response').html(`
+                                                    <video controls class="container" controlsList="nodownload">
+                                                        <source src="data:${data.mime_type};base64,${data.file_content}" type="${data.mime_type}">
+                                                        Your browser does not support the video tag.
+                                                    </video>
+                                                `);
+                                            } else {
+                                                $('#response').html(`<p>${data.message}</p>`);
+                                            }
+                                        })
+                                        .fail(function(jqXHR, textStatus, errorThrown) {
+                                            $('#loading').hide();
+                                            $('#response').html('<p>Error fetching video: ' + errorThrown + '</p>');
+
+                                        });
+                                    });
+                                </script> --}}
+                                {{-- Video / End --}}
+                            @endif
                         @endif
 
                         <br><br>
@@ -166,16 +226,16 @@
                         <br>
                         <h4>{{ __('Course information') }}</h4>
                         <div class="text-secondary mb-3">
-                          {{ $course->AboutCourse->course_information }}
+                          {!! $course->AboutCourse->course_information !!}
                         </div>
                         <h4> {{ __('You will learn in this course') }} </h4>
                         <div class="text-secondary mb-3">
-                            {{ $course->AboutCourse->learn_course }}
+                            {!! $course->AboutCourse->learn_course !!}
                         </div>
                         <br>
                         <h4>{{ __('Who benefits from this course') }}</h4>
                         <div class="text-secondary mb-3">
-                            {{ $course->AboutCourse->benefits_course }}
+                            {!! $course->AboutCourse->benefits_course !!}
                         </div>
                         <h4>Conditions</h4>
                         <ul class="list-unstyled space-y-1">
@@ -186,7 +246,7 @@
                       </div>
                       <div class="card-footer">
                         This is not legal advice.
-                        <a href="#" target="_blank">Learn more about repository licenses.</a>
+                        <a href="#" target="_blank">Learn more about repository sss.</a>
                       </div>
                     </div>
                   </div>

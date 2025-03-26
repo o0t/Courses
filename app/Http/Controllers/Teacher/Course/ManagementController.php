@@ -5,10 +5,12 @@ namespace App\Http\Controllers\Teacher\Course;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\FormCreateCourse;
 use App\Models\AboutCourse;
+use App\Models\Categories;
 use App\Models\Courses;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
+use WindowsAzure\Common\Internal\Atom\Category;
 
 class ManagementController extends Controller
 {
@@ -65,16 +67,9 @@ class ManagementController extends Controller
             return back();
         }
 
-        $categories = [
-            'Literature', 'History', 'Philosophy', 'Religion', 'Visual/Performing Arts', 'Business & Management', 'Accounting',
-            'Finance', 'Marketing', 'Entrepreneurship', 'Operations Management', 'Science & Technology', 'Biology',
-            'Computer Science', 'Engineering', 'Mathematics', 'Physics', 'Social Sciences', 'Psychology', 'Sociology',
-            'Political Science', 'Economics', 'Anthropology', 'Health & Medicine', 'Nursing', 'Public Health', 'Nutrition',
-            'Kinesiology', 'Education & Human Development', 'Teaching', 'Counseling', 'Early Childhood Education',
-            'Environment & Sustainability', 'Environmental Science', 'Renewable Energy', 'Conservation', 'Language & Culture',
-            'Foreign Languages', 'Linguistics', 'Cultural Studies'
-        ];
+        $categories = Categories::all();
 
+        // return $categories;
 
         return view('teacher.course._course-settings',compact('Course','categories'));
 

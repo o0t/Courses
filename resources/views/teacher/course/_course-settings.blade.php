@@ -83,13 +83,7 @@
                             @endif
                           </div>
                         </div>
-                        <div class="col-sm-6 col-md-4">
-                          <div class="mb-4">
-                            <label class="form-label">{{ __('Course Name') }}</label>
-                                <input type="text" class="form-control" name="name" value="{{ $Course->name }}">
-                                <div class="form-text">{{ __('The name will be visible only to you') }}</div>
-                          </div>
-                        </div>
+
                         <div class="col-sm-6 col-md-4">
                                 <label class="form-label">{{ __('Course link') }}</label>
                                 @if (app()->getLocale() == 'en')
@@ -169,7 +163,7 @@
                                     <option value="" selected >{{ __('No category') }}</option>
                                 @endif
                                 @foreach($categories as $category)
-                                    <option value="{{ $category }}" @if($Course->course_category == $category) selected @endif>{{ __($category) }}</option>
+                                    <option value="{{ $category->name }}" @if($Course->course_category == $category->id) selected @endif>{{ __($category->name) }}</option>
                                 @endforeach
                             </select>
 

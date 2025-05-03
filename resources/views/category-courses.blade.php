@@ -55,10 +55,14 @@
                             <div class="col-sm-6 col-lg-4">
                                 <div class="card card-sm">
                                     <div class="card-header" style="display: block;text-align: center">
-                                        <div>{{ $Course->title }}</div>
+                                        <div><strong>{{ $Course->title }}</strong></div>
                                     </div>
                                 <a href="{{ route('course.view',$Course->title) }}" class="d-block">
                                     <img src="{{ asset($Course->photo) }}" height="300" class="card-img-top"></a>
+                                    <br>
+                                    <div class="text-secondary ms-2">
+                                        <strong> {{ __('Created by') }} : </strong> {{ $Course->user->first_name .' '. $Course->user->last_name }}
+                                    </div>
                                 <div class="card-body">
                                         <div class="d-flex align-items-center">
                                                 <div class="text-secondary">

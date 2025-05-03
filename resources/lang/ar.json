@@ -318,7 +318,8 @@
     "Text uploaded successfully":"تم رفع النص بنجاح",
     "Content deleted successfully":"تم حذف المحتوى بنجاح",
     "Introductory video":"فيديو تعريفي",
-    "Allowed upload format: mp4, avi, mov, mkv":"صيغة الرفع المسموح بها: mp4، avi، mov، mkv"
+    "Allowed upload format: mp4, avi, mov, mkv":"صيغة الرفع المسموح بها: mp4، avi، mov، mkv",
+    "Created by":"تم الإنشاء بواسطة"
 
 
 }

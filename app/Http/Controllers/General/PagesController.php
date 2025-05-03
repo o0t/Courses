@@ -31,7 +31,7 @@ class PagesController extends Controller
         $tag = Tag::where('name->en',$category)->first();
 
         if ($tag) {
-            $Courses = Courses::withAnyTags([$tag->getTranslation('name', 'en')])->paginate(10);
+            $Courses = Courses::withAnyTags([$tag->getTranslation('name', 'en')])->paginate(20);
         }else{
             return back();
         }
@@ -51,7 +51,7 @@ class PagesController extends Controller
         $tag = Tag::where('name->en',$category)->first();
 
         if ($tag) {
-            $Courses = Courses::withAnyTags([$tag->getTranslation('name', 'en')])->latest()->paginate(10);
+            $Courses = Courses::withAnyTags([$tag->getTranslation('name', 'en')])->latest()->paginate(20);
         }else{
             return back();
         }
@@ -69,7 +69,7 @@ class PagesController extends Controller
         $tag = Tag::where('name->en',$category)->first();
 
         if ($tag) {
-            $Courses = Courses::withAnyTags([$tag->getTranslation('name', 'en')])->oldest()->paginate(10);
+            $Courses = Courses::withAnyTags([$tag->getTranslation('name', 'en')])->oldest()->paginate(20);
         }else{
             return back();
         }

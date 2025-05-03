@@ -14,31 +14,33 @@ use finfo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
+use Spatie\Tags\Tag;
 
 class PagesController extends Controller
 {
 
 
     public function index(){
-        $categories = Main_categories::all();
+        $categories = Tag::get();
         return view('welcom' , compact('categories'));
     }
 
 
     public function category($category){
 
-        $Main_category = Main_categories::where('name',$category)->first();
+        $tag = Tag::where('name->en',$category)->first();
 
-        if ($Main_category) {
-            $category = Categories::where('main_category_id',$Main_category->id)->get();
-
+        if ($tag) {
+            $Courses = Courses::withAnyTags([$tag->getTranslation('name', 'en')])->paginate(10);
         }else{
             return back();
         }
 
-        $categories = Main_categories::all();
+        $categories = Tag::get();
+        $status = null;
 
-        return view('category',compact('Main_category','category','categories'));
+
+        return view('category-courses',compact('status','Courses','categories','category'));
 
     }
 
@@ -46,33 +48,36 @@ class PagesController extends Controller
 
     public function LatestCategoryCourses($category){
 
-        $Categories = Categories::where('name', $category)->first();
+        $tag = Tag::where('name->en',$category)->first();
 
-        if (!$Categories) {
+        if ($tag) {
+            $Courses = Courses::withAnyTags([$tag->getTranslation('name', 'en')])->latest()->paginate(10);
+        }else{
             return back();
         }
 
-        $Courses = $Categories->courses()->latest()->paginate(10);
-        $categories = Main_categories::all();
+        $categories = Tag::get();
         $status = 'latest';
 
-        return view('category-courses', compact('categories','Categories','Courses','status','category'));
+        return view('category-courses',compact('status','Courses','categories','category'));
+
     }
 
 
     public function OldestCategoryCourses($category){
 
-        $Categories = Categories::where('name', $category)->first();
+        $tag = Tag::where('name->en',$category)->first();
 
-        if (!$Categories) {
+        if ($tag) {
+            $Courses = Courses::withAnyTags([$tag->getTranslation('name', 'en')])->oldest()->paginate(10);
+        }else{
             return back();
         }
 
-        $Courses = $Categories->courses()->oldest()->paginate(10);
-        $categories = Main_categories::all();
+        $categories = Tag::get();
         $status = 'oldest';
 
-        return view('category-courses', compact('categories','Categories','Courses','status','category'));
+        return view('category-courses',compact('status','Courses','categories','category'));
 
     }
 

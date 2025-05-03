@@ -49,10 +49,12 @@
 
                   </div>
                   @auth
-                    <a href="{{ route('project.create.get') }}" class="btn btn-primary">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M12 5l0 14"></path><path d="M5 12l14 0"></path></svg>
-                        {{ __('Upload a project') }}
-                    </a>
+                    @can('create-projects')
+                        <a href="{{ route('project.create.get') }}" class="btn btn-primary">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M12 5l0 14"></path><path d="M5 12l14 0"></path></svg>
+                            {{ __('Upload a project') }}
+                        </a>
+                    @endcan
                   @endauth
                 </div>
               </div>
@@ -112,29 +114,31 @@
 
                 <script>
 
-                    $(document).ready(function() {
-                        const ImageName = '{{ $Project->image_out }}';
-                        const url = '{{ route('projects.images', ['name' => '__name__']) }}'.replace('__name__', encodeURIComponent(ImageName));
-                        const loadingMessage = $('#loading-{{ $Project->id }}');
-                        loadingMessage.show();
+                    // $(document).ready(function() {
+                    //     const ImageName = '{{ $Project->image_out }}';
+                    //     const url = '{{ route('projects.images', ['name' => '__name__']) }}'.replace('__name__', encodeURIComponent(ImageName));
+                    //     const loadingMessage = $('#loading-{{ $Project->id }}');
+                    //     loadingMessage.show();
 
-                        $.get(url, function(data) {
-                            loadingMessage.hide();
-                            if (data.status === 'success') {
-                                $('#response-{{ $Project->id }}').html(`
-                                <a href="{{ route('projects.details',$Project->token) }}">
-                                    <img src="data:${data.mime_type};base64,${data.file_content}" class="card-img-top" alt="" style="max-height: 289px;max-width: 384px;">
-                                </a>
-                                `);
-                            } else {
-                                $('#response-{{ $Project->id }}').html(`<p>${data.message}</p>`);
-                            }
-                        })
-                        .fail(function(jqXHR, textStatus, errorThrown) {
-                            loadingMessage.hide();
-                            $('#response-{{ $Project->id }}').html('<p>Error fetching image: ' + errorThrown + '</p>');
-                        });
-                    });
+                    //     $.get(url, function(data) {
+                    //         loadingMessage.hide();
+                    //         if (data.status === 'success') {
+                    //             $('#response-{{ $Project->id }}').html(`
+                    //             <a href="{{ route('projects.details',$Project->token) }}">
+                    //                 <img src="data:${data.mime_type};base64,${data.file_content}" class="card-img-top" alt="" style="max-height: 289px;max-width: 384px;">
+                    //             </a>
+                    //             `);
+                    //         } else {
+                    //             $('#response-{{ $Project->id }}').html(`<p>${data.message}</p>`);
+                    //         }
+                    //     })
+                    //     .fail(function(jqXHR, textStatus, errorThrown) {
+                    //         loadingMessage.hide();
+                    //         $('#response-{{ $Project->id }}').html('<p>Error fetching image: ' + errorThrown + '</p>');
+                    //     });
+                    // });
+
+
                 </script>
 
             @endforeach

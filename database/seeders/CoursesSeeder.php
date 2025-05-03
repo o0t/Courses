@@ -7,6 +7,8 @@ use App\Models\courses_categories;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Faker\Factory as Faker;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str; // Import Str facade
 
 class CoursesSeeder extends Seeder
 {
@@ -17,6 +19,32 @@ class CoursesSeeder extends Seeder
      */
     public function run()
     {
+
+            // $coursesData_FrontEnd = [
+            //     ['title' => 'html',         'photo' => 'html.png'],
+            //     ['title' => 'Css',          'photo' => 'css.png'],
+            //     ['title' => 'BootStrap',    'photo' => 'BootStrap.png'],
+            //     ['title' => 'Sass',         'photo' => 'Sass.png'],
+            //     ['title' => 'React.js',     'photo' => 'react.png'],
+            //     ['title' => 'JavaScript',   'photo' => 'JavaScript.png'],
+            //     ['title' => 'Tailwind CSS', 'photo' => 'tailwind-css.png'],
+            // ];
+
+            // foreach ($coursesData_FrontEnd as $data) {
+            //     $course = Courses::factory()->create([
+            //         'title' => $data['title'],
+
+            //         'url' => $data['title'],
+            //         'photo' => $data['photo'],
+            //     ]);
+
+            //     // Link course to category
+            //     courses_categories::create([
+            //         'course_id' => $course->id,
+            //         'category_id' => 1,
+            //     ]);
+            // }
+
 
             $coursesData_FrontEnd = [
                 ['title' => 'html',         'photo' => 'html.png'],
@@ -29,18 +57,33 @@ class CoursesSeeder extends Seeder
             ];
 
             foreach ($coursesData_FrontEnd as $data) {
-                $course = Courses::factory()->create([
-                    'title' => $data['title'],
+                // Set the source path for the images in public
+                $sourcePath = public_path('images/Seeder/' . $data['photo']);
 
-                    'url' => $data['title'],
-                    'photo' => $data['photo'],
-                ]);
+                // Check if the file exists
+                if (file_exists($sourcePath)) {
+                    // Store the image in storage/app/public/images
 
-                // Link course to category
-                courses_categories::create([
-                    'course_id' => $course->id,
-                    'category_id' => 1,
-                ]);
+                    $randomName = Str::random(10) . '.' . pathinfo($data['photo'], PATHINFO_EXTENSION);
+
+                    Storage::disk('public')->putFileAs('course_img', $sourcePath, $randomName);
+
+                    // Storage::disk('public')->putFileAs('course_img', $sourcePath, $data['photo']);
+
+                    // Create the course
+                    $course = Courses::factory()->create([
+                        'title' => $data['title'],
+                        'url'   => $data['title'],
+                        'photo' => 'storage/course_img/' . $randomName, // Path for accessing the image
+                    ]);
+
+                    $course->syncTags(['Front-End']);
+
+
+                } else {
+                    // Handle the case where the file does not exist
+                    echo "File not found: " . $sourcePath . "\n";
+                }
             }
 
 

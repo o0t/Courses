@@ -93,7 +93,7 @@
                         <div class="col-sm-6 col-lg-3" >
                             <a href="{{ route('category',$category->name) }}" class="link-offset-2 link-underline link-underline-opacity-0">
                                 <div class="card card-link-pop">
-                                    <img src="{{ asset('images/Main_categories/'.$category->img) }}" width="180" height="200" class="rounded mx-auto d-block" alt="{{ __($category->name) }}">
+                                    <img src="{{ asset('images/Tags/'.$category->img) }}" width="180" height="200" class="rounded mx-auto d-block" alt="{{ __($category->name) }}">
                                     <div class="card-footer" style="text-align: center">
                                         <span class="h3">{{ __($category->name) }}</span>
                                     </div>

@@ -89,7 +89,7 @@
                                 @if (app()->getLocale() == 'en')
                                     <div class="input-group input-group-flat">
                                     <span class="input-group-text">
-                                        https://raqeeb.online/course/
+                                        https://www.example.com/
                                     </span>
                                         <input type="text" class="form-control ps-0" name="course-url"  value="{{ $Course->url }}" autocomplete="off">
                                     </div>
@@ -102,7 +102,7 @@
                                         <div class="input-group input-group-flat">
                                         <input type="text" class="form-control text-end pe-0" name="course-url" value="{{ $Course->url }}" autocomplete="off">
                                         <span class="input-group-text">
-                                            /https://raqeeb.online/course
+                                            /https://www.example.com
                                         </span>
                                         </div>
                                     </div>
@@ -116,34 +116,18 @@
                             <div class="mb-3">
                                 <label class="form-label">{{ __('Course level') }}</label>
                                 <select class="form-select" name="level">
-                                    @if ($Course->level == 'beginner')
-                                        <option value="beginner" selected>{{ __('beginner') }}</option>
-                                        <option value="intermediate" >{{ __('intermediate') }}</option>
-                                        <option value="professional">{{ __('professional') }}</option>
-                                        <option value="all">{{ __('All stages') }}</option>
-                                    @elseif ($Course->level == 'intermediate')
-                                        <option value="intermediate" selected>{{ __('intermediate') }}</option>
-                                        <option value="beginner">{{ __('beginner') }}</option>
-                                        <option value="professional">{{ __('professional') }}</option>
-                                        <option value="all">{{ __('All stages') }}</option>
-                                    @elseif ($Course->level == 'professional')
-                                        <option value="professional" selected>{{ __('professional') }}</option>
-                                        <option value="beginner">{{ __('beginner') }}</option>
-                                        <option value="intermediate">{{ __('intermediate') }}</option>
-                                        <option value="all">{{ __('All stages') }}</option>
-                                    @elseif ($Course->level == 'all')
-                                        <option value="all" selected>{{ __('All stages') }}</option>
-                                        <option value="beginner">{{ __('beginner') }}</option>
-                                        <option value="intermediate">{{ __('intermediate') }}</option>
-                                        <option value="professional">{{ __('professional') }}</option>
-                                    @endif
+                                    @foreach (['beginner', 'intermediate', 'professional', 'all'] as $level)
+                                        <option value="{{ $level }}" {{ $Course->level == $level ? 'selected' : '' }}>
+                                            {{ __($level) }}
+                                        </option>
+                                    @endforeach
                                 </select>
                             </div>
                         </div>
                         <div class="col-sm-3 col-md-3">
                             <div class="mb-3">
                                 <label class="form-label">{{ __('Subscriber status') }}</label>
-                                <select class="form-select" name="subscribers_status">
+                                <select class="form-select" name="subscribers_status" disabled>
                                     @if ($Course->subscribers_status == 'paid')
                                         <option value="paid" selected>{{ __('paid') }}</option>
                                         <option value="free">{{ __('free') }}</option>
@@ -157,16 +141,19 @@
                         <div class="col-md-2">
                           <div class="mb-2">
                             <label class="form-label">{{ __('Course category') }}</label>
+                                <select class="form-select" name="course_category">
+                                    @if ($Course->tags()->count() > 0)
+                                        <option value="" selected>{{ __('Select a category') }}</option>
+                                    @else
+                                        <option value="" selected>{{ __('No category available') }}</option>
+                                    @endif
 
-                            <select class="form-select" name="course_category">
-                                @if ($Course->course_category == NULL)
-                                    <option value="" selected >{{ __('No category') }}</option>
-                                @endif
-                                @foreach($categories as $category)
-                                    <option value="{{ $category->name }}" @if($Course->course_category == $category->id) selected @endif>{{ __($category->name) }}</option>
-                                @endforeach
-                            </select>
-
+                                    @foreach($categories as $category)
+                                        <option value="{{ $category->id }}" @if($Course->tags->contains($category->id)) selected @endif>
+                                            {{ __($category->name) }}
+                                        </option>
+                                    @endforeach
+                                </select>
                           </div>
                         </div>
                       </div>

@@ -26,7 +26,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [PagesController::class , 'index'])->name('index');
 
 
-
+Route::get('o',function(){
+    return redirect()->back();
+});
 
 Route::group(['prefix'=>'category'], function(){
 
@@ -65,7 +67,13 @@ Route::group(['prefix'=>'course'], function(){
 Route::group(['prefix'=>'projects'], function(){
 
     Route::get('/' , [PagesController::class , 'Projects'])->name('projects.home');
-    Route::get('images/{name}' , [PagesController::class , 'ProjectImages'])->name('projects.images');
+
+
+    if (config('app.storage_type_data') == 'S3') {
+        Route::get('images/{name}' , [PagesController::class , 'ProjectImages'])->name('projects.images');
+    }else{
+        Route::get('images/{name}' , [PagesController::class , 'ProjectImagesServer'])->name('projects.images');
+    }
     Route::get('{token}/details' , [PagesController::class , 'ProjectDetails'])->name('projects.details');
 
 });
@@ -83,12 +91,12 @@ Route::group(['prefix'=>'articles'], function(){
 
 Route::get('test', function(){
     // Auth::user()->syncRoles('member');
-    // Auth::user()->syncRoles('student');
-    Auth::user()->syncRoles('teacher');
+    Auth::user()->syncRoles('student');
+    // Auth::user()->syncRoles('teacher');
     // Auth::user()->syncRoles('teacher-admin');
     // Auth::user()->syncRoles('admin');
 
-    return back();
+    return redirect()->route('test.role');
 
 });
 
@@ -99,7 +107,7 @@ Route::get('role', function(){
 
     return $roles;
 
-});
+})->name('test.role');
 
 Route::get('p', function(){
 
@@ -123,15 +131,18 @@ Route::get('p', function(){
 
 Route::get('lan/{locale}', function ($locale) {
     if ($locale == 'ar') {
+
         app()->setLocale($locale);
         session()->put('locale', $locale);
 
         return redirect()->back();
     }elseif($locale == 'en'){
+
         app()->setLocale($locale);
         session()->put('locale', $locale);
 
         return redirect()->back();
+
     }else{
         return redirect()->back();
     }

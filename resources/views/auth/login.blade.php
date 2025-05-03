@@ -12,7 +12,15 @@
           <h2 class="h2 text-center mb-4">{{ __('Login to your account') }}</h2>
           <form method="POST" action="{{ route('login') }}">
             @csrf
-
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
               {{-- email_username --}}
             <div class="mb-3">
               <label class="form-label">{{ __('Email Address or UserName') }}</label>

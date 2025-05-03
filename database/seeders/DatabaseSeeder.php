@@ -40,8 +40,10 @@ class DatabaseSeeder extends Seeder
 
         $this->call([
             UsersSeeder::class,
+            TagsSeeder::class,
             CategoriesSeeder::class,
-            CoursesSeeder::class
+            CoursesSeeder::class,
+            RoleSeedr::class,
         ]);
 
 
@@ -59,7 +61,13 @@ class DatabaseSeeder extends Seeder
         Projects::factory(100)->create();
         Articles::factory(100)->create();
 
+        // $courses = Courses::findMany([1, 5]);
 
+        // foreach ($courses as $course) {
+        //     $course->syncTags(['Front-End']);
+        // }
+        // $course2->syncTags(['Back-End']);Full-Stack
+        // $course->syncTags(['Front-End','API']);
 
     }
 

@@ -25,7 +25,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $categories = Main_categories::all();
-        return view('welcom',compact('categories'));
+        return redirect()->route('index');
     }
 }

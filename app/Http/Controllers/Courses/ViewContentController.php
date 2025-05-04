@@ -5,12 +5,12 @@ namespace App\Http\Controllers\Courses;
 use App\Http\Controllers\Controller;
 use App\Models\Content;
 use App\Models\Courses;
-use App\Models\Main_categories;
 use App\Models\Subscribers;
 use App\Models\user_activities;
 use finfo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Spatie\Tags\Tag;
 
 class ViewContentController extends Controller
 {
@@ -75,7 +75,7 @@ class ViewContentController extends Controller
             return back();
         }
 
-        $categories = Main_categories::all();
+        $categories = Tag::get();
 
         $contents = Content::where('courses_id',$course->id)->get();
 

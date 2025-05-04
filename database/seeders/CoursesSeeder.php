@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\AboutCourse;
+use App\Models\Content;
 use App\Models\Courses;
 use App\Models\courses_categories;
 use App\Models\User;
@@ -22,6 +24,7 @@ class CoursesSeeder extends Seeder
 
         $RED = "\033[31m";
         $ENDCOLOR = "\033[0m";
+        $faker = Faker::create(); // Initialize Faker
 
             $coursesData_FrontEnd = [
                 ['title' => 'HTML Basics',                      'photo' => 'html.png'],
@@ -48,16 +51,33 @@ class CoursesSeeder extends Seeder
 
                     Storage::disk('public')->putFileAs('course_img', $sourcePath, $randomName);
 
-                    // Storage::disk('public')->putFileAs('course_img', $sourcePath, $data['photo']);
-
-                    // Create the course
+                                        // Create the course
                     $course = Courses::factory()->create([
                         'title' => $data['title'],
                         'url'   => $data['title'],
                         'photo' => 'storage/course_img/' . $randomName, // Path for accessing the image
                     ]);
 
-                    $course->syncTags(['Front-End']);
+                    AboutCourse::create([
+                        'course_id'             => $course->id, // Link to the created course
+                        'course_information'    => "<p>Dive deep into the fundamentals of <strong>{$data['title']}</strong>, where you'll explore essential concepts and practical applications. This course is designed to equip you with the skills necessary to excel in web development.</p>",
+                        'recommended_course'    => "<p>To further enhance your knowledge, consider exploring these recommended courses: <em>Advanced {$data['title']}</em>, <em>Project-Based {$data['title']}</em>, and <em>Expert Techniques in {$data['title']}</em>.</p>",
+                        'learn_course'          => "<p>You'll learn how to effectively utilize <strong>{$data['title']}</strong> by engaging in hands-on projects, interactive exercises, and real-world examples that solidify your understanding.</p>",
+                        'benefits_course'       => "<p>By completing this course, you'll gain valuable skills that will not only boost your career prospects but also empower you to create stunning, responsive websites that stand out.</p>",
+                        'created_at'            => now(), // Current timestamp
+                    ]);
+
+
+
+                    $course->content()->createMany(
+                        collect(range(0, 49))->map(function ($index) use ($course) {
+                            return Content::factory()->withDynamicTitle($course->title, $index)->make([
+                                'courses_id' => $course->id,
+                            ])->toArray();
+                        })->toArray()
+                    );
+
+                    $course->syncTags(['Web development']);
 
 
                 } else {
@@ -92,8 +112,6 @@ class CoursesSeeder extends Seeder
 
                     Storage::disk('public')->putFileAs('course_img', $sourcePath, $randomName);
 
-                    // Storage::disk('public')->putFileAs('course_img', $sourcePath, $data['photo']);
-
                     // Create the course
                     $course = Courses::factory()->create([
                         'title' => $data['title'],
@@ -101,7 +119,24 @@ class CoursesSeeder extends Seeder
                         'photo' => 'storage/course_img/' . $randomName, // Path for accessing the image
                     ]);
 
-                    $course->syncTags(['Back-End']);
+                    AboutCourse::create([
+                        'course_id'             => $course->id, // Link to the created course
+                        'course_information'    => "<p>Dive deep into the fundamentals of <strong>{$data['title']}</strong>, where you'll explore essential concepts and practical applications. This course is designed to equip you with the skills necessary to excel in web development.</p>",
+                        'recommended_course'    => "<p>To further enhance your knowledge, consider exploring these recommended courses: <em>Advanced {$data['title']}</em>, <em>Project-Based {$data['title']}</em>, and <em>Expert Techniques in {$data['title']}</em>.</p>",
+                        'learn_course'          => "<p>You'll learn how to effectively utilize <strong>{$data['title']}</strong> by engaging in hands-on projects, interactive exercises, and real-world examples that solidify your understanding.</p>",
+                        'benefits_course'       => "<p>By completing this course, you'll gain valuable skills that will not only boost your career prospects but also empower you to create stunning, responsive websites that stand out.</p>",
+                        'created_at'            => now(), // Current timestamp
+                    ]);
+
+                    $course->content()->createMany(
+                        collect(range(0, 49))->map(function ($index) use ($course) {
+                            return Content::factory()->withDynamicTitle($course->title, $index)->make([
+                                'courses_id' => $course->id,
+                            ])->toArray();
+                        })->toArray()
+                    );
+
+                    $course->syncTags(['Web development']);
 
 
 
@@ -139,7 +174,7 @@ class CoursesSeeder extends Seeder
 
                     Storage::disk('public')->putFileAs('course_img', $sourcePath, $randomName);
 
-                    // Storage::disk('public')->putFileAs('course_img', $sourcePath, $data['photo']);
+
 
                     // Create the course
                     $course = Courses::factory()->create([
@@ -148,7 +183,25 @@ class CoursesSeeder extends Seeder
                         'photo' => 'storage/course_img/' . $randomName, // Path for accessing the image
                     ]);
 
-                    $course->syncTags(['Full-Stack']);
+
+                    AboutCourse::create([
+                        'course_id'             => $course->id, // Link to the created course
+                        'course_information'    => "<p>Dive deep into the fundamentals of <strong>{$data['title']}</strong>, where you'll explore essential concepts and practical applications. This course is designed to equip you with the skills necessary to excel in web development.</p>",
+                        'recommended_course'    => "<p>To further enhance your knowledge, consider exploring these recommended courses: <em>Advanced {$data['title']}</em>, <em>Project-Based {$data['title']}</em>, and <em>Expert Techniques in {$data['title']}</em>.</p>",
+                        'learn_course'          => "<p>You'll learn how to effectively utilize <strong>{$data['title']}</strong> by engaging in hands-on projects, interactive exercises, and real-world examples that solidify your understanding.</p>",
+                        'benefits_course'       => "<p>By completing this course, you'll gain valuable skills that will not only boost your career prospects but also empower you to create stunning, responsive websites that stand out.</p>",
+                        'created_at'            => now(), // Current timestamp
+                    ]);
+
+                    $course->content()->createMany(
+                        collect(range(0, 49))->map(function ($index) use ($course) {
+                            return Content::factory()->withDynamicTitle($course->title, $index)->make([
+                                'courses_id' => $course->id,
+                            ])->toArray();
+                        })->toArray()
+                    );
+
+                    $course->syncTags(['Web development']);
 
 
 
@@ -187,8 +240,6 @@ class CoursesSeeder extends Seeder
 
                     Storage::disk('public')->putFileAs('course_img', $sourcePath, $randomName);
 
-                    // Storage::disk('public')->putFileAs('course_img', $sourcePath, $data['photo']);
-
                     // Create the course
                     $course = Courses::factory()->create([
                         'title' => $data['title'],
@@ -196,7 +247,26 @@ class CoursesSeeder extends Seeder
                         'photo' => 'storage/course_img/' . $randomName, // Path for accessing the image
                     ]);
 
-                    $course->syncTags(['Android']);
+
+                    AboutCourse::create([
+                        'course_id'             => $course->id, // Link to the created course
+                        'course_information'    => "<p>Explore the world of mobile development with <strong>{$data['title']}</strong>. This course covers the essentials to help you build engaging mobile applications.</p>",
+                        'recommended_course'    => "<p>Enhance your skills with these recommended courses: <em>Advanced {$data['title']}</em>, <em>Cross-Platform Development with React Native</em>, and <em>Designing Mobile Apps</em>.</p>",
+                        'learn_course'          => "<p>In this course, you'll learn to develop mobile applications using <strong>{$data['title']}</strong>, focusing on hands-on projects and real-world scenarios.</p>",
+                        'benefits_course'       => "<p>Completing this course will equip you with essential skills for a career in mobile app development, enabling you to create apps that users love.</p>",
+                        'created_at'            => now(), // Current timestamp
+                    ]);
+
+                    $course->content()->createMany(
+                        collect(range(0, 49))->map(function ($index) use ($course) {
+                            return Content::factory()->withDynamicTitle($course->title, $index)->make([
+                                'courses_id' => $course->id,
+                            ])->toArray();
+                        })->toArray()
+                    );
+
+
+                    $course->syncTags(['Mobile app development']);
 
 
                 } else {
@@ -233,8 +303,6 @@ class CoursesSeeder extends Seeder
 
                     Storage::disk('public')->putFileAs('course_img', $sourcePath, $randomName);
 
-                    // Storage::disk('public')->putFileAs('course_img', $sourcePath, $data['photo']);
-
                     // Create the course
                     $course = Courses::factory()->create([
                         'title' => $data['title'],
@@ -242,7 +310,25 @@ class CoursesSeeder extends Seeder
                         'photo' => 'storage/course_img/' . $randomName, // Path for accessing the image
                     ]);
 
-                    $course->syncTags(['iOS']);
+
+                    AboutCourse::create([
+                        'course_id'             => $course->id, // Link to the created course
+                        'course_information'    => "<p>Explore the world of mobile development with <strong>{$data['title']}</strong>. This course covers the essentials to help you build engaging mobile applications.</p>",
+                        'recommended_course'    => "<p>Enhance your skills with these recommended courses: <em>Advanced {$data['title']}</em>, <em>Cross-Platform Development with React Native</em>, and <em>Designing Mobile Apps</em>.</p>",
+                        'learn_course'          => "<p>In this course, you'll learn to develop mobile applications using <strong>{$data['title']}</strong>, focusing on hands-on projects and real-world scenarios.</p>",
+                        'benefits_course'       => "<p>Completing this course will equip you with essential skills for a career in mobile app development, enabling you to create apps that users love.</p>",
+                        'created_at'            => now(), // Current timestamp
+                    ]);
+
+                    $course->content()->createMany(
+                        collect(range(0, 49))->map(function ($index) use ($course) {
+                            return Content::factory()->withDynamicTitle($course->title, $index)->make([
+                                'courses_id' => $course->id,
+                            ])->toArray();
+                        })->toArray()
+                    );
+
+                    $course->syncTags(['Mobile app development']);
 
 
                 } else {
@@ -282,8 +368,6 @@ class CoursesSeeder extends Seeder
 
                     Storage::disk('public')->putFileAs('course_img', $sourcePath, $randomName);
 
-                    // Storage::disk('public')->putFileAs('course_img', $sourcePath, $data['photo']);
-
                     // Create the course
                     $course = Courses::factory()->create([
                         'title' => $data['title'],
@@ -291,7 +375,26 @@ class CoursesSeeder extends Seeder
                         'photo' => 'storage/course_img/' . $randomName, // Path for accessing the image
                     ]);
 
-                    $course->syncTags(['API']);
+
+                    AboutCourse::create([
+                        'course_id'             => $course->id, // Link to the created course
+                        'course_information'    => "<p>Dive deep into the fundamentals of <strong>{$data['title']}</strong>, where you'll explore essential concepts and practical applications. This course is designed to equip you with the skills necessary to excel in web development.</p>",
+                        'recommended_course'    => "<p>To further enhance your knowledge, consider exploring these recommended courses: <em>Advanced {$data['title']}</em>, <em>Project-Based {$data['title']}</em>, and <em>Expert Techniques in {$data['title']}</em>.</p>",
+                        'learn_course'          => "<p>You'll learn how to effectively utilize <strong>{$data['title']}</strong> by engaging in hands-on projects, interactive exercises, and real-world examples that solidify your understanding.</p>",
+                        'benefits_course'       => "<p>By completing this course, you'll gain valuable skills that will not only boost your career prospects but also empower you to create stunning, responsive websites that stand out.</p>",
+                        'created_at'            => now(), // Current timestamp
+                    ]);
+
+                    $course->content()->createMany(
+                        collect(range(0, 49))->map(function ($index) use ($course) {
+                            return Content::factory()->withDynamicTitle($course->title, $index)->make([
+                                'courses_id' => $course->id,
+                            ])->toArray();
+                        })->toArray()
+                    );
+
+
+                    $course->syncTags(['Web development','Other']);
 
 
                 } else {
@@ -328,8 +431,6 @@ class CoursesSeeder extends Seeder
 
                     Storage::disk('public')->putFileAs('course_img', $sourcePath, $randomName);
 
-                    // Storage::disk('public')->putFileAs('course_img', $sourcePath, $data['photo']);
-
                     // Create the course
                     $course = Courses::factory()->create([
                         'title' => $data['title'],
@@ -337,7 +438,24 @@ class CoursesSeeder extends Seeder
                         'photo' => 'storage/course_img/' . $randomName, // Path for accessing the image
                     ]);
 
-                    $course->syncTags(['Database']);
+                    AboutCourse::create([
+                        'course_id'             => $course->id, // Link to the created course
+                        'course_information'    => "<p>Master the basics of database management with <strong>{$data['title']}</strong>. This course will provide you with a solid foundation in database concepts and practices.</p>",
+                        'recommended_course'    => "<p>To expand your expertise, consider these recommended courses: <em>Data Warehousing Techniques</em>, <em>Performance Tuning in SQL</em>, and <em>Introduction to Data Analytics</em>.</p>",
+                        'learn_course'          => "<p>In this course, you'll delve into <strong>{$data['title']}</strong>, engaging in practical exercises that help solidify your understanding of database systems.</p>",
+                        'benefits_course'       => "<p>Completing this course will enhance your skills in data management, making you a valuable asset in any data-driven organization.</p>",
+                        'created_at'            => now(), // Current timestamp
+                    ]);
+
+                    $course->content()->createMany(
+                        collect(range(0, 49))->map(function ($index) use ($course) {
+                            return Content::factory()->withDynamicTitle($course->title, $index)->make([
+                                'courses_id' => $course->id,
+                            ])->toArray();
+                        })->toArray()
+                    );
+
+                    $course->syncTags(['Data science']);
 
 
                 } else {
@@ -376,8 +494,6 @@ class CoursesSeeder extends Seeder
 
                     Storage::disk('public')->putFileAs('course_img', $sourcePath, $randomName);
 
-                    // Storage::disk('public')->putFileAs('course_img', $sourcePath, $data['photo']);
-
                     // Create the course
                     $course = Courses::factory()->create([
                         'title' => $data['title'],
@@ -385,7 +501,26 @@ class CoursesSeeder extends Seeder
                         'photo' => 'storage/course_img/' . $randomName, // Path for accessing the image
                     ]);
 
-                    $course->syncTags(['Machine Learning']);
+
+                    AboutCourse::create([
+                        'course_id'             => $course->id, // Link to the created course
+                        'course_information'    => "<p>Gain a comprehensive understanding of <strong>{$data['title']}</strong>, where you will explore foundational concepts and cutting-edge techniques in machine learning.</p>",
+                        'recommended_course'    => "<p>To broaden your skill set, check out these recommended courses: <em>Advanced Machine Learning Techniques</em>, <em>Machine Learning in Practice</em>, and <em>AI and Ethics</em>.</p>",
+                        'learn_course'          => "<p>This course offers hands-on experience with <strong>{$data['title']}</strong>, featuring practical projects that apply machine learning algorithms to real-world problems.</p>",
+                        'benefits_course'       => "<p>By completing this course, you will acquire valuable skills that are in high demand in the tech industry, empowering you to contribute to innovative AI solutions.</p>",
+                        'created_at'            => now(), // Current timestamp
+                    ]);
+
+                    $course->content()->createMany(
+                        collect(range(0, 49))->map(function ($index) use ($course) {
+                            return Content::factory()->withDynamicTitle($course->title, $index)->make([
+                                'courses_id' => $course->id,
+                            ])->toArray();
+                        })->toArray()
+                    );
+
+
+                    $course->syncTags(['Artificial Intelligence']);
 
 
                 } else {
@@ -424,14 +559,30 @@ class CoursesSeeder extends Seeder
 
                     Storage::disk('public')->putFileAs('course_img', $sourcePath, $randomName);
 
-                    // Storage::disk('public')->putFileAs('course_img', $sourcePath, $data['photo']);
-
                     // Create the course
                     $course = Courses::factory()->create([
                         'title' => $data['title'],
                         'url'   => $data['title'],
                         'photo' => 'storage/course_img/' . $randomName, // Path for accessing the image
                     ]);
+
+                    AboutCourse::create([
+                        'course_id'             => $course->id, // Link to the created course
+                        'course_information'    => "<p>Discover the transformative world of <strong>{$data['title']}</strong>. This course introduces key concepts and applications of AI across various industries.</p>",
+                        'recommended_course'    => "<p>To further enhance your understanding, consider these recommended courses: <em>Deep Learning with AI</em>, <em>Natural Language Processing</em>, and <em>AI for Business</em>.</p>",
+                        'learn_course'          => "<p>Engage with <strong>{$data['title']}</strong> through hands-on projects that illustrate the principles of AI and its impact on technology today.</p>",
+                        'benefits_course'       => "<p>By completing this course, you will gain essential skills that are increasingly sought after in today's job market, preparing you for a career in AI development.</p>",
+                        'created_at'            => now(), // Current timestamp
+                    ]);
+
+                    $course->content()->createMany(
+                        collect(range(0, 49))->map(function ($index) use ($course) {
+                            return Content::factory()->withDynamicTitle($course->title, $index)->make([
+                                'courses_id' => $course->id,
+                            ])->toArray();
+                        })->toArray()
+                    );
+
 
                     $course->syncTags(['Artificial Intelligence']);
 
@@ -471,8 +622,6 @@ class CoursesSeeder extends Seeder
 
                     Storage::disk('public')->putFileAs('course_img', $sourcePath, $randomName);
 
-                    // Storage::disk('public')->putFileAs('course_img', $sourcePath, $data['photo']);
-
                     // Create the course
                     $course = Courses::factory()->create([
                         'title' => $data['title'],
@@ -480,7 +629,24 @@ class CoursesSeeder extends Seeder
                         'photo' => 'storage/course_img/' . $randomName, // Path for accessing the image
                     ]);
 
-                    $course->syncTags(['Network']);
+                    AboutCourse::create([
+                        'course_id'             => $course->id, // Link to the created course
+                        'course_information'    => "<p>Understand the essential concepts of <strong>{$data['title']}</strong>. This course provides a strong foundation in networking principles and practices.</p>",
+                        'recommended_course'    => "<p>To further your knowledge, consider these recommended courses: <em>Advanced Network Security</em>, <em>Cloud Networking Solutions</em>, and <em>Network Troubleshooting Techniques</em>.</p>",
+                        'learn_course'          => "<p>This course offers hands-on learning experiences in <strong>{$data['title']}</strong>, helping you apply theoretical concepts to real-world networking scenarios.</p>",
+                        'benefits_course'       => "<p>Upon completion, you'll acquire valuable networking skills that are crucial for career advancement in the IT field.</p>",
+                        'created_at'            => now(), // Current timestamp
+                    ]);
+
+                    $course->content()->createMany(
+                        collect(range(0, 49))->map(function ($index) use ($course) {
+                            return Content::factory()->withDynamicTitle($course->title, $index)->make([
+                                'courses_id' => $course->id,
+                            ])->toArray();
+                        })->toArray()
+                    );
+
+                    $course->syncTags(['Computer network']);
 
 
                 } else {
@@ -518,14 +684,29 @@ class CoursesSeeder extends Seeder
 
                     Storage::disk('public')->putFileAs('course_img', $sourcePath, $randomName);
 
-                    // Storage::disk('public')->putFileAs('course_img', $sourcePath, $data['photo']);
-
                     // Create the course
                     $course = Courses::factory()->create([
                         'title' => $data['title'],
                         'url'   => $data['title'],
                         'photo' => 'storage/course_img/' . $randomName, // Path for accessing the image
                     ]);
+
+                    AboutCourse::create([
+                        'course_id'             => $course->id, // Link to the created course
+                        'course_information'    => "<p>Explore the critical field of <strong>{$data['title']}</strong>. This course covers essential cybersecurity concepts and practices to protect systems and data.</p>",
+                        'recommended_course'    => "<p>To deepen your expertise, consider these recommended courses: <em>Advanced Cybersecurity Techniques</em>, <em>Penetration Testing and Vulnerability Assessment</em>, and <em>Cybersecurity Compliance Standards</em>.</p>",
+                        'learn_course'          => "<p>Engage in practical exercises and real-world scenarios related to <strong>{$data['title']}</strong>, preparing you for challenges in the cybersecurity landscape.</p>",
+                        'benefits_course'       => "<p>Completing this course equips you with vital skills needed to safeguard digital assets, making you an asset in the ever-evolving cybersecurity field.</p>",
+                        'created_at'            => now(), // Current timestamp
+                    ]);
+
+                    $course->content()->createMany(
+                        collect(range(0, 49))->map(function ($index) use ($course) {
+                            return Content::factory()->withDynamicTitle($course->title, $index)->make([
+                                'courses_id' => $course->id,
+                            ])->toArray();
+                        })->toArray()
+                    );
 
                     $course->syncTags(['Cybersecurity']);
 
@@ -565,9 +746,6 @@ class CoursesSeeder extends Seeder
                     $randomName = Str::random(10) . '.' . pathinfo($data['photo'], PATHINFO_EXTENSION);
 
                     Storage::disk('public')->putFileAs('course_img', $sourcePath, $randomName);
-
-                    // Storage::disk('public')->putFileAs('course_img', $sourcePath, $data['photo']);
-
                     // Create the course
                     $course = Courses::factory()->create([
                         'title' => $data['title'],
@@ -575,7 +753,25 @@ class CoursesSeeder extends Seeder
                         'photo' => 'storage/course_img/' . $randomName, // Path for accessing the image
                     ]);
 
-                    $course->syncTags(['Linux']);
+                    AboutCourse::create([
+                        'course_id'             => $course->id, // Link to the created course
+                        'course_information'    => "<p>Learn the essentials of <strong>{$data['title']}</strong>. This course provides a solid foundation in Linux operating systems and their applications.</p>",
+                        'recommended_course'    => "<p>To further enhance your skills, check out these recommended courses: <em>Advanced Linux Administration</em>, <em>Linux for Developers</em>, and <em>Cloud Computing with Linux</em>.</p>",
+                        'learn_course'          => "<p>This course involves hands-on projects related to <strong>{$data['title']}</strong>, helping you apply your knowledge in real-world scenarios.</p>",
+                        'benefits_course'       => "<p>By completing this course, you will acquire valuable Linux skills that are essential for careers in IT and software development.</p>",
+                        'created_at'            => now(), // Current timestamp
+                    ]);
+
+                    $course->content()->createMany(
+                        collect(range(0, 49))->map(function ($index) use ($course) {
+                            return Content::factory()->withDynamicTitle($course->title, $index)->make([
+                                'courses_id' => $course->id,
+                            ])->toArray();
+                        })->toArray()
+                    );
+
+
+                    $course->syncTags(['Operating Systems']);
 
 
                 } else {
@@ -613,14 +809,29 @@ class CoursesSeeder extends Seeder
 
                     Storage::disk('public')->putFileAs('course_img', $sourcePath, $randomName);
 
-                    // Storage::disk('public')->putFileAs('course_img', $sourcePath, $data['photo']);
-
                     // Create the course
                     $course = Courses::factory()->create([
                         'title' => $data['title'],
                         'url'   => $data['title'],
                         'photo' => 'storage/course_img/' . $randomName, // Path for accessing the image
                     ]);
+
+                    AboutCourse::create([
+                        'course_id'             => $course->id, // Link to the created course
+                        'course_information'    => "<p>Explore the world of <strong>{$data['title']}</strong>. This course introduces key DevOps principles, practices, and tools used in modern software development.</p>",
+                        'recommended_course'    => "<p>To further your expertise, consider these recommended courses: <em>Advanced DevOps Practices</em>, <em>DevOps with Kubernetes</em>, and <em>Site Reliability Engineering</em>.</p>",
+                        'learn_course'          => "<p>Engage in practical exercises related to <strong>{$data['title']}</strong>, allowing you to apply DevOps methodologies to real-world projects.</p>",
+                        'benefits_course'       => "<p>By completing this course, you will gain valuable skills that are essential for improving collaboration between development and operations teams, enhancing your career in IT.</p>",
+                        'created_at'            => now(), // Current timestamp
+                    ]);
+
+                    $course->content()->createMany(
+                        collect(range(0, 49))->map(function ($index) use ($course) {
+                            return Content::factory()->withDynamicTitle($course->title, $index)->make([
+                                'courses_id' => $course->id,
+                            ])->toArray();
+                        })->toArray()
+                    );
 
                     $course->syncTags(['DevOps']);
 
@@ -660,14 +871,30 @@ class CoursesSeeder extends Seeder
 
                     Storage::disk('public')->putFileAs('course_img', $sourcePath, $randomName);
 
-                    // Storage::disk('public')->putFileAs('course_img', $sourcePath, $data['photo']);
-
                     // Create the course
                     $course = Courses::factory()->create([
                         'title' => $data['title'],
                         'url'   => $data['title'],
                         'photo' => 'storage/course_img/' . $randomName, // Path for accessing the image
                     ]);
+
+                    AboutCourse::create([
+                        'course_id'             => $course->id, // Link to the created course
+                        'course_information'    => "<p>Discover the essentials of <strong>{$data['title']}</strong>. This course provides valuable insights and skills that are applicable across various fields.</p>",
+                        'recommended_course'    => "<p>To expand your knowledge, consider these recommended courses: <em>Advanced Project Management</em>, <em>SEO Strategies for Digital Marketing</em>, and <em>Design Thinking Techniques</em>.</p>",
+                        'learn_course'          => "<p>This course features hands-on projects related to <strong>{$data['title']}</strong>, allowing you to apply your learning in practical settings.</p>",
+                        'benefits_course'       => "<p>By completing this course, you'll enhance your skill set, making you more versatile and competitive in the job market.</p>",
+                        'created_at'            => now(), // Current timestamp
+                    ]);
+
+
+                    $course->content()->createMany(
+                        collect(range(0, 49))->map(function ($index) use ($course) {
+                            return Content::factory()->withDynamicTitle($course->title, $index)->make([
+                                'courses_id' => $course->id,
+                            ])->toArray();
+                        })->toArray()
+                    );
 
                     $course->syncTags(['Other']);
 

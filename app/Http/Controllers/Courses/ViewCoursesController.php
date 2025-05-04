@@ -5,12 +5,12 @@ namespace App\Http\Controllers\Courses;
 use App\Http\Controllers\Controller;
 use App\Models\Categories;
 use App\Models\Courses;
-use App\Models\Main_categories;
 use App\Models\Subscribers;
 use finfo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use Spatie\Tags\Tag;
 
 class ViewCoursesController extends Controller
 {
@@ -98,7 +98,7 @@ class ViewCoursesController extends Controller
             return back();
         }
 
-        $categories = Main_categories::all();
+        $categories = Tag::get();
 
         if (Auth::check()) {
 

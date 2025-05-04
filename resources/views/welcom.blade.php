@@ -17,7 +17,7 @@
                           </div>
                           <div class="col">
                             <div class="font-weight-medium">
-                              132 {{ __('Courses') }}
+                              {{ $Information->courses }} {{ __('Courses') }}
                             </div>
                           </div>
                         </div>
@@ -33,7 +33,7 @@
                           </div>
                           <div class="col">
                             <div class="font-weight-medium">
-                              78 {{ __('Students') }}
+                                {{ $Information->students }} {{ __('Students') }}
                             </div>
                           </div>
                         </div>
@@ -49,7 +49,7 @@
                           </div>
                           <div class="col">
                             <div class="font-weight-medium">
-                              623 {{ __('Lessons') }}
+                                {{ $Information->Lessons }} {{ __('Lessons') }}
                             </div>
                           </div>
                         </div>
@@ -65,7 +65,7 @@
                           </div>
                           <div class="col">
                             <div class="font-weight-medium">
-                              132 {{ __('Teachers') }}
+                                {{ $Information->teachers }} {{ __('Teachers') }}
                             </div>
                           </div>
                         </div>

@@ -9,6 +9,7 @@ use App\Models\Main_categories;
 use App\Models\User;
 use App\Models\Courses;
 use App\Models\Content;
+use App\Models\Information;
 use App\Models\Projects;
 use finfo;
 use Illuminate\Http\Request;
@@ -22,7 +23,8 @@ class PagesController extends Controller
 
     public function index(){
         $categories = Tag::get();
-        return view('welcom' , compact('categories'));
+        $Information = Information::find(1);
+        return view('welcom' , compact('categories','Information'));
     }
 
 
@@ -85,7 +87,7 @@ class PagesController extends Controller
 
     public function Projects(){
 
-        $categories = Main_categories::all();
+        $categories = Tag::get();
 
         $Projects = Projects::with('user')->orderBy('created_at', 'DESC')->paginate(15);
 
@@ -94,7 +96,7 @@ class PagesController extends Controller
 
     public function Articles(){
 
-        $categories = Main_categories::all();
+        $categories = Tag::get();
 
         $Articles = Articles::with('user')->orderBy('created_at', 'DESC')->paginate(15);
 
@@ -105,7 +107,7 @@ class PagesController extends Controller
 
     public function ArticleDetails($token){
 
-        $categories = Main_categories::all();
+        $categories = Tag::get();
 
         $Article = Articles::with('user')->where('token',$token)->first();
 
@@ -118,7 +120,7 @@ class PagesController extends Controller
 
         $Project = Projects::where('token',$token)->first();
 
-        $categories = Main_categories::all();
+        $categories = Tag::get();
 
         $Course = Courses::find($Project->id);
 
@@ -217,7 +219,7 @@ class PagesController extends Controller
             toast(__('Data entry error'), 'error');
             return back()->withErrors($validator)->withInput();
         }
-        $categories = Main_categories::all();
+        $categories = Tag::get();
 
         $course = Courses::where("title","like","%".$request->search."%")->with('Categories')->get();
 

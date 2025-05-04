@@ -21,9 +21,7 @@ class UsersSeeder extends Seeder
     {
 
 
-
-
-        $user = User::create([
+        $admin = User::create([
             'first_name' => 'admin',
             'last_name' => 'Developer',
             'username' => 'admin',
@@ -35,7 +33,7 @@ class UsersSeeder extends Seeder
             'remember_token' => null,
         ]);
 
-        $user2 = User::create([
+        $teacher = User::create([
             'first_name' => 'test',
             'last_name' => 'Developer',
             'username' => 'test',
@@ -48,67 +46,19 @@ class UsersSeeder extends Seeder
         ]);
 
 
-
-        $Roles = [
-            ['name' => 'member', 'guard_name' => 'web'],
-            ['name' => 'student', 'guard_name' => 'web'],
-            ['name' => 'teacher', 'guard_name' => 'web'],
-            ['name' => 'admin', 'guard_name' => 'web'],
-        ];
-
-        foreach ($Roles as $RoleData) {
-            Role::create($RoleData);
-        }
-
-
-        $permissions = [
-
-            // teacher:
-            ['name' => 'control-course', 'guard_name' => 'web'],
-            ['name' => 'control-content', 'guard_name' => 'web'],
-            ['name' => 'control-comments', 'guard_name' => 'web'],
-            ['name' => 'control-articles', 'guard_name' => 'web'],
-            ['name' => 'control-projects', 'guard_name' => 'web'],
-
-            // student:
-            ['name' => 'create-comments', 'guard_name' => 'web'],
-            ['name' => 'create-articles', 'guard_name' => 'web'],
-            ['name' => 'create-projects', 'guard_name' => 'web'],
-
-            ['name' => 'control-users', 'guard_name' => 'web'],
-
-
-        ];
-
-        foreach ($permissions as $permissionData) {
-            Permission::create($permissionData);
-
-        }
-
-        // admin
-        $role = Role::findByName('admin');
-        $permissionNames = array_column($permissions, 'name');
-
-        $role->syncPermissions($permissionNames);
-        $user->assignRole($role);
-
-        // teacher
-
-        $RoleTeacher = Role::findByName('teacher');
-        $RoleTeacher->givePermissionTo([
-            'control-course',
-            'control-content',
-            'control-comments',
-            'control-articles',
-            'control-projects',
-        ]);
-
-
-        $user2->assignRole($RoleTeacher);
+        $admin->assignRole('admin');
+        $teacher->assignRole('teacher');
 
 
 
-        User::factory(50)->create();
+        User::factory(50)->create()->each(function ($user) {
+            $user->assignRole('teacher'); // Assign the 'teacher' role to each user
+        });
+
+        User::factory(854)->create()->each(function ($user) {
+            $user->assignRole('student'); // Assign the 'teacher' role to each user
+        });
+
 
     }
 }

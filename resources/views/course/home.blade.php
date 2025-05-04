@@ -28,7 +28,7 @@
                         <div class="markdown">
                             <h4>{{ __('It is recommended to be familiar with these topics before starting the course') }}</h4>
                             <div class="text-secondary mb-3">
-                                {!! $course->AboutCourse->recommended_course !!}
+                                {!! $course->AboutCourse->recommended_course ?? null !!}
                             </div>
 
                             <br><br>
@@ -226,16 +226,16 @@
                         <br>
                         <h4>{{ __('Course information') }}</h4>
                         <div class="text-secondary mb-3">
-                          {!! $course->AboutCourse->course_information !!}
+                          {!! $course->AboutCourse->course_information ?? null !!}
                         </div>
                         <h4> {{ __('You will learn in this course') }} </h4>
                         <div class="text-secondary mb-3">
-                            {!! $course->AboutCourse->learn_course !!}
+                            {!! $course->AboutCourse->learn_course ?? null !!}
                         </div>
                         <br>
                         <h4>{{ __('Who benefits from this course') }}</h4>
                         <div class="text-secondary mb-3">
-                            {!! $course->AboutCourse->benefits_course !!}
+                            {!! $course->AboutCourse->benefits_course ?? null !!}
                         </div>
                         <h4>Conditions</h4>
                         <ul class="list-unstyled space-y-1">

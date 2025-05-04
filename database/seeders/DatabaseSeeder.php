@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use App\Models\AboutCourse;
 use App\Models\Articles;
 use App\Models\Categories;
 use App\Models\Content;
@@ -11,7 +10,6 @@ use App\Models\Information;
 use App\Models\Main_categories;
 use App\Models\Projects;
 use App\Models\User;
-use Database\Factories\AboutCourseFactory;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\App;
 use Spatie\Permission\Models\Permission;
@@ -26,48 +24,31 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
-
-        //  \App\Models\Categories::factory(12)->create();
-
-        // This is for testing only
-        Information::create([
-            'courses'   => 95,
-            'students'  => '599',
-            'teachers'  => '120',
-            'Lessons'  => '1530',
-        ]);
 
         $this->call([
-            UsersSeeder::class,
-            TagsSeeder::class,
-            // CategoriesSeeder::class,
-            CoursesSeeder::class,
             RoleSeedr::class,
+            TagsSeeder::class,
+            UsersSeeder::class,
+            CoursesSeeder::class,
+
         ]);
 
 
-        AboutCourse::factory(7)->create();
 
-        // $course = Courses::factory()
-        // ->create();
-        $course = Courses::find(1); // Replace $courseId with the actual ID
+        // Projects::factory(100)->create();
+        // Articles::factory(100)->create();
 
 
-        $course->content()->createMany(
-            Content::factory()->count(50)->make()->toArray()
-        );
-
-        Projects::factory(100)->create();
-        Articles::factory(100)->create();
-
-        // $courses = Courses::findMany([1, 5]);
-
-        // foreach ($courses as $course) {
-        //     $course->syncTags(['Front-End']);
-        // }
-        // $course2->syncTags(['Back-End']);Full-Stack
-        // $course->syncTags(['Front-End','API']);
+        Information::create([
+            'courses'   => Courses::count(),  // Count of all courses
+            'students'  => User::whereHas('roles', function($query) {
+                $query->where('name', 'student'); // Adjust based on your role column name
+            })->count(),                        // Count of users with 'student' role
+            'teachers'  => User::whereHas('roles', function($query) {
+                $query->where('name', 'teacher'); // Adjust based on your role column name
+            })->count(),                        // Count of users with 'teacher' role
+            'Lessons'   => Content::count(),   // Count of all lessons
+        ]);
 
     }
 

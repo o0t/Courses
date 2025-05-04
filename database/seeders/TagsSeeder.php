@@ -14,29 +14,24 @@ class TagsSeeder extends Seeder
      */
     public function run()
     {
-        //
 
         $tags = [
-            ['name' => 'Front-End', 'img' => 'front-end.png'],
-            ['name' => 'Back-End', 'img' => 'back-end.png'],
-            ['name' => 'Full-Stack', 'img' => 'full-stack.png'],
-            ['name' => 'API', 'img' => 'api.png'],
-            ['name' => 'Android', 'img' => 'android.png'],
-            ['name' => 'iOS', 'img' => 'ios.png'],
-            ['name' => 'Database', 'img' => 'database.png'],
-            ['name' => 'Machine Learning', 'img' => 'machine-learning.png'],
-            ['name' => 'Artificial Intelligence', 'img' => 'artificial-intelligence.png'],
-            ['name' => 'Network', 'img' => 'network.png'],
-            ['name' => 'Cybersecurity', 'img' => 'cybersecurity.png'],
-            ['name' => 'Linux', 'img' => 'linux.png'],
-            ['name' => 'DevOps', 'img' => 'devops.png'],
-            ['name' => 'Other', 'img' => 'other.png'],
+            ['name' => 'Web development',           'img' => 'web-development.png'],
+            ['name' => 'Mobile app development',    'img' => 'mobile-development.png'],
+            ['name' => 'Data science',              'img' => 'data-science.png'],
+            ['name' => 'Cybersecurity',             'img' => 'cybersecurity.png'],
+            ['name' => 'Artificial Intelligence',    'img' => 'artificial-intelligence.png'],
+            ['name' => 'Operating Systems',         'img' => 'operating-systems.png'],
+            ['name' => 'Computer network',          'img' => 'computer-network.png'],
+            ['name' => 'DevOps',                    'img' => 'devops.png'],
+            ['name' => 'Programming languages',     'img' => 'programming-languages.png'],
+            ['name' => 'Other',                     'img' => 'other.png'],
         ];
 
         foreach ($tags as $tag) {
             Tag::create([
                 'name' => $tag['name'],
-                'img' => $tag['img'], // Assuming 'image' is the column name in the tags table
+                'img' => $tag['img'],
             ]);
         }
 

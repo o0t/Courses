@@ -10,25 +10,26 @@
                                                 <div class="list-group-item">
                                                     <div class="row align-items-center">
                                                     <div class="col-auto">
-                                                        <a href="#">
-                                                            <span class="avatar" style="background-image: url(./static/avatars/000m.jpg)"></span>
-                                                            <a href="#" class="text-reset d-block">{{ $Comment->user->username }}</a>
-                                                        </a>
+                                                            <span class="avatar" style="background-image: url({{ asset('user_avatar/'.$Comment->user->avatar) }})"></span>
+                                                            <span class="text-reset d-block">{{ $Comment->user->first_name . ' '.$Comment->user->last_name }}</a>
                                                     </div>
-                                                    <div class="col">
+                                                    {{-- <div class="col">
+
+
+                                                    </div> --}}
                                                         <div class="container text-secondary ">
+                                                            <br>
                                                             <span>
                                                                 {!! $Comment->comment !!}
                                                             </span>
                                                         </div>
 
-                                                    </div>
                                                     <div class="col-auto">
-
+<br>
                                                         @if (Auth::user()->hasLikes_comments($content->id, $Comment->id))
                                                             <a href="{{ route('course.comment.like', ['content_token' => $content->token, 'id' => $Comment->id]) }}" class="btn btn-icon">
                                                                 <svg xmlns="http://www.w3.org/2000/svg" class="icon text-secondary" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(203, 67, 53, 1);transform: ;msFilter:;"><path d="M20.205 4.791a5.938 5.938 0 0 0-4.209-1.754A5.906 5.906 0 0 0 12 4.595a5.904 5.904 0 0 0-3.996-1.558 5.942 5.942 0 0 0-4.213 1.758c-2.353 2.363-2.352 6.059.002 8.412L12 21.414l8.207-8.207c2.354-2.353 2.355-6.049-.002-8.416z"></path></svg>
-                                                            </a>
+                                                            </s>
                                                         @else
                                                             <a href="{{ route('course.comment.like', ['content_token' => $content->token, 'id' => $Comment->id]) }}" class="btn btn-icon">
                                                                 <svg xmlns="http://www.w3.org/2000/svg" class="icon text-secondary" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(114, 126, 140, 1);transform: ;msFilter:;">

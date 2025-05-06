@@ -19,7 +19,7 @@
                         </h2>
                     @elseif(app()->getLocale() == 'en')
                         <h2 class="page-title text-light" dir="ltr">
-                            {{ $course->title }} / {{ $content->title }}
+                            {{ $content->title }} / {{ $content->title }}
                         </h2>
                     @endif
                   </div>
@@ -36,80 +36,9 @@
                         <div class="markdown">
                             <h1>{{ $content->title }}</h1>
                             <br>
-                            <div class="container">
-                                @if ($content->type == 'video')
-                                    {{-- video --}}
-                                    <div id="loading">
-                                        <div class="card placeholder-glow">
-                                            <div class="ratio ratio-21x9 card-img-top placeholder"></div>
-                                            <div class="card-body">
-                                              <div class="placeholder col-9 mb-3"></div>
-                                              <div class="placeholder placeholder-xs col-10"></div>
-                                              <div class="placeholder placeholder-xs col-11"></div>
-                                              <div class="mt-3">
-                                                <a href="#" tabindex="-1" class="btn btn-primary disabled placeholder col-4" aria-hidden="true"></a>
-                                              </div>
-                                            </div>
-                                          </div>
-                                    </div>
-                                    <div id="response"></div>
 
-                                    {{-- video / End --}}
-                                @elseif ($content->type == 'txt')
-                                    {{-- txt --}}
-                                    <br>
-                                    <div class="container">
-                                        {!! $content->content !!}
-                                    </div>
-                                    {{-- txt / End --}}
-                                @elseif ($content->type == 'file')
-                                      {{-- pdf --}}
-                                    <div id="loading">
-                                        <div class="card placeholder-glow">
-                                            <div class="ratio ratio-21x9 card-img-top placeholder"></div>
-                                            <div class="card-body">
-                                              <div class="placeholder col-9 mb-3"></div>
-                                              <div class="placeholder placeholder-xs col-10"></div>
-                                              <div class="placeholder placeholder-xs col-11"></div>
-                                              <div class="mt-3">
-                                                <a href="#" tabindex="-1" class="btn btn-primary disabled placeholder col-4" aria-hidden="true"></a>
-                                              </div>
-                                            </div>
-                                        </div>
-                                    </div>
 
-                                    <div id="response"></div>
-
-                                    <script>
-                                        $(document).ready(function() {
-                                            const videoName = '{{ $content->file_name }}';
-
-                                        $('#loading').show();
-
-                                        const url = '{{ route('file.get', ['name' => '__name__']) }}'.replace('__name__', encodeURIComponent(videoName));
-
-                                        $.get(url, function(data) {
-
-                                                    $('#loading').hide();
-
-                                                    if (data.status === 'success') {
-                                                        // Display video information
-                                                        $('#response').html(`
-                                                          <iframe class="pdf" src="data:${data.mime_type};base64,${data.file_content}" width="650" height="500">
-                                                        `);
-                                                    } else {
-                                                        $('#response').html(`<p>${data.message}</p>`);
-                                                    }
-                                                })
-                                                .fail(function() {
-                                                    $('#response').html('<p>Error fetching video.</p>');
-                                                });
-                                        });
-                                    </script>
-                                    {{-- pdf / End --}}
-                                @endif
-                            </div>
-
+                            @include('course._content')
 
                             @include('course._user-action')
 
@@ -120,27 +49,27 @@
 
                             {{-- Buttons Next --}}
                               @if (app()->getLocale() == 'en')
-                                <div class="d-flex">
-                                    <a href="{{ route('course.content.previous',['title'=> $course->title,'token'=> $content->token]) }}" class="btn btn-outline-dark ms-2">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(114, 126, 140, 1);transform: ;msFilter:;"><path d="M12.707 17.293 8.414 13H18v-2H8.414l4.293-4.293-1.414-1.414L4.586 12l6.707 6.707z"></path></svg>
-                                        {{ __('Previous page') }}
-                                    </a>
-                                    <a href="{{ route('course.content.next',['title'=> $course->title,'token'=> $content->token]) }}" class="btn btn-outline-dark ms-auto">
-                                        {{ __('Next Page') }}
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(114, 126, 140, 1);transform: ;msFilter:;"><path d="m11.293 17.293 1.414 1.414L19.414 12l-6.707-6.707-1.414 1.414L15.586 11H6v2h9.586z"></path></svg>
-                                    </a>
-                                </div>
-                              @elseif (app()->getLocale() == 'ar')
-                                <div class="d-flex">
-                                    <a href="{{ route('course.content.previous',['title'=> $course->title,'token'=> $content->token]) }}" class="btn btn-outline-dark ms-2">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(114, 126, 140, 1);transform: ;msFilter:;"><path d="m11.293 17.293 1.414 1.414L19.414 12l-6.707-6.707-1.414 1.414L15.586 11H6v2h9.586z"></path></svg>
-                                        {{ __('Previous page') }}
-                                    </a>
-                                    <a href="{{ route('course.content.next',['title'=> $course->title,'token'=> $content->token]) }}" class="btn btn-outline-dark ms-auto">
-                                        {{ __('Next Page') }}
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(114, 126, 140, 1);transform: ;msFilter:;"><path d="M12.707 17.293 8.414 13H18v-2H8.414l4.293-4.293-1.414-1.414L4.586 12l6.707 6.707z"></path></svg>
-                                    </a>
-                                </div>
+                                    <div class="d-flex">
+                                        <a href="{{ route('course.content.previous',['title'=> $course->title,'token'=> $content->token]) }}" class="btn btn-outline-dark ms-2">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(114, 126, 140, 1);transform: ;msFilter:;"><path d="M12.707 17.293 8.414 13H18v-2H8.414l4.293-4.293-1.414-1.414L4.586 12l6.707 6.707z"></path></svg>
+                                            {{ __('Previous page') }}
+                                        </a>
+                                        <a href="{{ route('course.content.next',['title'=> $course->title,'token'=> $content->token]) }}" class="btn btn-outline-dark ms-auto">
+                                            {{ __('Next Page') }}
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(114, 126, 140, 1);transform: ;msFilter:;"><path d="m11.293 17.293 1.414 1.414L19.414 12l-6.707-6.707-1.414 1.414L15.586 11H6v2h9.586z"></path></svg>
+                                        </a>
+                                    </div>
+                                @elseif (app()->getLocale() == 'ar')
+                                    <div class="d-flex">
+                                        <a href="{{ route('course.content.previous',['title'=> $course->title,'token'=> $content->token]) }}" class="btn btn-outline-dark ms-2">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(114, 126, 140, 1);transform: ;msFilter:;"><path d="m11.293 17.293 1.414 1.414L19.414 12l-6.707-6.707-1.414 1.414L15.586 11H6v2h9.586z"></path></svg>
+                                            {{ __('Previous page') }}
+                                        </a>
+                                        <a href="{{ route('course.content.next',['title'=> $course->title,'token'=> $content->token]) }}" class="btn btn-outline-dark ms-auto">
+                                            {{ __('Next Page') }}
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(114, 126, 140, 1);transform: ;msFilter:;"><path d="M12.707 17.293 8.414 13H18v-2H8.414l4.293-4.293-1.414-1.414L4.586 12l6.707 6.707z"></path></svg>
+                                        </a>
+                                    </div>
                               @endif
 
                             {{-- Buttons Next / End --}}
@@ -153,7 +82,7 @@
                                       <div class="hr-text">{{__('Description')}}</div>
                                       <div class="container card">
                                           <div class="card-body">
-                                              {{$content->description}}
+                                              {!! $content->description !!}
                                           </div>
                                       </div>
                                     @endif

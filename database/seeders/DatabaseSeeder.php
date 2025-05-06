@@ -4,11 +4,13 @@ namespace Database\Seeders;
 
 use App\Models\Articles;
 use App\Models\Categories;
+use App\Models\Comments;
 use App\Models\Content;
 use App\Models\Courses;
 use App\Models\Information;
 use App\Models\Main_categories;
 use App\Models\Projects;
+use App\Models\Reply_comments;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\App;
@@ -29,12 +31,14 @@ class DatabaseSeeder extends Seeder
             RoleSeedr::class,
             TagsSeeder::class,
             UsersSeeder::class,
-            CoursesSeeder::class,
+            // CoursesSeeder::class,
+            TestSeeder::class,
 
         ]);
 
 
-
+        Comments::factory(500)->create();
+        Reply_comments::factory(5000);
         // Projects::factory(100)->create();
         // Articles::factory(100)->create();
 

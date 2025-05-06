@@ -34,7 +34,7 @@ class ContentManagementController extends Controller
         // ->paginate(20);
 
 
-
+        // return $Course;
         return view('teacher.course.content.home', compact('Course'));
     }
 

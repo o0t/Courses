@@ -15,39 +15,25 @@ class ContentFactory extends Factory
      */
     public function definition()
     {
-        // 'url' => b2764071-6c2a-4f95-91bc-d7f2ed2a473c-1725536065.mp4
-        // return [
-        //     'courses_id' => $course->id,
-        //     'title' =>  $this->faker->jobTitle(),
-        //     // 'content' => $this->faker->text(200),
-        //     // 'type' => 'txt',
-        //     'type' => 'video',
-        //     'file_name' => 'd195194e-d9fe-44d9-b4f6-7a83c438d41a-1725947301.mp4',
-        //     'updated_at' => $this->faker->time,
-        //     'created_at' => $this->faker->time,
-        //     'token' => $this->faker->uuid(),
-        // ];
-        // In your ContentFactory
+        $fileNames = [
+            'd195194e-d9fe-44d9-b4f6-7a83c438d41a-1725947301.mp4',
+            'd195194e-d9fe-44d9-b4f6-7a83c438d41a-1725947301.pdf',
+        ];
 
+        // Randomly select a file name
+        $fileName = $fileNames[array_rand($fileNames)];
 
-        // return [
-        //     'courses_id' => $this->state(function (array $attributes) {
-        //         return $attributes['course_id']; // Use course_id passed during creation
-        //     }),
-        //     'title' => $this->faker->jobTitle(),
-        //     'type' => 'video',
-        //     'file_name' => 'd195194e-d9fe-44d9-b4f6-7a83c438d41a-1725947301.mp4',
-        //     'updated_at' => now(), // Use current time
-        //     'created_at' => now(), // Use current time
-        //     'token' => $this->faker->uuid(),
-        // ];
+        // Mimic getClientOriginalExtension() using pathinfo
+        $extension = pathinfo($fileName, PATHINFO_EXTENSION);
 
+        // Determine the type based on the file extension
+        $type = ($extension === 'mp4') ? 'video' : 'file';
 
         return [
             'courses_id' => $this->faker->randomDigitNotNull(),
-            'title' => 'Default Title', // Placeholder title
-            'type' => 'video',
-            'file_name' => 'd195194e-d9fe-44d9-b4f6-7a83c438d41a-1725947301.mp4',
+            'title' => 'Default Title',
+            'type' => $type,
+            'file_name' => $fileName,
             'updated_at' => now(),
             'created_at' => now(),
             'token' => $this->faker->uuid(),

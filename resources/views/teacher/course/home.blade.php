@@ -58,7 +58,7 @@
                     <tr>
                         <td><a href="{{ route('teacher.course.info',$Course->url) }}">{{ $Course->title }}</a></td>
                         <td class="text-secondary">
-                            {{ 'https://raqeeb.online/course/'.$Course->url }}
+                            {{ 'https://www.example.com/'.$Course->url }}
                         </td>
                         <td class="text-secondary">
                             @if ($Course->status == 'waiting')
@@ -152,7 +152,7 @@
                         </div>
                         <div class="col-lg-3">
                             <label class="form-selectgroup-item">
-                            <input type="radio" name="level" value="all" class="form-selectgroup-input">
+                            <input type="radio" name="level" value="all" class="form-selectgroup-input" checked>
                             <span class="form-selectgroup-label d-flex align-items-center p-3">
                                 <span class="me-3">
                                 <span class="form-selectgroup-check"></span>
@@ -171,7 +171,7 @@
                                 @if (app()->getLocale() == 'en')
                                     <div class="input-group input-group-flat">
                                     <span class="input-group-text">
-                                        https://raqeeb.online/course/
+                                        https://www.example.com/course/
                                     </span>
                                         <input type="text" class="form-control ps-0" name="course-url"  placeholder="{{ __('Your course link') }}" autocomplete="off">
                                     </div>
@@ -184,7 +184,7 @@
                                         <div class="input-group input-group-flat">
                                         <input type="text" class="form-control text-end pe-0" name="course-url" placeholder="{{ __('Your course link') }}" autocomplete="off">
                                         <span class="input-group-text">
-                                            /https://raqeeb.online/course
+                                            /https://www.example.com/course
                                         </span>
                                         </div>
                                     </div>

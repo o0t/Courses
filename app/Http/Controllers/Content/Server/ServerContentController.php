@@ -22,7 +22,7 @@ class ServerContentController extends Controller
 
             $validator = Validator::make($request->all(), [
                 'title' => 'required|string|min:2|max:200',
-                'txt-content' => 'required|min:10',
+                'txt_content' => 'required|min:10',
             ]);
 
             if ($validator->fails()) {
@@ -34,6 +34,7 @@ class ServerContentController extends Controller
                 'courses_id'        => $Course->id,
                 'type'              => 'txt',
                 'title'             => $request->title,
+                'content'           => $request->txt_content,
                 'url'               => $Course->url . '/' . $request->title,
                 'allow_comments'    => $request->allow_comments === "on" ? "yes" : "no",
                 'token'             => $request->_token
@@ -68,7 +69,7 @@ class ServerContentController extends Controller
                     ]);
 
                     // Store the video
-                    $path = $file->store('', 'videos');
+                    $path = $file->store('course/', 'videos');
 
 
                     if ($validator->fails()) {

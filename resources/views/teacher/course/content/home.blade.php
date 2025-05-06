@@ -227,9 +227,9 @@
                                     </div>
 
                                     <label class="form-label">{{ __('Text content') }}</label>
-                                    <textarea id="tinymce-default" value="{{ old('txt-content') }}" name="txt-content"></textarea>
-                                    @error('txt-content')
-                                        <div class="form-text text-danger">{{ $errors->first('txt-content') }}</div>
+                                    <textarea id="tinymce-default" value="{{ old('txt_content') }}" name="txt_content"></textarea>
+                                    @error('txt_content')
+                                        <div class="form-text text-danger">{{ $errors->first('txt_content') }}</div>
                                     @enderror
                                 </div>
                             </div>
@@ -332,17 +332,6 @@
 
             <script>
             $(document).ready(function() {
-
-                // $('.report-type-radio').on('change', function() {
-                // if ($(this).val() === '2') {
-                //     $('.additional-inputs').show();
-                //     $('.input-texts').hide();
-                // } else {
-                //     $('.additional-inputs').hide();
-                //     $('.input-texts').show();
-                // }
-                // });
-
 
                 $('.report-type-radio').on('change', function() {
                     if ($(this).val() === 'upload') {

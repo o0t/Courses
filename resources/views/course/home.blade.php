@@ -71,7 +71,12 @@
                             <img src="{{ asset('images/logo.png') }}" width="24" height="24" class="icon icon-md" >
                           </div>
                           <div>
-                            <small class="text-secondary"> -- </small>
+                            <small class="text-secondary">
+                                @foreach ($course->tags as $tag)
+                                    {{ $tag->name }}
+                                @endforeach
+                            </small>
+                            <br>
                             <h3 class="lh-1">{{ $course->title }}</h3>
                           </div>
                         </div>
@@ -139,62 +144,14 @@
                                 </script>
                                 {{-- Video / End --}}
                             @else
-                                {{-- Video --}}
-                                {{-- <div id="loading" >
-                                    <div class="card placeholder-glow">
-                                        <div class="ratio ratio-21x9 card-img-top placeholder"></div>
-                                        <div class="card-body">
-                                            <div class="placeholder col-9 mb-3"></div>
-                                            <div class="placeholder placeholder-xs col-10"></div>
-                                            <div class="placeholder placeholder-xs col-11"></div>
-                                            <div class="mt-3">
-                                                <a href="#" tabindex="-1" class="btn btn-primary disabled placeholder col-4" aria-hidden="true"></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div> --}}
-
-
 
                                 <div id="response">
                                     <video controls class="container" controlsList="nodownload">
-                                        <source src="{{ asset('storage/introductory_video/' . $course->introductory_video) }}" type="video/{{ $extension }}">
+                                        <source src="{{ asset('storage/introductory_video/'.$course->introductory_video) }}" type="video/{{ $extension }}">
                                         Your browser does not support the video tag.
                                     </video>
                                 </div>
 
-
-{{--
-                                <script>
-                                    $(document).ready(function() {
-                                        const videoName = '{{ $course->introductory_video }}';
-
-                                        $('#loading').show();
-
-                                        const url = '{{ route('get.introductory_video', ['name' => '__name__']) }}'.replace('__name__', encodeURIComponent(videoName));
-
-                                        $.get(url, function(data) {
-                                            $('#loading').hide();
-
-                                            if (data.status === 'success') {
-                                                $('#response').html(`
-                                                    <video controls class="container" controlsList="nodownload">
-                                                        <source src="data:${data.mime_type};base64,${data.file_content}" type="${data.mime_type}">
-                                                        Your browser does not support the video tag.
-                                                    </video>
-                                                `);
-                                            } else {
-                                                $('#response').html(`<p>${data.message}</p>`);
-                                            }
-                                        })
-                                        .fail(function(jqXHR, textStatus, errorThrown) {
-                                            $('#loading').hide();
-                                            $('#response').html('<p>Error fetching video: ' + errorThrown + '</p>');
-
-                                        });
-                                    });
-                                </script> --}}
-                                {{-- Video / End --}}
                             @endif
                         @endif
 
@@ -202,12 +159,11 @@
                         @if ($btn_subscriber == '1')
                             <a href="{{ route('course.content',$course->title) }}" class="btn btn-outline-dark w-100">
                                 @if (app()->getLocale() == 'en')
-                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-md" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(115, 127, 141, 1);transform: ;msFilter:;"><path d="M7 6v12l10-6z"></path></svg>
-                                {{ __('Watch the course') }}
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-md" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(115, 127, 141, 1);transform: ;msFilter:;"><path d="M7 6v12l10-6z"></path></svg>
+                                    {{ __('Watch the course') }}
                                 @elseif (app()->getLocale() == 'ar')
-                                {{ __('Watch the course') }}
-                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-md ms-2" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(115, 127, 141, 1);transform: ;msFilter:;"><path d="M7 6v12l10-6z"></path></svg>
-                                {{-- <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" class="icon icon-md ms-2" viewBox="0 0 24 24" style="fill: rgba(115, 127, 141, 1);transform: ;msFilter:;"><path d="m10.998 16 5-4-5-4v3h-9v2h9z"></path><path d="M12.999 2.999a8.938 8.938 0 0 0-6.364 2.637L8.049 7.05c1.322-1.322 3.08-2.051 4.95-2.051s3.628.729 4.95 2.051S20 10.13 20 12s-.729 3.628-2.051 4.95-3.08 2.051-4.95 2.051-3.628-.729-4.95-2.051l-1.414 1.414c1.699 1.7 3.959 2.637 6.364 2.637s4.665-.937 6.364-2.637C21.063 16.665 22 14.405 22 12s-.937-4.665-2.637-6.364a8.938 8.938 0 0 0-6.364-2.637z"></path></svg> --}}
+                                    {{ __('Watch the course') }}
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-md ms-2" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(115, 127, 141, 1);transform: ;msFilter:;"><path d="M7 6v12l10-6z"></path></svg>
                                 @endif
                             </a>
                         @else
@@ -237,16 +193,11 @@
                         <div class="text-secondary mb-3">
                             {!! $course->AboutCourse->benefits_course ?? null !!}
                         </div>
-                        <h4>Conditions</h4>
-                        <ul class="list-unstyled space-y-1">
-                          <li><!-- Download SVG icon from http://tabler-icons.io/i/info-circle -->
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon text-blue"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0"></path><path d="M12 9h.01"></path><path d="M11 12h1v4h1"></path></svg>
-                            License and copyright notice</li>
-                        </ul>
                       </div>
                       <div class="card-footer">
-                        This is not legal advice.
-                        <a href="#" target="_blank">Learn more about repository sss.</a>
+                        @foreach ($course->tags as $tag)
+                            <a href="{{ route('category',$tag->name) }}">{{ $tag->name }}</a>
+                        @endforeach
                       </div>
                     </div>
                   </div>

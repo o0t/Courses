@@ -25,42 +25,75 @@ class ViewContentController extends Controller
 
     public function GetContentJquery($name){
 
-        try {
-            // Get the file URL from the 'name' parameter
-            $fileUrl = 'http://143.42.49.97:9000/raqeeb/' . $name;
+        if (config('app.storage_type_data') == 'S3') {
 
-            // $fileUrl = 'http://143.42.49.97:9000/raqeeb/d195194e-d9fe-44d9-b4f6-7a83c438d41a-1725947301.mp4';
+            try {
+                // Get the file URL from the 'name' parameter
+                $fileUrl = 'http://143.42.49.97:9000/raqeeb/' . $name;
 
-            // Get the file content
-            $fileContent = file_get_contents($fileUrl);
+                // $fileUrl = 'http://143.42.49.97:9000/raqeeb/d195194e-d9fe-44d9-b4f6-7a83c438d41a-1725947301.mp4';
+
+                // Get the file content
+                $fileContent = file_get_contents($fileUrl);
+
+                // Check if the file content is retrieved successfully
+                if ($fileContent !== false) {
+                    // Create a new finfo resource to detect the MIME type
+                    $finfo = new finfo(FILEINFO_MIME_TYPE);
+
+                    // Detect the MIME type of the file
+                    $mimeType = $finfo->buffer($fileContent);
+                    // Set the appropriate content-type header
+                    header("Content-Type: $mimeType");
+
+                    // Output the file content
+                    // echo $fileContent;
+
+                    return response()->json([
+                        'message' => 'File retrieved successfully.',
+                        'mime_type' => $mimeType,
+                        'status' => 'success',
+                        'file_content' => base64_encode($fileContent), // Optionally encode the content
+                    ]);
+
+                } else {
+                    echo "Failed to retrieve the file.";
+                }
+
+            } catch (\Throwable $th) {
+                return false;
+            }
+
+        }else{
+
+            $fileContent = Content::where('file_name', $name)->first();
 
             // Check if the file content is retrieved successfully
-            if ($fileContent !== false) {
-                // Create a new finfo resource to detect the MIME type
-                $finfo = new finfo(FILEINFO_MIME_TYPE);
+            if ($fileContent) {
+                $contentData = $fileContent->file_name; // Adjust this based on your actual model structure
 
                 // Detect the MIME type of the file
-                $mimeType = $finfo->buffer($fileContent);
+                $mimeType = $fileContent->extension; // Ensure this is a valid MIME type
+
                 // Set the appropriate content-type header
                 header("Content-Type: $mimeType");
-
-                // Output the file content
-                // echo $fileContent;
 
                 return response()->json([
                     'message' => 'File retrieved successfully.',
                     'mime_type' => $mimeType,
                     'status' => 'success',
-                    'file_content' => base64_encode($fileContent), // Optionally encode the content
+                    'file_content' => $contentData, // Encode the content
                 ]);
-
             } else {
-                echo "Failed to retrieve the file.";
+                return response()->json([
+                    'message' => 'Failed to retrieve the file.',
+                    'status' => 'error',
+                ], 404);
             }
 
-        } catch (\Throwable $th) {
-            return false;
+
         }
+
     }
 
 
@@ -82,7 +115,6 @@ class ViewContentController extends Controller
         $user_activities = user_activities::where('user_id',Auth::user()->id)->where('courses_id',$course->id)->get()->last();
 
         $content = Content::where('courses_id',$course->id)->where('serial',$user_activities->serial)->first();
-
 
         return view('course.course-content',compact('course','categories','contents','content'));
 

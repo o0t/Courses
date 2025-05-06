@@ -57,7 +57,7 @@
                                     <div class="card-header" style="display: block;text-align: center">
                                         <div><strong>{{ $Course->title }}</strong></div>
                                     </div>
-                                <a href="{{ route('course.view',$Course->title) }}" class="d-block">
+                                <a href="{{ route('course.view',$Course->url) }}" class="d-block">
                                     <img src="{{ asset($Course->photo) }}" height="300" class="card-img-top"></a>
                                     <br>
                                     <div class="text-secondary ms-2">

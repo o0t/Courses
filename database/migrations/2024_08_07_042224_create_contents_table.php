@@ -29,7 +29,7 @@ class CreateContentsTable extends Migration
             $table->bigInteger('views')->default(0);
             $table->bigInteger('favorite')->default(0);
             $table->enum('allow_comments', ['yes','no'])->default('yes');
-            $table->enum('status', ['waiting','private','general','customized','closed'])->default('private');
+            $table->enum('status', ['waiting','private','general','customized','closed'])->default('general');
             $table->enum('is_section', ['yes','no'])->default('no');
             $table->foreign('courses_id')->references('id')->on('courses')->onDelete('cascade');
 

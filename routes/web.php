@@ -26,10 +26,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [PagesController::class , 'index'])->name('index');
 
 
-Route::get('o',function(){
-    return redirect()->back();
-});
-
 Route::group(['prefix'=>'category'], function(){
 
     Route::get('{category}', [PagesController::class , 'category'])->name('category');

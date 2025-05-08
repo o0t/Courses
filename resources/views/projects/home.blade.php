@@ -95,18 +95,10 @@
                                 </div>
                             </div>
                             <br>
-                            <div id="response-{{ $Project->id }}" ></div>
-                            <div class="loading-message" id="loading-{{ $Project->id }}" style="display: none;">
-                                <div class="card-body py-5 text-center">
-                                    <div>
-                                      <div class="avatar avatar-rounded avatar-lg placeholder mb-3"></div>
-                                    </div>
-                                    <div class="mt w-75 mx-auto">
-                                      <div class="placeholder col-9 mb-3"></div>
-                                      <div class="placeholder placeholder-xs col-10"></div>
-                                    </div>
-                                </div>
-                            </div>
+
+                            <a href="{{ route('projects.details',$Project->token) }}">
+                                <img src="{{ asset('projects_img/projects.png') }}" class="card-img-top" alt="" style="max-height: 289px;max-width: 384px;">
+                            </a>
 
                         </div>
                     </div>
@@ -137,7 +129,6 @@
                     //         $('#response-{{ $Project->id }}').html('<p>Error fetching image: ' + errorThrown + '</p>');
                     //     });
                     // });
-
 
                 </script>
 

@@ -221,7 +221,7 @@ class PagesController extends Controller
         }
         $categories = Tag::get();
 
-        $course = Courses::where("title","like","%".$request->search."%")->with('Categories')->get();
+        $course = Courses::where("title","like","%".$request->search."%")->with('tags')->get();
 
         return response()->json($course);
     }

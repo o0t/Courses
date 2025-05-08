@@ -8,6 +8,8 @@ use App\Models\Comments;
 use App\Models\Content;
 use App\Models\Courses;
 use App\Models\Information;
+use App\Models\Likes;
+use App\Models\Likes_comments;
 use App\Models\Main_categories;
 use App\Models\Projects;
 use App\Models\Reply_comments;
@@ -37,21 +39,21 @@ class DatabaseSeeder extends Seeder
         ]);
 
 
-        Comments::factory(500)->create();
-        Reply_comments::factory(5000);
-        // Projects::factory(100)->create();
+        Comments::factory(5000)->create();
+
+        Projects::factory(100)->create();
         // Articles::factory(100)->create();
 
 
         Information::create([
-            'courses'   => Courses::count(),  // Count of all courses
+            'courses'   => Courses::count(),
             'students'  => User::whereHas('roles', function($query) {
-                $query->where('name', 'student'); // Adjust based on your role column name
-            })->count(),                        // Count of users with 'student' role
+                $query->where('name', 'student');
+            })->count(),
             'teachers'  => User::whereHas('roles', function($query) {
-                $query->where('name', 'teacher'); // Adjust based on your role column name
-            })->count(),                        // Count of users with 'teacher' role
-            'Lessons'   => Content::count(),   // Count of all lessons
+                $query->where('name', 'teacher');
+            })->count(),
+            'Lessons'   => Content::count(),
         ]);
 
     }

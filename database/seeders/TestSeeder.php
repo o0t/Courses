@@ -51,7 +51,7 @@ class TestSeeder extends Seeder
         ]);
 
         User::factory(50)->create();
-        // $admin->assignRole('admin');
+        $admin->assignRole('admin');
         $teacher->assignRole('teacher');
 
 

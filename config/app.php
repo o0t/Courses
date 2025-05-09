@@ -191,6 +191,7 @@ return [
         /*
          * Package Service Providers...
          */
+        jeremykenedy\LaravelLogger\LaravelLoggerServiceProvider::class,
 
         /*
          * Application Service Providers...

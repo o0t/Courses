@@ -98,23 +98,14 @@
                             </div>
                             <br>
                             <div id="response-{{ $Article->id }}" ></div>
-                            <div class="loading-message" id="loading-{{ $Article->id }}" style="display: none;">
-                                <div class="card-body py-5 text-center">
-                                    <div>
-                                      <div class="avatar avatar-rounded avatar-lg placeholder mb-3"></div>
-                                    </div>
-                                    <div class="mt w-75 mx-auto">
-                                      <div class="placeholder col-9 mb-3"></div>
-                                      <div class="placeholder placeholder-xs col-10"></div>
-                                    </div>
-                                </div>
-                            </div>
-
+                            <a href="{{ route('articles.details',$Article->token) }}">
+                                <img src="{{ asset('projects_img/'.$Article->image) }}" class="card-img-top" alt="" height="200" style="max-height: 289px;max-width: 384px;">
+                            </a>
                         </div>
                     </div>
                 </div>
 
-                <script>
+                {{-- <script>
                     $(document).ready(function() {
                         const ImageName = '{{ $Article->image }}';
                         const url = '{{ route('articles.images', ['name' => '__name__']) }}'.replace('__name__', encodeURIComponent(ImageName));
@@ -138,7 +129,7 @@
                             $('#response-{{ $Article->id }}').html('<p>Error fetching image: ' + errorThrown + '</p>');
                         });
                     });
-                </script>
+                </script> --}}
             @endforeach
 
             {{-- Articles / End --}}

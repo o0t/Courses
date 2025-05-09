@@ -42,7 +42,7 @@ class DatabaseSeeder extends Seeder
         Comments::factory(5000)->create();
 
         Projects::factory(100)->create();
-        // Articles::factory(100)->create();
+        Articles::factory(100)->create();
 
 
         Information::create([

@@ -319,7 +319,8 @@
     "Content deleted successfully":"تم حذف المحتوى بنجاح",
     "Introductory video":"فيديو تعريفي",
     "Allowed upload format: mp4, avi, mov, mkv":"صيغة الرفع المسموح بها: mp4، avi، mov، mkv",
-    "Created by":"تم الإنشاء بواسطة"
+    "Created by":"تم الإنشاء بواسطة",
+    "This is a trial version, you cannot perform this action":"هذه نسخة تجريبية، لا يمكنك تنفيذ هذا الإجراء"
 
 
 }

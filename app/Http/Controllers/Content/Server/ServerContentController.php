@@ -153,7 +153,10 @@ class ServerContentController extends Controller
 
 
     public function EditContent($id){
-        return $id ;
+
+        $Content = Content::where('id',$id)->first();
+
+        return view('teacher.course.content.edit',compact('Content'));
     }
 
 

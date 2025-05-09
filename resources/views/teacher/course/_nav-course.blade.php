@@ -21,12 +21,12 @@
             <a href="{{ route('teacher.course.display',$Course->url) }}" class="btn @yield('active.course.display.sections')" >
             {{ __('Course display information') }}
             </a>
-            <a href="#" class="btn @yield('active.course.student.interaction')" >
+            {{-- <a href="{{ route('StudentInteraction',$Course->url) }}" class="btn @yield('active.course.student.interaction')" >
             {{ __('Student interaction') }}
             </a>
             <a href="#" class="btn @yield('active.course.publishing')" >
             {{ __('Publishing') }}
-            </a>
+            </a> --}}
         </div>
     </div>
 </div>

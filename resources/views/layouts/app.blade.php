@@ -93,7 +93,7 @@
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
                                     <a href="{{ route('account.settings') }}" class="dropdown-item">{{ __('Profile settings') }}</a>
-                                    <a href="#" class="dropdown-item">{{ __('Notifications') }}</a>
+                                    {{-- <a href="#" class="dropdown-item">{{ __('Notifications') }}</a> --}}
                                     <div class="dropdown-divider"></div>
                                     @if (app()->getLocale() == 'ar')
                                         <a href="{{ route('lan','en') }}" class="dropdown-item">EN</a>
@@ -293,7 +293,7 @@
                                     <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
                                     <a href="{{ route('account.settings') }}" class="dropdown-item">{{ __('Profile settings') }}</a>
                                     <a href="#" class="dropdown-item">{{ __('Notifications') }}</a>
-                                    <a href="{{ route('home') }}" class="dropdown-item">{{ __('Dashboard') }}</a>
+                                    <a href="{{ route('teacher.courses.home') }}" class="dropdown-item">{{ __('Dashboard') }}</a>
                                     <div class="dropdown-divider"></div>
 
                                     @if (app()->getLocale() == 'ar')
@@ -330,39 +330,39 @@
                                     </a>
                                 </li>
 
-                                <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#navbar-help" data-bs-toggle="dropdown" data-bs-auto-close="false" role="button" aria-expanded="false" >
-                                    <span class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/lifebuoy -->
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(146, 157, 171, 1);transform: ;msFilter:;"><path d="M16.604 11.048a5.67 5.67 0 0 0 .751-3.44c-.179-1.784-1.175-3.361-2.803-4.44l-1.105 1.666c1.119.742 1.8 1.799 1.918 2.974a3.693 3.693 0 0 1-1.072 2.986l-1.192 1.192 1.618.475C18.951 13.701 19 17.957 19 18h2c0-1.789-.956-5.285-4.396-6.952z"></path><path d="M9.5 12c2.206 0 4-1.794 4-4s-1.794-4-4-4-4 1.794-4 4 1.794 4 4 4zm0-6c1.103 0 2 .897 2 2s-.897 2-2 2-2-.897-2-2 .897-2 2-2zm1.5 7H8c-3.309 0-6 2.691-6 6v1h2v-1c0-2.206 1.794-4 4-4h3c2.206 0 4 1.794 4 4v1h2v-1c0-3.309-2.691-6-6-6z"></path></svg>
-                                    </span>
-                                    <span class="nav-link-title">
-                                    {{ __('Student Experience') }}
-                                    </span>
-                                </a>
-                                <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="https://tabler.io/docs" target="_blank" rel="noopener">
-                                    {{ __('Students') }}
+                                {{-- <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#navbar-help" data-bs-toggle="dropdown" data-bs-auto-close="false" role="button" aria-expanded="false" >
+                                        <span class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/lifebuoy -->
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(146, 157, 171, 1);transform: ;msFilter:;"><path d="M16.604 11.048a5.67 5.67 0 0 0 .751-3.44c-.179-1.784-1.175-3.361-2.803-4.44l-1.105 1.666c1.119.742 1.8 1.799 1.918 2.974a3.693 3.693 0 0 1-1.072 2.986l-1.192 1.192 1.618.475C18.951 13.701 19 17.957 19 18h2c0-1.789-.956-5.285-4.396-6.952z"></path><path d="M9.5 12c2.206 0 4-1.794 4-4s-1.794-4-4-4-4 1.794-4 4 1.794 4 4 4zm0-6c1.103 0 2 .897 2 2s-.897 2-2 2-2-.897-2-2 .897-2 2-2zm1.5 7H8c-3.309 0-6 2.691-6 6v1h2v-1c0-2.206 1.794-4 4-4h3c2.206 0 4 1.794 4 4v1h2v-1c0-3.309-2.691-6-6-6z"></path></svg>
+                                        </span>
+                                        <span class="nav-link-title">
+                                        {{ __('Student Experience') }}
+                                        </span>
                                     </a>
-                                    <a class="dropdown-item" href="https://tabler.io/docs" target="_blank" rel="noopener">
-                                    {{ __('Certificates') }}
-                                    </a>
-                                    <a class="dropdown-item" href="https://tabler.io/docs" target="_blank" rel="noopener">
-                                    {{ __('Comments') }}
-                                    </a>
-                                    <a class="dropdown-item" href="./changelog.html">
-                                    {{ __('Duties') }}
-                                    </a>
-                                    <a class="dropdown-item" href="https://github.com/tabler/tabler" target="_blank" rel="noopener">
-                                    {{ __('Exams') }}
-                                    </a>
-                                    <a class="dropdown-item" href="https://github.com/tabler/tabler" target="_blank" rel="noopener">
-                                    {{ __('Forms') }}
-                                    </a>
-                                    <a class="dropdown-item" href="{{ route('projects.home') }}" target="_blank" rel="noopener">
-                                    {{ __('Projects') }}
-                                    </a>
-                                </div>
-                                </li>
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item" href="https://tabler.io/docs" target="_blank" rel="noopener">
+                                        {{ __('Students') }}
+                                        </a>
+                                        <a class="dropdown-item" href="https://tabler.io/docs" target="_blank" rel="noopener">
+                                        {{ __('Certificates') }}
+                                        </a>
+                                        <a class="dropdown-item" href="https://tabler.io/docs" target="_blank" rel="noopener">
+                                        {{ __('Comments') }}
+                                        </a>
+                                        <a class="dropdown-item" href="./changelog.html">
+                                        {{ __('Duties') }}
+                                        </a>
+                                        <a class="dropdown-item" href="https://github.com/tabler/tabler" target="_blank" rel="noopener">
+                                        {{ __('Exams') }}
+                                        </a>
+                                        <a class="dropdown-item" href="https://github.com/tabler/tabler" target="_blank" rel="noopener">
+                                        {{ __('Forms') }}
+                                        </a>
+                                        <a class="dropdown-item" href="{{ route('projects.home') }}" target="_blank" rel="noopener">
+                                        {{ __('Projects') }}
+                                        </a>
+                                    </div>
+                                </li> --}}
 
 
                                 <li class="nav-item @yield('link.articles')">

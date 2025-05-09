@@ -31,12 +31,13 @@ class ContentFactory extends Factory
 
         return [
             'courses_id' => $this->faker->randomDigitNotNull(),
-            'title' => 'Default Title',
-            'type' => $type,
-            'file_name' => $fileName,
+            'title'      => 'Default Title',
+            'url'        => $this->faker->word() . '-' . uniqid(),
+            'type'       => $type,
+            'file_name'   => $fileName,
             'updated_at' => now(),
             'created_at' => now(),
-            'token' => $this->faker->uuid(),
+            'token'      => $this->faker->uuid(),
         ];
     }
 

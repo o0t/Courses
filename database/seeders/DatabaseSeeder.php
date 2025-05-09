@@ -43,7 +43,7 @@ class DatabaseSeeder extends Seeder
 
         Projects::factory(100)->create();
         Articles::factory(100)->create();
-
+        Likes::factory(500)->create();
 
         Information::create([
             'courses'   => Courses::count(),

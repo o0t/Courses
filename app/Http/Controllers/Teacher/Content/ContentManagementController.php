@@ -27,14 +27,10 @@ class ContentManagementController extends Controller
         $Course = Courses::with(['content' => function($query) {
             $query->orderBy('serial');
         }, 'content.ContentSection'])
-
         ->where('url', $url)
         ->where('user_id', Auth::user()->id)
         ->first();
-        // ->paginate(20);
 
-
-        // return $Course;
         return view('teacher.course.content.home', compact('Course'));
     }
 

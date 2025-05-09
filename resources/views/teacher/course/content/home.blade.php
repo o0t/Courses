@@ -119,19 +119,22 @@
                                             </td>
                                         @else
                                             <td>
-                                                <a href="#" class="btn btn-primary w-100">
+                                                <a href="#" class="btn btn-primary w-100"                                                 onclick="return confirm('{{ __('This is a trial version, you cannot perform this action') }}');"
+                                                >
                                                     <i class='bx bx-show-alt'></i>
                                                 </a>
                                             </td>
                                             <td>
-                                                <a href="{{ route('teacher.course.contents.edit',$content->id) }}" class="btn btn-success w-100">
+                                                <a href="#" class="btn btn-success w-100"
+                                                onclick="return confirm('{{ __('This is a trial version, you cannot perform this action') }}');"
+                                                >
                                                     <i class='bx bxs-edit'></i>
                                                 </a>
                                             </td>
                                             <td>
-                                                <a href="{{ route('teacher.course.contents.delete', $content->id) }}"
+                                                <a href="#"
                                                     class="btn btn-danger w-100"
-                                                    onclick="return confirm('Are you sure you want to delete this post?');">
+                                                    onclick="return confirm('{{ __('This is a trial version, you cannot perform this action') }}');">
                                                     <i class='bx bxs-trash'></i>
                                                  </a>
                                             </td>

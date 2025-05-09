@@ -76,6 +76,7 @@ Route::group(['middleware' => ['role_or_permission:teacher'], 'prefix' => 'teach
 
 
             Route::get('/{url}/home',[CourseInfoController::class , 'CourseInfoPage'])->name('teacher.course.info');
+            Route::get('/Student_Interaction/{url}',[CourseInfoController::class , 'StudentInteraction'])->name('StudentInteraction');
 
     });
 
